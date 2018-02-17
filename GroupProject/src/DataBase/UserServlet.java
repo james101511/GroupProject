@@ -20,7 +20,7 @@ public class UserServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
-	private UserDB studentDB;
+	private UserDB UserDB;
 	@Resource(name = "test1")
 	private DataSource dataSource;
 
@@ -32,7 +32,7 @@ public class UserServlet extends HttpServlet
 		// create our student db util and pass in the conn pool /datasource
 		try
 		{
-			studentDB = new UserDB(dataSource);
+			UserDB = new UserDB(dataSource);
 		}
 		catch (Exception exc)
 		{
@@ -58,7 +58,7 @@ public class UserServlet extends HttpServlet
 		try
 		{
 			// list the students
-			addStudent(request, response);
+			addUser(request, response);
 		}
 		catch (Exception exc)
 		{
@@ -69,23 +69,24 @@ public class UserServlet extends HttpServlet
 
 	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		// get students from db util
-		List<student> students = studentDB.getStudents();
-
-		// add students to the request
-		request.setAttribute("STUDENTS_LIST", students);
-		// send to JSP page (view)
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-student.jsp");
-		dispatcher.forward(request, response);
+//		// get students from db util
+//		List<User> users = UserDB.getStudents();
+//
+//		// add students to the request
+//		request.setAttribute("STUDENTS_LIST", students);
+//		// send to JSP page (view)
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-student.jsp");
+//		dispatcher.forward(request, response);
 	}
-	private void addStudent(HttpServletRequest request, HttpServletResponse response) throws Exception
+	private void addUser(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String FirstName = request.getParameter("FirstName");
-		String LastName = request.getParameter("LastName");
-		String email = request.getParameter("email");
-		student student = new student(FirstName, LastName, email);
-		studentDB.addStudent(student);
-		request.getRequestDispatcher("/list-student.jsp");
+		String FirstName = request.getParameter("firstName");
+		String LastName = request.getParameter("lastName");
+		String Email = request.getParameter("email");
+		String Password = request.getParameter("password");
+		User user = new User(FirstName, LastName, Email,Password);
+		UserDB.addUser(user);
+		request.getRequestDispatcher("/LogInPage.jsp");
 		
 
 	}

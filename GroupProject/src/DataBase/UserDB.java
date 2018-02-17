@@ -97,12 +97,13 @@ public class UserDB
 			// get db connection
 			myConn = dataSource.getConnection();
 			// create sql for insert
-			String sql = "insert into Users" + "(first_name,last_name,email)" + "values(?,?,?)";
+			String sql = "insert into Users" + "(FirstName,LastName,Email,Password)" + "values(?,?,?,?)";
 			myStmt = myConn.prepareStatement(sql);
 			// set the param values for the student
 			myStmt.setString(1, theuser.getFirstName());
 			myStmt.setString(2, theuser.getLastName());
 			myStmt.setString(3, theuser.getEmail());
+			myStmt.setString(4, theuser.getPassword());
 			// execute sql insert
 			myStmt.execute();
 		}

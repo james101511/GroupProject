@@ -16,6 +16,18 @@ public class User
 		Email = email;
 		Password = password;
 	}
+	
+	
+	public User(String lastName, String firstName, String email, String password)
+	{
+		super();
+		LastName = lastName;
+		FirstName = firstName;
+		Email = email;
+		Password = password;
+	}
+
+
 	public int getUSERID()
 	{
 		return USERID;
