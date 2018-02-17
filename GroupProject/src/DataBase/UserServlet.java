@@ -86,7 +86,9 @@ public class UserServlet extends HttpServlet
 		String Password = request.getParameter("password");
 		User user = new User(FirstName, LastName, Email,Password);
 		UserDB.addUser(user);
-		request.getRequestDispatcher("/LogInPage.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/LogInPage.jsp");
+		dispatcher.forward(request, response);
+		
 		
 
 	}
