@@ -89,7 +89,7 @@
 				
 				<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 		
-		<a href="LogInPage.jsp">
+		<a href="signUp.jsp">
 		<button type="button" class="btn btn-primary btn-lg">Create Account</button>
 			</a>
 				
