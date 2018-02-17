@@ -139,9 +139,9 @@
 		<div id="down-line-bar"></div>
   
     <div class="wrapper">
-    <form class="form-signin">       
+    <form class="form-signin" action="${pageContext.request.contextPath }/LoginServlet" method="POST">  >     
 		<h8 class="form-signin-heading"><small>Enter your account email and password</small></h8>
-		<input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
+		<input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
 		<input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>  
 		<p id="question_ac">Don't have an account yet?</p><a class="account_link" href="#"> Create new account</a>
