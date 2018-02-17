@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-/**1
- * Servlet implementation class StudentServlet
+/**
+ * 1 Servlet implementation class StudentServlet
  */
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet
@@ -45,7 +45,7 @@ public class UserServlet extends HttpServlet
 		try
 		{
 			// list the students
-			listStudents(request, response);
+			CheckUser(request, response);
 		}
 		catch (Exception exc)
 		{
@@ -53,11 +53,12 @@ public class UserServlet extends HttpServlet
 		}
 
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		try
 		{
-			// list the students
+
 			addUser(request, response);
 		}
 		catch (Exception exc)
@@ -69,28 +70,65 @@ public class UserServlet extends HttpServlet
 
 	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-//		// get students from db util
-//		List<User> users = UserDB.getStudents();
-//
-//		// add students to the request
-//		request.setAttribute("STUDENTS_LIST", students);
-//		// send to JSP page (view)
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-student.jsp");
-//		dispatcher.forward(request, response);
+		// // get students from db util
+		// List<User> users = UserDB.getStudents();
+		//
+		// // add students to the request
+		// request.setAttribute("STUDENTS_LIST", students);
+		// // send to JSP page (view)
+		// RequestDispatcher dispatcher =
+		// request.getRequestDispatcher("/list-student.jsp");
+		// dispatcher.forward(request, response);
 	}
+
 	private void addUser(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String FirstName = request.getParameter("firstName");
 		String LastName = request.getParameter("lastName");
 		String Email = request.getParameter("email");
 		String Password = request.getParameter("password");
-		User user = new User(FirstName, LastName, Email,Password);
+		if (FirstName == null || FirstName.trim().equals("") || LastName == null || LastName.trim().equals("")
+				|| Email == null || Email.trim().equals("") || Password == null || Password.trim().equals(""))
+
+		{
+			response.getWriter().println("please dont input empty email or username");
+			return;
+		}
+
+		User user = new User(FirstName, LastName, Email, Password);
 		UserDB.addUser(user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/LogInPage.jsp");
 		dispatcher.forward(request, response);
-		
-		
 
+	}
+
+	private void CheckUser(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		if (email == null || email.trim().equals("") || password == null || password.trim().equals(""))
+
+		{
+			response.getWriter().println("Please dont input empty email or username");
+			return;
+		}
+
+		User user = new User(email, password);
+
+		User us = UserDB.login(user);
+		if (us == null)
+		{
+			response.getWriter().println("Password or Email is incorrect");
+
+			return;
+		}
+		else
+		{
+			request.setAttribute("user", us);
+			response.getWriter().println("Log in success!!!");
+//			request.getRequestDispatcher("/index.jsp").forward(request, response);
+
+		}
 	}
 
 }

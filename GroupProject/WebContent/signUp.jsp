@@ -126,7 +126,7 @@
 				
 		<div class="topbar-section topbar-logIn">
 			
-			<a class="navbar-brand" href="#">Log In</a>			
+			<a class="navbar-brand" href="LogInPage.jsp">Log In</a>			
 			
 		</div>
 			

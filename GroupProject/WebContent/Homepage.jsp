@@ -74,7 +74,7 @@
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
-			<a class="navbar-brand" href="#">Log In</a>
+			<a class="navbar-brand" href="LogInPage.jsp">Log In</a>
 				
 			
 			
@@ -89,8 +89,9 @@
 				
 				<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
 		
+		<a href="LogInPage.jsp">
 		<button type="button" class="btn btn-primary btn-lg">Create Account</button>
-				
+			</a>
 				
 
 

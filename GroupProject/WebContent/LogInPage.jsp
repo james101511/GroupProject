@@ -139,12 +139,13 @@
 		<div id="down-line-bar"></div>
   
     <div class="wrapper">
-    <form class="form-signin" action="${pageContext.request.contextPath }/LoginServlet" method="POST">  >     
+    <form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="GET">  >     
 		<h8 class="form-signin-heading"><small>Enter your account email and password</small></h8>
 		<input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
 		<input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>  
-		<p id="question_ac">Don't have an account yet?</p><a class="account_link" href="#"> Create new account</a>
+		
+		<p id="question_ac">Don't have an account yet?</p><a class="account_link" href="signUp.jsp"> Create new account</a>
     </form>
   </div>
    </body>

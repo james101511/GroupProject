@@ -28,6 +28,14 @@ public class User
 	}
 
 
+	public User(String email, String password)
+	{
+		super();
+		Email = email;
+		Password = password;
+	}
+
+
 	public int getUSERID()
 	{
 		return USERID;
