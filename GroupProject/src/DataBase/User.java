@@ -15,6 +15,8 @@ public class User
 		FirstName = firstName;
 		Email = email;
 		Password = password;
+		
+		
 	}
 	
 	
