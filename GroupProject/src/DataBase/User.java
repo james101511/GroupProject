@@ -16,7 +16,6 @@ public class User
 		Email = email;
 		Password = password;
 		
-		
 	}
 	
 	
