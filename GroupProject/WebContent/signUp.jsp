@@ -121,7 +121,7 @@
 		
 		<div id="name-div" class="topbar-section">
 			
-			<span id="projectName">Manage P&P </span>
+			<a id="projectName" class="navbar-brand" href="Homepage.jsp">Manage P&P </a>
 		</div>
 				
 		<div class="topbar-section topbar-logIn">

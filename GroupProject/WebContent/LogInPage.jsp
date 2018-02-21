@@ -122,7 +122,7 @@
 		
 		<div id="name-div" class="topbar-section">
 			
-			<span id="projectName">Manage P&P </span>
+			<a id="projectName" class="navbar-brand" href="Homepage.jsp">Manage P&P </a>
 		</div>
 				
 		<div class="topbar-section topbar-logIn">
@@ -139,8 +139,8 @@
 		<div id="down-line-bar"></div>
   
     <div class="wrapper">
-    <form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="GET">  >     
-		<h8 class="form-signin-heading"><small>Enter your account email and password</small></h8>
+    	<form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="GET">  >   
+    	<label for="staticText" class=class="form-signin-heading">Enter your account and password</label>  
 		<input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
 		<input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>  

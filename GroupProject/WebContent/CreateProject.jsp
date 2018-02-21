@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+	<html>
+	
+		<head>
+		 <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+			<title>Create Project</title>
+		
+		
+			<style type="text/css">
+				
+				#topbar {
+			
+				width:100%;
+				margin:0 auto;
+				height:80px;
+				background-color: #2C3F50;
+				}
+			
+			
+				#projectName {
+			
+				color:white;
+				font-size:36px;
+				padding: 10px -50px 10px 10px;
+				
+				}
+				
+				.topbar-section{
+			
+				float:left;
+				padding-top:10px;
+				}
+				
+				.topbar-logIn{
+		
+				font-weight: bold;
+				font-size:20px;
+				height: 27px;
+				color:white;
+				float:right;
+				padding: 30px 80px 10px 10px;	
+				}
+				
+				#down-line-bar {
+		
+				background-color: #FC4349;;
+				width:100%;
+				height:40px;
+				}
+				
+				#name-bar {
+		
+				margin: 0px;
+				padding: 0px;
+				width: auto;
+				}
+				
+				#page-name {
+			
+				color:white;
+				font-size: 15px;
+				padding: 10px -20px 10px 10px;
+				text-decoration: none; 
+				margin-top: 5px;
+				margin-left: 4px;
+				}
+				
+				#text-container {
+		
+				width: 1000px;
+				margin-bottom: 40px;
+				padding:auto;
+				margin-top: 100px;
+				padding-bottom: 80px;
+				height: 30px;
+				}
+				
+				
+				
+				.create-project-heading {
+				
+				font-size: 25px;
+				font-weight: regular;
+				padding-bottom: 20px;
+				
+				}
+				
+				
+			</style>
+		</head>
+	
+		<body>
+		
+			<div id="topbar">
+		
+				<div id="name-div" class="topbar-section">
+			
+					<a id="projectName" class="navbar-brand" href="#">Manage P&P </a>
+					
+				</div>
+				
+				<div class="topbar-section topbar-logIn">
+				
+					<a class="navbar-brand" href="LogInPage.jsp">Log Out</a>
+			
+				</div>
+			
+			</div>
+			
+			<!-- Div to clear the space between the bars-->
+			<div class="clear"></div>
+		
+				<div id="down-line-bar">
+				
+				<!--div to align the page name-->
+					<div id="name-bar">
+				
+						<h1 id="page-name" class="navbar-brand" >Create Project</h1>
+			
+					</div>
+				
+				</div>
+				<!-- Page content -->
+				
+				<div class="container">
+					<div id="text-container">
+		
+						<h1 class="create-project-heading">Create new project to get started</h1>
+					</div>
+						
+						<form class="form-inline">
+					
+						<div class="form-group mx-sm-3 mb-2">
+						<label for="project-name" class="sr-only">Project name</label>
+						<input class="form-control" type="text" placeholder="Project name"  required=""/> 
+						</div>
+						
+						<button type="submit" class="btn btn-primary mb-2"> + Add</button>
+						</form>
+	
+				</div>
+	
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+		
+
+		</body>
+	
+	</html>
+
+	
