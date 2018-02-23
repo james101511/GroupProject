@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@ page import="java.util.*" %>
+<%@ page import="DataBase.*" %>
+
 	<html>
 	
 		<head>
@@ -133,7 +136,12 @@
 		
 						<h1 class="create-project-heading">Create new project to get started</h1>
 					</div>
+					<%
+					User kk =(User)request.getAttribute("user");
+					
+					%>
 						
+						Hello <%=kk.getEmail() %>
 						<form class="form-inline">
 					
 						<div class="form-group mx-sm-3 mb-2">

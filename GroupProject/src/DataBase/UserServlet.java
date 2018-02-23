@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 /**
@@ -119,14 +120,17 @@ public class UserServlet extends HttpServlet
 		if (us == null)
 		{
 			response.getWriter().println("Password or Email is incorrect");
+			
 
 			return;
 		}
 		else
 		{
+			
 			request.setAttribute("user", us);
-			response.getWriter().println("Log in success!!!");
-//			request.getRequestDispatcher("/index.jsp").forward(request, response);
+//			response.getWriter().println("Login success!!!");
+			request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
+			return;
 
 		}
 	}
