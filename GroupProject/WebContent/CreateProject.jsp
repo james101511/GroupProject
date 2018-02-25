@@ -142,11 +142,11 @@
 					%>
 						
 						Hello <%=kk.getEmail() %>
-						<form class="form-inline">
-					
+						<form class="form-inline" action="UserServlet" method="POST" >
+				 		<input type="hidden" name="command" value="ADDPROJECT"/>
 						<div class="form-group mx-sm-3 mb-2">
-						<label for="project-name" class="sr-only">Project name</label>
-						<input class="form-control" type="text" placeholder="Project name"  required=""/> 
+						<label for="ProjectName" class="sr-only">Project name</label>
+						<input class="form-control" type="text" name="ProjectName" placeholder="ProjectName"  required=""/> 
 						</div>
 						
 						<button type="submit" class="btn btn-primary mb-2"> + Add</button>

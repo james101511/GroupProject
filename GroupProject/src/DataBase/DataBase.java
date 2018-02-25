@@ -12,11 +12,11 @@ import javax.sql.DataSource;
 
 import com.sun.xml.internal.ws.Closeable;
 
-public class UserDB
+public class DataBase
 {
 	private DataSource dataSource;
 
-	public UserDB(DataSource dataSource)
+	public DataBase(DataSource dataSource)
 	{
 		this.dataSource = dataSource;
 	}
@@ -144,7 +144,9 @@ public class UserDB
 			Close(myConn, myStmt, null);
 		}
 	}
-	public void addManager(User theuser) throws Exception
+	
+
+	public void addProject(Project project) throws Exception
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -153,14 +155,14 @@ public class UserDB
 			// get db connection
 			myConn = dataSource.getConnection();
 			// create sql for insert
-			String sql = "insert into Users" + "(FirstName,LastName,Email,Password,Admin)" + "values(?,?,?,?,?)";
+			String sql = "insert into Project" + "(ProjectName,SubTask,StartDate,EndDate)" + "values(?,?,?,?)";
 			myStmt = myConn.prepareStatement(sql);
 			// set the param values for the student
-			myStmt.setString(1, theuser.getFirstName());
-			myStmt.setString(2, theuser.getLastName());
-			myStmt.setString(3, theuser.getEmail());
-			myStmt.setString(4, theuser.getPassword());
-			myStmt.setBoolean(5, true);
+			myStmt.setString(1, project.getProjectName());
+			myStmt.setString(2, project.getSubTask());
+			myStmt.setString(3, project.getStartDate());
+			myStmt.setString(4, project.getEndDate());
+//			myStmt.setBoolean(5, true);
 			// execute sql insert
 			myStmt.execute();
 		}
@@ -169,6 +171,6 @@ public class UserDB
 			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
-
+		
 	}
 }

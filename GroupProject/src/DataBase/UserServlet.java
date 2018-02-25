@@ -21,7 +21,7 @@ public class UserServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
-	private UserDB UserDB;
+	private DataBase dataBase;
 	@Resource(name = "test1")
 	private DataSource dataSource;
 
@@ -33,7 +33,7 @@ public class UserServlet extends HttpServlet
 		// create our student db util and pass in the conn pool /datasource
 		try
 		{
-			UserDB = new UserDB(dataSource);
+			dataBase = new DataBase(dataSource);
 		}
 		catch (Exception exc)
 		{
@@ -64,12 +64,12 @@ public class UserServlet extends HttpServlet
 			switch (theCommand)
 			{
 				case "ADD":
-				addUser(request, response);
-				break;
-				
-				case"ADDMANAGER":
-				AddManager(request, response);
-				break;
+					addUser(request, response);
+					break;
+
+				case "ADDPROJECT":
+					AddProject(request, response);
+					break;
 
 			}
 
@@ -79,6 +79,18 @@ public class UserServlet extends HttpServlet
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void AddProject(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String ProjectName = request.getParameter("ProjectName");
+		// String LastName = request.getParameter("lastName");
+		// String Email = request.getParameter("email");
+		// String Password = request.getParameter("password");
+		Project project = new Project(ProjectName);
+		dataBase.addProject(project);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Addmembers.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -109,7 +121,7 @@ public class UserServlet extends HttpServlet
 		}
 
 		User user = new User(LastName, FirstName, Email, Password);
-		UserDB.addUser(user);
+		dataBase.addUser(user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/LogInPage.jsp");
 		dispatcher.forward(request, response);
 
@@ -128,7 +140,7 @@ public class UserServlet extends HttpServlet
 
 		User user = new User(email, password);
 
-		User us = UserDB.login(user);
+		User us = dataBase.login(user);
 		if (us == null)
 		{
 			response.getWriter().println("Password or Email is incorrect");
@@ -144,26 +156,6 @@ public class UserServlet extends HttpServlet
 			return;
 
 		}
-	}
-
-	private void AddManager(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		String FirstName = request.getParameter("firstName");
-		String LastName = request.getParameter("lastName");
-		String Email = request.getParameter("email");
-		String Password = request.getParameter("password");
-		if (FirstName == null || FirstName.trim().equals("") || LastName == null || LastName.trim().equals("")
-				|| Email == null || Email.trim().equals("") || Password == null || Password.trim().equals(""))
-
-		{
-			response.getWriter().println("please dont input empty email or username");
-			return;
-		}
-
-		User user = new User(LastName, FirstName, Email, Password);
-		UserDB.addManager(user);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/LogInPage.jsp");
-		dispatcher.forward(request, response);
 	}
 
 }
