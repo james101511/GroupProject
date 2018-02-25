@@ -69,6 +69,7 @@ public class UserServlet extends HttpServlet
 
 				case "ADDPROJECT":
 					AddProject(request, response);
+					
 					break;
 
 			}
@@ -81,6 +82,19 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	private void AddManager(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String ProjectName = request.getParameter("ProjectName");
+		// String LastName = request.getParameter("lastName");
+		String Email = request.getParameter("Email");
+		// String Password = request.getParameter("password");
+		Involve involve = new Involve(ProjectName,Email);
+		dataBase.addManager(involve);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Addmembers.jsp");
+		dispatcher.forward(request, response);
+		
+	}
+
 	private void AddProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String ProjectName = request.getParameter("ProjectName");
@@ -89,6 +103,7 @@ public class UserServlet extends HttpServlet
 		// String Password = request.getParameter("password");
 		Project project = new Project(ProjectName);
 		dataBase.addProject(project);
+		AddManager(request,response);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Addmembers.jsp");
 		dispatcher.forward(request, response);
 	}

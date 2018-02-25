@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
+<%
+	User kk =(User)request.getAttribute("user");
+%>
 
 	<html>
 	
@@ -136,14 +139,12 @@
 		
 						<h1 class="create-project-heading">Create new project to get started</h1>
 					</div>
-					<%
-					User kk =(User)request.getAttribute("user");
 					
-					%>
 						
 						Hello <%=kk.getEmail() %>
 						<form class="form-inline" action="UserServlet" method="POST" >
 				 		<input type="hidden" name="command" value="ADDPROJECT"/>
+				 		<input type="hidden" name="Email" value="<%= kk.getEmail() %>" />
 						<div class="form-group mx-sm-3 mb-2">
 						<label for="ProjectName" class="sr-only">Project name</label>
 						<input class="form-control" type="text" name="ProjectName" placeholder="ProjectName"  required=""/> 

@@ -3,6 +3,7 @@ package DataBase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -171,6 +172,33 @@ public class DataBase
 			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
+		
+	}
+
+	public void addManager(Involve involve) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			// get db connection
+			myConn = dataSource.getConnection();
+			// create sql for insert
+			String sql = "insert into Involve" + "(ProjectName,Email,Admin)" + "values(?,?,?)";
+			myStmt = myConn.prepareStatement(sql);
+			// set the param values for the student
+			myStmt.setString(1, involve.getProjectName());
+			myStmt.setString(2, involve.getEmail());
+			myStmt.setBoolean(3, true);
+			// execute sql insert
+			myStmt.execute();
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+		
 		
 	}
 }
