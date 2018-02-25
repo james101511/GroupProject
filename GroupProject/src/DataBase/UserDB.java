@@ -144,4 +144,31 @@ public class UserDB
 			Close(myConn, myStmt, null);
 		}
 	}
+	public void addManager(User theuser) throws Exception
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			// get db connection
+			myConn = dataSource.getConnection();
+			// create sql for insert
+			String sql = "insert into Users" + "(FirstName,LastName,Email,Password,Admin)" + "values(?,?,?,?,?)";
+			myStmt = myConn.prepareStatement(sql);
+			// set the param values for the student
+			myStmt.setString(1, theuser.getFirstName());
+			myStmt.setString(2, theuser.getLastName());
+			myStmt.setString(3, theuser.getEmail());
+			myStmt.setString(4, theuser.getPassword());
+			myStmt.setBoolean(5, true);
+			// execute sql insert
+			myStmt.execute();
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+
+	}
 }

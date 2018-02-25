@@ -141,8 +141,8 @@
   
     <div class="wrapper">
         <form class="form-signin" action="UserServlet" method="POST" action="${pageContext.request.contextPath }/LogInPage.jsp">
-		
-		<h3 class="form-signin-heading">XXXXs</h3>
+		<input type="hidden" name="command" value="ADDMANAGER"/>
+		<h3 class="form-signin-heading">Manager</h3>
 		<input type="text" class="form-control" name="firstName" placeholder="First Name" required=""/>   
 		<input type="text" class="form-control" name="lastName" placeholder="Last Name" required=""/> 
 		<input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />

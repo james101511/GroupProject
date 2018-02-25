@@ -59,8 +59,20 @@ public class UserServlet extends HttpServlet
 	{
 		try
 		{
+			String theCommand = request.getParameter("command");
 
-			addUser(request, response);
+			switch (theCommand)
+			{
+				case "ADD":
+				addUser(request, response);
+				break;
+				
+				case"ADDMANAGER":
+				AddManager(request, response);
+				break;
+
+			}
+
 		}
 		catch (Exception exc)
 		{
@@ -120,19 +132,38 @@ public class UserServlet extends HttpServlet
 		if (us == null)
 		{
 			response.getWriter().println("Password or Email is incorrect");
-			
 
 			return;
 		}
 		else
 		{
-			
+
 			request.setAttribute("user", us);
-//			response.getWriter().println("Login success!!!");
+			// response.getWriter().println("Login success!!!");
 			request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
 			return;
 
 		}
+	}
+
+	private void AddManager(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String FirstName = request.getParameter("firstName");
+		String LastName = request.getParameter("lastName");
+		String Email = request.getParameter("email");
+		String Password = request.getParameter("password");
+		if (FirstName == null || FirstName.trim().equals("") || LastName == null || LastName.trim().equals("")
+				|| Email == null || Email.trim().equals("") || Password == null || Password.trim().equals(""))
+
+		{
+			response.getWriter().println("please dont input empty email or username");
+			return;
+		}
+
+		User user = new User(LastName, FirstName, Email, Password);
+		UserDB.addManager(user);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/LogInPage.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
