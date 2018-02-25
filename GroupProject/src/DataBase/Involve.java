@@ -9,6 +9,11 @@ public class Involve
 	
 	
 	
+	public Involve(String email)
+	{
+		super();
+		Email = email;
+	}
 	public Involve(String projectName, String email)
 	{
 		super();

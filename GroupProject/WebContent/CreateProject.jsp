@@ -4,6 +4,9 @@
 <%
 	User kk =(User)request.getAttribute("user");
 %>
+<%
+	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
+%>
 
 	<html>
 	
@@ -142,6 +145,29 @@
 					
 						
 						Hello <%=kk.getEmail() %>
+			<table>
+			
+				<tr>
+					<th>ProjectName</th>
+					
+				</tr>
+				
+				<%-- <% for (Involve tempInvolve : Involves) { %> --%>
+				<% for (int i=0;i<Involves.size();i++) { %>
+				
+					<tr>
+						
+						<td> <%= Involves.get(i).getProjectName() %></td>
+	
+					</tr>
+			
+				<% } %>
+				
+			</table>
+		
+						
+						
+						
 						<form class="form-inline" action="UserServlet" method="POST" >
 				 		<input type="hidden" name="command" value="ADDPROJECT"/>
 				 		<input type="hidden" name="Email" value="<%= kk.getEmail() %>" />

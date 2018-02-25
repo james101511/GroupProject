@@ -201,4 +201,38 @@ public class DataBase
 		
 		
 	}
+	
+	public List<Involve> CheckInvolve(Involve involve) throws Exception
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		List<Involve> involves = new ArrayList<>();
+		try
+		{
+			myConn = dataSource.getConnection();
+			// create sql for insert
+			String sql = "select * from Involve where Email = ? ";
+			myStmt = myConn.prepareStatement(sql);
+			// set the param values for the student
+			myStmt.setString(1, involve.getEmail());
+			ResultSet set = myStmt.executeQuery();
+			// execute sql insert
+			while (set.next())
+			{
+				String ProjectName=set.getString("ProjectName");
+				String Email=set.getString("Email");
+				Involve TempInvolve = new Involve(ProjectName, Email);
+				
+				involves.add(TempInvolve);
+			}
+			 return involves;
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+	}
+	
+	
 }

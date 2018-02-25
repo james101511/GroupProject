@@ -1,6 +1,7 @@
 package DataBase;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -146,6 +147,7 @@ public class UserServlet extends HttpServlet
 	{
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		List<Involve> involves = new ArrayList<>();
 		if (email == null || email.trim().equals("") || password == null || password.trim().equals(""))
 
 		{
@@ -154,7 +156,8 @@ public class UserServlet extends HttpServlet
 		}
 
 		User user = new User(email, password);
-
+		Involve involve = new Involve(email);
+		involves=dataBase.CheckInvolve(involve);
 		User us = dataBase.login(user);
 		if (us == null)
 		{
@@ -166,6 +169,7 @@ public class UserServlet extends HttpServlet
 		{
 
 			request.setAttribute("user", us);
+			request.setAttribute("Involve", involves);
 			// response.getWriter().println("Login success!!!");
 			request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
 			return;
