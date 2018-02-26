@@ -105,8 +105,9 @@ public class UserServlet extends HttpServlet
 		Project project = new Project(ProjectName);
 		dataBase.addProject(project);
 		AddManager(request,response);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Addmembers.jsp");
-		dispatcher.forward(request, response);
+		//RequestDispatcher dispatcher = request.getRequestDispatcher("/Addmembers.jsp");
+		//dispatcher.forward(request, response);
+		response.getWriter().println("add project successfully");
 	}
 
 	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception
