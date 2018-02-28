@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
 <%
@@ -7,7 +8,6 @@
 <%
 	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
 %>
-
 	<html>
 	
 		<head>
@@ -145,12 +145,13 @@
 					
 						
 						Hello <%=kk.getEmail() %>
-			<table>
-			
-				<tr>
-					<th>ProjectName</th>
-					
-				</tr>
+					<table class="table">
+						<thead>
+							<tr>
+								<th><a href ="#">ProjectName</a></th>
+							
+							</tr>
+						</thead>
 				
 				<%-- <% for (Involve tempInvolve : Involves) { %> --%>
 				<% for (int i=0;i<Involves.size();i++) { %>

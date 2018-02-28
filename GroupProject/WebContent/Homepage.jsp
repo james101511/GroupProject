@@ -82,6 +82,11 @@
 				
 				}
 				
+				.navbar-brand {
+				
+				color:white;
+				}
+				
 				
 				
 			</style>

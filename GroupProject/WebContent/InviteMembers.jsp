@@ -88,9 +88,6 @@
 			margin-top: 5px;
 			margin-left: 4px;
 
-		
-			
-		
 		}
 			
 		.topbar-section{
@@ -170,6 +167,11 @@
 			font-weight: normal;
 		}
 		
+		.navbar-brand {
+		
+		color:white;
+		}
+		
 
 	</style>
   </head>
@@ -216,7 +218,7 @@
 			<input type="text" class="form-control" name="email" placeholder="email" required=""/> 
 			<input type="text" class="form-control" name="email" placeholder="email" required=""/> 
 			<!--The skip button will lead directly to dashboard without inviting members. -->
-			<button id="skip-button" class="btn btn-lg btn-basic btn-sm" type="submit" >Skip</button>  
+			<a id="skip-button" class="btn btn-lg btn-basic btn-sm" type="submit" href="Dashboard.jsp" >Skip</a>  
 			<!--The Invite button will send emails to the added email addresses, send notification on the screen
 			that the emails were successfully sent and then will lead to the dashboard.  -->
 			<button id="submit-button" class="btn btn-lg btn-primary btn-sm" type="submit" >Invite</button>  
