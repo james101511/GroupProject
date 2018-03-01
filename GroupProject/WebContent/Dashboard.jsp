@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 <head>
 <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -12,8 +12,11 @@
 	  <link rel="stylesheet" type="text/css" href="Main.css"> 
 	  <!-- Bootstrap -->
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	  
-
+	 
+	 <!-- Links for the Gantt chart -->
+	 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jquery_ui_1.8.4.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jquery.ganttView.css" />
 	
 </head>
 <body>
@@ -46,10 +49,10 @@
 		
 		<!-- Content of the page after the bars -->
 		
-		<div class="container-fluid">
-		
-			<div class="dropdown project-members">
-			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<div class="container container-project-name">
+		 
+			<div class="dropdown project-members"> 
+			  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			    Project 1
 			  </button>
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -61,8 +64,60 @@
 			    <a class="dropdown-item" href="#">Member 5</a>
 			  </div>
 			</div>
-		
 		</div>
+			
+		<div class="container container-progress-bar">
+			<div class="row justify-content-end">
+				<div class="progress col col-9" style="height: 20px;">
+  				<div class="progress-bar bg-success" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">35%</div>
+				</div>
+			</div>
+		</div>
+		<!-- GANTT CHART -->
+		 <div class="container container-gantt-chart">
+			
+			<div id="ganttChart"></div>
+				<br/><br/>
+				<div id="eventMessage"></div>
+		</div>
+				<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery_1.4.2.js"></script>
+				<script type="text/javascript" src="${pageContext.request.contextPath }/js/date.js"></script>
+				<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery_ui_1.8.4.js"></script>
+				<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.ganttView.js"></script>
+				<script type="text/javascript" src="${pageContext.request.contextPath }/js/data.js"></script>
+				<script type="text/javascript">
+					$(function () {
+						$("#ganttChart").ganttView({ 
+							data: ganttData,
+							slideWidth: 1500,
+							behavior: {
+								onClick: function (data) { 
+									var msg = "You clicked on an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+									$("#eventMessage").text(msg);
+								},
+								onResize: function (data) { 
+									var msg = "You resized an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+									$("#eventMessage").text(msg);
+								},
+								onDrag: function (data) { 
+									var msg = "You dragged an event: { start: " + data.start.toString("M/d/yyyy") + ", end: " + data.end.toString("M/d/yyyy") + " }";
+									$("#eventMessage").text(msg);
+								}
+							}
+						});
+						
+						// $("#ganttChart").ganttView("setSlideWidth", 600);
+					});
+				</script>
+			
+			
+			
+			
+			
+	
+			
+			
+			
 			
 		 <!--Required JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

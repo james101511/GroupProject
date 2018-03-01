@@ -94,9 +94,25 @@
 			
 				}
 			
-				.project-members{
+				.container-project-name{
 				
 				margin-top: 50px;
+				display: inline-block;
+				
+				}
+				
+				.container-progress-bar {
+				
+				margin-top: -20px;
+				display: inline-block;
+				
+				}
+				
+				.container-gantt-chart {
+				
+				font-family: tahoma, verdana, helvetica;
+				font-size: 0.8em;
+				padding: 50px;
 				
 				}
 				
