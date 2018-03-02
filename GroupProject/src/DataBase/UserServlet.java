@@ -91,7 +91,7 @@ public class UserServlet extends HttpServlet
 		// String Password = request.getParameter("password");
 		Involve involve = new Involve(ProjectName,Email);
 		dataBase.addManager(involve);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Addmembers.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/InviteMembers.jsp");
 		dispatcher.forward(request, response);
 		
 	}
@@ -105,8 +105,8 @@ public class UserServlet extends HttpServlet
 		Project project = new Project(ProjectName);
 		dataBase.addProject(project);
 		AddManager(request,response);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Addmembers.jsp");
-		dispatcher.forward(request, response);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/InviteMembers.jsp");
+//		dispatcher.forward(request, response);
 	}
 
 	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception
