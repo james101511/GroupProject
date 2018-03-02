@@ -14,11 +14,14 @@
 				#projectName {
 				
 				color:white;
-				font-size:40px;
+				font-size:36px;
 				font-family: OpenSans;
 				padding: 10px 50px 10px 10px;
+				text-decoration:none;
+				
 				
 				}
+				
 				
 				.topbar-section{
 			

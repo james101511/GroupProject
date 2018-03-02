@@ -25,7 +25,7 @@
 		
 				<div id="name-div" class="topbar-section">
 			
-					<span id="projectName">Manage P&P </span>
+					<a id="projectName"  href="Dashboard.jsp">Manage P&P </a>
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
@@ -67,9 +67,11 @@
 		</div>
 			
 		<div class="container container-progress-bar">
-			<div class="row justify-content-end">
-				<div class="progress col col-9" style="height: 20px;">
-  				<div class="progress-bar bg-success" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">35%</div>
+			<div class="row justify-content-end ">
+				<div class=col-sm-9>
+					<div class="progress " style="height: 20px;">
+  					<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">35%</div>
+					</div>
 				</div>
 			</div>
 		</div>
