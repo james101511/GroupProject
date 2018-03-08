@@ -72,6 +72,10 @@ public class UserServlet extends HttpServlet
 					AddProject(request, response);
 					
 					break;
+				case "DASHBOARD":
+					AddDashBoard(request, response);
+					
+					break;
 
 			}
 
@@ -81,6 +85,12 @@ public class UserServlet extends HttpServlet
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void AddDashBoard(HttpServletRequest request, HttpServletResponse response)
+	{
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void AddManager(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -148,12 +158,12 @@ public class UserServlet extends HttpServlet
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		List<Involve> involves = new ArrayList<>();
-		if (email == null || email.trim().equals("") || password == null || password.trim().equals(""))
-
-		{
-			response.getWriter().println("Please dont input empty email or username");
-			return;
-		}
+//		if (email == null || email.trim().equals("") || password == null || password.trim().equals(""))
+//
+//		{
+//			response.getWriter().println("Please dont input empty email or username");
+//			return;
+//		}
 
 		User user = new User(email, password);
 		Involve involve = new Involve(email);

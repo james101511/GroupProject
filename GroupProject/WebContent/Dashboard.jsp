@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@ page import="java.util.*" %>
+<%@ page import="DataBase.*" %>
+<%
+	User kk =(User)request.getAttribute("user");
+%>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
@@ -27,7 +33,7 @@
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Task ID');
       data.addColumn('string', 'Task Name');
-      data.addColumn('string', 'Resource');
+     /*  data.addColumn('string', 'Resource'); */
       data.addColumn('date', 'Start Date');
       data.addColumn('date', 'End Date');
       data.addColumn('number', 'Duration');
@@ -35,11 +41,11 @@
       data.addColumn('string', 'Dependencies');
 
       data.addRows([
-        ['2014Spring', 'James', 'spring',
+        [ 'James', 
          new Date(2014, 2, 22), new Date(2014, 5, 20), null, 100, null],
-        ['2014Summer', 'Summer 2014', 'summer',
-         new Date(2014, 5, 21), new Date(2014, 8, 20), null, 100, null],
-        ['2014Autumn', 'Autumn 2014', 'autumn',
+    		[ 'QQQ', 
+         new Date(2014, 5, 21), new Date(2014, 8, 20), null, 100, null], 
+       /*  ['2014Autumn', 'Autumn 2014', 'autumn',
          new Date(2014, 8, 21), new Date(2014, 11, 20), null, 100, null],
         ['2014Winter', 'Winter 2014', 'winter',
          new Date(2014, 11, 21), new Date(2015, 2, 21), null, 100, null],
@@ -58,7 +64,7 @@
         ['Basketball', 'Basketball Season', 'sports',
          new Date(2014, 9, 28), new Date(2015, 5, 20), null, 86, null],
         ['Hockey', 'Hockey Season', 'sports',
-         new Date(2014, 9, 8), new Date(2015, 5, 21), null, 89, null]
+         new Date(2014, 9, 8), new Date(2015, 5, 21), null, 89, null] */ 
       ]);
 
       var options = {

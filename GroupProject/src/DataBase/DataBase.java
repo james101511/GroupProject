@@ -135,6 +135,8 @@ public class DataBase
 			// execute sql insert
 			while (set.next())
 			{
+				theuser.setFirstName(set.getString("FirstName"));
+				theuser.setLastName(set.getString("LastName"));
 				return theuser;
 			}
 			return null;
@@ -160,7 +162,7 @@ public class DataBase
 			myStmt = myConn.prepareStatement(sql);
 			// set the param values for the student
 			myStmt.setString(1, project.getProjectName());
-			myStmt.setString(2, project.getSubTask());
+			myStmt.setString(2, project.getTask());
 			myStmt.setString(3, project.getStartDate());
 			myStmt.setString(4, project.getEndDate());
 //			myStmt.setBoolean(5, true);

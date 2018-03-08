@@ -144,7 +144,7 @@
 					</div>
 					
 						
-						Hello <%=kk.getEmail() %>
+						Hello <%=kk.getFirstName()+","+kk.getLastName() %>
 					<table class="table">
 						<thead>
 							<tr>
