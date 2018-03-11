@@ -1,4 +1,9 @@
 <!doctype html>
+<%@ page import="java.util.*" %>
+<%@ page import="DataBase.*" %>
+<%
+	 String projectName =(String)request.getParameter("ProjectName");
+%>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -209,19 +214,24 @@
   
     <div class="wrapper">
 	
-        <form class="form-signin" action="UserServlet" method="POST" action="${pageContext.request.contextPath }/LogInPage.jsp">
-			
+        <form class="form-signin" action="UserServlet" method="POST" action="${pageContext.request.contextPath }/Dashboard.jsp">
+		<input type="hidden" name="command" value="ADDMEMBER"/>
+		<%-- 	action="UserServlet" method="POST" action="${pageContext.request.contextPath }/LogInPage.jsp" --%>
+		
+			<%=projectName %>
+			<input type="hidden" name="projectName" value="<%=projectName %>"/>
 			<label for="staticQustion" class="form-label">Who is on your team?</label>
 			<label for="staticText" class="form-label-2">Add people to your team:</label>
-			<input type="text" class="form-control" name="email" placeholder="email" required=""/>   
-			<input type="text" class="form-control" name="email" placeholder="email" required=""/> 
-			<input type="text" class="form-control" name="email" placeholder="email" required=""/> 
-			<input type="text" class="form-control" name="email" placeholder="email" required=""/> 
+			<input type="text" class="form-control" name="email1" placeholder="email" required=""/>   
+			<input type="text" class="form-control" name="email2" placeholder="email" required=""/> 
+			<input type="text" class="form-control" name="email3" placeholder="email" required=""/> 
+			<input type="text" class="form-control" name="email4" placeholder="email" required=""/> 
 			<!--The skip button will lead directly to dashboard without inviting members. -->
 			<a id="skip-button" class="btn btn-lg btn-basic btn-sm" type="submit" href="Dashboard.jsp" >Skip</a>  
 			<!--The Invite button will send emails to the added email addresses, send notification on the screen
 			that the emails were successfully sent and then will lead to the dashboard.  -->
 			<button id="submit-button" class="btn btn-lg btn-primary btn-sm" type="submit" >Invite</button>  
+		
 		
 		</form>
  

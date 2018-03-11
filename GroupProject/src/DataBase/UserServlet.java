@@ -70,13 +70,12 @@ public class UserServlet extends HttpServlet
 
 				case "ADDPROJECT":
 					AddProject(request, response);
-					
-					break;
-				case "DASHBOARD":
-					AddDashBoard(request, response);
-					
+
 					break;
 
+				case "ADDMEMBER":
+					addMember(request, response);
+					break;
 			}
 
 		}
@@ -87,10 +86,21 @@ public class UserServlet extends HttpServlet
 
 	}
 
-	private void AddDashBoard(HttpServletRequest request, HttpServletResponse response)
+	private void addMember(HttpServletRequest request, HttpServletResponse response)throws Exception
 	{
-		// TODO Auto-generated method stub
-		
+		String email1 = request.getParameter("email1");
+		String email2 = request.getParameter("email2");
+		String email3 = request.getParameter("email3");
+		String email4 = request.getParameter("email4");
+		String projectName = request.getParameter("projectName");
+		Involve involve = new Involve(projectName, email1);
+//		Involve involve2 = new Involve(projectName, email2);
+		dataBase.addMember(involve);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/Dashboard.jsp");
+		dispatcher.forward(request, response);
+
+//		dataBase.addMember(involve2);
+
 	}
 
 	private void AddManager(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -99,11 +109,11 @@ public class UserServlet extends HttpServlet
 		// String LastName = request.getParameter("lastName");
 		String Email = request.getParameter("Email");
 		// String Password = request.getParameter("password");
-		Involve involve = new Involve(ProjectName,Email);
+		Involve involve = new Involve(ProjectName, Email);
 		dataBase.addManager(involve);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/InviteMembers.jsp");
 		dispatcher.forward(request, response);
-		
+
 	}
 
 	private void AddProject(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -114,9 +124,11 @@ public class UserServlet extends HttpServlet
 		// String Password = request.getParameter("password");
 		Project project = new Project(ProjectName);
 		dataBase.addProject(project);
-		AddManager(request,response);
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/InviteMembers.jsp");
-//		dispatcher.forward(request, response);
+//		request.setAttribute("project", project.getProjectName());
+		AddManager(request, response);
+		// RequestDispatcher dispatcher =
+		// request.getRequestDispatcher("/InviteMembers.jsp");
+		// dispatcher.forward(request, response);
 	}
 
 	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -158,16 +170,17 @@ public class UserServlet extends HttpServlet
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		List<Involve> involves = new ArrayList<>();
-//		if (email == null || email.trim().equals("") || password == null || password.trim().equals(""))
-//
-//		{
-//			response.getWriter().println("Please dont input empty email or username");
-//			return;
-//		}
+		// if (email == null || email.trim().equals("") || password == null ||
+		// password.trim().equals(""))
+		//
+		// {
+		// response.getWriter().println("Please dont input empty email or username");
+		// return;
+		// }
 
 		User user = new User(email, password);
 		Involve involve = new Involve(email);
-		involves=dataBase.CheckInvolve(involve);
+		involves = dataBase.CheckInvolve(involve);
 		User us = dataBase.login(user);
 		if (us == null)
 		{

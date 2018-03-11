@@ -147,7 +147,6 @@ public class DataBase
 			Close(myConn, myStmt, null);
 		}
 	}
-	
 
 	public void addProject(Project project) throws Exception
 	{
@@ -165,7 +164,7 @@ public class DataBase
 			myStmt.setString(2, project.getTask());
 			myStmt.setString(3, project.getStartDate());
 			myStmt.setString(4, project.getEndDate());
-//			myStmt.setBoolean(5, true);
+			// myStmt.setBoolean(5, true);
 			// execute sql insert
 			myStmt.execute();
 		}
@@ -174,7 +173,7 @@ public class DataBase
 			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
-		
+
 	}
 
 	public void addManager(Involve involve) throws SQLException
@@ -200,10 +199,9 @@ public class DataBase
 			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
-		
-		
+
 	}
-	
+
 	public List<Involve> CheckInvolve(Involve involve) throws Exception
 	{
 		Connection myConn = null;
@@ -221,13 +219,13 @@ public class DataBase
 			// execute sql insert
 			while (set.next())
 			{
-				String ProjectName=set.getString("ProjectName");
-				String Email=set.getString("Email");
+				String ProjectName = set.getString("ProjectName");
+				String Email = set.getString("Email");
 				Involve TempInvolve = new Involve(ProjectName, Email);
-				
+
 				involves.add(TempInvolve);
 			}
-			 return involves;
+			return involves;
 		}
 		finally
 		{
@@ -235,6 +233,30 @@ public class DataBase
 			Close(myConn, myStmt, null);
 		}
 	}
-	
-	
+
+	public void addMember(Involve involve) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			// create sql for insert
+			String sql = "insert into Involve" + "(ProjectName,Email,Admin)" + "values(?,?,?)";
+			myStmt = myConn.prepareStatement(sql);
+			// set the param values for the student
+			myStmt.setString(1, involve.getProjectName());
+			myStmt.setString(2, involve.getEmail());
+			myStmt.setBoolean(3, false);
+			// execute sql insert
+			myStmt.execute();
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+
+	}
+
 }
