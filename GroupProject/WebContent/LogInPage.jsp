@@ -139,7 +139,8 @@
 		<div id="down-line-bar"></div>
   
     <div class="wrapper">
-    	<form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="GET">  >   
+    	<form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="GET">
+    	<input type="hidden" name="command" value="CHECKUSER"/>   
     	<label for="staticText" class=class="form-signin-heading">Enter your account and password</label>  
 		<input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
 		<input type="password" class="form-control" name="password" placeholder="Password" required=""/>      

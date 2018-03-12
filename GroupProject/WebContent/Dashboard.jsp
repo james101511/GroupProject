@@ -5,7 +5,10 @@
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
 <%
-	User kk =(User)request.getAttribute("user");
+	String projectName =(String)request.getParameter("projectName");
+%>
+<%
+	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
 %>
 <html lang="en">
 <head>
@@ -33,7 +36,7 @@
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Task ID');
       data.addColumn('string', 'Task Name');
-     /*  data.addColumn('string', 'Resource'); */
+      data.addColumn('string', 'Resource');
       data.addColumn('date', 'Start Date');
       data.addColumn('date', 'End Date');
       data.addColumn('number', 'Duration');
@@ -41,10 +44,11 @@
       data.addColumn('string', 'Dependencies');
 
       data.addRows([
-        [ 'James', 
-         new Date(2014, 2, 22), new Date(2014, 5, 20), null, 100, null],
-    		[ 'QQQ', 
-         new Date(2014, 5, 21), new Date(2014, 8, 20), null, 100, null], 
+    	  ['2014Spring', 'Spring 2014', 'spring',
+    	         new Date(2014, 2, 22), new Date(2014, 5, 20), null, 100, null],
+    	        ['2014Summer', 'Summer 2014', 'summer',
+    	         new Date(2014, 5, 21), new Date(2014, 8, 20), null, 100, null],
+    	  
        /*  ['2014Autumn', 'Autumn 2014', 'autumn',
          new Date(2014, 8, 21), new Date(2014, 11, 20), null, 100, null],
         ['2014Winter', 'Winter 2014', 'winter',
@@ -105,7 +109,7 @@
 			<div id="down-line-bar">
 			<div id="name-bar">
 				
-			<h1 id="page-name" class="navbar-brand" >DashBoard</h1>
+			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
 
 			</div>
 		</div>
@@ -115,18 +119,32 @@
 		<div class="container container-project-name">
 		 
 			<div class="dropdown project-members"> 
+			
 			  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Project 1
+			    <%= projectName%>
 			  </button>
+			  
+			   
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			  
+			   
 			  	<a class="dropdown-item" href="#">Team Members</a>
-			    <a class="dropdown-item" href="#">Member 1</a>
-			    <a class="dropdown-item" href="#">Member 2</a>
-			    <a class="dropdown-item" href="#">Member 3</a>
-			    <a class="dropdown-item" href="#">Member 4</a>
-			    <a class="dropdown-item" href="#">Member 5</a>
+				<% for (int i=0;i<Involves.size();i++) { %>
+				
+			   <a class="dropdown-item" href="#"><%=Involves.get(i).getEmail()%></a> 
+			 <% } %>
+			<%-- <% for (int i=0;i<Involves.size();i++) { %>
+				<%= Involves.get(i).getEmail() %>
+				 <% } %> --%>
+				
+		
+			
+				
 			  </div>
+			
 			</div>
+				
+		
 		</div>
 			
 		<div class="container container-progress-bar">

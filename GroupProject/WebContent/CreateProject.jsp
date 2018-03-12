@@ -153,13 +153,13 @@
 							</tr>
 						</thead>
 				
-				<%-- <% for (Involve tempInvolve : Involves) { %> --%>
 				<% for (int i=0;i<Involves.size();i++) { %>
 				
 					<tr>
-						
-						<td> <%= Involves.get(i).getProjectName() %></td>
-	
+						<form class="form-signin" action="UserServlet" method="GET" >
+				<input type="hidden" name="command" value="CHECKPROJECT"/>
+						<td><input type="submit" value="<%= Involves.get(i).getProjectName() %>" name="projectName"/> </td>
+						</form>
 					</tr>
 			
 				<% } %>

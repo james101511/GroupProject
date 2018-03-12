@@ -46,13 +46,49 @@ public class UserServlet extends HttpServlet
 	{
 		try
 		{
-			// list the students
-			CheckUser(request, response);
+			String theCommand = request.getParameter("command");
+			switch (theCommand)
+			{
+				case "CHECKUSER":
+					CheckUser(request, response);
+					break;
+				case "CHECKPROJECT":
+					checkProject(request, response);
+					break;
+			}
 		}
 		catch (Exception exc)
 		{
 			throw new ServletException(exc);
 		}
+
+	}
+
+	private void checkProject(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String projectName = request.getParameter("projectName");
+
+		List<Involve> involves = new ArrayList<>();
+		// if (email == null || email.trim().equals("") || password == null ||
+		// password.trim().equals(""))
+		//
+		// {
+		// response.getWriter().println("Please dont input empty email or username");
+		// return;
+		// }
+		Involve involve = new Involve(projectName, false);
+		involves = dataBase.checkProject(involve);
+		if (involves.size() == 0)
+		{
+			response.getWriter().println(projectName);
+			response.getWriter().println("0");
+
+			return;
+		}
+		// request.setAttribute("projectname", projectName);
+		request.setAttribute("Involve", involves);
+		// response.getWriter().println("Login success!!!");
+		request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
 
 	}
 
@@ -86,20 +122,32 @@ public class UserServlet extends HttpServlet
 
 	}
 
-	private void addMember(HttpServletRequest request, HttpServletResponse response)throws Exception
+	private void addMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		String projectName = request.getParameter("projectName");
+
 		String email1 = request.getParameter("email1");
 		String email2 = request.getParameter("email2");
 		String email3 = request.getParameter("email3");
 		String email4 = request.getParameter("email4");
-		String projectName = request.getParameter("projectName");
-		Involve involve = new Involve(projectName, email1);
-//		Involve involve2 = new Involve(projectName, email2);
-		dataBase.addMember(involve);
+
+		
+			Involve involve = new Involve(projectName, email1);
+			Involve involve2 = new Involve(projectName, email2);
+			Involve involve3= new Involve(projectName, email3);
+			Involve involve4 = new Involve(projectName, email4);
+			dataBase.addMember(involve);
+			dataBase.addMember(involve2);
+			dataBase.addMember(involve3);
+			dataBase.addMember(involve4);
+			
+			
+		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Dashboard.jsp");
 		dispatcher.forward(request, response);
 
-//		dataBase.addMember(involve2);
+		// dataBase.addMember(involve2);
 
 	}
 
@@ -124,7 +172,7 @@ public class UserServlet extends HttpServlet
 		// String Password = request.getParameter("password");
 		Project project = new Project(ProjectName);
 		dataBase.addProject(project);
-//		request.setAttribute("project", project.getProjectName());
+		// request.setAttribute("project", project.getProjectName());
 		AddManager(request, response);
 		// RequestDispatcher dispatcher =
 		// request.getRequestDispatcher("/InviteMembers.jsp");
@@ -179,7 +227,7 @@ public class UserServlet extends HttpServlet
 		// }
 
 		User user = new User(email, password);
-		Involve involve = new Involve(email);
+		Involve involve = new Involve(email, true);
 		involves = dataBase.CheckInvolve(involve);
 		User us = dataBase.login(user);
 		if (us == null)

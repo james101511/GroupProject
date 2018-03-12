@@ -1,5 +1,7 @@
 package DataBase;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public class Involve
 {
 	private String ProjectName;
@@ -9,10 +11,13 @@ public class Involve
 	
 	
 	
-	public Involve(String email)
+	public Involve(String input, Boolean isEmail)
 	{
 		super();
-		Email = email;
+		if (isEmail)
+			Email = input;
+		else 
+			ProjectName = input;
 	}
 	public Involve(String projectName, String email)
 	{
