@@ -67,6 +67,13 @@ public class UserServlet extends HttpServlet
 	private void checkProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
+		if (projectName == null)
+		{
+
+			response.getWriter().println("0");
+
+			return;
+		}
 
 		List<Involve> involves = new ArrayList<>();
 		// if (email == null || email.trim().equals("") || password == null ||
@@ -97,7 +104,7 @@ public class UserServlet extends HttpServlet
 		try
 		{
 			String theCommand = request.getParameter("command");
-
+			
 			switch (theCommand)
 			{
 				case "ADD":
@@ -109,8 +116,15 @@ public class UserServlet extends HttpServlet
 
 					break;
 
-				case "ADDMEMBER":
+				case "Invite":
 					addMember(request, response);
+					checkProject(request, response);
+					break;
+				case "CHECKPROJECT":
+					checkProject(request, response);
+					break;
+				case "Skip":
+					checkProject(request, response);
 					break;
 			}
 
@@ -131,21 +145,18 @@ public class UserServlet extends HttpServlet
 		String email3 = request.getParameter("email3");
 		String email4 = request.getParameter("email4");
 
-		
-			Involve involve = new Involve(projectName, email1);
-			Involve involve2 = new Involve(projectName, email2);
-			Involve involve3= new Involve(projectName, email3);
-			Involve involve4 = new Involve(projectName, email4);
-			dataBase.addMember(involve);
-			dataBase.addMember(involve2);
-			dataBase.addMember(involve3);
-			dataBase.addMember(involve4);
-			
-			
-		
+		Involve involve = new Involve(projectName, email1);
+		Involve involve2 = new Involve(projectName, email2);
+		Involve involve3 = new Involve(projectName, email3);
+		Involve involve4 = new Involve(projectName, email4);
+		dataBase.addMember(involve);
+		dataBase.addMember(involve2);
+		dataBase.addMember(involve3);
+		dataBase.addMember(involve4);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/Dashboard.jsp");
-		dispatcher.forward(request, response);
+		// RequestDispatcher dispatcher =
+		// request.getRequestDispatcher("/Dashboard.jsp");
+		// dispatcher.forward(request, response);
 
 		// dataBase.addMember(involve2);
 
