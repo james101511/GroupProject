@@ -104,7 +104,7 @@ public class UserServlet extends HttpServlet
 		try
 		{
 			String theCommand = request.getParameter("command");
-			
+
 			switch (theCommand)
 			{
 				case "ADD":
@@ -126,6 +126,9 @@ public class UserServlet extends HttpServlet
 				case "Skip":
 					checkProject(request, response);
 					break;
+				case "addDate":
+					addDate(request, response);
+					break;
 			}
 
 		}
@@ -136,10 +139,33 @@ public class UserServlet extends HttpServlet
 
 	}
 
-	private void addMember(HttpServletRequest request, HttpServletResponse response) throws Exception
+	private void addDate(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
+		String dateMonth = request.getParameter("month");
+		String dateday = request.getParameter("day");
+		
 
+		String email1 = request.getParameter("email1");
+		String email2 = request.getParameter("email2");
+		String email3 = request.getParameter("email3");
+		String email4 = request.getParameter("email4");
+
+		Involve involve = new Involve(projectName, email1);
+		Involve involve2 = new Involve(projectName, email2);
+		Involve involve3 = new Involve(projectName, email3);
+		Involve involve4 = new Involve(projectName, email4);
+		dataBase.addMember(involve);
+		dataBase.addMember(involve2);
+		dataBase.addMember(involve3);
+		dataBase.addMember(involve4);
+
+	}
+
+	private void addMember(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+
+		String projectName = request.getParameter("projectName");
 		String email1 = request.getParameter("email1");
 		String email2 = request.getParameter("email2");
 		String email3 = request.getParameter("email3");
