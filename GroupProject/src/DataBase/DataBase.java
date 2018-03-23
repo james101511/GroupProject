@@ -261,7 +261,7 @@ public class DataBase
 
 	public List<Involve> checkProject(Involve involve) throws SQLException
 	{
-	
+
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		List<Involve> involves = new ArrayList<>();
@@ -284,6 +284,35 @@ public class DataBase
 				involves.add(TempInvolve);
 			}
 			return involves;
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+	}
+
+	public List<Task> checkTask(Task task) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		List<Task> tasks = new ArrayList<>();
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select * from Task where ProjectName = ? ";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, task.getProjectName());
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+				String TaskName = set.getString("TaskName");
+				String StartDate= set.getString("StartDate");
+				String EndDate= set.getString("EndDate");
+				Task task2 = new Task(task.getProjectName(),TaskName,StartDate,EndDate);
+				tasks.add(task2);
+			}
+			return tasks;
 		}
 		finally
 		{

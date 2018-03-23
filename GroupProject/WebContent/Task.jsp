@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.util.*" %>
+<%@ page import="DataBase.*" %>
+<%
+	String projectName =(String)request.getParameter("projectName");
+	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
+	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
+%>
 <html>
 <head>
 
@@ -59,16 +66,20 @@
 			    </tr>
 			  </thead>
 			  <tbody id="myList">
+			  
+			  
+			  <% for (int i=0;i<Involves.size();i++) { %>
 			    <tr>
 			      <td><a href="#">Mark</a></td>
 			    </tr>
 			    <tr>
-			      <td>Jacob</td>
+			      <td><%= Involves.get(i).getProjectName() %></td>
 			    </tr>
 			    <tr>
-			      <td>Larry</td>
+			      <td><%= Involves.get(i).getProjectName() %></td>
 			    </tr>
 			  </tbody>
+			  <% } %>
 			</table>
 			<!-- FOR ADDING ELEMENT ON EMPTY SPACE-->
 					<p id="emptyParagraph"></p>

@@ -6,8 +6,7 @@
 <%@ page import="DataBase.*" %>
 <%
 	String projectName =(String)request.getParameter("projectName");
-%>
-<%
+	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
 	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
 %>
 <html lang="en">
@@ -45,10 +44,10 @@
       var rows = [];
       
       	data.addRows([
-      		<% for (int i=0;i<Involves.size();i++) { %>
-      		['<%=String.valueOf(i)%>', '<%= Involves.get(i).getEmail() %>','summer',
+      		<% for (int i=0;i<tasks.size();i++) { %>
+      		['<%=String.valueOf(i)%>', '<%= tasks.get(i).getTaskName() %>','summer',
            		new Date(2014, 1, 1), new Date(2014, <%=i+2%>, 20), null, 100, null],
-           		['<%=String.valueOf(i+5)%>', '<%= Involves.get(i).getEmail() %>','winter',
+           		['<%=String.valueOf(i+5)%>', '<%= tasks.get(i).getTaskName() %>','winter',
                		new Date(2014, 1, 1), new Date(2014, <%=i+2%>, 20), null, 100, null],
             <% } %>
            ]
@@ -145,6 +144,8 @@
 				
 			   <a class="dropdown-item" href="#"><%=Involves.get(i).getEmail()%></a> 
 			 <% } %>
+			 
+			 
 			<%-- <% for (int i=0;i<Involves.size();i++) { %>
 				<%= Involves.get(i).getEmail() %>
 				 <% } %> --%>
@@ -155,7 +156,7 @@
 			  </div>
 			
 			</div>
-				
+				<input id="skip-button" value="AddTask" onClick="buttonSkip()">
 		
 		</div>
 			

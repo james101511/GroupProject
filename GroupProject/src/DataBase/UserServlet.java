@@ -54,6 +54,10 @@ public class UserServlet extends HttpServlet
 					break;
 				case "CHECKPROJECT":
 					checkProject(request, response);
+					checkTask(request, response);
+					break;
+				case "CHECKTASK":
+					checkTask(request, response);
 					break;
 			}
 		}
@@ -61,6 +65,19 @@ public class UserServlet extends HttpServlet
 		{
 			throw new ServletException(exc);
 		}
+
+	}
+
+	private void checkTask(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String projectName = request.getParameter("projectName");
+		List<Task> tasks = new ArrayList<>();
+		Task task = new Task(projectName);
+		tasks = dataBase.checkTask(task);
+//		response.getWriter().println("1");
+		request.setAttribute("tasks", tasks);
+		
+		request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
 
 	}
 
@@ -95,7 +112,7 @@ public class UserServlet extends HttpServlet
 		// request.setAttribute("projectname", projectName);
 		request.setAttribute("Involve", involves);
 		// response.getWriter().println("Login success!!!");
-		request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
+//		request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
 
 	}
 
@@ -119,12 +136,14 @@ public class UserServlet extends HttpServlet
 				case "Invite":
 					addMember(request, response);
 					checkProject(request, response);
+					checkTask(request, response);
 					break;
 				case "CHECKPROJECT":
 					checkProject(request, response);
 					break;
 				case "Skip":
 					checkProject(request, response);
+					checkTask(request, response);
 					break;
 				case "addDate":
 					addDate(request, response);
@@ -141,20 +160,20 @@ public class UserServlet extends HttpServlet
 
 	private void addDate(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-//		String projectName = request.getParameter("projectName");
-//		String dateMonth = request.getParameter("month");
-//		String dateday = request.getParameter("day");
-//		
-//
-//		
-//		Involve involve = new Involve(projectName, email1);
-//		Involve involve2 = new Involve(projectName, email2);
-//		Involve involve3 = new Involve(projectName, email3);
-//		Involve involve4 = new Involve(projectName, email4);
-//		dataBase.addMember(involve);
-//		dataBase.addMember(involve2);
-//		dataBase.addMember(involve3);
-//		dataBase.addMember(involve4);
+		// String projectName = request.getParameter("projectName");
+		// String dateMonth = request.getParameter("month");
+		// String dateday = request.getParameter("day");
+		//
+		//
+		//
+		// Involve involve = new Involve(projectName, email1);
+		// Involve involve2 = new Involve(projectName, email2);
+		// Involve involve3 = new Involve(projectName, email3);
+		// Involve involve4 = new Involve(projectName, email4);
+		// dataBase.addMember(involve);
+		// dataBase.addMember(involve2);
+		// dataBase.addMember(involve3);
+		// dataBase.addMember(involve4);
 
 	}
 
