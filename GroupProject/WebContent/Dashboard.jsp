@@ -45,14 +45,14 @@
       
       	data.addRows([
       		<% for (int i=0;i<tasks.size();i++) { %>
-      		['<%=String.valueOf(i)%>', '<%= tasks.get(i).getTaskName() %>','summer',
+      		['<%=String.valueOf(i)%>', '1','summer',
            		new Date(2014, 1, 1), new Date(2014, <%=i+2%>, 20), null, 100, null],
            		['<%=String.valueOf(i+5)%>', '<%= tasks.get(i).getTaskName() %>','winter',
                		new Date(2014, 1, 1), new Date(2014, <%=i+2%>, 20), null, 100, null],
             <% } %>
            ]
         );
-      	data.addRows([
+      	/* data.addRows([
             ['2014Spring', 'Spring 2014', 'spring',
              new Date(2014, 2, 22), new Date(2014, 5, 20), null, 100, null],
             ['2014Summer', 'Summer 2014', 'summer',
@@ -78,7 +78,7 @@
             ['Hockey', 'Hockey Season', 'sports',
              new Date(2014, 9, 8), new Date(2015, 5, 21), null, 89, null]
           ]);
- 
+  */
       
 
       var options = {
@@ -156,9 +156,11 @@
 			  </div>
 			
 			</div>
-				<input id="skip-button" value="AddTask" onClick="buttonSkip()">
-		
+				
+				
+			
 		</div>
+		<br>
 			
 		<div class="container container-progress-bar">
 			<div class="row justify-content-end ">
@@ -169,6 +171,7 @@
 				</div>
 			</div>
 		</div>
+		<input type="button" value="addTask" onclick="javascript:location.href='Task.jsp'" >
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>
 			

@@ -13,11 +13,10 @@ public class Task
 		ProjectName = projectName;
 	}
 
-	public Task(String taskName, String projectName, String startDate, String endDate)
+	public Task( String projectName, String taskName,String startDate, String endDate)
 	{
-
-		TaskName = taskName;
 		ProjectName = projectName;
+		TaskName = taskName;
 		StartDate = startDate;
 		EndDate = endDate;
 	}

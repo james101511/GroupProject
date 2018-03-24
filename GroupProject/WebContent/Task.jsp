@@ -3,11 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
-<%
+<%-- <%
 	String projectName =(String)request.getParameter("projectName");
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
 	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
-%>
+%> --%>
 <html>
 <head>
 
@@ -68,18 +68,18 @@
 			  <tbody id="myList">
 			  
 			  
-			  <% for (int i=0;i<Involves.size();i++) { %>
+			<%--   <% for (int i=0;i<Involves.size();i++) { %> --%>
 			    <tr>
 			      <td><a href="#">Mark</a></td>
 			    </tr>
 			    <tr>
-			      <td><%= Involves.get(i).getProjectName() %></td>
+			      <td>234</td>
 			    </tr>
 			    <tr>
-			      <td><%= Involves.get(i).getProjectName() %></td>
+			      <td>123</td>
 			    </tr>
 			  </tbody>
-			  <% } %>
+			 <%--  <% } %> --%>
 			</table>
 			<!-- FOR ADDING ELEMENT ON EMPTY SPACE-->
 					<p id="emptyParagraph"></p>
