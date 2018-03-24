@@ -171,7 +171,7 @@
 				</div>
 			</div>
 		</div>
-		<input type="button" value="addTask" onclick="javascript:location.href='Task.jsp'" >
+		<input type="button" value="addTask" onclick="javascript:location.href='AddTask.jsp'" >
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>
 			
