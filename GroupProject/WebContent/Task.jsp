@@ -70,6 +70,7 @@
 			    </tr>
 			  </tbody>
 			</table>
+			
 			<!-- FOR ADDING ELEMENT ON EMPTY SPACE-->
 					<p id="emptyParagraph"></p>
 
