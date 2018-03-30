@@ -81,6 +81,7 @@
 			  </tbody>
 			 <%--  <% } %> --%>
 			</table>
+			
 			<!-- FOR ADDING ELEMENT ON EMPTY SPACE-->
 					<p id="emptyParagraph"></p>
 
@@ -96,7 +97,7 @@
 				
 			function myFunction() {
 				var node = document.createElement("TR");
-				var textnode = document.createTextNode("New Member");
+				var textnode = document.createTextNode(" New Member");
 				node.appendChild(textnode);
 				document.getElementById("myList").appendChild(node);
 	}
