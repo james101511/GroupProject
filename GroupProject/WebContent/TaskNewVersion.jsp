@@ -63,7 +63,7 @@
 
 		<!-- Content of the page after the bars -->
 		
-		<h1>TASK 1</h1>
+		<h1><%=request.getParameter("test")%></h1>
 			
 			
 			<!--ADD MEMBERS FROM DROP DOWN-->

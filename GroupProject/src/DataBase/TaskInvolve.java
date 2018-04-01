@@ -10,6 +10,10 @@ public class TaskInvolve
 		this.taskName = taskName;
 		this.userName = userName;
 	}
+	public TaskInvolve(String taskName)
+	{
+		this.taskName = taskName;
+	}
 
 	public String getTaskName()
 	{

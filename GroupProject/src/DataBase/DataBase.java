@@ -307,12 +307,39 @@ public class DataBase
 			while (set.next())
 			{
 				String TaskName = set.getString("TaskName");
-				String StartDate= set.getString("StartDate");
-				String EndDate= set.getString("EndDate");
-				Task task2 = new Task(task.getProjectName(),TaskName,StartDate,EndDate);
+				String StartDate = set.getString("StartDate");
+				String EndDate = set.getString("EndDate");
+				Task task2 = new Task(task.getProjectName(), TaskName, StartDate, EndDate);
 				tasks.add(task2);
 			}
 			return tasks;
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+	}
+
+	public List<TaskInvolve> checkTaskInvolve(TaskInvolve taskInvolve) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		List<TaskInvolve> taskInvolves = new ArrayList<>();
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select * from TaskInvolve where TaskName = ? ";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, taskInvolve.getTaskName());
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+				String UserName = set.getString("UserName");
+				TaskInvolve taskInvolve2 = new TaskInvolve(taskInvolve.getTaskName(), UserName);
+				taskInvolves.add(taskInvolve2);
+			}
+			return taskInvolves;
 		}
 		finally
 		{

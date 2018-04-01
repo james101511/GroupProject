@@ -59,6 +59,9 @@ public class UserServlet extends HttpServlet
 				case "CHECKTASK":
 					checkTask(request, response);
 					break;
+				case"CHECKTASKINVOLVE":
+					checkTaskInvolve(request,response);
+					break;
 			}
 		}
 		catch (Exception exc)
@@ -66,6 +69,18 @@ public class UserServlet extends HttpServlet
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void checkTaskInvolve(HttpServletRequest request, HttpServletResponse response)throws Exception
+	{
+		String taskName= request.getParameter("taskName");
+		List<TaskInvolve>taskInvolves = new ArrayList<>();
+		TaskInvolve taskInvolve = new TaskInvolve(taskName);
+		taskInvolves=dataBase.checkTaskInvolve(taskInvolve);
+		
+		
+		
+		
 	}
 
 	private void checkTask(HttpServletRequest request, HttpServletResponse response) throws Exception

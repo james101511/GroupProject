@@ -47,7 +47,7 @@
       		<% for (int i=0;i<tasks.size();i++) { %>
       		['<%=String.valueOf(i)%>', '1','summer',
            		new Date(2014, 1, 1), new Date(2014, <%=i+2%>, 20), null, 100, null],
-           		['<%=String.valueOf(i+5)%>', '<%= tasks.get(i).getTaskName() %>','winter',
+           		['<%=String.valueOf(i+5)%>',  '<%= tasks.get(i).getTaskName() %>','winter',
                		new Date(2014, 1, 1), new Date(2014, <%=i+2%>, 20), null, 100, null],
             <% } %>
            ]
@@ -132,19 +132,19 @@
 			<div class="dropdown project-members"> 
 			
 			  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    <%= projectName%>
+			    Tasks
 			  </button>
 			  
 			   
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			  
 			   
-			  	<a class="dropdown-item" href="#">Team Members</a>
-				<% for (int i=0;i<Involves.size();i++) { %>
-				
-			   <a class="dropdown-item" href="#"><%=Involves.get(i).getEmail()%></a> 
+			  	<a class="dropdown-item" href="#"></a>
+				<% for (int i=0;i<tasks.size();i++) { %>
+				<form Name="form1" class="form-signin" action="UserServlet" method="POST">
+			   <a class="dropdown-item" href="TaskNewVersion.jsp?test=<%=tasks.get(i).getTaskName()%>"><%=tasks.get(i).getTaskName()%></a> 
 			 <% } %>
-			 
+			 </form>
 			 
 			<%-- <% for (int i=0;i<Involves.size();i++) { %>
 				<%= Involves.get(i).getEmail() %>
