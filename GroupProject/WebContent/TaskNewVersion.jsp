@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.util.*" %>
+<%@ page import="DataBase.*" %>
+<%
+	String task =(String)request.getParameter("TaskName");
+	 List<TaskInvolve> taskInvolves = (List<TaskInvolve>) request.getAttribute("taskInvolves"); 
+%>
 <html>
 <head>
 
@@ -63,8 +69,9 @@
 
 		<!-- Content of the page after the bars -->
 		
-		<h1><%=request.getParameter("test")%></h1>
+		<h1><%=request.getParameter("taskName") %></h1>
 			
+			 
 			
 			<!--ADD MEMBERS FROM DROP DOWN-->
 		
@@ -73,6 +80,7 @@
 				<div class="row">
 				
 				<div class="col-auto mr-auto"><h3>Team Members involved with the Task</h3></div>
+				
 				<div class="col-auto"></div>
 	
 					

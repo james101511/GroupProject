@@ -59,8 +59,8 @@ public class UserServlet extends HttpServlet
 				case "CHECKTASK":
 					checkTask(request, response);
 					break;
-				case"CHECKTASKINVOLVE":
-					checkTaskInvolve(request,response);
+				case "CHECKTASKINVOLVE":
+					checkTaskInvolve(request, response);
 					break;
 			}
 		}
@@ -71,16 +71,15 @@ public class UserServlet extends HttpServlet
 
 	}
 
-	private void checkTaskInvolve(HttpServletRequest request, HttpServletResponse response)throws Exception
+	private void checkTaskInvolve(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String taskName= request.getParameter("taskName");
-		List<TaskInvolve>taskInvolves = new ArrayList<>();
+		String taskName = request.getParameter("taskName");
+		List<TaskInvolve> taskInvolves = new ArrayList<>();
 		TaskInvolve taskInvolve = new TaskInvolve(taskName);
-		taskInvolves=dataBase.checkTaskInvolve(taskInvolve);
-		
-		
-		
-		
+		taskInvolves = dataBase.checkTaskInvolve(taskInvolve);
+		request.setAttribute("taskInvolves", taskInvolves);
+		request.getRequestDispatcher("/TaskNewVersion.jsp?name=taskName").forward(request, response);
+
 	}
 
 	private void checkTask(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -163,8 +162,10 @@ public class UserServlet extends HttpServlet
 				case "addDate":
 					addDate(request, response);
 					break;
-				case "AddTask":
+				case "ADDTASK":
 					addTask(request, response);
+					checkProject(request, response);
+					checkTask(request, response);
 					break;
 
 			}
@@ -179,14 +180,25 @@ public class UserServlet extends HttpServlet
 
 	private void addTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String ProjectName = request.getParameter("ProjectName");
-//		Task task = new Task(projectName)
+		String taskName = request.getParameter("TaskName");
+		String startDate = request.getParameter("StartDate");
+		String endDate = request.getParameter("EndDate");
+		String projectName = request.getParameter("projectName");
+//		if(true)
+//		{
+//			response.getWriter().println(projectName);
+//			return;
+//		}
+		
+		Task task = new Task(projectName, taskName, startDate, endDate);
+		dataBase.addTask(task);
+		
+		// Task task = new Task(projectName)
 
 	}
 
 	private void addDate(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		
 
 	}
 
@@ -241,19 +253,6 @@ public class UserServlet extends HttpServlet
 		AddManager(request, response);
 		// RequestDispatcher dispatcher =
 		// request.getRequestDispatcher("/InviteMembers.jsp");
-		// dispatcher.forward(request, response);
-	}
-
-	private void listStudents(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		// // get students from db util
-		// List<User> users = UserDB.getStudents();
-		//
-		// // add students to the request
-		// request.setAttribute("STUDENTS_LIST", students);
-		// // send to JSP page (view)
-		// RequestDispatcher dispatcher =
-		// request.getRequestDispatcher("/list-student.jsp");
 		// dispatcher.forward(request, response);
 	}
 

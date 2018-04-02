@@ -141,14 +141,22 @@
 			   
 			  	<a class="dropdown-item" href="#"></a>
 				<% for (int i=0;i<tasks.size();i++) { %>
-				<form Name="form1" class="form-signin" action="UserServlet" method="POST">
-			   <a class="dropdown-item" href="TaskNewVersion.jsp?test=<%=tasks.get(i).getTaskName()%>"><%=tasks.get(i).getTaskName()%></a> 
+				<form Name="form1" class="form-signin" action="UserServlet" method="GET">
+				<input id="var" type="hidden" name="command" value="CHECKTASKINVOLVE" />
+			   <button class="dropdown-item" name="taskName" value="<%=tasks.get(i).getTaskName()%>" ><%=tasks.get(i).getTaskName()%></button> 
+			   </form>
 			 <% } %>
-			 </form>
 			 
-			<%-- <% for (int i=0;i<Involves.size();i++) { %>
-				<%= Involves.get(i).getEmail() %>
-				 <% } %> --%>
+			 
+			<SCRIPT LANGUAGE="JavaScript">
+				function buttonSkip() {
+					document.getElementById("var").value = "Skip";
+
+					document.form1.submit();
+
+				}
+				
+			</SCRIPT> 
 				
 		
 			
@@ -171,7 +179,7 @@
 				</div>
 			</div>
 		</div>
-		<input type="button" value="addTask" onclick="javascript:location.href='AddTask.jsp'" >
+		<button value="addTask" onclick="javascript:location.href='AddTask.jsp?projectName=<%=projectName%>'" >addTask</button>
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>
 			

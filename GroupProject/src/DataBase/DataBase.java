@@ -348,4 +348,30 @@ public class DataBase
 		}
 	}
 
+	public void addTask(Task task) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			// create sql for insert
+			String sql = "insert into Task" + "(TaskName,ProjectName,StartDate,EndDate)" + "values(?,?,?,?)";
+			myStmt = myConn.prepareStatement(sql);
+			// set the param values for the student
+			myStmt.setString(1, task.getTaskName());
+			myStmt.setString(2, task.getProjectName());
+			myStmt.setString(3, task.getStartDate());
+			myStmt.setString(4, task.getEndDate());
+			// execute sql insert
+			myStmt.execute();
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+		
+	}
+
 }

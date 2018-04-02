@@ -3,11 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
-<%-- <%
-	String projectName =(String)request.getParameter("projectName");
-	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
-	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
-%> --%>
+<%
+	String projectName = (String) request.getParameter("projectName");
+%>
 <html>
 <head>
 
@@ -67,7 +65,7 @@
 		
 			
 			<!-- Date pickers -->
-			
+			<form Name="form" class="form-signin" action="UserServlet" method="POST">
 			<div class="bootstrap-iso" id="datepickers_container">
 			 <div class="container-fluid">
 			  <div class="row">
@@ -75,7 +73,7 @@
 			  <!-- <div class="col-md-4 col-md-4 col-xs-12">
  -->			   <div class="form-group"> 
 			        <label>Task Name</label>
-			        <input class="form-control" type="text"/>
+			        <input class="form-control" name ="TaskName"type="text"/>
 			    </div>
 			  <!--  </div>  -->
 			   
@@ -83,28 +81,31 @@
 			   
 			
 			    <!-- Form code begins -->
-			    <form method="post">
+			    
 			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
 			        <label class="control-label" for="date">Start Date</label>
-			        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+			        <input class="form-control" id="date" name="StartDate" placeholder="MM/DD/YYY" type="text"/>
 			      </div>
-			     </form>
+			   
 			     <!-- Form code ends --> 
 		    </div> 
 			    	<!-- test -->
 			    	 <!-- Form code begins -->
-			    <form method="post">
+			    
 			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
 			        <label class="control-label" for="date">End Date</label>
-			        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+			        <input class="form-control" id="date" name="EndDate" placeholder="MM/DD/YYY" type="text"/>
+			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
 			      </div>
 			      <div class="col-md-4 col-md-4 col-xs-12"> 
 			       <div class="form-group"> 
 			        <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+			        <input id="var" type="hidden" name="command" value="ADDTASK" />
+			       
 			      </div>
 			      </div>
 			     
-			     </form>
+			     
 			     <!-- Form code ends --> 
 			    </div>
 			    	
@@ -112,7 +113,7 @@
 			  </div>
 			
 		
-
+</form>
 			
 			
 			<script type="text/javascript">
