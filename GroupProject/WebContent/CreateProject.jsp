@@ -4,10 +4,12 @@
 <%@ page import="DataBase.*" %>
 <%
 	User kk =(User)request.getAttribute("user");
+	String email=(String)request.getAttribute("email");
 %>
 <%
 	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
 %>
+
 	<html>
 	
 		<head>
@@ -158,6 +160,7 @@
 					<tr>
 						<form class="form-signin" action="UserServlet" method="GET" >
 				<input type="hidden" name="command" value="CHECKPROJECT"/>
+				<input type="hidden" name="Email" value="<%= kk.getEmail() %>" />
 						<td><input type="submit" value="<%= Involves.get(i).getProjectName() %>" name="projectName"/> </td>
 						</form>
 					</tr>

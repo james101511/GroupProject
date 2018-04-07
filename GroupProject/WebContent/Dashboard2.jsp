@@ -140,7 +140,7 @@
 			   
 			  	<a class="dropdown-item" href="#"></a>
 				<% for (int i=0;i<tasks.size();i++) { %>
-				<form Name="form1" class="form-signin" action="UserServlet" method="GET">
+				
 				<input id="var" type="hidden" name="command" value="CHECKTASKINVOLVE" />
 			   <button class="dropdown-item" name="taskName" value="<%=tasks.get(i).getTaskName()%>" ><%=tasks.get(i).getTaskName()%></button> 
 			   </form>
@@ -178,7 +178,7 @@
 				</div>
 			</div>
 		</div>
-		<button value="addTask" onclick="javascript:location.href='AddTask.jsp?projectName=<%=projectName%>'" >addTask</button>
+		
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>
 			

@@ -374,4 +374,38 @@ public class DataBase
 		
 	}
 
+	public boolean checkadmin(String projectName, String email) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		boolean admin = true;
+		
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select * from Involve where ProjectName = ? and Email = ? ";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, projectName);
+			myStmt.setString(2, email);
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+				
+				String admin2 = set.getString("Admin");
+				if (admin2.equals("0"))
+				{
+					admin=false;
+				}
+				
+			}
+			return admin;
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+		
+	}
+
 }

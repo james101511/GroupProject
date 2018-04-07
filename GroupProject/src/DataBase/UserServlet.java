@@ -56,9 +56,9 @@ public class UserServlet extends HttpServlet
 					checkProject(request, response);
 					checkTask(request, response);
 					break;
-				case "CHECKTASK":
-					checkTask(request, response);
-					break;
+				// case "CHECKTASK":
+				// checkTask(request, response);
+				// break;
 				case "CHECKTASKINVOLVE":
 					checkTaskInvolve(request, response);
 					break;
@@ -85,13 +85,18 @@ public class UserServlet extends HttpServlet
 	private void checkTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
+		String email =  request.getParameter("Email");
+		
 		List<Task> tasks = new ArrayList<>();
 		Task task = new Task(projectName);
 		tasks = dataBase.checkTask(task);
-		// response.getWriter().println("1");
 		request.setAttribute("tasks", tasks);
-
-		request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
+		boolean admin = dataBase.checkadmin(projectName, email);
+		if (admin == true)
+		{
+			request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
+		}
+		request.getRequestDispatcher("/Dashboard2.jsp").forward(request, response);
 
 	}
 
@@ -107,13 +112,6 @@ public class UserServlet extends HttpServlet
 		}
 
 		List<Involve> involves = new ArrayList<>();
-		// if (email == null || email.trim().equals("") || password == null ||
-		// password.trim().equals(""))
-		//
-		// {
-		// response.getWriter().println("Please dont input empty email or username");
-		// return;
-		// }
 		Involve involve = new Involve(projectName, false);
 		involves = dataBase.checkProject(involve);
 		if (involves.size() == 0)
@@ -159,9 +157,6 @@ public class UserServlet extends HttpServlet
 					checkProject(request, response);
 					checkTask(request, response);
 					break;
-				case "addDate":
-					addDate(request, response);
-					break;
 				case "ADDTASK":
 					addTask(request, response);
 					checkProject(request, response);
@@ -184,21 +179,16 @@ public class UserServlet extends HttpServlet
 		String startDate = request.getParameter("StartDate");
 		String endDate = request.getParameter("EndDate");
 		String projectName = request.getParameter("projectName");
-//		if(true)
-//		{
-//			response.getWriter().println(projectName);
-//			return;
-//		}
-		
+		// if(true)
+		// {
+		// response.getWriter().println(projectName);
+		// return;
+		// }
+
 		Task task = new Task(projectName, taskName, startDate, endDate);
 		dataBase.addTask(task);
-		
+
 		// Task task = new Task(projectName)
-
-	}
-
-	private void addDate(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
 
 	}
 
@@ -244,9 +234,7 @@ public class UserServlet extends HttpServlet
 	private void AddProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String ProjectName = request.getParameter("ProjectName");
-		// String LastName = request.getParameter("lastName");
-		// String Email = request.getParameter("email");
-		// String Password = request.getParameter("password");
+		
 		Project project = new Project(ProjectName);
 		dataBase.addProject(project);
 		// request.setAttribute("project", project.getProjectName());
@@ -282,14 +270,6 @@ public class UserServlet extends HttpServlet
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		List<Involve> involves = new ArrayList<>();
-		// if (email == null || email.trim().equals("") || password == null ||
-		// password.trim().equals(""))
-		//
-		// {
-		// response.getWriter().println("Please dont input empty email or username");
-		// return;
-		// }
-
 		User user = new User(email, password);
 		Involve involve = new Involve(email, true);
 		involves = dataBase.CheckInvolve(involve);
@@ -305,6 +285,7 @@ public class UserServlet extends HttpServlet
 
 			request.setAttribute("user", us);
 			request.setAttribute("Involve", involves);
+			request.setAttribute("email",email);
 			// response.getWriter().println("Login success!!!");
 			request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
 			return;
