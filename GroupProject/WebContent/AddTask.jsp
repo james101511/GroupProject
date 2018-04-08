@@ -63,7 +63,7 @@
 		<!-- Content of the page after the bars -->
 		
 		
-			
+	<%-- 		
 			<!-- Date pickers -->
 			<form Name="form" class="form-signin" action="UserServlet" method="POST">
 			<div class="bootstrap-iso" id="datepickers_container">
@@ -113,7 +113,67 @@
 			  </div>
 			
 		
-</form>
+</form> --%>
+
+
+
+<!-- This is NEW TEST TABLE -->
+<div class="container-fluid task_table">
+	<div id="wrapper">
+		<table align='center' cellspacing=4 cellpadding=5 id="data_table" border=0>
+			<tr>
+				<th>Tasks</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+			</tr>
+		
+			<tr id="row1">
+				<td id="task_row1">Task1</td>
+				<td id="startDate_row1">01/01/2018</td>
+				<td id="endDate_row1">20/02/2018</td>
+				<td>
+				<input type="button" id="edit_button1" value="Edit" class="edit btn btn-info" onclick="edit_row('1')">
+				<input type="button" id="save_button1" value="Save" class="save btn btn-primary" onclick="save_row('1')">
+				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('1')">
+				</td>
+			</tr>
+			
+			<tr id="row2">
+				<td id="task_row2">Task2</td>
+				<td id="startDate_row2">03/05/2017</td>
+				<td id="endDate_row2">26/05/2017</td>
+				<td>
+				<input type="button" id="edit_button2" value="Edit" class="edit btn btn-info" onclick="edit_row('2')">
+				<input type="button" id="save_button2" value="Save" class="save btn btn-primary" onclick="save_row('2')">
+				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('2')">
+				</td>
+			</tr>
+			
+			<tr id="row3">
+				<td id="task_row3">Task3</td>
+				<td id="startDate_row3">08/02/2018</td>
+				<td id="endDate_row3">19/02/2017</td>
+				<td>
+				<input type="button" id="edit_button3" value="Edit" class="edit btn btn-info" onclick="edit_row('3')">
+				<input type="button" id="save_button3" value="Save" class="save btn btn-primary" onclick="save_row('3')">
+				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('3')">
+				</td>
+			</tr>
+			
+			<tr>
+				<td><input class="form-control" type="text" id="new_task"></td>
+				<td><input class="form-control" type="text" id="new_startDate"></td>
+				<td><input class="form-control"  type="text" id="new_age"></td>
+				<td><input  type="button" class="add btn btn-info" onclick="add_row();" value="Add Row"></td>
+			</tr>
+		
+		</table>
+	</div>
+</div>
+
+
+
+<!-- THIS IS THE END OF THE NEW TEST TABLE -->
 			
 			
 			<script type="text/javascript">
@@ -136,6 +196,63 @@
 			      };
 			      date_input.datepicker(options);
 			    })
+			    
+	//THIS IS THE SCRIPT FOR THE NEW TEST TABLE!
+	
+	
+	function edit_row(no)
+{
+ document.getElementById("edit_button"+no).style.display="none";
+ document.getElementById("save_button"+no).style.display="block";
+	
+ var task=document.getElementById("task_row"+no);
+ var startDate=document.getElementById("startDate_row"+no);
+ var endDate=document.getElementById("endDate_row"+no);
+	
+ var task_data=task.innerHTML;
+ var startDate_data=startDate.innerHTML;
+ var endDate_data=endDate.innerHTML;
+	
+ task.innerHTML="<input class='form-control'  type='text' id='task_text"+no+"' value='"+task_data+"'>";
+ startDate.innerHTML="<input class='form-control' type='text' id='startDate_text"+no+"' value='"+startDate_data+"'>";
+ endDate.innerHTML="<input class='form-control' type='text' id='endDate_text"+no+"' value='"+endDate_data+"'>";
+}
+
+function save_row(no)
+{
+ var task_val=document.getElementById("task_text"+no).value;
+ var startDate_val=document.getElementById("startDate_text"+no).value;
+ var endDate=document.getElementById("endDate_text"+no).value;
+
+ document.getElementById("task_row"+no).innerHTML=task_val;
+ document.getElementById("startDate_row"+no).innerHTML=startDate_val;
+ document.getElementById("endDate_row"+no).innerHTML=endDate;
+
+ document.getElementById("edit_button"+no).style.display="block";
+ document.getElementById("save_button"+no).style.display="none";
+}
+
+function delete_row(no)
+{
+ document.getElementById("row"+no+"").outerHTML="";
+}
+
+function add_row()
+{
+ var new_task=document.getElementById("new_task").value;
+ var new_startDate=document.getElementById("new_startDate").value;
+ var new_age=document.getElementById("new_age").value;
+	
+ var table=document.getElementById("data_table");
+ var table_len=(table.rows.length)-1;
+ var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='task_row"+table_len+"'>"+new_task+"</td><td id='startDate_row"+table_len+"'>"+new_startDate+"</td><td id='endDate_row"+table_len+"'>"+new_age+"</td><td><input type='button' id='edit_button"+table_len+"' value='Edit' class='edit btn btn-info' onclick='edit_row("+table_len+")'> <input type='button' id='save_button"+table_len+"' value='Save' class='save btn btn-primary' onclick='save_row("+table_len+")'> <input type='button' value='Delete' class='delete btn btn-danger' onclick='delete_row("+table_len+")'></td></tr>";
+
+ document.getElementById("new_task").value="";
+ document.getElementById("new_startDate").value="";
+ document.getElementById("new_age").value="";
+}
+	
+	//THIS IS THE END OF THE SCRIPT FOR THE NEW TEST TABLE
 			    
 			    
 			
