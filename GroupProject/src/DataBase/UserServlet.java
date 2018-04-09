@@ -178,6 +178,8 @@ public class UserServlet extends HttpServlet
 					break;
 				case "EDITTASK":
 					editTask(request, response);
+					checkProject(request, response);
+					checkTask(request, response);
 					break;
 				case "DELETETASK":
 					deleteTask(request, response);
@@ -211,8 +213,16 @@ public class UserServlet extends HttpServlet
 		String taskName = request.getParameter("TaskName");
 		String startDate = request.getParameter("StartDate");
 		String endDate = request.getParameter("EndDate");
+		if(taskName == null|| startDate== null || endDate == null)
+			 {
+			 response.getWriter().println(projectName);
+			 response.getWriter().println(taskName);
+			 response.getWriter().println(startDate);
+			 response.getWriter().println(endDate);
+			 return;
+			 }
 		dataBase.editTask(projectName, taskName, startDate, endDate);
-		request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
+		
 		
 
 	}
