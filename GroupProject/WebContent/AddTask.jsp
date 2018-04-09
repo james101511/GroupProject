@@ -39,8 +39,10 @@
 			<div id="topbar">
 		
 				<div id="name-div" class="topbar-section">
-			
-					<a id="projectName"  href="Dashboard.jsp">Manage P&P </a>
+				
+				<a id="projectName" href="javascript:history.go(-1);">Manage P&P </a>
+				
+					
 				</div>
 				
 				<div class="topbar-section topbar-logIn">

@@ -173,19 +173,21 @@ public class UserServlet extends HttpServlet
 					break;
 				case "ADDTASK":
 					addTask(request, response);
-					checkProject(request, response);
-					checkTask(request, response);
+					getAllTask(request, response);
 					break;
 				case "EDITTASK":
 					editTask(request, response);
-					checkProject(request, response);
-					checkTask(request, response);
+					getAllTask(request, response);
 					break;
 				case "DELETETASK":
 					deleteTask(request, response);
+					getAllTask(request, response);
+					break;
+				case "back":
 					checkProject(request, response);
 					checkTask(request, response);
 					break;
+					
 
 			}
 
