@@ -371,7 +371,7 @@ public class DataBase
 			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
-		
+
 	}
 
 	public boolean checkadmin(String projectName, String email) throws SQLException
@@ -379,7 +379,7 @@ public class DataBase
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		boolean admin = true;
-		
+
 		try
 		{
 			myConn = dataSource.getConnection();
@@ -390,13 +390,13 @@ public class DataBase
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
-				
+
 				String admin2 = set.getString("Admin");
 				if (admin2.equals("0"))
 				{
-					admin=false;
+					admin = false;
 				}
-				
+
 			}
 			return admin;
 		}
@@ -405,7 +405,59 @@ public class DataBase
 			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
-		
+
+	}
+
+	public void deleteTask(String projectName, String taskName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			// create sql for insert
+			String sql = "DELETE FROM Task WHERE ProjectName = ? and TaskName =?";
+//			DELETE FROM TaskInvolve WHERE projectName =? and TaskName =? ;
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, projectName);
+			myStmt.setString(2, taskName);
+//			myStmt.setString(3, projectName);
+//			myStmt.setString(4, taskName);
+
+			// execute sql insert
+			myStmt.execute();
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+
+	}
+
+	public void editTask(String projectName, String taskName, String startDate, String endDate) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "UPDATE Task SET StartDate= ?,EndDate= ? WHERE projectName = ? and TaskName=?;";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, startDate);
+			myStmt.setString(2, endDate);
+			myStmt.setString(3, projectName);
+			myStmt.setString(4, taskName);
+
+			// execute sql insert
+			myStmt.execute();
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+
 	}
 
 }

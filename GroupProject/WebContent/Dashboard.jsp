@@ -178,7 +178,11 @@
 				</div>
 			</div>
 		</div>
-		<button value="addTask" onclick="javascript:location.href='AddTask.jsp?projectName=<%=projectName%>'" >Edit Task</button>
+		<form Name="form2" class="form-signin" action="UserServlet" method="GET">
+		<input type="hidden" name="projectName" value="<%=projectName%>" />
+		<input type="hidden" name="command" value="getAllTask" />
+		<input type="submit" value="Edit Task" >
+		</form>
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>
 			

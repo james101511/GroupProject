@@ -5,6 +5,7 @@
 <%@ page import="DataBase.*" %>
 <%
 	String projectName = (String) request.getParameter("projectName");
+	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
 %>
 <html>
 <head>
@@ -63,7 +64,7 @@
 		<!-- Content of the page after the bars -->
 		
 		
-	<%-- 		
+	 		
 			<!-- Date pickers -->
 			<form Name="form" class="form-signin" action="UserServlet" method="POST">
 			<div class="bootstrap-iso" id="datepickers_container">
@@ -100,7 +101,7 @@
 			      <div class="col-md-4 col-md-4 col-xs-12"> 
 			       <div class="form-group"> 
 			        <button class="btn btn-primary " name="submit" type="submit">Submit</button>
-			        <input id="var" type="hidden" name="command" value="ADDTASK" />
+			        <input id="kk" type="hidden" name="command" value="ADDTASK" />
 			       
 			      </div>
 			      </div>
@@ -113,32 +114,46 @@
 			  </div>
 			
 		
-</form> --%>
+</form> 
 
 
 
 <!-- This is NEW TEST TABLE -->
 <div class="container-fluid task_table">
 	<div id="wrapper">
+	<form Name="form1" action="UserServlet" method="POST">
 		<table align='center' cellspacing=4 cellpadding=5 id="data_table" border=0>
 			<tr>
 				<th>Tasks</th>
 				<th>Start Date</th>
 				<th>End Date</th>
 			</tr>
-		
+			
+			<% for (int i=0;i<tasks.size();i++) { %>
+			
 			<tr id="row1">
-				<td id="task_row1">Task1</td>
-				<td id="startDate_row1">01/01/2018</td>
-				<td id="endDate_row1">20/02/2018</td>
+			
+			
+			
+				<td id="task_row1"><%= tasks.get(i).getTaskName() %></td>
+				<td id="startDate_row1"><%=tasks.get(i).getStartDate()%></td>
+				<td id="endDate_row1"><%=tasks.get(i).getEndDate()%></td>
 				<td>
+				
+				<input id="var" type="hidden" name="command" value="x" />
+				<input type="hidden" name="projectName" value="<%=projectName %>" />
+				<input type="hidden" name="TaskName" value="<%= tasks.get(i).getTaskName() %>" />
 				<input type="button" id="edit_button1" value="Edit" class="edit btn btn-info" onclick="edit_row('1')">
 				<input type="button" id="save_button1" value="Save" class="save btn btn-primary" onclick="save_row('1')">
-				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('1')">
+				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row()">
+				
 				</td>
+				
 			</tr>
 			
-			<tr id="row2">
+			<% } %>
+			
+			<!-- <tr id="row2">
 				<td id="task_row2">Task2</td>
 				<td id="startDate_row2">03/05/2017</td>
 				<td id="endDate_row2">26/05/2017</td>
@@ -159,15 +174,19 @@
 				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('3')">
 				</td>
 			</tr>
-			
-			<tr>
+			 -->
+			 
+			<!-- <tr>
+				
 				<td><input class="form-control" type="text" id="new_task"></td>
 				<td><input class="form-control" type="text" id="new_startDate"></td>
 				<td><input class="form-control"  type="text" id="new_age"></td>
 				<td><input  type="button" class="add btn btn-info" onclick="add_row();" value="Add Row"></td>
-			</tr>
-		
+				
+			</tr> -->
+			
 		</table>
+		</form>
 	</div>
 </div>
 
@@ -232,12 +251,15 @@ function save_row(no)
  document.getElementById("save_button"+no).style.display="none";
 }
 
-function delete_row(no)
+function delete_row()
 {
- document.getElementById("row"+no+"").outerHTML="";
+	
+	document.getElementById("var").value = "DELETETASK";
+
+	document.form1.submit();
 }
 
-function add_row()
+/* function add_row()
 {
  var new_task=document.getElementById("new_task").value;
  var new_startDate=document.getElementById("new_startDate").value;
@@ -250,7 +272,7 @@ function add_row()
  document.getElementById("new_task").value="";
  document.getElementById("new_startDate").value="";
  document.getElementById("new_age").value="";
-}
+} */
 	
 	//THIS IS THE END OF THE SCRIPT FOR THE NEW TEST TABLE
 			    

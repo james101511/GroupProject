@@ -2,6 +2,7 @@ package DataBase;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -62,6 +63,9 @@ public class UserServlet extends HttpServlet
 				case "CHECKTASKINVOLVE":
 					checkTaskInvolve(request, response);
 					break;
+				case "getAllTask":
+					getAllTask(request, response);
+					break;
 			}
 		}
 		catch (Exception exc)
@@ -69,6 +73,16 @@ public class UserServlet extends HttpServlet
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void getAllTask(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String projectName = request.getParameter("projectName");
+		List<Task> tasks = new ArrayList<>();
+		Task task = new Task(projectName);
+		tasks = dataBase.checkTask(task);
+		request.setAttribute("tasks", tasks);
+		request.getRequestDispatcher("/AddTask.jsp").forward(request, response);
 	}
 
 	private void checkTaskInvolve(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -85,8 +99,8 @@ public class UserServlet extends HttpServlet
 	private void checkTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
-		String email =  request.getParameter("Email");
-		
+		String email = request.getParameter("Email");
+
 		List<Task> tasks = new ArrayList<>();
 		Task task = new Task(projectName);
 		tasks = dataBase.checkTask(task);
@@ -162,6 +176,14 @@ public class UserServlet extends HttpServlet
 					checkProject(request, response);
 					checkTask(request, response);
 					break;
+				case "EDITTASK":
+					editTask(request, response);
+					break;
+				case "DELETETASK":
+					deleteTask(request, response);
+					checkProject(request, response);
+					checkTask(request, response);
+					break;
 
 			}
 
@@ -170,6 +192,28 @@ public class UserServlet extends HttpServlet
 		{
 			throw new ServletException(exc);
 		}
+
+	}
+
+	private void deleteTask(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String projectName = request.getParameter("projectName");
+		String taskName = request.getParameter("TaskName");
+		dataBase.deleteTask(projectName, taskName);
+		
+		
+
+	}
+
+	private void editTask(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String projectName = request.getParameter("projectName");
+		String taskName = request.getParameter("TaskName");
+		String startDate = request.getParameter("StartDate");
+		String endDate = request.getParameter("EndDate");
+		dataBase.editTask(projectName, taskName, startDate, endDate);
+		request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
+		
 
 	}
 
@@ -234,7 +278,7 @@ public class UserServlet extends HttpServlet
 	private void AddProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String ProjectName = request.getParameter("ProjectName");
-		
+
 		Project project = new Project(ProjectName);
 		dataBase.addProject(project);
 		// request.setAttribute("project", project.getProjectName());
@@ -285,7 +329,7 @@ public class UserServlet extends HttpServlet
 
 			request.setAttribute("user", us);
 			request.setAttribute("Involve", involves);
-			request.setAttribute("email",email);
+			request.setAttribute("email", email);
 			// response.getWriter().println("Login success!!!");
 			request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
 			return;
