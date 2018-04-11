@@ -39,8 +39,10 @@
 			<div id="topbar">
 		
 				<div id="name-div" class="topbar-section">
-			
-					<a id="projectName"  href="Dashboard.jsp">Manage P&P </a>
+				
+				<a id="projectName" href="javascript:history.go(-1);">Manage P&P </a>
+				
+					
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
@@ -135,16 +137,17 @@
 			
 			
 			
-				<td id="task_row1"><%= tasks.get(i).getTaskName() %></td>
-				<td id="startDate_row1"><%=tasks.get(i).getStartDate()%></td>
-				<td id="endDate_row1"><%=tasks.get(i).getEndDate()%></td>
+				<td id="task_row<%=i+1%>"><%= tasks.get(i).getTaskName() %></td>
+				<td id="startDate_row<%=i+1%>"><%=tasks.get(i).getStartDate()%></td>
+				<td id="endDate_row<%=i+1%>"><%=tasks.get(i).getEndDate()%></td>
 				<td>
 				
 				<input id="var" type="hidden" name="command" value="x" />
+				<input id="varx" type="hidden" name="var" value="<%=i+1%>" />
 				<input type="hidden" name="projectName" value="<%=projectName %>" />
 				<input type="hidden" name="TaskName" value="<%= tasks.get(i).getTaskName() %>" />
-				<input type="button" id="edit_button1" value="Edit" class="edit btn btn-info" onclick="edit_row('1')">
-				<input type="button" id="save_button1" value="Save" class="save btn btn-primary" onclick="save_row('1')">
+				<input type="button" id="edit_button<%=i+1%>" value="Edit" class="edit btn btn-info" onclick="edit_row(<%=i+1%>)">
+				<input type="button" id="save_button<%=i+1%>" value="Save" class="save btn btn-primary" onclick="save_row()">
 				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row()">
 				
 				</td>
@@ -198,7 +201,7 @@
 			<script type="text/javascript">
 		
 				
-			function myFunction() {
+			/* function myFunction() {
 				var node = document.createElement("TR");
 				var textnode = document.createTextNode(" New Task");
 				node.appendChild(textnode);
@@ -214,13 +217,14 @@
 			        autoclose: true,
 			      };
 			      date_input.datepicker(options);
-			    })
+			    }) */
 			    
 	//THIS IS THE SCRIPT FOR THE NEW TEST TABLE!
 	
 	
 	function edit_row(no)
 {
+			
  document.getElementById("edit_button"+no).style.display="none";
  document.getElementById("save_button"+no).style.display="block";
 	
@@ -232,14 +236,14 @@
  var startDate_data=startDate.innerHTML;
  var endDate_data=endDate.innerHTML;
 	
- task.innerHTML="<input class='form-control'  type='text' id='task_text"+no+"' value='"+task_data+"'>";
- startDate.innerHTML="<input class='form-control' type='text' id='startDate_text"+no+"' value='"+startDate_data+"'>";
- endDate.innerHTML="<input class='form-control' type='text' id='endDate_text"+no+"' value='"+endDate_data+"'>";
+  /* task.innerHTML="<input class='form-control'  type='hidden' name='TaskName2' id='task_text"+no+"' value='"+task_data+"'>"; */
+ startDate.innerHTML="<input class='form-control' type='text'name='StartDate' id='startDate_text"+no+"' value='"+startDate_data+"'>";
+ endDate.innerHTML="<input class='form-control' type='text' name='EndDate' id='endDate_text"+no+"' value='"+endDate_data+"'>";
 }
 
-function save_row(no)
+function save_row()
 {
- var task_val=document.getElementById("task_text"+no).value;
+  /* var task_val=document.getElementById("task_text"+no).value;
  var startDate_val=document.getElementById("startDate_text"+no).value;
  var endDate=document.getElementById("endDate_text"+no).value;
 
@@ -248,7 +252,10 @@ function save_row(no)
  document.getElementById("endDate_row"+no).innerHTML=endDate;
 
  document.getElementById("edit_button"+no).style.display="block";
- document.getElementById("save_button"+no).style.display="none";
+ document.getElementById("save_button"+no).style.display="none"; a */
+	document.getElementById("var").value = "EDITTASK";
+
+	document.form1.submit();
 }
 
 function delete_row()
