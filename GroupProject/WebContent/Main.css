@@ -133,6 +133,23 @@
 				padding-top: 25px;
 				
 				}
+				
+				#data_table {
+				
+				border-color: coral;
+				border-radius: 5px;
+    			width: 50%;
+   				 float: none;
+   				 margin-top:80px
+				
+				}
+				#desc_heading{
+				
+				color: grey;
+				margin-top: 20px;
+				
+				
+				}
 	
 		
 				

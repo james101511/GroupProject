@@ -57,7 +57,7 @@
 		<!-- Content of the page after the bars -->
 		
 		<div class="container container-project-name">
-		<h3>Taks1 </h3>
+		<h3>Task 1 </h3>
 		
 			<table class="table table-striped">
 			  <thead>
