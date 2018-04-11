@@ -304,7 +304,7 @@ input[type="text"]
 					var total_text=document.getElementsByClassName("input_text");
 					total_text=total_text.length+1;
 					document.getElementById("field_div").innerHTML=document.getElementById("field_div").innerHTML+
-					"<p id='input_text"+total_text+"_wrapper'><input type='text' class='input_text' id='input_text"+total_text+"' name='Email"+total_text+"' placeholder='Email'><input type='button' id='button_minus' value='-' onclick=remove_field('input_text"+total_text+"');></p>";
+					"<p id='input_text"+total_text+"_wrapper'><input type='text' class='input_text'  id='input_text"+total_text+"' name='Email"+total_text+"' placeholder='Email'><input type='button' id='button_minus' value='-' onclick=remove_field('input_text"+total_text+"');></p>";
 				}
 				
 				function remove_field(id) {
