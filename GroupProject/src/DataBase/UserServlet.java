@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.sun.webkit.BackForwardList;
+
 import apple.laf.JRSUIConstants.Size;
 import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 
@@ -57,8 +59,7 @@ public class UserServlet extends HttpServlet
 					CheckUser(request, response);
 					break;
 				case "CHECKPROJECT":
-					checkProject(request, response);
-					checkTask(request, response);
+					turnToDashboard(request,response);
 					break;
 				// case "CHECKTASK":
 				// checkTask(request, response);
@@ -164,15 +165,13 @@ public class UserServlet extends HttpServlet
 
 				case "Invite":
 					addMember(request, response);
-					checkProject(request, response);
-					checkTask(request, response);
+					turnToDashboard(request,response);
 					break;
 				case "CHECKPROJECT":
 					checkProject(request, response);
 					break;
 				case "Skip":
-					checkProject(request, response);
-					checkTask(request, response);
+					turnToDashboard(request,response);
 					break;
 				case "ADDTASK":
 					addTask(request, response);
@@ -186,10 +185,7 @@ public class UserServlet extends HttpServlet
 					deleteTask(request, response);
 					getAllTask(request, response);
 					break;
-				case "back":
-					checkProject(request, response);
-					checkTask(request, response);
-					break;
+				
 
 			}
 
@@ -199,6 +195,13 @@ public class UserServlet extends HttpServlet
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void turnToDashboard(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		checkProject(request, response);
+		checkTask(request, response);
+		
 	}
 
 	private void deleteTask(HttpServletRequest request, HttpServletResponse response) throws Exception
