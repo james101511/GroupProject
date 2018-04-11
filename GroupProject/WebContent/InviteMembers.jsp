@@ -281,6 +281,7 @@ input[type="text"]
 			<!-- TODO -->
 			<input id="var" type="hidden" name="command" value="ADDPROJECT" />
 			<div>
+			<input id="var2" type="hidden" name="projectName" value="<%=projectName%>" />
 			<input id="skip"  class="button button3" type="submit" value="Skip" onClick="buttonSkip()">
 			<input id="submit"  class="button button4" type="submit" value="Invite" onClick="buttonInvite()">
 			</div>

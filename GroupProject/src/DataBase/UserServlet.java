@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import apple.laf.JRSUIConstants.Size;
+import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
+
 /**
  * 1 Servlet implementation class StudentServlet
  */
@@ -92,7 +95,7 @@ public class UserServlet extends HttpServlet
 		TaskInvolve taskInvolve = new TaskInvolve(taskName);
 		taskInvolves = dataBase.checkTaskInvolve(taskInvolve);
 		request.setAttribute("taskInvolves", taskInvolves);
-		request.getRequestDispatcher("/TaskNewVersion.jsp?name=taskName").forward(request, response);
+		request.getRequestDispatcher("/AddMemberToTask.jsp?name=taskName").forward(request, response);
 
 	}
 
@@ -187,7 +190,6 @@ public class UserServlet extends HttpServlet
 					checkProject(request, response);
 					checkTask(request, response);
 					break;
-					
 
 			}
 
@@ -204,26 +206,23 @@ public class UserServlet extends HttpServlet
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("TaskName");
 		dataBase.deleteTask(projectName, taskName);
-		
-		
 
 	}
 
-	
 	private void editTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("TaskName");
 		String startDate = request.getParameter("StartDate");
 		String endDate = request.getParameter("EndDate");
-		if(taskName == null|| startDate== null || endDate == null)
-			 {
-			 response.getWriter().println(projectName);
-			 response.getWriter().println(taskName);
-			 response.getWriter().println(startDate);
-			 response.getWriter().println(endDate);
-			 return;
-			 }
+		if (taskName == null || startDate == null || endDate == null)
+		{
+			response.getWriter().println(projectName);
+			response.getWriter().println(taskName);
+			response.getWriter().println(startDate);
+			response.getWriter().println(endDate);
+			return;
+		}
 		dataBase.editTask(projectName, taskName, startDate, endDate);
 
 	}
@@ -249,27 +248,21 @@ public class UserServlet extends HttpServlet
 
 	private void addMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-
+		List<String> emails = new ArrayList<>();
 		String projectName = request.getParameter("projectName");
-		String email1 = request.getParameter("email1");
-		String email2 = request.getParameter("email2");
-		String email3 = request.getParameter("email3");
-		String email4 = request.getParameter("email4");
+		int i = 1;
+		while (request.getParameter("Email" + i) != null)
+		{
+			String email = request.getParameter("Email" + i);
+			emails.add(email);
+			i++;
+		}
 
-		Involve involve = new Involve(projectName, email1);
-		Involve involve2 = new Involve(projectName, email2);
-		Involve involve3 = new Involve(projectName, email3);
-		Involve involve4 = new Involve(projectName, email4);
-		dataBase.addMember(involve);
-		dataBase.addMember(involve2);
-		dataBase.addMember(involve3);
-		dataBase.addMember(involve4);
-
-		// RequestDispatcher dispatcher =
-		// request.getRequestDispatcher("/Dashboard.jsp");
-		// dispatcher.forward(request, response);
-
-		// dataBase.addMember(involve2);
+		for (int j = 0; j < emails.size(); j++)
+		{
+			Involve involve = new Involve(projectName, emails.get(j));
+			dataBase.addMember(involve);
+		}
 
 	}
 
