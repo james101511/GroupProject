@@ -39,10 +39,13 @@ body {
 }
 
 .form-control {
+	
 	position: relative;
 	font-size: 16px;
 	height: auto;
-	padding: 10px;
+	width: 50px;
+	margin: 10px;
+	padding: 0px;
 	@
 	include
 	box-sizing(border-box);
@@ -144,9 +147,42 @@ input[type="password"] {
 	height: 30px;
 }
 
+
+#wrapper1
+{
+  padding:0px;
+  margin:0px auto;
+  font-family:helvetica;
+  text-align:center;
+}
+
+#button_plus
+{
+  margin-left: -12px;
+  background:none;
+  color:white;
+  border:none;
+  width:35px;
+  height:35px;
+  border-radius:3px;
+  background-color:#06c852;
+  font-size:18px;
+}
+#button_minus
+{
+  background:none;
+  color:white;
+  border:none;
+  width:35px;
+  height:35px;
+  border-radius:3px;
+  background-color:#e03d39;
+  font-size:18px;
+}
+
 .form-label {
-	font-size: 18px;
-	font-weight: bold;
+	font-size: 14px;
+	font-weight: normal;
 }
 
 .form-label-2 {
@@ -154,9 +190,38 @@ input[type="password"] {
 	font-weight: normal;
 }
 
+.form-label-3 {
+	font-size: 30px;
+	font-weight: bold;
+	color: #7b74aa;
+}
+
 .navbar-brand {
 	color: white;
 }
+input[type="text"]
+{
+  width:200px;
+  height:35px;
+  margin-right:2px;
+  padding:5px;
+}
+
+.button {
+	width: 140px;
+	height: 30px;
+    background-color: #6f72db; /* Green */
+
+    color: white;
+
+   
+    text-decoration: none;
+
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button3 {border-radius: 8px;}
+.button4 {border-radius: 8px}
 </style>
 </head>
 <body>
@@ -193,24 +258,33 @@ input[type="password"] {
 
 	<div class="wrapper">
 
-		<form Name="form1" class="form-signin" action="UserServlet" method="POST"
-			action="${pageContext.request.contextPath }/Dashboard.jsp">
+		<form Name="form1" class="form-signin" action="UserServlet" method="POST" action="${pageContext.request.contextPath }/Dashboard.jsp">
 
 			<%-- 	action="UserServlet" method="POST" action="${pageContext.request.contextPath }/LogInPage.jsp" --%>
+			
+			<div> 
+				<label for="staticQustion" class="form-label-3"><%=projectName%></label>
+			</div>
+			
+			
+			<label for="staticQustion" class="form-label">So... who is in your team?</label>
+			<label for="staticText" class="form-label-2">Now you can invite people to your team:</label>
+			
+			<div id="wrapper1">
+			<div id="field_div">
+			<input type="button" id="button_plus" value="+" onclick="add_field();">
+			</div>
+			</div>
+			
 
-			<%=projectName%>
-			<input type="hidden" name="projectName" value="<%=projectName%>" />
-			<label for="staticQustion" class="form-label">Who is on your team?</label>
-			<label for="staticText" class="form-label-2">Add people to your team:</label>
-			<input type="text" class="form-control" name="email1" placeholder="email" required="" />
-			<input type="text" class="form-control" name="email2" placeholder="email" required="" />
-			<input type="text" class="form-control" name="email3" placeholder="email" required="" />
-			<input type="text" class="form-control" name="email4" placeholder="email" required="" />
 			<!--The skip button will lead directly to dashboard without inviting members. -->
 			<!-- TODO -->
 			<input id="var" type="hidden" name="command" value="ADDPROJECT" />
-			<input id="skip-button" class="btn btn-lg btn-basic btn-sm" value="Skip" onClick="buttonSkip()">
-			<input id="submit-button" class="btn btn-lg btn-primary btn-sm" type="submit" value="Invite" onClick="buttonInvite()">
+			<div>
+			<input id="skip"  class="button button3" type="submit" value="Skip" onClick="buttonSkip()">
+			<input id="submit"  class="button button4" type="submit" value="Invite" onClick="buttonInvite()">
+			</div>
+			
 			<!--The Invite button will send emails to the added email addresses, send notification on the screen
 			that the emails were successfully sent and then will lead to the dashboard.  -->
 
@@ -218,17 +292,26 @@ input[type="password"] {
 			<SCRIPT LANGUAGE="JavaScript">
 				function buttonSkip() {
 					document.getElementById("var").value = "Skip";
-
 					document.form1.submit();
-
 				}
+				
 				function buttonInvite() {
 					document.getElementById("var").value = "Invite";
-
 					document.form1.submit();
 				}
+				
+				function add_field() {
+					var total_text=document.getElementsByClassName("input_text");
+					total_text=total_text.length+1;
+					document.getElementById("field_div").innerHTML=document.getElementById("field_div").innerHTML+
+					"<p id='input_text"+total_text+"_wrapper'><input type='text' class='input_text' id='input_text"+total_text+"' placeholder='Email'><input type='button' id='button_minus' value='-' onclick=remove_field('input_text"+total_text+"');></p>";
+				}
+				
+				function remove_field(id) {
+					  document.getElementById(id+"_wrapper").innerHTML="";
+				}
+				
 			</SCRIPT>
-
 
 		</form>
 

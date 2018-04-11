@@ -209,6 +209,7 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	
 	private void editTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
@@ -224,8 +225,6 @@ public class UserServlet extends HttpServlet
 			 return;
 			 }
 		dataBase.editTask(projectName, taskName, startDate, endDate);
-		
-		
 
 	}
 
