@@ -8,6 +8,7 @@
 	String projectName =(String)request.getParameter("projectName");
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
 	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
+	String userEmail =(String)request.getAttribute("userEmail");
 %>
 <html lang="en">
 <head>
@@ -120,6 +121,7 @@
 			<div id="name-bar">
 				
 			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
+			<h1 id="page-name" class="navbar-brand" >Hello <%=userEmail%></h1>
 
 			</div>
 		</div>

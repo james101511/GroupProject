@@ -85,7 +85,7 @@ members of the team to a specific task. He also will be able to see who is alrea
 							
 								<td id="name_row1"><%=taskInvolves.get(i).getUserEmail() %></td>
 								
-								<td id="progress_row1"></td>
+								<td id="progress_row1"><%=taskInvolves.get(i).getProgress() %></td>
 							
 								<td>
 									<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row(<%=i+1%>)">

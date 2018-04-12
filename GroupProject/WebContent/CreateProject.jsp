@@ -157,9 +157,9 @@
 				<% for (int i=0;i<Involves.size();i++) { %>
 					
 					<tr>
-						<form class="form-signin" action="UserServlet" method="GET" >
-				<input type="hidden" name="command" value="CHECKPROJECT"/>
-				<input type="hidden" name="Email" value="<%= user.getEmail() %>" />
+						<form class="form-signin" action="UserServlet" method="POST" >
+				<input type="hidden" name="command" value="checkProject"/>
+				<input type="hidden" name="email" value="<%=user.getEmail() %>" />
 						 
 						 <%if(Involves.get(i).isAdmin() == true){ %> 
 						<td><input type="submit" value="<%= Involves.get(i).getProjectName() %>" name="projectName"/> </td>
@@ -182,10 +182,10 @@
 				<% for (int i=0;i<Involves.size();i++) { %>
 					
 					<tr>
-						<form class="form-signin" action="UserServlet" method="GET" >
-				<input type="hidden" name="command" value="CHECKPROJECT"/>
+						<form class="form-signin" action="UserServlet" method="POST" >
+				<input type="hidden" name="command" value="checkProject"/>
 				<input type="hidden" name="email" value="<%= user.getEmail() %>" />
-
+		
 						<%if(Involves.get(i).isAdmin() == false){ %>
 						<td><input type="submit" value="<%= Involves.get(i).getProjectName() %>" name="projectName"/> </td>
 						

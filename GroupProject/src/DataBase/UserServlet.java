@@ -49,14 +49,14 @@ public class UserServlet extends HttpServlet
 			switch (theCommand)
 			{
 
-				case "CHECKPROJECT":
-					turnToDashboard(request, response);
-					break;
 				case "checkTaskDetail":
 					checkTaskDetail(request, response);
 					break;
 				case "getAllTask":
 					getAllTask(request, response);
+					break;
+				case "listMembersInTask":
+					listMembersInTask(request, response);
 					break;
 			}
 		}
@@ -64,6 +64,19 @@ public class UserServlet extends HttpServlet
 		{
 			throw new ServletException(exc);
 		}
+
+	}
+
+	private void listMembersInTask(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		List<TaskInvolve> membersInvolve = new ArrayList<>();
+		String projectName = request.getParameter("projectName");
+		String taskName = request.getParameter("taskName");
+		String email = request.getParameter("userEmail");
+		membersInvolve = dataBase.listMembersInTask(projectName, taskName);
+		request.setAttribute("membersInvolve", membersInvolve);
+		request.setAttribute("userEmail", email);
+		request.getRequestDispatcher("/TaskPage_forMembers.jsp").forward(request, response);
 
 	}
 
@@ -107,6 +120,7 @@ public class UserServlet extends HttpServlet
 		boolean admin = dataBase.checkadmin(projectName, email);
 		if (admin == true)
 		{
+			request.setAttribute("userEmail", email);
 			request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
 		}
 		checkTaskInvolve(request, response);
@@ -128,6 +142,7 @@ public class UserServlet extends HttpServlet
 		}
 		// request.setAttribute("projectname", projectName);
 		request.setAttribute("Involve", involves);
+
 		// response.getWriter().println("Login success!!!");
 		// request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
 
@@ -150,7 +165,6 @@ public class UserServlet extends HttpServlet
 
 				case "ADDPROJECT":
 					AddProject(request, response);
-
 					break;
 
 				case "Invite":
@@ -181,7 +195,12 @@ public class UserServlet extends HttpServlet
 				case "deleteTaskMember":
 					deleteTaskMember(request, response);
 					break;
-
+				case "checkProject":
+					turnToDashboard(request, response);
+					break;
+				case "editProgress":
+					editProgress(request, response);
+					break;
 			}
 
 		}
@@ -192,14 +211,29 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	private void editProgress(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String userEmail = request.getParameter("userEmail");
+		String progress = request.getParameter("progress");
+		String percentage = request.getParameter("percentage");
+		String projectName = request.getParameter("projectName");
+		String taskName = request.getParameter("taskName");
+		
+		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName, progress, percentage);
+		dataBase.editProgress(taskInvolve);
+		listMembersInTask(request,response);
+		
+		
+	}
+
 	private void deleteTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String userEmail = request.getParameter("deleteUserEmail");
-//		if (true)
-//		{
-//			response.getWriter().println(userEmail);
-//			return;
-//		}
+		// if (true)
+		// {
+		// response.getWriter().println(userEmail);
+		// return;
+		// }
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName);
@@ -230,8 +264,10 @@ public class UserServlet extends HttpServlet
 		List<String> taskNames = new ArrayList<>();
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("email");
+
 		taskNames = dataBase.checkTaskInvolve(projectName, email);
 		request.setAttribute("taskNames", taskNames);
+		request.setAttribute("userEmail", email);
 		request.getRequestDispatcher("/Dashboard2.jsp").forward(request, response);
 
 	}
@@ -251,6 +287,7 @@ public class UserServlet extends HttpServlet
 		String startDate = request.getParameter("StartDate");
 		String endDate = request.getParameter("EndDate");
 		dataBase.editTask(projectName, taskName, startDate, endDate);
+		
 
 	}
 
