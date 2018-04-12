@@ -1,10 +1,9 @@
 package DataBase;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,13 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-
-import com.sun.webkit.BackForwardList;
-
-import apple.laf.JRSUIConstants.Size;
-import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 
 /**
  * 1 Servlet implementation class StudentServlet
@@ -88,14 +81,14 @@ public class UserServlet extends HttpServlet
 	{
 		String taskName = request.getParameter("taskName");
 		String projectName = request.getParameter("projectName");
-//		 if(true)
-//		{
-//			response.getWriter().println(taskName);
-//			response.getWriter().println(projectName);
-//				 return;
-//		}
+		// if(true)
+		// {
+		// response.getWriter().println(taskName);
+		// response.getWriter().println(projectName);
+		// return;
+		// }
 		List<TaskInvolve> taskInvolves = new ArrayList<>();
-		TaskInvolve taskInvolve = new TaskInvolve(taskName,null,projectName);
+		TaskInvolve taskInvolve = new TaskInvolve(taskName, null, projectName);
 		taskInvolves = dataBase.checkTaskDetail(taskInvolve);
 		request.setAttribute("taskInvolves", taskInvolves);
 		request.getRequestDispatcher("/AddMemberToTask.jsp?name=taskName").forward(request, response);
@@ -182,10 +175,10 @@ public class UserServlet extends HttpServlet
 					deleteTask(request, response);
 					getAllTask(request, response);
 					break;
-				case	"addTaskMember":
+				case "addTaskMember":
 					addTaskMember(request, response);
 					break;
-				case	"deleteTaskMember":
+				case "deleteTaskMember":
 					deleteTaskMember(request, response);
 					break;
 
@@ -202,29 +195,28 @@ public class UserServlet extends HttpServlet
 	private void deleteTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String userEmail = request.getParameter("deleteUserEmail");
-		 if(true)
-				 {
-				 response.getWriter().println(userEmail);
-				 return;
-				 }
-		String projectName=request.getParameter("projectName");
-		String taskName=request.getParameter("taskName");
+//		if (true)
+//		{
+//			response.getWriter().println(userEmail);
+//			return;
+//		}
+		String projectName = request.getParameter("projectName");
+		String taskName = request.getParameter("taskName");
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName);
 		dataBase.deleteTaskMember(taskInvolve);
-		checkTaskDetail(request,response);
-		
+		checkTaskDetail(request, response);
+
 	}
 
 	private void addTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String userEmail = request.getParameter("userEmail");
-		String projectName=request.getParameter("projectName");
-		String taskName=request.getParameter("taskName");
+		String projectName = request.getParameter("projectName");
+		String taskName = request.getParameter("taskName");
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName);
 		dataBase.addTaskMember(taskInvolve);
-		checkTaskDetail(request,response);
-		
-		
+		checkTaskDetail(request, response);
+
 	}
 
 	private void turnToDashboard(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -352,6 +344,7 @@ public class UserServlet extends HttpServlet
 
 	private void CheckUser(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		List<Involve> involves = new ArrayList<>();
@@ -359,23 +352,21 @@ public class UserServlet extends HttpServlet
 		Involve involve = new Involve(email, true);
 		involves = dataBase.CheckInvolve(involve);
 		User us = dataBase.login(user);
-		if (us == null)
-		{
-			response.getWriter().println("Password or Email is incorrect");
+		// if (true)
+		// {
+		// out.println("<script type=\"text/javascript\">");
+		// out.println("alert('User or password incorrect');");
+		// out.println("window.location='LogInPage.jsp';");
+		// out.println("</script>");
+		// }
 
-			return;
-		}
-		else
-		{
+		request.setAttribute("user", us);
+		request.setAttribute("Involve", involves);
+		request.setAttribute("email", email);
+		// response.getWriter().println("Login success!!!");
+		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
+		return;
 
-			request.setAttribute("user", us);
-			request.setAttribute("Involve", involves);
-			request.setAttribute("email", email);
-			// response.getWriter().println("Login success!!!");
-			request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
-			return;
-
-		}
 	}
 
 }
