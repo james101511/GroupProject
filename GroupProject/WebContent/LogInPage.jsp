@@ -139,15 +139,30 @@
 		<div id="down-line-bar"></div>
   
     <div class="wrapper">
-    	<form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="GET">
+    <form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="GET">
     	<input type="hidden" name="command" value="CHECKUSER"/>   
     	<label for="staticText" class=class="form-signin-heading">Enter your account and password</label>  
-		<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" name="email" placeholder="Email Address" required="" autofocus="" />
-		<input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+		<input type="email" id="username" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" name="email" placeholder="Email Address" required="" autofocus="" />
+		<input type="password" id="password" class="form-control" name="password" placeholder="Password" required=""/>      
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>  
-		
 		<p id="question_ac">Don't have an account yet?</p><a class="account_link" href="signUp.jsp"> Create new account</a>
     </form>
-  </div>
+    </div>
+    
+    <script>
+    function validate() {
+        var un = document.getElementById("username").value;
+        var pw = document.getElementById("password").value;
+       // var username = "username"; 
+       // var password = "password";
+        if ((un == username) && (pw == password)) {
+            return true;
+        }
+        else {
+            alert ("Login was unsuccessful, please check your username and password");
+            return false;
+        }
+    }
+	</script>
    </body>
 </html>
