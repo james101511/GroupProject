@@ -221,9 +221,14 @@ public class DataBase
 			{
 				String ProjectName = set.getString("ProjectName");
 				String Email = set.getString("Email");
-				Involve TempInvolve = new Involve(ProjectName, Email);
-
+				boolean admin = true;
+				if (set.getString("Admin").equals("0"))
+				{
+					admin = false;
+				}
+				Involve TempInvolve = new Involve(ProjectName, Email, admin);
 				involves.add(TempInvolve);
+
 			}
 			return involves;
 		}
@@ -279,7 +284,12 @@ public class DataBase
 			{
 				String ProjectName = set.getString("ProjectName");
 				String Email = set.getString("Email");
-				Involve TempInvolve = new Involve(ProjectName, Email);
+				boolean admin = true;
+				if (set.getString("Admin").equals("0"))
+				{
+					admin = false;
+				}
+				Involve TempInvolve = new Involve(ProjectName, Email, admin);
 
 				involves.add(TempInvolve);
 			}
@@ -321,7 +331,7 @@ public class DataBase
 		}
 	}
 
-	public List<TaskInvolve> checkTaskInvolve(TaskInvolve taskInvolve) throws SQLException
+	public List<TaskInvolve> checkTaskDetail(TaskInvolve taskInvolve) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -329,14 +339,16 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "select * from TaskInvolve where TaskName = ? ";
+			String sql = "select * from task_involve where taskName = ? and projectName=? ";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, taskInvolve.getTaskName());
+			myStmt.setString(2, taskInvolve.getProjectName());
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
-				String UserName = set.getString("UserName");
-				TaskInvolve taskInvolve2 = new TaskInvolve(taskInvolve.getTaskName(), UserName);
+				String userEmail = set.getString("userEmail");
+				TaskInvolve taskInvolve2 = new TaskInvolve(taskInvolve.getTaskName(), userEmail,
+						taskInvolve.getProjectName());
 				taskInvolves.add(taskInvolve2);
 			}
 			return taskInvolves;
@@ -347,8 +359,6 @@ public class DataBase
 			Close(myConn, myStmt, null);
 		}
 	}
-
-
 
 	public boolean checkadmin(String projectName, String email) throws SQLException
 	{
@@ -409,7 +419,7 @@ public class DataBase
 		}
 
 	}
-	
+
 	public void deleteTask(String projectName, String taskName) throws SQLException
 	{
 		Connection myConn = null;
@@ -419,12 +429,12 @@ public class DataBase
 			myConn = dataSource.getConnection();
 			// create sql for insert
 			String sql = "DELETE FROM Task WHERE ProjectName = ? and TaskName =?";
-//			DELETE FROM TaskInvolve WHERE projectName =? and TaskName =? ;
+			// DELETE FROM TaskInvolve WHERE projectName =? and TaskName =? ;
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, projectName);
 			myStmt.setString(2, taskName);
-//			myStmt.setString(3, projectName);
-//			myStmt.setString(4, taskName);
+			// myStmt.setString(3, projectName);
+			// myStmt.setString(4, taskName);
 
 			// execute sql insert
 			myStmt.execute();
@@ -460,6 +470,87 @@ public class DataBase
 			Close(myConn, myStmt, null);
 		}
 
+	}
+
+	public List<String> checkTaskInvolve(String projectName, String email) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		List<String> taskNames = new ArrayList<>();
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select * from task_involve where userEmail = ? and projectName=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, email);
+			myStmt.setString(2, projectName);
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+				String taskName = set.getString("taskName");
+				taskNames.add(taskName);
+			}
+			return taskNames;
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+
+	}
+
+	public void addTaskMember(TaskInvolve taskInvolve) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			// create sql for insert
+			String sql = "insert into task_involve" + "(userEmail,taskName,projectName)" + "values(?,?,?)";
+			myStmt = myConn.prepareStatement(sql);
+
+			myStmt.setString(1, taskInvolve.getUserEmail());
+			myStmt.setString(2, taskInvolve.getTaskName());
+			myStmt.setString(3, taskInvolve.getProjectName());
+
+			// execute sql insert
+			myStmt.execute();
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+	}
+
+	public void deleteTaskMember(TaskInvolve taskInvolve) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			// create sql for insert
+			String sql = "DELETE FROM task_involve WHERE projectName = ? and taskName =? and userEmail=?";
+			// DELETE FROM TaskInvolve WHERE projectName =? and TaskName =? ;
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, taskInvolve.getProjectName());
+			myStmt.setString(2, taskInvolve.getTaskName());
+			myStmt.setString(3, taskInvolve.getUserEmail());
+			// myStmt.setString(3, projectName);
+			// myStmt.setString(4, taskName);
+
+			// execute sql insert
+			myStmt.execute();
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+		
 	}
 
 }

@@ -3,12 +3,14 @@ package DataBase;
 public class TaskInvolve
 {
 	private String taskName;
-	private String userName;
+	private String userEmail;
+	private String projectName;
 
-	public TaskInvolve(String taskName, String userName)
+	public TaskInvolve(String taskName, String userEmail,String projectName)
 	{
 		this.taskName = taskName;
-		this.userName = userName;
+		this.userEmail = userEmail;
+		this.projectName=projectName;
 	}
 	public TaskInvolve(String taskName)
 	{
@@ -19,20 +21,24 @@ public class TaskInvolve
 	{
 		return taskName;
 	}
+	public String getProjectName()
+	{
+		return projectName;
+	}
 
 	public void setTaskName(String taskName)
 	{
 		this.taskName = taskName;
 	}
 
-	public String getUserName()
+	public String getUserEmail()
 	{
-		return userName;
+		return userEmail;
 	}
 
-	public void setUserName(String userName)
+	public void setUserName(String userEmail)
 	{
-		this.userName = userName;
+		this.userEmail = userEmail;
 	}
 
 }

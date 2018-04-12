@@ -3,7 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
 <%
-	User kk =(User)request.getAttribute("user");
+	User user =(User)request.getAttribute("user");
 	String email=(String)request.getAttribute("email");
 %>
 <%
@@ -146,24 +146,55 @@
 					</div>
 					
 						
-						Hello <%=kk.getFirstName()+","+kk.getLastName() %>
+						Hello <%=user.getFirstName()+","+user.getLastName() %>
 					<table class="table">
 						<thead>
 							<tr>
-								<th><a href ="#">ProjectName</a></th>
-							
+								<th><a href ="#">ProjectYouManage</a></th>
 							</tr>
 						</thead>
 				
 				<% for (int i=0;i<Involves.size();i++) { %>
-				
+					
 					<tr>
 						<form class="form-signin" action="UserServlet" method="GET" >
 				<input type="hidden" name="command" value="CHECKPROJECT"/>
-				<input type="hidden" name="Email" value="<%= kk.getEmail() %>" />
+				<input type="hidden" name="Email" value="<%= user.getEmail() %>" />
+						 
+						 <%if(Involves.get(i).isAdmin() == true){ %> 
 						<td><input type="submit" value="<%= Involves.get(i).getProjectName() %>" name="projectName"/> </td>
+						 <% } %> 
+						
 						</form>
 					</tr>
+					
+			
+				<% } %>
+				
+			</table>
+			<table class="table">
+						<thead>
+							<tr>
+								<th><a href ="#">ProjectYouInvolve</a></th>
+							</tr>
+						</thead>
+				
+				<% for (int i=0;i<Involves.size();i++) { %>
+					
+					<tr>
+						<form class="form-signin" action="UserServlet" method="GET" >
+				<input type="hidden" name="command" value="CHECKPROJECT"/>
+				<input type="hidden" name="email" value="<%= user.getEmail() %>" />
+
+						<%if(Involves.get(i).isAdmin() == false){ %>
+						<td><input type="submit" value="<%= Involves.get(i).getProjectName() %>" name="projectName"/> </td>
+						
+						<% } %> 
+
+						
+						</form>
+					</tr>
+					
 			
 				<% } %>
 				
@@ -174,7 +205,7 @@
 						
 						<form class="form-inline" action="UserServlet" method="POST" >
 				 		<input type="hidden" name="command" value="ADDPROJECT"/>
-				 		<input type="hidden" name="Email" value="<%= kk.getEmail() %>" />
+				 		<input type="hidden" name="Email" value="<%= user.getEmail() %>" />
 						<div class="form-group mx-sm-3 mb-2">
 						<label for="ProjectName" class="sr-only">Project name</label>
 						<input class="form-control" type="text" name="ProjectName" placeholder="ProjectName"  required=""/> 

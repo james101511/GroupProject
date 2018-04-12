@@ -141,22 +141,13 @@
 			  	<a class="dropdown-item" href="#"></a>
 				<% for (int i=0;i<tasks.size();i++) { %>
 				<form Name="form1" class="form-signin" action="UserServlet" method="GET">
-				<input id="var" type="hidden" name="command" value="CHECKTASKINVOLVE" />
+				<input id="var" type="hidden" name="command" value="checkTaskDetail" />
+				<input type="hidden" name="projectName" value="<%=projectName %>" />
 			   <button class="dropdown-item" name="taskName" value="<%=tasks.get(i).getTaskName()%>" ><%=tasks.get(i).getTaskName()%></button> 
 			   </form>
 			 <% } %>
 			 
-			 
-			<SCRIPT LANGUAGE="JavaScript">
-				function buttonSkip() {
-					document.getElementById("var").value = "Skip";
-
-					document.form1.submit();
-
-				}
-				
-			</SCRIPT> 
-				
+			
 		
 			
 				
