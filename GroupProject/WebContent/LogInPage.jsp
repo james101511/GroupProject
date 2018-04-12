@@ -142,7 +142,7 @@
     	<form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="GET">
     	<input type="hidden" name="command" value="CHECKUSER"/>   
     	<label for="staticText" class=class="form-signin-heading">Enter your account and password</label>  
-		<input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
+		<input type="email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" name="email" placeholder="Email Address" required="" autofocus="" />
 		<input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>  
 		
