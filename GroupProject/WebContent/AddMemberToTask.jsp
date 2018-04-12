@@ -3,6 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
+<%
+	String projectName =(String)request.getParameter("projectName");
+	String taskName =(String)request.getParameter("taskName");
+	List<TaskInvolve> taskInvolves = (List<TaskInvolve>) request.getAttribute("taskInvolves");
+%>
 
 <html>
 <head>
@@ -49,15 +54,16 @@ members of the team to a specific task. He also will be able to see who is alrea
 				<div id="name-bar">
 				
 				<h1 id="page-name" class="navbar-brand" >Assign Members to a Task</h1>
-
+				
 				</div>
 			</div>
 
 		<!-- Content of the page after the bars -->
 		
 		<div class="container container-project-name">
-		<h3>Task 5 </h3>
+		<h3><%=taskName %> </h3>
 		<h7 id="desc_heading">Members involved in this task</h7>
+		
 		</div>
 			
 			<!-- TABLE  -->
@@ -65,22 +71,30 @@ members of the team to a specific task. He also will be able to see who is alrea
 			  <div class="row">
 			  	<div class="col align-self-center">
 					<div id="wrapper">
+					<form Name="form2" class="form-signin" action="UserServlet" method="POST">
+					<input id="var" type="hidden" name="command" value="x" />
+					<input type="hidden" name="projectName" value="<%=projectName %>" />
+					<input type="hidden" name="taskName" value="<%=taskName %>" />
 						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 							<tr>
 								<th>#Name</th>
 								<th>#Progress</th>
 							</tr>
-							
+							<% for (int i=0;i<taskInvolves.size();i++) { %>
 							<tr id="row1">
-								<td id="name_row1">Tom</td>
+							
+								<td id="name_row1"><%=taskInvolves.get(i).getUserEmail() %></td>
+								
 								<td id="progress_row1"></td>
 							
 								<td>
-									<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('1')">
+									<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row(<%=i+1%>)">
+									<input type="hidden" name="userEmail<%=i+1%>" value="<%=taskInvolves.get(i).getUserEmail() %>" />
 								</td>
-								</tr>
+								<% } %>
+							</tr>
 							
-							<tr id="row2">
+							<!-- <tr id="row2">
 								<td id="name_row2">Jane</td>
 								<td id="progress_row2"></td>
 							
@@ -97,14 +111,21 @@ members of the team to a specific task. He also will be able to see who is alrea
 									<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('3')">
 								</td>
 							</tr>
-							
+							 -->
+							 
 							<tr>
-								<td><input type="text" class="form-control" id="new_name"></td>
+							
+								<td><input type="text" class="form-control" name="userEmail" id="new_name"></td>
 								<td><p></p></td>
 								<!--<input type="text" id="new_progress">  -->
 								<td><input type="button" class="add btn btn-info" onclick="add_row();" value="Add Member"></td>
+							
 							</tr>
+							
+							
+							
 						</table>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -119,14 +140,17 @@ members of the team to a specific task. He also will be able to see who is alrea
 			
 			//This is function to delete team member and the row connected with him/her
 	
-			function delete_row(no)
+			function delete_row(i)
 			{
-			 document.getElementById("row"+no+"").outerHTML="";
+				document.getElementsByName("userEmail"+i)[0].Name= "deleteUserEmail";
+			 	document.getElementById("var").value = "deleteTaskMember";
+
+				document.form2.submit();
 			}
 
-			function add_row()
+			 function add_row()
 			{
-			 var new_name=document.getElementById("new_name").value;
+			 /* var new_name=document.getElementById("new_name").value;
 			 //var new_progress=document.getElementById("new_progress").value;
 			 
 				
@@ -135,9 +159,12 @@ members of the team to a specific task. He also will be able to see who is alrea
 			 var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='name_row"+table_len+"'>"+new_name+"</td><td><p></p><td><input type='button' value='Delete' class='delete btn btn-danger' onclick='delete_row("+table_len+")'></td></tr>";
 
 			 document.getElementById("new_name").value="";
-			 //document.getElementById("new_progress").value="";
+			 //document.getElementById("new_progress").value=""; */
+				document.getElementById("var").value = "addTaskMember";
+
+				document.form2.submit();
 			 
-			}
+			} 
 		
 				
 			

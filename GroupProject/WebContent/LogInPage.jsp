@@ -139,7 +139,11 @@
 		<div id="down-line-bar"></div>
   
     <div class="wrapper">
+<<<<<<< HEAD
     <form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="GET">
+=======
+    	<form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="POST">
+>>>>>>> branch 'master' of https://github.com/james101511/group-project.git
     	<input type="hidden" name="command" value="CHECKUSER"/>   
     	<label for="staticText" class=class="form-signin-heading">Enter your account and password</label>  
 		<input type="email" id="username" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" name="email" placeholder="Email Address" required="" autofocus="" />
