@@ -8,6 +8,7 @@
 	String projectName =(String)request.getParameter("projectName");
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
 	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
+	String userEmail =(String)request.getAttribute("userEmail");
 %>
 <html lang="en">
 <head>
@@ -46,7 +47,7 @@
       	data.addRows([
       		<% for (int i=0;i<tasks.size();i++) { %>
       		
-     ['<%=String.valueOf(i+5)%>',  '<%= tasks.get(i).getTaskName() %>','winter',
+     ['<%=String.valueOf(i+5)%>',  '<%= tasks.get(i).getTaskName() %>','sports',
                		new Date(<%=tasks.get(i).getStartDate().substring(0,4)%>, <%=tasks.get(i).getStartDate().substring(4,6)%>-1, <%=tasks.get(i).getStartDate().substring(6,8)%>), new Date(<%=tasks.get(i).getEndDate().substring(0,4)%>, <%=tasks.get(i).getEndDate().substring(4,6)%>-1, <%=tasks.get(i).getEndDate().substring(6,8)%>), null, 100, null],
             <% } %>
            ]
@@ -120,6 +121,7 @@
 			<div id="name-bar">
 				
 			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
+			<h1 id="page-name" class="navbar-brand" >Hello <%=userEmail%></h1>
 
 			</div>
 		</div>

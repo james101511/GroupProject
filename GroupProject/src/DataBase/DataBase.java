@@ -347,8 +347,11 @@ public class DataBase
 			while (set.next())
 			{
 				String userEmail = set.getString("userEmail");
+				String progress = set.getString("progress");
+				String percentage = set.getString("percentage");
 				TaskInvolve taskInvolve2 = new TaskInvolve(taskInvolve.getTaskName(), userEmail,
-						taskInvolve.getProjectName());
+						taskInvolve.getProjectName(), progress, percentage);
+
 				taskInvolves.add(taskInvolve2);
 			}
 			return taskInvolves;
@@ -508,13 +511,15 @@ public class DataBase
 		{
 			myConn = dataSource.getConnection();
 			// create sql for insert
-			String sql = "insert into task_involve" + "(userEmail,taskName,projectName)" + "values(?,?,?)";
+			String sql = "insert into task_involve" + "(userEmail,taskName,projectName,progress,percentage)"
+					+ "values(?,?,?,?,?)";
 			myStmt = myConn.prepareStatement(sql);
 
 			myStmt.setString(1, taskInvolve.getUserEmail());
 			myStmt.setString(2, taskInvolve.getTaskName());
 			myStmt.setString(3, taskInvolve.getProjectName());
-
+			myStmt.setString(4, "0");
+			myStmt.setString(5, "0");
 			// execute sql insert
 			myStmt.execute();
 		}
@@ -550,7 +555,63 @@ public class DataBase
 			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
-		
+
+	}
+
+	public List<TaskInvolve> listMembersInTask(String projectName, String taskName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		List<TaskInvolve> membersInvolve = new ArrayList<>();
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select * from task_involve where taskName = ? and projectName=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, taskName);
+			myStmt.setString(2, projectName);
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+				String userEmail = set.getString("userEmail");
+				String progress = set.getString("progress");
+				String percentage = set.getString("percentage");
+				TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName, progress, percentage);
+				membersInvolve.add(taskInvolve);
+			}
+			return membersInvolve;
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+
+	}
+
+	public void editProgress(TaskInvolve taskInvolve) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "UPDATE task_involve SET progress= ?,percentage= ? WHERE userEmail=? and projectName = ? and TaskName=?;";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, taskInvolve.getProgress());
+			myStmt.setString(2, taskInvolve.getPercentage());
+			myStmt.setString(3, taskInvolve.getUserEmail());
+			myStmt.setString(4, taskInvolve.getProjectName());
+			myStmt.setString(5, taskInvolve.getTaskName());
+			// execute sql insert
+			myStmt.execute();
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+
 	}
 
 }

@@ -3,6 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
+<%
+	String projectName =(String)request.getParameter("projectName");
+	String taskName =(String)request.getParameter("taskName");
+	List<TaskInvolve> membersInvolve = (List<TaskInvolve>) request.getAttribute("membersInvolve");
+	String userEmail =(String)request.getAttribute("userEmail");
+%>
 
 <html>
 <head>
@@ -55,7 +61,7 @@
 		<!-- Content of the page after the bars -->
 		
 		<div class="container container-project-name">
-		<h3>Task 5 </h3>
+		<h3><%=taskName %> </h3>
 		<h7 id="desc_heading">Team members - edit your progress!</h7>	
 		</div>
 			
@@ -65,6 +71,7 @@
 			  	<div class="col align-self-center">
 			  	
 					<div id="wrapper">
+					<form Name="form1" action="UserServlet" method="POST">
 						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 							
 							<tr>
@@ -72,40 +79,30 @@
 								<th>#Progress</th>
 								<th>#Percentage done</th>
 							</tr>
-								
+								<% for (int i=0;i<membersInvolve.size();i++) { %>
 							<tr id="row1">
-								<td id="name_row1">Tom</td>
-								<td id="progress_row1">Working on it</td>
-								<td id="percentage_row1">20%</td>
+								<td id="name_row"><%=membersInvolve.get(i).getUserEmail() %></td>
+								<td id="progress_row"><%=membersInvolve.get(i).getProgress() %></td>
+								<td id="percentage_row"><%=membersInvolve.get(i).getPercentage() %></td>
 								<td>
-								<input type="button" id="edit_button1" value="Edit" class="edit btn btn-info" onclick="edit_row('1')">
-								<input type="button" id="save_button1" value="Save" class="save btn btn-success" onclick="save_row('1')">
+								<%if(membersInvolve.get(i).getUserEmail().equals(userEmail)){ %>
+								<input id="var" type="hidden" name="command" value="editProgress" />
+								<input type="hidden" name="userEmail" value="<%=userEmail %>" />
+								<input type="hidden" name="projectName" value="<%=projectName %>" />
+								<input type="hidden" name="taskName" value="<%=taskName %>" />
+								<input type="button" id="edit_button" value="Edit" class="edit btn btn-info" onclick="edit_row()">
+								<input type="button" id="save_button" value="Save" class="save btn btn-success" onclick="save_row()">
+								<%} %>
 								</td>
 							</tr>
+							<% } %>
 								
-							<tr id="row2">
-								<td id="name_row2">Shawn</td>
-								<td id="progress_row2">Stuck</td>
-								<td id="percentage_row2">6%</td>
-								<td>
-									<input type="button" id="edit_button2" value="Edit" class="edit btn btn-info" onclick="edit_row('2')">
-									<input type="button" id="save_button2" value="Save" class="save btn btn-success" onclick="save_row('2')">
-								</td>
-							</tr>
-								
-							<tr id="row3">
-								<td id="name_row3">Rahul</td>
-								<td id="progress_row3">Done</td>
-								<td id="percentage_row3">100%</td>
-								<td>
-									<input type="button" id="edit_button3" value="Edit" class="edit btn btn-info" onclick="edit_row('3')">
-									<input type="button" id="save_button3" value="Save" class="save btn btn-success" onclick="save_row('3')">
-								</td>
-							</tr>
+					
 								
 							
 																				
 						</table>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -113,27 +110,27 @@
 			
 			<script type="text/javascript">
 			
-			function edit_row(no)
+			function edit_row()
 			{
-			 document.getElementById("edit_button"+no).style.display="none";
-			 document.getElementById("save_button"+no).style.display="block";
+			 document.getElementById("edit_button").style.display="none";
+			 document.getElementById("save_button").style.display="block";
 				
 			 //var name=document.getElementById("name_row"+no);
-			 var country=document.getElementById("progress_row"+no);
-			 var age=document.getElementById("percentage_row"+no);
+			 var progress=document.getElementById("progress_row");
+			 var percentage=document.getElementById("percentage_row");
 				
 			 //var name_data=name.innerHTML;
-			 var country_data=country.innerHTML;
-			 var age_data=age.innerHTML;
+			 var progress_data=progress.innerHTML;
+			 var percentage_data=percentage.innerHTML;
 				
 			 //name.innerHTML="<input type='text' id='name_text"+no+"' value='"+name_data+"'>";
-			 country.innerHTML="<input type='text' id='country_text"+no+"' value='"+country_data+"'>";
-			 age.innerHTML="<input type='text' id='age_text"+no+"' value='"+age_data+"'>";
+			 progress.innerHTML="<input type='text'name='progress' id='progress_text' value='"+progress_data+"'>";
+			 percentage.innerHTML="<input type='text' name='percentage' id='percentage_text' value='"+percentage_data+"'>";
 			}
 
 			function save_row(no)
 			{
-			 //var name_val=document.getElementById("name_text"+no).value;
+			/*  //var name_val=document.getElementById("name_text"+no).value;
 			 var country_val=document.getElementById("country_text"+no).value;
 			 var age_val=document.getElementById("age_text"+no).value;
 
@@ -142,7 +139,10 @@
 			 document.getElementById("percentage_row"+no).innerHTML=age_val;
 
 			 document.getElementById("edit_button"+no).style.display="block";
-			 document.getElementById("save_button"+no).style.display="none";
+			 document.getElementById("save_button"+no).style.display="none"; */
+				/* document.getElementById("var").value = "EDITTASK";
+ */
+				document.form1.submit();
 			}
 
 				

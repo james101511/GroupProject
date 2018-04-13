@@ -157,37 +157,6 @@
 			
 			<% } %>
 			
-			<!-- <tr id="row2">
-				<td id="task_row2">Task2</td>
-				<td id="startDate_row2">03/05/2017</td>
-				<td id="endDate_row2">26/05/2017</td>
-				<td>
-				<input type="button" id="edit_button2" value="Edit" class="edit btn btn-info" onclick="edit_row('2')">
-				<input type="button" id="save_button2" value="Save" class="save btn btn-primary" onclick="save_row('2')">
-				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('2')">
-				</td>
-			</tr>
-			
-			<tr id="row3">
-				<td id="task_row3">Task3</td>
-				<td id="startDate_row3">08/02/2018</td>
-				<td id="endDate_row3">19/02/2017</td>
-				<td>
-				<input type="button" id="edit_button3" value="Edit" class="edit btn btn-info" onclick="edit_row('3')">
-				<input type="button" id="save_button3" value="Save" class="save btn btn-primary" onclick="save_row('3')">
-				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('3')">
-				</td>
-			</tr>
-			 -->
-			 
-			<!-- <tr>
-				
-				<td><input class="form-control" type="text" id="new_task"></td>
-				<td><input class="form-control" type="text" id="new_startDate"></td>
-				<td><input class="form-control"  type="text" id="new_age"></td>
-				<td><input  type="button" class="add btn btn-info" onclick="add_row();" value="Add Row"></td>
-				
-			</tr> -->
 			
 		</table>
 		</form>

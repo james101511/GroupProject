@@ -85,34 +85,15 @@ members of the team to a specific task. He also will be able to see who is alrea
 							
 								<td id="name_row1"><%=taskInvolves.get(i).getUserEmail() %></td>
 								
-								<td id="progress_row1"></td>
+								<td id="progress_row1"><%=taskInvolves.get(i).getProgress() %></td>
 							
 								<td>
 									<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row(<%=i+1%>)">
-									<input type="hidden" name="userEmail<%=i+1%>" value="<%=taskInvolves.get(i).getUserEmail() %>" />
+									<input id ="delete<%=i+1%>" type="hidden" name="userEmailx" value="<%=taskInvolves.get(i).getUserEmail() %>" />
 								</td>
-								<% } %>
-							</tr>
-							
-							<!-- <tr id="row2">
-								<td id="name_row2">Jane</td>
-								<td id="progress_row2"></td>
-							
-								<td>
-									<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('2')">
-								</td>
-							</tr>
-							
-							<tr id="row3">
-								<td id="name_row3">Ted</td>
-								<td id="progress_row3"></td>
 								
-								<td>
-									<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row('3')">
-								</td>
 							</tr>
-							 -->
-							 
+							 <% } %>
 							<tr>
 							
 								<td><input type="text" class="form-control" name="userEmail" id="new_name"></td>
@@ -142,7 +123,7 @@ members of the team to a specific task. He also will be able to see who is alrea
 	
 			function delete_row(i)
 			{
-				document.getElementsByName("userEmail"+i)[0].Name= "deleteUserEmail";
+				document.getElementById("delete"+i).name= "deleteUserEmail";
 			 	document.getElementById("var").value = "deleteTaskMember";
 
 				document.form2.submit();
@@ -150,16 +131,7 @@ members of the team to a specific task. He also will be able to see who is alrea
 
 			 function add_row()
 			{
-			 /* var new_name=document.getElementById("new_name").value;
-			 //var new_progress=document.getElementById("new_progress").value;
 			 
-				
-			 var table=document.getElementById("data_table");
-			 var table_len=(table.rows.length)-1;
-			 var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='name_row"+table_len+"'>"+new_name+"</td><td><p></p><td><input type='button' value='Delete' class='delete btn btn-danger' onclick='delete_row("+table_len+")'></td></tr>";
-
-			 document.getElementById("new_name").value="";
-			 //document.getElementById("new_progress").value=""; */
 				document.getElementById("var").value = "addTaskMember";
 
 				document.form2.submit();

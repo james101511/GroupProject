@@ -7,7 +7,8 @@
 <%
 	String projectName =(String)request.getParameter("projectName");
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
-	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
+	List<String> taskNames = (List<String>) request.getAttribute("taskNames");
+	String userEmail =(String)request.getAttribute("userEmail");
 %>
 <html lang="en">
 <head>
@@ -120,7 +121,8 @@
 			<div id="name-bar">
 				
 			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
-
+			<h1 id="page-name" class="navbar-brand" >Hello <%=userEmail%></h1>
+			
 			</div>
 		</div>
 		
@@ -139,10 +141,12 @@
 			  
 			   
 			  	<a class="dropdown-item" href="#"></a>
-				<% for (int i=0;i<tasks.size();i++) { %>
-				
-				<input id="var" type="hidden" name="command" value="CHECKTASKINVOLVE" />
-			   <button class="dropdown-item" name="taskName" value="<%=tasks.get(i).getTaskName()%>" ><%=tasks.get(i).getTaskName()%></button> 
+				<% for (int i=0;i<taskNames.size();i++) { %>
+				<form Name="form1" class="form-signin" action="UserServlet" method="GET">
+				<input id="var" type="hidden" name="command" value="listMembersInTask" />
+				<input type="hidden" name="projectName" value="<%=projectName %>" />
+				<input type="hidden" name="userEmail" value="<%=userEmail %>" />
+			   <button class="dropdown-item" name="taskName" value="<%=taskNames.get(i)%>" ><%=taskNames.get(i)%></button> 
 			   </form>
 			 <% } %>
 			 
