@@ -87,7 +87,7 @@
 			    
 			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
 			        <label class="control-label" for="date">Start Date</label>
-			        <input class="form-control" id="date" name="StartDate" placeholder="MM/DD/YYY" type="text"/>
+			        <input class="form-control" id="date" name="StartDate" placeholder="YYYY/MM/DD" type="text"/>
 			      </div>
 			   
 			     <!-- Form code ends --> 
@@ -97,10 +97,11 @@
 			    
 			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
 			        <label class="control-label" for="date">End Date</label>
-			        <input class="form-control" id="date" name="EndDate" placeholder="MM/DD/YYY" type="text"/>
+			        <input class="form-control" id="date" name="EndDate" placeholder="YYYY/MM/DD" type="text"/>
 			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
 			      </div>
 			      <div class="col-md-4 col-md-4 col-xs-12"> 
+			       
 			       <div class="form-group"> 
 			        <button class="btn btn-primary " name="submit" type="submit">Submit</button>
 			        <input id="kk" type="hidden" name="command" value="ADDTASK" />

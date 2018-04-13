@@ -160,7 +160,12 @@
 		</div>
 		<br>
 			
-		<div class="container container-progress-bar">
+			
+			
+			
+			
+			
+<!-- 		<div class="container container-progress-bar">
 			<div class="row justify-content-end ">
 				<div class=col-sm-9>
 					<div class="progress " style="height: 20px;">
@@ -168,7 +173,13 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
+		
+		
+		
+		
+		
+		
 		<form Name="form2" class="form-signin" action="UserServlet" method="GET">
 		<input type="hidden" name="projectName" value="<%=projectName%>" />
 		<input type="hidden" name="command" value="getAllTask" />
