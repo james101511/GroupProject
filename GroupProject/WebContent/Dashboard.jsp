@@ -119,12 +119,16 @@
 		
 			<div id="down-line-bar">
 			<div id="name-bar">
-				
-			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
-			<h1 id="page-name" class="navbar-brand" >Hello <%=userEmail%></h1>
-
+				<div id="name-bar ">
+						<div id="page-name">
+							<a   href="CreateProject.jsp" >Projects</a> &gt;
+							<a   href="#" >Dashboard</a>
+						</div>
+					</div>
 			</div>
 		</div>
+			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
+			<h1 id="page-name" class="navbar-brand" >Hello <%=userEmail%></h1>
 		
 		<!-- Content of the page after the bars -->
 		
