@@ -147,7 +147,7 @@
 			   
 			  	<a class="dropdown-item" href="#"></a>
 				<% for (int i=0;i<taskNames.size();i++) { %>
-				<form Name="form1" class="form-signin" action="UserServlet" method="GET">
+				<form Name="form1" class="form-signin" action="UserServlet" method="POST">
 				<input id="var" type="hidden" name="command" value="listMembersInTask" />
 				<input type="hidden" name="projectName" value="<%=projectName %>" />
 				<input type="hidden" name="userEmail" value="<%=userEmail %>" />

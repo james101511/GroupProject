@@ -133,18 +133,7 @@
 
 			function save_row(no)
 			{
-			/*  //var name_val=document.getElementById("name_text"+no).value;
-			 var country_val=document.getElementById("country_text"+no).value;
-			 var age_val=document.getElementById("age_text"+no).value;
-
-			 //document.getElementById("name_row"+no).innerHTML=name_val;
-			 document.getElementById("progress_row"+no).innerHTML=country_val;
-			 document.getElementById("percentage_row"+no).innerHTML=age_val;
-
-			 document.getElementById("edit_button"+no).style.display="block";
-			 document.getElementById("save_button"+no).style.display="none"; */
-				/* document.getElementById("var").value = "EDITTASK";
- */
+		
 				document.form1.submit();
 			}
 

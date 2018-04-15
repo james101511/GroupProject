@@ -53,9 +53,7 @@ public class UserServlet extends HttpServlet
 					checkTaskDetail(request, response);
 					break;
 
-				case "listMembersInTask":
-					listMembersInTask(request, response);
-					break;
+		
 			}
 		}
 		catch (Exception exc)
@@ -109,11 +107,11 @@ public class UserServlet extends HttpServlet
 					addTask(request, response);
 					getAllTask(request, response);
 					break;
-				case "EDITTASK":
+				case "editTask":
 					editTask(request, response);
 					getAllTask(request, response);
 					break;
-				case "DELETETASK":
+				case "deleteTask":
 					deleteTask(request, response);
 					getAllTask(request, response);
 					break;
@@ -131,6 +129,9 @@ public class UserServlet extends HttpServlet
 					break;
 				case "getAllTask":
 					getAllTask(request, response);
+					break;
+				case "listMembersInTask":
+					listMembersInTask(request, response);
 					break;
 			}
 
@@ -261,6 +262,7 @@ public class UserServlet extends HttpServlet
 	{
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
+		dataBase.deleteTaskInvolve(taskName,projectName);
 		dataBase.deleteTask(projectName, taskName);
 
 	}
@@ -312,7 +314,7 @@ public class UserServlet extends HttpServlet
 	{
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("email");
-
+		dataBase.createProject(projectName);
 		dataBase.addProject(projectName, email);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/InviteMembers.jsp");
 		dispatcher.forward(request, response);
