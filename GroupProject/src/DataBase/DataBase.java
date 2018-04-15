@@ -247,6 +247,33 @@ public class DataBase
 
 	}
 
+	public boolean checkProjectExist(String projectName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		boolean projectExist = false;
+
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select 1 from project where project_name=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, projectName);
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+
+				projectExist = true;
+
+			}
+			return projectExist;
+		}
+		finally
+		{
+			Close(myConn, myStmt, null);
+		}
+	}
+
 	public List<Task> listTask(Task task) throws SQLException
 	{
 		Connection myConn = null;

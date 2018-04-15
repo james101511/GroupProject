@@ -241,14 +241,14 @@ public class UserServlet extends HttpServlet
 			return;
 		}
 
-//		if (!dataBase.checkUserExist(userEmail))
-//		{
-//			out.println("<script type=\"text/javascript\">");
-//			out.println("alert('" + userEmail + "  is not exist');");
-//			out.println("window.history.go(-1);");
-//			out.println("</script>");
-//			return;
-//		}
+		// if (!dataBase.checkUserExist(userEmail))
+		// {
+		// out.println("<script type=\"text/javascript\">");
+		// out.println("alert('" + userEmail + " is not exist');");
+		// out.println("window.history.go(-1);");
+		// out.println("</script>");
+		// return;
+		// }
 		dataBase.addTaskMember(taskInvolve);
 
 		checkTaskDetail(request, response);
@@ -369,6 +369,7 @@ public class UserServlet extends HttpServlet
 
 	private void addProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		PrintWriter out = response.getWriter();
 		String projectName = trimSpace(request.getParameter("projectName"));
 		String email = request.getParameter("email");
 		// if (true)
@@ -376,6 +377,14 @@ public class UserServlet extends HttpServlet
 		// response.getWriter().println(email);
 		// return;
 		// }
+		if (dataBase.checkProjectExist(projectName))
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('" + projectName + "  is already used');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
 		dataBase.createProject(projectName);
 		dataBase.addProject(projectName, email);
 		request.setAttribute("email", email);
@@ -386,10 +395,19 @@ public class UserServlet extends HttpServlet
 
 	private void createAccount(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		PrintWriter out = response.getWriter();
 		String firstName = trimSpace(request.getParameter("firstName"));
 		String lastName = trimSpace(request.getParameter("lastName"));
 		String email = trimSpace(request.getParameter("email"));
 		String password = trimSpace(request.getParameter("password"));
+		if (dataBase.checkUserExist(email))
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('" + email + "  is already used');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
 		User user = new User(lastName, firstName, email, password);
 		dataBase.createAccount(user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/LogInPage.jsp");
@@ -399,20 +417,21 @@ public class UserServlet extends HttpServlet
 	private void login(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		List<Project> projects = new ArrayList<>();
-		// PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter();
 		String email = trimSpace(request.getParameter("email"));
 		String password = trimSpace(request.getParameter("password"));
 		User user = new User(email, password);
 		Project project = new Project(email);
 		projects = dataBase.checkProject(project);
 		User us = dataBase.login(user);
-		// if (true)
-		// {
-		// out.println("<script type=\"text/javascript\">");
-		// out.println("alert('User or password incorrect');");
-		// out.println("window.location='LogInPage.jsp';");
-		// out.println("</script>");
-		// }
+		if (!dataBase.checkUserExist(email))
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('" + email + "  is not exist');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
 
 		request.setAttribute("user", us);
 		request.setAttribute("projects", projects);
