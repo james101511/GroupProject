@@ -108,7 +108,7 @@ public class UserServlet extends HttpServlet
 					break;
 				case "editTask":
 					editTask(request, response);
-					getAllTask(request, response);
+
 					break;
 				case "deleteTask":
 					deleteTask(request, response);
@@ -285,11 +285,38 @@ public class UserServlet extends HttpServlet
 
 	private void editTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		// PrintWriter out = response.getWriter();
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
+		String startDate = trimSpace(request.getParameter("startDate"));
+		String endDate = trimSpace(request.getParameter("endDate"));
+		// int startYear = Integer.parseInt(startDate.substring(0, 4));
+		// int endYear = Integer.parseInt(endDate.substring(0, 4));
+		// int startMonth = Integer.parseInt(startDate.substring(4, 6));
+		// int endMonth = Integer.parseInt(endDate.substring(4, 6));
+		// int startDay = Integer.parseInt(startDate.substring(6, 8));
+		// int endDay = Integer.parseInt(endDate.substring(6, 8));
+		// if (startYear > endYear)
+		// {
+		// out.println("<script type=\"text/javascript\">");
+		// out.println("alert('Please check the input');");
+		// out.println("window.history.go(-1);");
+		// out.println("</script>");
+		// return;
+		// }
+		// if ((startYear == endYear && startMonth > endMonth) || (1 > startMonth &&
+		// startMonth > 12)
+		// || (1 > endMonth && endMonth > 12))
+		// {
+		//
+		// }
+		// if ((startYear == endYear && startMonth == endMonth && startDay > endDay)|| )
+		// {
+		//
+		// }
+
 		dataBase.editTask(projectName, taskName, startDate, endDate);
+		getAllTask(request, response);
 
 	}
 
@@ -419,15 +446,24 @@ public class UserServlet extends HttpServlet
 		List<Project> projects = new ArrayList<>();
 		PrintWriter out = response.getWriter();
 		String email = trimSpace(request.getParameter("email"));
+		if (!dataBase.checkUserExist(email))
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('" + email + "  is not exist');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
 		String password = trimSpace(request.getParameter("password"));
 		User user = new User(email, password);
 		Project project = new Project(email);
 		projects = dataBase.checkProject(project);
 		User us = dataBase.login(user);
-		if (!dataBase.checkUserExist(email))
+
+		if (!us.getPassword().equals(password))
 		{
 			out.println("<script type=\"text/javascript\">");
-			out.println("alert('" + email + "  is not exist');");
+			out.println("alert('password is incorrect');");
 			out.println("window.history.go(-1);");
 			out.println("</script>");
 			return;
