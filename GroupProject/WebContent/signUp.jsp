@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+	<link rel="stylesheet" type="text/css" href="Main.css"> 
 	<style type="text/css">
 	
 		body {
@@ -60,48 +61,7 @@
 		  border-top-right-radius: 0;
 		}
 	}
-		#topbar {
-				
-			width:100%;
-			margin:0 auto;
-			height:80px;
-			background-color: #2C3F50;
-				}
-			
-			
-		#projectName {
-			
-			color:white;
-			font-size:40px;
-			font-family: OpenSans;
-			padding: 10px 50px 10px 10px;
-			
-			}
-			
-		.topbar-section{
 		
-			float:left;
-			padding-top:10px;
-			}
-			
-
-
-		.topbar-logIn{
-
-			font-weight: bold;
-			font-size:20px;
-			height: 27px;
-			color:white;
-			float:right;
-			padding: 30px 80px 10px 10px;	
-			}
-			
-		#down-line-bar {
-
-			background-color: #FC4349;
-			width:100%;
-			height:40px;
-			}
 		.account_link {
 		
 			font-size: 9pt;
@@ -136,7 +96,18 @@
 			<!-- Div to clear the space between the bars-->
 		<div class="clear"></div>
 		
-		<div id="down-line-bar"></div>
+		<div id="down-line-bar">
+		
+			<div id="name-bar ">
+				<div id="page-name">
+				
+					<a   href="Homepage.jsp" >Home</a> &gt;
+					<a   href="#" >Sign Up</a>
+				</div>
+			</div>
+		
+		
+		</div>
 		
 		<!--Log In window -->
   
