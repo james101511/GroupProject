@@ -87,7 +87,7 @@
 			    
 			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
 			        <label class="control-label" for="date">Start Date</label>
-			        <input class="form-control" id="date" name="StartDate" placeholder="YYYY/MM/DD" type="text"/>
+			        <input class="form-control" id="date" name="startDate" placeholder="YYYY/MM/DD" type="text"/>
 			      </div>
 			   
 			     <!-- Form code ends --> 
@@ -97,14 +97,14 @@
 			    
 			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
 			        <label class="control-label" for="date">End Date</label>
-			        <input class="form-control" id="date" name="EndDate" placeholder="YYYY/MM/DD" type="text"/>
+			        <input class="form-control" id="date" name="endDate" placeholder="YYYY/MM/DD" type="text"/>
 			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
 			      </div>
 			      <div class="col-md-4 col-md-4 col-xs-12"> 
 			       
 			       <div class="form-group"> 
 			        <button class="btn btn-primary " name="submit" type="submit">Submit</button>
-			        <input id="kk" type="hidden" name="command" value="ADDTASK" />
+			        <input id="kk" type="hidden" name="command" value="addTask" />
 			       
 			      </div>
 			      </div>
@@ -146,7 +146,7 @@
 				<input id="var" type="hidden" name="command" value="x" />
 				<input id="varx" type="hidden" name="var" value="<%=i+1%>" />
 				<input type="hidden" name="projectName" value="<%=projectName %>" />
-				<input type="hidden" name="TaskName" value="<%= tasks.get(i).getTaskName() %>" />
+				<input type="hidden" name="taskName" value="<%= tasks.get(i).getTaskName() %>" />
 				<input type="button" id="edit_button<%=i+1%>" value="Edit" class="edit btn btn-info" onclick="edit_row(<%=i+1%>)">
 				<input type="button" id="save_button<%=i+1%>" value="Save" class="save btn btn-primary" onclick="save_row()">
 				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row()">

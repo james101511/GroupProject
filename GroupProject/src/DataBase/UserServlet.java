@@ -52,13 +52,88 @@ public class UserServlet extends HttpServlet
 				case "checkTaskDetail":
 					checkTaskDetail(request, response);
 					break;
-				case "getAllTask":
-					getAllTask(request, response);
-					break;
+
 				case "listMembersInTask":
 					listMembersInTask(request, response);
 					break;
 			}
+		}
+		catch (Exception exc)
+		{
+			throw new ServletException(exc);
+		}
+
+	}
+
+	// private void checkProject(HttpServletRequest request, HttpServletResponse
+	// response) throws Exception
+	// {
+	// List<Project> projects = new ArrayList<>();
+	// String projectName = request.getParameter("projectName");
+	// Involve involve = new Involve(projectName, false);
+	// involves = dataBase.checkProject(involve);
+	//
+	//
+	// request.setAttribute("Involve", involves);
+	//
+	//
+	// }
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		try
+		{
+			String theCommand = request.getParameter("command");
+
+			switch (theCommand)
+			{
+				case "login":
+					login(request, response);
+					break;
+				case "createAccount":
+					createAccount(request, response);
+					break;
+
+				case "addProject":
+					addProject(request, response);
+					break;
+
+				case "invite":
+					addMember(request, response);
+					turnToDashboard(request, response);
+					break;
+				case "skip":
+					turnToDashboard(request, response);
+					break;
+				case "addTask":
+					addTask(request, response);
+					getAllTask(request, response);
+					break;
+				case "EDITTASK":
+					editTask(request, response);
+					getAllTask(request, response);
+					break;
+				case "DELETETASK":
+					deleteTask(request, response);
+					getAllTask(request, response);
+					break;
+				case "addTaskMember":
+					addTaskMember(request, response);
+					break;
+				case "deleteTaskMember":
+					deleteTaskMember(request, response);
+					break;
+				case "checkProject":
+					turnToDashboard(request, response);
+					break;
+				case "editProgress":
+					editProgress(request, response);
+					break;
+				case "getAllTask":
+					getAllTask(request, response);
+					break;
+			}
+
 		}
 		catch (Exception exc)
 		{
@@ -85,7 +160,7 @@ public class UserServlet extends HttpServlet
 		String projectName = request.getParameter("projectName");
 		List<Task> tasks = new ArrayList<>();
 		Task task = new Task(projectName);
-		tasks = dataBase.checkTask(task);
+		tasks = dataBase.listTask(task);
 		request.setAttribute("tasks", tasks);
 		request.getRequestDispatcher("/AddTask.jsp").forward(request, response);
 	}
@@ -94,12 +169,7 @@ public class UserServlet extends HttpServlet
 	{
 		String taskName = request.getParameter("taskName");
 		String projectName = request.getParameter("projectName");
-		// if(true)
-		// {
-		// response.getWriter().println(taskName);
-		// response.getWriter().println(projectName);
-		// return;
-		// }
+
 		List<TaskInvolve> taskInvolves = new ArrayList<>();
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, null, projectName);
 		taskInvolves = dataBase.checkTaskDetail(taskInvolve);
@@ -108,106 +178,22 @@ public class UserServlet extends HttpServlet
 
 	}
 
-	private void checkTask(HttpServletRequest request, HttpServletResponse response) throws Exception
+	private void listTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("email");
 
 		List<Task> tasks = new ArrayList<>();
 		Task task = new Task(projectName);
-		tasks = dataBase.checkTask(task);
+		tasks = dataBase.listTask(task);
 		request.setAttribute("tasks", tasks);
-		boolean admin = dataBase.checkadmin(projectName, email);
+		boolean admin = dataBase.checkAdmin(projectName, email);
 		if (admin == true)
 		{
 			request.setAttribute("userEmail", email);
 			request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
 		}
-		checkTaskInvolve(request, response);
-
-	}
-
-	private void checkProject(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		String projectName = request.getParameter("projectName");
-		List<Involve> involves = new ArrayList<>();
-		Involve involve = new Involve(projectName, false);
-		involves = dataBase.checkProject(involve);
-		if (involves.size() == 0)
-		{
-			response.getWriter().println(projectName);
-			response.getWriter().println("0");
-
-			return;
-		}
-		// request.setAttribute("projectname", projectName);
-		request.setAttribute("Involve", involves);
-
-		// response.getWriter().println("Login success!!!");
-		// request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
-
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		try
-		{
-			String theCommand = request.getParameter("command");
-
-			switch (theCommand)
-			{
-				case "CHECKUSER":
-					CheckUser(request, response);
-					break;
-				case "ADD":
-					addUser(request, response);
-					break;
-
-				case "ADDPROJECT":
-					AddProject(request, response);
-					break;
-
-				case "Invite":
-					addMember(request, response);
-					turnToDashboard(request, response);
-					break;
-				case "CHECKPROJECT":
-					checkProject(request, response);
-					break;
-				case "Skip":
-					turnToDashboard(request, response);
-					break;
-				case "ADDTASK":
-					addTask(request, response);
-					getAllTask(request, response);
-					break;
-				case "EDITTASK":
-					editTask(request, response);
-					getAllTask(request, response);
-					break;
-				case "DELETETASK":
-					deleteTask(request, response);
-					getAllTask(request, response);
-					break;
-				case "addTaskMember":
-					addTaskMember(request, response);
-					break;
-				case "deleteTaskMember":
-					deleteTaskMember(request, response);
-					break;
-				case "checkProject":
-					turnToDashboard(request, response);
-					break;
-				case "editProgress":
-					editProgress(request, response);
-					break;
-			}
-
-		}
-		catch (Exception exc)
-		{
-			throw new ServletException(exc);
-		}
+		listTaskInvolve(request, response);
 
 	}
 
@@ -218,12 +204,11 @@ public class UserServlet extends HttpServlet
 		String percentage = request.getParameter("percentage");
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
-		
+
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName, progress, percentage);
 		dataBase.editProgress(taskInvolve);
-		listMembersInTask(request,response);
-		
-		
+		listMembersInTask(request, response);
+
 	}
 
 	private void deleteTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -255,17 +240,17 @@ public class UserServlet extends HttpServlet
 
 	private void turnToDashboard(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		checkProject(request, response);
-		checkTask(request, response);
+		// checkProject(request, response);
+		listTask(request, response);
 	}
 
-	private void checkTaskInvolve(HttpServletRequest request, HttpServletResponse response) throws Exception
+	private void listTaskInvolve(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		List<String> taskNames = new ArrayList<>();
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("email");
 
-		taskNames = dataBase.checkTaskInvolve(projectName, email);
+		taskNames = dataBase.listTaskInvolve(projectName, email);
 		request.setAttribute("taskNames", taskNames);
 		request.setAttribute("userEmail", email);
 		request.getRequestDispatcher("/Dashboard2.jsp").forward(request, response);
@@ -275,7 +260,7 @@ public class UserServlet extends HttpServlet
 	private void deleteTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
-		String taskName = request.getParameter("TaskName");
+		String taskName = request.getParameter("taskName");
 		dataBase.deleteTask(projectName, taskName);
 
 	}
@@ -283,26 +268,19 @@ public class UserServlet extends HttpServlet
 	private void editTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
-		String taskName = request.getParameter("TaskName");
-		String startDate = request.getParameter("StartDate");
-		String endDate = request.getParameter("EndDate");
+		String taskName = request.getParameter("taskName");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
 		dataBase.editTask(projectName, taskName, startDate, endDate);
-		
 
 	}
 
 	private void addTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String taskName = request.getParameter("TaskName");
-		String startDate = request.getParameter("StartDate");
-		String endDate = request.getParameter("EndDate");
+		String taskName = request.getParameter("taskName");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
 		String projectName = request.getParameter("projectName");
-		// if(true)
-		// {
-		// response.getWriter().println(projectName);
-		// return;
-		// }
-
 		Task task = new Task(projectName, taskName, startDate, endDate);
 		dataBase.addTask(task);
 
@@ -324,70 +302,44 @@ public class UserServlet extends HttpServlet
 
 		for (int j = 0; j < emails.size(); j++)
 		{
-			Involve involve = new Involve(projectName, emails.get(j));
-			dataBase.addMember(involve);
+			Project tempProject = new Project(projectName, false, emails.get(j));
+			dataBase.addMember(tempProject);
 		}
 
 	}
 
-	private void AddManager(HttpServletRequest request, HttpServletResponse response) throws Exception
+	private void addProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String ProjectName = request.getParameter("ProjectName");
-		// String LastName = request.getParameter("lastName");
-		String Email = request.getParameter("Email");
-		// String Password = request.getParameter("password");
-		Involve involve = new Involve(ProjectName, Email);
-		dataBase.addManager(involve);
+		String projectName = request.getParameter("projectName");
+		String email = request.getParameter("email");
+
+		dataBase.addProject(projectName, email);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/InviteMembers.jsp");
 		dispatcher.forward(request, response);
 
 	}
 
-	private void AddProject(HttpServletRequest request, HttpServletResponse response) throws Exception
+	private void createAccount(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String ProjectName = request.getParameter("ProjectName");
-
-		Project project = new Project(ProjectName);
-		dataBase.addProject(project);
-		// request.setAttribute("project", project.getProjectName());
-		AddManager(request, response);
-		// RequestDispatcher dispatcher =
-		// request.getRequestDispatcher("/InviteMembers.jsp");
-		// dispatcher.forward(request, response);
-	}
-
-	private void addUser(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		String FirstName = request.getParameter("firstName");
-		String LastName = request.getParameter("lastName");
-		String Email = request.getParameter("email");
-		String Password = request.getParameter("password");
-		// if (FirstName == null || FirstName.trim().equals("") || LastName == null ||
-		// LastName.trim().equals("")
-		// || Email == null || Email.trim().equals("") || Password == null ||
-		// Password.trim().equals(""))
-		//
-		// {
-		// response.getWriter().println("please dont input empty email or username");
-		// return;
-		// }
-
-		User user = new User(LastName, FirstName, Email, Password);
-		dataBase.addUser(user);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/LogInPage.jsp");
-		dispatcher.forward(request, response);
-
-	}
-
-	private void CheckUser(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		PrintWriter out = response.getWriter();
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		List<Involve> involves = new ArrayList<>();
+		User user = new User(lastName, firstName, email, password);
+		dataBase.createAccount(user);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/LogInPage.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void login(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		List<Project> projects = new ArrayList<>();
+		// PrintWriter out = response.getWriter();
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
 		User user = new User(email, password);
-		Involve involve = new Involve(email, true);
-		involves = dataBase.CheckInvolve(involve);
+		Project project = new Project(email);
+		projects = dataBase.checkProject(project);
 		User us = dataBase.login(user);
 		// if (true)
 		// {
@@ -398,9 +350,8 @@ public class UserServlet extends HttpServlet
 		// }
 
 		request.setAttribute("user", us);
-		request.setAttribute("Involve", involves);
+		request.setAttribute("projects", projects);
 		request.setAttribute("email", email);
-		// response.getWriter().println("Login success!!!");
 		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
 		return;
 

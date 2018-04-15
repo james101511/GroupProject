@@ -142,7 +142,7 @@
 
     <div class="wrapper">
     <form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="POST">
-    	<input type="hidden" name="command" value="CHECKUSER"/>   
+    	<input type="hidden" name="command" value="login"/>   
     	<label for="staticText" class=class="form-signin-heading">Enter your account and password</label>  
 		<input type="email" id="username" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" name="email" placeholder="Email Address" required="" autofocus="" />
 		<input type="password" id="password" class="form-control" name="password" placeholder="Password" required=""/>      

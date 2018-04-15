@@ -7,7 +7,6 @@
 <%
 	String projectName =(String)request.getParameter("projectName");
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
-	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
 	String userEmail =(String)request.getAttribute("userEmail");
 %>
 <html lang="en">
@@ -182,10 +181,10 @@
 		
 		
 		
-		<form Name="form2" class="form-signin" action="UserServlet" method="GET">
+		<form Name="form2" class="form-signin" action="UserServlet" method="POST">
 		<input type="hidden" name="projectName" value="<%=projectName%>" />
 		<input type="hidden" name="command" value="getAllTask" />
-		<input type="submit" value="Edit Task" >
+		<input type="submit" value="ShowAllTask" >
 		</form>
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>

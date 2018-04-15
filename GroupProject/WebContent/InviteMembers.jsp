@@ -2,7 +2,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="DataBase.*"%>
 <%
-	String projectName = (String) request.getParameter("ProjectName");
+	String projectName = (String) request.getParameter("projectName");
 %>
 <html lang="en">
 <head>
@@ -279,7 +279,7 @@ input[type="text"]
 
 			<!--The skip button will lead directly to dashboard without inviting members. -->
 			<!-- TODO -->
-			<input id="var" type="hidden" name="command" value="ADDPROJECT" />
+			<input id="var" type="hidden" name="command" value="var" />
 			<div>
 			<input id="var2" type="hidden" name="projectName" value="<%=projectName%>" />
 			<input id="skip"  class="button button3" type="submit" value="Skip" onClick="buttonSkip()">
@@ -292,12 +292,12 @@ input[type="text"]
 
 			<SCRIPT LANGUAGE="JavaScript">
 				function buttonSkip() {
-					document.getElementById("var").value = "Skip";
+					document.getElementById("var").value = "skip";
 					document.form1.submit();
 				}
 				
 				function buttonInvite() {
-					document.getElementById("var").value = "Invite";
+					document.getElementById("var").value = "invite";
 					document.form1.submit();
 				}
 				

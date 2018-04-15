@@ -4,71 +4,50 @@ import java.util.Date;
 
 public class Project
 {
-	private String ProjectName;
-	private int UserID;
-	private String Task;
-	private String StartDate; 
-	private String EndDate;
-	
-	public Project(String projectName)
+	private String projectName;
+	private boolean projectAdmin;
+	private String userEmail;
+
+	public Project(String projectName, boolean projectAdmin, String userEmail)
 	{
-		super();
-		ProjectName = projectName;
+		this.projectName = projectName;
+		this.projectAdmin = projectAdmin;
+		this.userEmail = userEmail;
+	}
+
+	public Project(String userEmail)
+	{
+		this.userEmail = userEmail;
 	}
 
 	public String getProjectName()
 	{
-		return ProjectName;
+		return projectName;
 	}
 
 	public void setProjectName(String projectName)
 	{
-		ProjectName = projectName;
+		this.projectName = projectName;
 	}
 
-	public int getUserID()
+	public boolean isProjectAdmin()
 	{
-		return UserID;
+		return projectAdmin;
 	}
 
-	public void setUserID(int userID)
+	public void setProjectAdmin(boolean projectAdmin)
 	{
-		UserID = userID;
+		this.projectAdmin = projectAdmin;
 	}
 
-	public String getTask()
+	public String getUserEmail()
 	{
-		return Task;
+		return userEmail;
 	}
 
-	public void setTask(String task)
+	public void setUserEmail(String user_Email)
 	{
-		Task = task;
+		this.userEmail = user_Email;
 	}
 
-	public String getStartDate()
-	{
-		return StartDate;
-	}
-
-	public void setStartDate(String startDate)
-	{
-		StartDate = startDate;
-	}
-
-	public String getEndDate()
-	{
-		return EndDate;
-	}
-
-	public void setEndDate(String endDate)
-	{
-		EndDate = endDate;
-	}
-
-	
-	
-	
-	
-	
 }

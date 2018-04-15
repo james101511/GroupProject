@@ -142,7 +142,7 @@
   
     <div class="wrapper">
         <form class="form-signin" action="UserServlet" method="POST" action="${pageContext.request.contextPath }/LogInPage.jsp">
-			<input type="hidden" name="command" value="ADD"/>
+			<input type="hidden" name="command" value="createAccount"/>
 			<h3 class="form-signin-heading">Personal Details</h3>
 			<input type="text" class="form-control" pattern="[A-Za-z]+" title="only letters" name="firstName" placeholder="First Name" required/>   
 			<input type="text" class="form-control" pattern="[A-Za-z]+" title="only letters" name="lastName" placeholder="Last Name" required/> 
