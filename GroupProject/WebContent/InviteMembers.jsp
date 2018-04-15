@@ -3,6 +3,7 @@
 <%@ page import="DataBase.*"%>
 <%
 	String projectName = (String) request.getParameter("projectName");
+	String email=(String)request.getAttribute("email");
 %>
 <html lang="en">
 <head>
@@ -242,6 +243,7 @@ input[type="text"]
 			<!-- TODO -->
 			<input id="var" type="hidden" name="command" value="var" />
 			<div>
+			<input type="hidden" name="email" value="<%= email %>" />
 			<input id="var2" type="hidden" name="projectName" value="<%=projectName%>" />
 			<input id="skip"  class="button button3" type="submit" value="Skip" onClick="buttonSkip()">
 			<input id="submit"  class="button button4" type="submit" value="Invite" onClick="buttonInvite()">

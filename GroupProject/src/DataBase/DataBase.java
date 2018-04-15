@@ -219,6 +219,33 @@ public class DataBase
 		}
 
 	}
+	public boolean checkUserExist(String email) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		boolean userExist = false;
+
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select 1 from user where user_email=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, email);
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+
+				userExist=true;
+
+			}
+			return userExist;
+		}
+		finally
+		{
+			Close(myConn, myStmt, null);
+		}
+
+	}
 
 	public List<Task> listTask(Task task) throws SQLException
 	{
@@ -578,6 +605,8 @@ public class DataBase
 			exc.printStackTrace();
 		}
 	}
+
+	
 
 
 

@@ -4,11 +4,10 @@
 <%@ page import="DataBase.*" %>
 <%
 	User user =(User)request.getAttribute("user");
-	String email=(String)request.getAttribute("email");
-%>
-<%
+	/* String email=(String)request.getAttribute("email"); */
 	List<Project> projects = (List<Project>) request.getAttribute("projects");
 %>
+
 
 	<html>
 	
