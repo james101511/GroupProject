@@ -66,35 +66,9 @@ public class DataBase
 	//
 	// }
 
-<<<<<<< HEAD
-	private void Close(Connection myConn, Statement myStmt, ResultSet myRs)
-	{
-		try
-		{
-			if (myRs != null)
-			{
-				myRs.close();
-			}
-			if (myStmt != null)
-			{
-				myStmt.close();
-			}
-			if (myConn != null)
-			{
-				myConn.close();// does't really close it, just puts back in connection pool
-			}
-
-		}
-		catch (Exception exc)
-		{
-			exc.printStackTrace();
-		}
-	}
-
-	public void addUser(User theuser) throws SQLException
-=======
+	
 	public void createAccount(User theuser) throws Exception
->>>>>>> branch 'master' of https://github.com/james101511/group-project.git
+
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -145,6 +119,7 @@ public class DataBase
 			Close(myConn, myStmt, null);
 		}
 	}
+
 	public void createProject(String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -163,7 +138,7 @@ public class DataBase
 		{
 			Close(myConn, myStmt, null);
 		}
-		
+
 	}
 
 	public void addProject(String projectName, String email) throws Exception
@@ -360,6 +335,32 @@ public class DataBase
 		}
 
 	}
+	public boolean checkDuplicate(String projectName,String taskName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		boolean temp =false;
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select * from task where project_name=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, projectName);
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+				String oldtaskName = set.getString("task_name");
+				if(oldtaskName.equals(taskName))
+				temp=true;
+			}
+			return temp;
+		}
+		finally
+		{
+			Close(myConn, myStmt, null);
+		}
+		
+	}
 
 	public void deleteTask(String projectName, String taskName) throws SQLException
 	{
@@ -553,8 +554,6 @@ public class DataBase
 
 	}
 
-	
-
 	private void Close(Connection myConn, Statement myStmt, ResultSet myRs)
 	{
 		try
@@ -563,13 +562,14 @@ public class DataBase
 			{
 				myRs.close();
 			}
+			
 			if (myStmt != null)
 			{
 				myStmt.close();
 			}
 			if (myConn != null)
 			{
-				myConn.close();// does't really close it, just puts back in connection pool
+				myConn.close();
 			}
 
 		}
@@ -578,6 +578,7 @@ public class DataBase
 			exc.printStackTrace();
 		}
 	}
+
 
 
 }

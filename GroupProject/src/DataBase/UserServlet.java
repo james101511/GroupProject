@@ -53,7 +53,6 @@ public class UserServlet extends HttpServlet
 					checkTaskDetail(request, response);
 					break;
 
-		
 			}
 		}
 		catch (Exception exc)
@@ -215,11 +214,6 @@ public class UserServlet extends HttpServlet
 	private void deleteTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String userEmail = request.getParameter("deleteUserEmail");
-		// if (true)
-		// {
-		// response.getWriter().println(userEmail);
-		// return;
-		// }
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName);
@@ -262,7 +256,7 @@ public class UserServlet extends HttpServlet
 	{
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
-		dataBase.deleteTaskInvolve(taskName,projectName);
+		dataBase.deleteTaskInvolve(taskName, projectName);
 		dataBase.deleteTask(projectName, taskName);
 
 	}
@@ -279,14 +273,25 @@ public class UserServlet extends HttpServlet
 
 	private void addTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		 PrintWriter out = response.getWriter();
 		String taskName = request.getParameter("taskName");
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 		String projectName = request.getParameter("projectName");
 		Task task = new Task(projectName, taskName, startDate, endDate);
+		if (dataBase.checkDuplicate(projectName,taskName)==true)
+		{
+			
+				 {
+				 out.println("<script type=\"text/javascript\">");
+				 out.println("alert('User or password incorrect');");
+				 out.println("window.location='LogInPage.jsp';");
+				 out.println("</script>");
+				 }
+			return;
+		}
 		dataBase.addTask(task);
 
-		// Task task = new Task(projectName)
 
 	}
 

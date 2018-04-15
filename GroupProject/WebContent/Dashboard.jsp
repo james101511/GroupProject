@@ -7,11 +7,9 @@
 <%
 	String projectName =(String)request.getParameter("projectName");
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
-<<<<<<< HEAD
-	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
-=======
+	List<Project> projects = (List<Project>) request.getAttribute("projects");
 	String userEmail =(String)request.getAttribute("userEmail");
->>>>>>> branch 'master' of https://github.com/james101511/group-project.git
+
 %>
 <html lang="en">
 <head>
@@ -122,18 +120,17 @@
 		
 			<div id="down-line-bar">
 			<div id="name-bar">
-<<<<<<< HEAD
+
 				
 			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
 
-=======
+
 				<div id="name-bar ">
 						<div id="page-name">
 							<a   href="CreateProject.jsp" >Projects</a> &gt;
 							<a   href="#" >Dashboard</a>
 						</div>
 					</div>
->>>>>>> branch 'master' of https://github.com/james101511/group-project.git
 			</div>
 		</div>
 			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
