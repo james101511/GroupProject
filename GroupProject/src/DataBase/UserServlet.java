@@ -97,14 +97,14 @@ public class UserServlet extends HttpServlet
 
 				case "invite":
 					addMember(request, response);
-					turnToDashboard(request, response);
+
 					break;
 				case "skip":
 					turnToDashboard(request, response);
 					break;
 				case "addTask":
 					addTask(request, response);
-					getAllTask(request, response);
+
 					break;
 				case "editTask":
 					editTask(request, response);
@@ -224,11 +224,33 @@ public class UserServlet extends HttpServlet
 
 	private void addTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String userEmail = request.getParameter("userEmail");
+		PrintWriter out = response.getWriter();
+		String userEmail = trimSpace(request.getParameter("userEmail"));
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName);
+
+		if (!dataBase.checkMemberInTask(userEmail, projectName))
+
+		{
+
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('" + userEmail + "  is not in this project');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
+
+//		if (!dataBase.checkUserExist(userEmail))
+//		{
+//			out.println("<script type=\"text/javascript\">");
+//			out.println("alert('" + userEmail + "  is not exist');");
+//			out.println("window.history.go(-1);");
+//			out.println("</script>");
+//			return;
+//		}
 		dataBase.addTaskMember(taskInvolve);
+
 		checkTaskDetail(request, response);
 
 	}
@@ -274,23 +296,32 @@ public class UserServlet extends HttpServlet
 	private void addTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		PrintWriter out = response.getWriter();
-		String taskName = request.getParameter("taskName");
-		String startDate = request.getParameter("startDate");
-		String endDate = request.getParameter("endDate");
+		String taskName = trimSpace(request.getParameter("taskName"));
+		String startDate = trimSpace(request.getParameter("startDate"));
+		String endDate = trimSpace(request.getParameter("endDate"));
 		String projectName = request.getParameter("projectName");
 		Task task = new Task(projectName, taskName, startDate, endDate);
-		if (dataBase.checkDuplicate(projectName, taskName) == true)
+		// if(date)
+		// {
+		// out.println("<script type=\"text/javascript\">");
+		// out.println("alert('Taskname already used');");
+		// out.println("window.history.go(-1);");
+		// out.println("</script>");
+		//
+		// return;
+		// }
+		if (dataBase.checkDuplicate(projectName, taskName))
 		{
 
-			{
-				out.println("<script type=\"text/javascript\">");
-				out.println("alert('User or password incorrect');");
-				out.println("window.location='LogInPage.jsp';");
-				out.println("</script>");
-			}
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Taskname already used');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+
 			return;
 		}
 		dataBase.addTask(task);
+		getAllTask(request, response);
 
 	}
 
@@ -301,24 +332,29 @@ public class UserServlet extends HttpServlet
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("email");
 		int i = 1;
+
 		while (request.getParameter("Email" + i) != null)
 		{
-			String tempeEmail = request.getParameter("Email" + i);
-			if (!dataBase.checkUserExist(tempeEmail))
+			String tempEmail = request.getParameter("Email" + i);
+			tempEmail = trimSpace(tempEmail);
+
+			if (!dataBase.checkUserExist(tempEmail))
 			{
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('" + tempeEmail + "  is not exist');");
+				out.println("alert('" + tempEmail + "  is not exist');");
 				out.println("window.history.go(-1);");
 				out.println("</script>");
+				return;
 			}
-			if (tempeEmail.equals(email))
+			if (tempEmail.equals(email))
 			{
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Your are already in the project');");
 				out.println("window.history.go(-1);");
 				out.println("</script>");
+				return;
 			}
-			emails.add(tempeEmail);
+			emails.add(tempEmail);
 			i++;
 		}
 
@@ -327,13 +363,19 @@ public class UserServlet extends HttpServlet
 			Project tempProject = new Project(projectName, false, emails.get(j));
 			dataBase.addMember(tempProject);
 		}
+		turnToDashboard(request, response);
 
 	}
 
 	private void addProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String projectName = request.getParameter("projectName");
+		String projectName = trimSpace(request.getParameter("projectName"));
 		String email = request.getParameter("email");
+		// if (true)
+		// {
+		// response.getWriter().println(email);
+		// return;
+		// }
 		dataBase.createProject(projectName);
 		dataBase.addProject(projectName, email);
 		request.setAttribute("email", email);
@@ -344,10 +386,10 @@ public class UserServlet extends HttpServlet
 
 	private void createAccount(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String firstName = trimSpace(request.getParameter("firstName"));
+		String lastName = trimSpace(request.getParameter("lastName"));
+		String email = trimSpace(request.getParameter("email"));
+		String password = trimSpace(request.getParameter("password"));
 		User user = new User(lastName, firstName, email, password);
 		dataBase.createAccount(user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/LogInPage.jsp");
@@ -358,8 +400,8 @@ public class UserServlet extends HttpServlet
 	{
 		List<Project> projects = new ArrayList<>();
 		// PrintWriter out = response.getWriter();
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+		String email = trimSpace(request.getParameter("email"));
+		String password = trimSpace(request.getParameter("password"));
 		User user = new User(email, password);
 		Project project = new Project(email);
 		projects = dataBase.checkProject(project);
@@ -378,6 +420,12 @@ public class UserServlet extends HttpServlet
 		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
 		return;
 
+	}
+
+	private static String trimSpace(String temp)
+	{
+		temp = temp.replaceAll("\\s", "").trim();
+		return temp;
 	}
 
 }

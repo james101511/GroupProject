@@ -66,7 +66,6 @@ public class DataBase
 	//
 	// }
 
-	
 	public void createAccount(User theuser) throws Exception
 
 	{
@@ -84,7 +83,7 @@ public class DataBase
 			myStmt.setString(4, theuser.getPassword());
 			myStmt.execute();
 		}
-		
+
 		finally
 		{
 			// clean up JDBC objects
@@ -219,6 +218,7 @@ public class DataBase
 		}
 
 	}
+
 	public boolean checkUserExist(String email) throws SQLException
 	{
 		Connection myConn = null;
@@ -235,7 +235,7 @@ public class DataBase
 			while (set.next())
 			{
 
-				userExist=true;
+				userExist = true;
 
 			}
 			return userExist;
@@ -362,11 +362,12 @@ public class DataBase
 		}
 
 	}
-	public boolean checkDuplicate(String projectName,String taskName) throws SQLException
+
+	public boolean checkDuplicate(String projectName, String taskName) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
-		boolean temp =false;
+		boolean temp = false;
 		try
 		{
 			myConn = dataSource.getConnection();
@@ -377,8 +378,8 @@ public class DataBase
 			while (set.next())
 			{
 				String oldtaskName = set.getString("task_name");
-				if(oldtaskName.equals(taskName))
-				temp=true;
+				if (oldtaskName.equals(taskName))
+					temp = true;
 			}
 			return temp;
 		}
@@ -386,7 +387,7 @@ public class DataBase
 		{
 			Close(myConn, myStmt, null);
 		}
-		
+
 	}
 
 	public void deleteTask(String projectName, String taskName) throws SQLException
@@ -535,6 +536,35 @@ public class DataBase
 
 	}
 
+	public boolean checkMemberInTask(String userEmail, String projectName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		boolean memberExist = false;
+
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select 1 from project_involve where user_email=? and project_name=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, userEmail);
+			myStmt.setString(2, projectName);
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+
+				memberExist = true;
+
+			}
+			return memberExist;
+		}
+		finally
+		{
+			Close(myConn, myStmt, null);
+		}
+
+	}
+
 	public void editProgress(TaskInvolve taskInvolve) throws SQLException
 	{
 		Connection myConn = null;
@@ -589,7 +619,7 @@ public class DataBase
 			{
 				myRs.close();
 			}
-			
+
 			if (myStmt != null)
 			{
 				myStmt.close();
@@ -605,9 +635,5 @@ public class DataBase
 			exc.printStackTrace();
 		}
 	}
-
-	
-
-
 
 }
