@@ -73,29 +73,53 @@
 				
 				}
 				
-				.navbar-brand {
+				.navbar-brand  {
 				
 				color:white;
 				text-decoration:none;
+				font-style: normal; 
+				text-transform: none;
+				padding: 15px;
+				text-align: right;
+				padding: 3px 3px 3px 3px;
+				
+				
+				
 				}
 				
-				#name-bar {
+				#name-bar  {
 		
-				margin: 0px;
-				padding: 0px;
-				width: auto;
+				margin: auto;
+				width: 1000px;
 				}
 				
-				#page-name {
+				#page-name a {
 			
 				color:white;
 				font-size: 15px;
-				padding: 10px -20px 10px 10px;
 				text-decoration: none; 
-				margin-top: 5px;
-				margin-left: 4px;	
+				color: white;
+				font-style: normal; 
+				text-transform: none;
+				padding-top: 15px;
+				text-align: left;
+				padding: 8px 8px 8px 8px;
 			
 				}
+				#page-name {
+				color:white;
+				font-size: 15px;
+				text-decoration: none; 
+				font-style: normal; 
+				padding: 8px 8px 8px 8px;
+				
+				}
+				#page-name a:hover {
+				text-decoration: none;
+				background-color: #F96060;
+				
+				}
+				
 			
 				.container-project-name{
 				

@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+	<link rel="stylesheet" type="text/css" href="Main.css"> 
 	<style type="text/css">
 	
 		body {
@@ -61,48 +61,7 @@
 		  border-top-right-radius: 0;
 		}
 	}
-		#topbar {
-				
-			width:100%;
-			margin:0 auto;
-			height:80px;
-			background-color: #2C3F50;
-				}
-			
-			
-		#projectName {
-			
-			color:white;
-			font-size:40px;
-			font-family: OpenSans;
-			padding: 10px 50px 10px 10px;
-			
-			}
-			
-		.topbar-section{
 		
-			float:left;
-			padding-top:10px;
-			}
-			
-
-
-		.topbar-logIn{
-
-			font-weight: bold;
-			font-size:20px;
-			height: 27px;
-			color:white;
-			float:right;
-			padding: 30px 80px 10px 10px;	
-			}
-			
-		#down-line-bar {
-
-			background-color: #FC4349;
-			width:100%;
-			height:40px;
-			}
 		.account_link {
 		
 			font-size: 9pt;
@@ -127,7 +86,7 @@
 				
 		<div class="topbar-section topbar-logIn">
 			
-			<a class="navbar-brand" href="#">Log In</a>			
+			<a class="navbar-brand" href="#">Log Out</a>			
 			
 		</div>
 			
@@ -136,13 +95,24 @@
 			<!-- Div to clear the space between the bars-->
 		<div class="clear"></div>
 		
-		<div id="down-line-bar"></div>
+		<div id="down-line-bar">
+			<div id="name-bar ">
+				<div id="page-name">
+				
+					<a   href="Homepage.jsp" >Home</a> &gt;
+					<a   href="#" >Log In</a>
+				</div>
+			</div>
+		
+		
+		
+		</div>
   
 
 
     <div class="wrapper">
     <form class="form-signin" action="${pageContext.request.contextPath }/UserServlet" method="POST">
-    	<input type="hidden" name="command" value="CHECKUSER"/>   
+    	<input type="hidden" name="command" value="login"/>   
     	<label for="staticText" class=class="form-signin-heading">Enter your account and password</label>  
 		<input type="email" id="username" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" name="email" placeholder="Email Address" required="" autofocus="" />
 		<input type="password" id="password" class="form-control" name="password" placeholder="Password" required=""/>      

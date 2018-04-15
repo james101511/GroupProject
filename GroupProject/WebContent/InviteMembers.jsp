@@ -2,7 +2,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="DataBase.*"%>
 <%
-	String projectName = (String) request.getParameter("ProjectName");
+	String projectName = (String) request.getParameter("projectName");
 %>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+<link rel="stylesheet" type="text/css" href="Main.css"> 
 <style type="text/css">
 body {
 	background: #eee !important;
@@ -70,48 +70,6 @@ input[type="password"] {
 	border-top-right-radius: 0;
 }
 
-}
-#topbar {
-	width: 100%;
-	margin: 0 auto;
-	height: 80px;
-	background-color: #2C3F50;
-}
-
-#projectName {
-	color: white;
-	font-size: 36px;
-	padding: 10px -50px 10px 10px;
-}
-
-#page-name {
-	color: white;
-	font-size: 15px;
-	padding: 10px -20px 10px 10px;
-	text-decoration: none;
-	margin-top: 5px;
-	margin-left: 4px;
-}
-
-.topbar-section {
-	float: left;
-	padding-top: 10px;
-}
-
-.topbar-menu {
-	font-weight: bold;
-	font-size: 20px;
-	height: 27px;
-	color: white;
-	float: right;
-	padding: 30px 80px 10px 10px;
-	margin-left: 0;
-}
-
-#down-line-bar {
-	background-color: #FC4349;
-	width: 100%;
-	height: 40px;
 }
 
 .account_link {
@@ -233,7 +191,7 @@ input[type="text"]
 			<a id="projectName" class="navbar-brand" href="#">Manage P&P </a>
 		</div>
 
-		<div class="topbar-section topbar-menu">
+		<div class="topbar-section topbar-logIn">
 
 			<a class="navbar-brand" href="#">Menu</a>
 
@@ -245,11 +203,14 @@ input[type="text"]
 	<div class="clear"></div>
 
 	<div id="down-line-bar">
-		<div id="name-bar">
-
-			<h1 id="page-name" class="navbar-brand">Invite Team Members</h1>
-
-		</div>
+		
+				<div id="name-bar ">
+						<div id="page-name">
+							<a   href="CreateProject.jsp" >Projects</a> &gt;
+							<a   href="#" >Invite Members</a>
+						</div>
+					</div>
+			
 	</div>
 
 
@@ -279,7 +240,7 @@ input[type="text"]
 
 			<!--The skip button will lead directly to dashboard without inviting members. -->
 			<!-- TODO -->
-			<input id="var" type="hidden" name="command" value="ADDPROJECT" />
+			<input id="var" type="hidden" name="command" value="var" />
 			<div>
 			<input id="var2" type="hidden" name="projectName" value="<%=projectName%>" />
 			<input id="skip"  class="button button3" type="submit" value="Skip" onClick="buttonSkip()">
@@ -292,12 +253,12 @@ input[type="text"]
 
 			<SCRIPT LANGUAGE="JavaScript">
 				function buttonSkip() {
-					document.getElementById("var").value = "Skip";
+					document.getElementById("var").value = "skip";
 					document.form1.submit();
 				}
 				
 				function buttonInvite() {
-					document.getElementById("var").value = "Invite";
+					document.getElementById("var").value = "invite";
 					document.form1.submit();
 				}
 				

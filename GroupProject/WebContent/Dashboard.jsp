@@ -7,7 +7,11 @@
 <%
 	String projectName =(String)request.getParameter("projectName");
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
+<<<<<<< HEAD
 	List<Involve> Involves = (List<Involve>) request.getAttribute("Involve");
+=======
+	String userEmail =(String)request.getAttribute("userEmail");
+>>>>>>> branch 'master' of https://github.com/james101511/group-project.git
 %>
 <html lang="en">
 <head>
@@ -118,11 +122,22 @@
 		
 			<div id="down-line-bar">
 			<div id="name-bar">
+<<<<<<< HEAD
 				
 			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
 
+=======
+				<div id="name-bar ">
+						<div id="page-name">
+							<a   href="CreateProject.jsp" >Projects</a> &gt;
+							<a   href="#" >Dashboard</a>
+						</div>
+					</div>
+>>>>>>> branch 'master' of https://github.com/james101511/group-project.git
 			</div>
 		</div>
+			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
+			<h1 id="page-name" class="navbar-brand" >Hello <%=userEmail%></h1>
 		
 		<!-- Content of the page after the bars -->
 		
@@ -165,10 +180,10 @@
 		
 		
 		
-		<form Name="form2" class="form-signin" action="UserServlet" method="GET">
+		<form Name="form2" class="form-signin" action="UserServlet" method="POST">
 		<input type="hidden" name="projectName" value="<%=projectName%>" />
 		<input type="hidden" name="command" value="getAllTask" />
-		<input type="submit" value="Edit Task" >
+		<input type="submit" value="ShowAllTask" >
 		</form>
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>

@@ -51,10 +51,13 @@
 			<div class="clear"></div>
 		
 			<div id="down-line-bar">
-				<div id="name-bar">
-				
-				<h1 id="page-name" class="navbar-brand" >Task - Members Page</h1>
-
+				<div id="name-bar ">
+					<div id="page-name">
+					
+						<a   href="CreateProject.jsp" >Projects</a> &gt;
+						<a   href="Dashboard2.jsp" >Dashboard</a> &gt;
+						<a   href="#" >Task</a>
+					</div>
 				</div>
 			</div>
 

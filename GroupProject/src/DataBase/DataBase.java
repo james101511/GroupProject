@@ -66,6 +66,7 @@ public class DataBase
 
 	}
 
+<<<<<<< HEAD
 	private void Close(Connection myConn, Statement myStmt, ResultSet myRs)
 	{
 		try
@@ -91,22 +92,22 @@ public class DataBase
 	}
 
 	public void addUser(User theuser) throws SQLException
+=======
+	public void createAccount(User theuser) throws Exception
+>>>>>>> branch 'master' of https://github.com/james101511/group-project.git
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		try
 		{
-			// get db connection
 			myConn = dataSource.getConnection();
-			// create sql for insert
-			String sql = "insert into Users" + "(FirstName,LastName,Email,Password)" + "values(?,?,?,?)";
+			String sql = "insert into user" + "(user_firstname,user_lastname,user_email,user_password)"
+					+ "values(?,?,?,?)";
 			myStmt = myConn.prepareStatement(sql);
-			// set the param values for the student
 			myStmt.setString(1, theuser.getFirstName());
 			myStmt.setString(2, theuser.getLastName());
 			myStmt.setString(3, theuser.getEmail());
 			myStmt.setString(4, theuser.getPassword());
-			// execute sql insert
 			myStmt.execute();
 		}
 		
@@ -127,7 +128,7 @@ public class DataBase
 		{
 			myConn = dataSource.getConnection();
 			// create sql for insert
-			String sql = "select * from Users where Email = ? and  password= ? ";
+			String sql = "select * from user where user_email = ? and  user_password= ? ";
 			myStmt = myConn.prepareStatement(sql);
 			// set the param values for the student
 			myStmt.setString(1, theuser.getEmail());
@@ -136,8 +137,8 @@ public class DataBase
 			// execute sql insert
 			while (set.next())
 			{
-				theuser.setFirstName(set.getString("FirstName"));
-				theuser.setLastName(set.getString("LastName"));
+				theuser.setFirstName(set.getString("user_firstname"));
+				theuser.setLastName(set.getString("user_lastname"));
 				return theuser;
 			}
 			return null;
@@ -149,161 +150,86 @@ public class DataBase
 		}
 	}
 
-	public void addProject(Project project) throws Exception
+	public void addProject(String projectName, String email) throws Exception
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		try
 		{
-			// get db connection
 			myConn = dataSource.getConnection();
-			// create sql for insert
-			String sql = "insert into Project" + "(ProjectName,SubTask,StartDate,EndDate)" + "values(?,?,?,?)";
+			String sql = "insert into project" + "(project_name,user_email,project_admin)" + "values(?,?,?)";
 			myStmt = myConn.prepareStatement(sql);
-			// set the param values for the student
-			myStmt.setString(1, project.getProjectName());
-			myStmt.setString(2, project.getTask());
-			myStmt.setString(3, project.getStartDate());
-			myStmt.setString(4, project.getEndDate());
-			// myStmt.setBoolean(5, true);
-			// execute sql insert
-			myStmt.execute();
-		}
-		finally
-		{
-			// clean up JDBC objects
-			Close(myConn, myStmt, null);
-		}
 
-	}
-
-	public void addManager(Involve involve) throws SQLException
-	{
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
-		try
-		{
-			// get db connection
-			myConn = dataSource.getConnection();
-			// create sql for insert
-			String sql = "insert into Involve" + "(ProjectName,Email,Admin)" + "values(?,?,?)";
-			myStmt = myConn.prepareStatement(sql);
-			// set the param values for the student
-			myStmt.setString(1, involve.getProjectName());
-			myStmt.setString(2, involve.getEmail());
+			myStmt.setString(1, projectName);
+			myStmt.setString(2, email);
 			myStmt.setBoolean(3, true);
-			// execute sql insert
 			myStmt.execute();
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 
 	}
 
-	public List<Involve> CheckInvolve(Involve involve) throws Exception
+	public List<Project> checkProject(Project project) throws Exception
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
-		List<Involve> involves = new ArrayList<>();
+		List<Project> projects = new ArrayList<>();
 		try
 		{
 			myConn = dataSource.getConnection();
-			// create sql for insert
-			String sql = "select * from Involve where Email = ? ";
+			String sql = "select * from project where user_email = ? ";
 			myStmt = myConn.prepareStatement(sql);
-			// set the param values for the student
-			myStmt.setString(1, involve.getEmail());
+			myStmt.setString(1, project.getUserEmail());
 			ResultSet set = myStmt.executeQuery();
-			// execute sql insert
 			while (set.next())
 			{
-				String ProjectName = set.getString("ProjectName");
-				String Email = set.getString("Email");
+				String projectName = set.getString("project_name");
 				boolean admin = true;
-				if (set.getString("Admin").equals("0"))
+				if (set.getString("project_admin").equals("0"))
 				{
 					admin = false;
 				}
-				Involve TempInvolve = new Involve(ProjectName, Email, admin);
-				involves.add(TempInvolve);
+				Project tempProject = new Project(projectName, admin, project.getUserEmail());
+				projects.add(tempProject);
 
 			}
-			return involves;
+			return projects;
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 	}
 
-	public void addMember(Involve involve) throws SQLException
+	public void addMember(Project project) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		try
 		{
 			myConn = dataSource.getConnection();
-			// create sql for insert
-			String sql = "insert into Involve" + "(ProjectName,Email,Admin)" + "values(?,?,?)";
+
+			String sql = "insert into project" + "(project_name,user_email,project_admin)" + "values(?,?,?)";
 			myStmt = myConn.prepareStatement(sql);
-			// set the param values for the student
-			myStmt.setString(1, involve.getProjectName());
-			myStmt.setString(2, involve.getEmail());
+
+			myStmt.setString(1, project.getProjectName());
+			myStmt.setString(2, project.getUserEmail());
 			myStmt.setBoolean(3, false);
-			// execute sql insert
+
 			myStmt.execute();
 		}
 		finally
 		{
-			// clean up JDBC objects
+
 			Close(myConn, myStmt, null);
 		}
 
 	}
 
-	public List<Involve> checkProject(Involve involve) throws SQLException
-	{
-
-		Connection myConn = null;
-		PreparedStatement myStmt = null;
-		List<Involve> involves = new ArrayList<>();
-		try
-		{
-			myConn = dataSource.getConnection();
-			// create sql for insert
-			String sql = "select * from Involve where ProjectName = ? ";
-			myStmt = myConn.prepareStatement(sql);
-			// set the param values for the student
-			myStmt.setString(1, involve.getProjectName());
-			ResultSet set = myStmt.executeQuery();
-			// execute sql insert
-			while (set.next())
-			{
-				String ProjectName = set.getString("ProjectName");
-				String Email = set.getString("Email");
-				boolean admin = true;
-				if (set.getString("Admin").equals("0"))
-				{
-					admin = false;
-				}
-				Involve TempInvolve = new Involve(ProjectName, Email, admin);
-
-				involves.add(TempInvolve);
-			}
-			return involves;
-		}
-		finally
-		{
-			// clean up JDBC objects
-			Close(myConn, myStmt, null);
-		}
-	}
-
-	public List<Task> checkTask(Task task) throws SQLException
+	public List<Task> listTask(Task task) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -311,15 +237,15 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "select * from Task where ProjectName = ? ";
+			String sql = "select * from task where project_name = ? ";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, task.getProjectName());
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
-				String TaskName = set.getString("TaskName");
-				String StartDate = set.getString("StartDate");
-				String EndDate = set.getString("EndDate");
+				String TaskName = set.getString("task_name");
+				String StartDate = set.getString("start_date");
+				String EndDate = set.getString("end_date");
 				Task task2 = new Task(task.getProjectName(), TaskName, StartDate, EndDate);
 				tasks.add(task2);
 			}
@@ -340,14 +266,14 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "select * from task_involve where taskName = ? and projectName=? ";
+			String sql = "select * from task_involve where task_name = ? and project_name=? ";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, taskInvolve.getTaskName());
 			myStmt.setString(2, taskInvolve.getProjectName());
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
-				String userEmail = set.getString("userEmail");
+				String userEmail = set.getString("user_email");
 				String progress = set.getString("progress");
 				String percentage = set.getString("percentage");
 				TaskInvolve taskInvolve2 = new TaskInvolve(taskInvolve.getTaskName(), userEmail,
@@ -359,12 +285,11 @@ public class DataBase
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 	}
 
-	public boolean checkadmin(String projectName, String email) throws SQLException
+	public boolean checkAdmin(String projectName, String email) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -373,7 +298,7 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "select * from Involve where ProjectName = ? and Email = ? ";
+			String sql = "select * from project where project_name = ? and user_email = ? ";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, projectName);
 			myStmt.setString(2, email);
@@ -381,7 +306,7 @@ public class DataBase
 			while (set.next())
 			{
 
-				String admin2 = set.getString("Admin");
+				String admin2 = set.getString("project_admin");
 				if (admin2.equals("0"))
 				{
 					admin = false;
@@ -392,7 +317,6 @@ public class DataBase
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 
@@ -406,7 +330,7 @@ public class DataBase
 		{
 			myConn = dataSource.getConnection();
 			// create sql for insert
-			String sql = "insert into Task" + "(TaskName,ProjectName,StartDate,EndDate)" + "values(?,?,?,?)";
+			String sql = "insert into task" + "(task_name,project_name,start_date,end_date)" + "values(?,?,?,?)";
 			myStmt = myConn.prepareStatement(sql);
 			// set the param values for the student
 			myStmt.setString(1, task.getTaskName());
@@ -432,7 +356,7 @@ public class DataBase
 		{
 			myConn = dataSource.getConnection();
 			// create sql for insert
-			String sql = "DELETE FROM Task WHERE ProjectName = ? and TaskName =?";
+			String sql = "DELETE FROM task WHERE project_name = ? and task_name =?";
 			// DELETE FROM TaskInvolve WHERE projectName =? and TaskName =? ;
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, projectName);
@@ -458,7 +382,7 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "UPDATE Task SET StartDate= ?,EndDate= ? WHERE projectName = ? and TaskName=?;";
+			String sql = "UPDATE task SET start_date= ?,end_date= ? WHERE project_name = ? and task_name=?;";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, startDate);
 			myStmt.setString(2, endDate);
@@ -476,7 +400,7 @@ public class DataBase
 
 	}
 
-	public List<String> checkTaskInvolve(String projectName, String email) throws SQLException
+	public List<String> listTaskInvolve(String projectName, String email) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -484,21 +408,20 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "select * from task_involve where userEmail = ? and projectName=?";
+			String sql = "select * from task_involve where user_email = ? and project_name=?";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, email);
 			myStmt.setString(2, projectName);
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
-				String taskName = set.getString("taskName");
+				String taskName = set.getString("task_name");
 				taskNames.add(taskName);
 			}
 			return taskNames;
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 
@@ -613,6 +536,30 @@ public class DataBase
 			Close(myConn, myStmt, null);
 		}
 
+	}
+
+	private void Close(Connection myConn, Statement myStmt, ResultSet myRs)
+	{
+		try
+		{
+			if (myRs != null)
+			{
+				myRs.close();
+			}
+			if (myStmt != null)
+			{
+				myStmt.close();
+			}
+			if (myConn != null)
+			{
+				myConn.close();// does't really close it, just puts back in connection pool
+			}
+
+		}
+		catch (Exception exc)
+		{
+			exc.printStackTrace();
+		}
 	}
 
 }
