@@ -66,7 +66,35 @@ public class DataBase
 	//
 	// }
 
+<<<<<<< HEAD
+	private void Close(Connection myConn, Statement myStmt, ResultSet myRs)
+	{
+		try
+		{
+			if (myRs != null)
+			{
+				myRs.close();
+			}
+			if (myStmt != null)
+			{
+				myStmt.close();
+			}
+			if (myConn != null)
+			{
+				myConn.close();// does't really close it, just puts back in connection pool
+			}
+
+		}
+		catch (Exception exc)
+		{
+			exc.printStackTrace();
+		}
+	}
+
+	public void addUser(User theuser) throws SQLException
+=======
 	public void createAccount(User theuser) throws Exception
+>>>>>>> branch 'master' of https://github.com/james101511/group-project.git
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -82,6 +110,7 @@ public class DataBase
 			myStmt.setString(4, theuser.getPassword());
 			myStmt.execute();
 		}
+		
 		finally
 		{
 			// clean up JDBC objects
