@@ -121,9 +121,6 @@
 			<div id="down-line-bar">
 			<div id="name-bar">
 
-				
-			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
-
 
 				<div id="name-bar ">
 						<div id="page-name">
