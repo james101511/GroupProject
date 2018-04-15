@@ -90,7 +90,7 @@ public class DataBase
 		}
 	}
 
-	public void addUser(User theuser) throws Exception
+	public void addUser(User theuser) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -109,6 +109,7 @@ public class DataBase
 			// execute sql insert
 			myStmt.execute();
 		}
+		
 		finally
 		{
 			// clean up JDBC objects
