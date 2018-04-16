@@ -459,6 +459,25 @@ public class DataBase
 		}
 
 	}
+	
+	public void editProject(String projectName,String newProjectName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "UPDATE project SET project_name = ? WHERE project_name = ?;";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, newProjectName);
+			myStmt.setString(2, projectName);
+			myStmt.execute();
+		}
+		finally
+		{
+			Close(myConn, myStmt, null);
+		}
+	}
 
 	public List<String> listTaskInvolve(String projectName, String email) throws SQLException
 	{

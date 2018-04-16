@@ -91,31 +91,44 @@
 					
 						
 						Hello <%=user.getFirstName()+","+user.getLastName() %>
-					<table class="table">
+					
+					
+					
+					
+					<table class="table" id="project_in_manage">
 						<thead>
 							<tr>
 								<th><a href ="#">ProjectYouManage</a></th>
 							</tr>
 						</thead>
-				
-				<% for (int i=0;i<projects.size();i++) { %>
-					
-					<tr>
-						<form class="form-signin" action="UserServlet" method="POST" >
-				<input type="hidden" name="command" value="checkProject"/>
-				<input type="hidden" name="email" value="<%=user.getEmail() %>" />
-						 
-						 <%if(projects.get(i).isProjectAdmin() == true){ %> 
-						<td><input type="submit" value="<%= projects.get(i).getProjectName() %>" name="projectName"/> </td>
-						 <% } %> 
 						
+						<% for (int i=0;i<projects.size();i++) { %>
+						
+						<tr id=row<%=i+1%>>
+						<form class="form-signin" action="UserServlet" method="POST" >
+						<input type="hidden" name="command" value="checkProject"/>
+						<input type="hidden" name="email" value="<%=user.getEmail() %>" />
+						 <%if(projects.get(i).isProjectAdmin() == true){ %> 
+						
+						
+						
+						<td> <input id="projectname<%=i+1%>" type="submit" value="<%= projects.get(i).getProjectName() %>" name="projectName"/> </td>
+						<td>
+						<input id="var" type="hidden" name="command" value="x" />
+						<input type='button' id='edit_button<%=i+1%>' value='Edit' class='edit' onclick='edit_row(<%=i+1%>)'>
+  					    <input type='button' id='save_button<%=i+1%>' value='Save' class='save' onclick='save_row()'>
+  					    <input type='button' value='Delete' class='delete' onclick='delete_row()'>
+  					    </td>
+						 <% } %> 
 						</form>
-					</tr>
-					
+						</tr>
+						<% } %>
+					</table>
 			
-				<% } %>
-				
-			</table>
+			
+			
+			
+			
 			<table class="table">
 						<thead>
 							<tr>
@@ -150,9 +163,10 @@
 						<form class="form-inline" action="UserServlet" method="POST" >
 				 		<input type="hidden" name="command" value="addProject"/>
 				 		<input type="hidden" name="email" value="<%= user.getEmail() %>" />
+						
 						<div class="form-group mx-sm-3 mb-2">
-						<label for="ProjectName" class="sr-only">Project name</label>
-						<input class="form-control" type="text" name="projectName" placeholder="ProjectName"  required=""/> 
+						
+						<input class="form-control" id="new_project_name" type="text" name="projectName" placeholder="ProjectName"  required=""/> 
 						</div>
 						
 						<button type="submit" class="btn btn-primary mb-2"> + Add</button>
@@ -165,12 +179,36 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  	<script type="text/javascript">
+  		function edit_row(no){
+  			document.getElementById("edit_button"+no).style.display="none";
+			document.getElementById("save_button"+no).style.display="block";
+			var projectname = document.getElementById("projectname"+no);
+			var projectname_data = projectname.value;
+			projectname = "<input type='text' id='projectname"+no+"' value='"+projectname_data+"'>";
+			
+			
+			
+			
+  		}
+  		function save_row(){
+  			
+  			
+			document.getElementById("var").value = "editProject";
+			
+			document.form1.submit();
+  		}
+  		function delete_row(){
+			document.getElementById("var").value = "deleteProject";
+			
+			document.form1.submit();
+  		}
+
+  	</script>
   </body>
 </html>
 		
 
-		</body>
-	
-	</html>
+
 
 	

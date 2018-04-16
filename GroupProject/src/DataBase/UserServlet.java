@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-/**
- * 1 Servlet implementation class StudentServlet
- */
+
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet
 {
@@ -114,6 +112,12 @@ public class UserServlet extends HttpServlet
 					deleteTask(request, response);
 					getAllTask(request, response);
 					break;
+				case "editProject":
+					editProject(request, response);
+					break;
+//				case "deleteProject":
+//					deleteProject(request,response);
+//					break;
 				case "addTaskMember":
 					addTaskMember(request, response);
 					break;
@@ -292,6 +296,22 @@ public class UserServlet extends HttpServlet
 		dataBase.editTask(projectName, taskName, startDate, endDate);
 
 	}
+	
+	private void editProject(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String projectName = request.getParameter("projectName");
+		String newProjectName = request.getParameter("newProjectName");
+		dataBase.editProject(projectName, newProjectName);
+
+	}
+//	private void deleteProject(HttpServletRequest request, HttpServletResponse response) throws Exception
+//	{
+//		String projectName = request.getParameter("projectName");
+//		String taskName = request.getParameter("taskName");
+//		dataBase.deleteTaskInvolve(taskName, projectName);
+//		dataBase.deleteTask(projectName, taskName);
+//
+//	}
 
 	private void addTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
