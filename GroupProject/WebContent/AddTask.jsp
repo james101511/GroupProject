@@ -140,7 +140,7 @@
 			<tr id="row1">
 			
 			
-			
+			 
 				<td id="task_row<%=i+1%>"><%= tasks.get(i).getTaskName() %></td>
 				<td id="startDate_row<%=i+1%>"><%=tasks.get(i).getStartDate()%></td>
 				<td id="endDate_row<%=i+1%>"><%=tasks.get(i).getEndDate()%></td>
