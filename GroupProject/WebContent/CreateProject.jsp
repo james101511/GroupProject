@@ -117,8 +117,7 @@
 					<td>
 
 						<input type="hidden" name="projectName" value="<%=projects.get(i).getProjectName()%>" />
-						<input type='button' id='edit_button<%=i + 1%>' value='Edit' class='edit' onclick='edit_row(<%=i + 1%>)'>
-						<input type='button' id='save_button<%=i + 1%>' value='Save' class='save' onclick='save_row()'>
+						
 						<input type='button' value='Delete' class='delete' onclick='delete_row()'>
 					</td>
 					<%
@@ -203,17 +202,7 @@
 	<script type="text/javascript">
   		
   	
-  	function edit_row(no){
-  			document.getElementById("edit_button"+no).style.display="none";
-			document.getElementById("save_button"+no).style.display="block";
-			var projectname = document.getElementById("projectname"+no);
-			var projectname_data = projectname.value;
-			projectname = "<input type='text' name='newProjectName' id='projectname"+no+"' value='"+projectname_data+"'>";
-			////fuck!!! mark this shit  can not change the innerHTML. why???
-			
-			
-			
-  		}
+
   		function save_row(){
   			
   			//when save ,make the text input become a submit button 
