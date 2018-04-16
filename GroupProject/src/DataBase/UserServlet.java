@@ -336,7 +336,6 @@ public class UserServlet extends HttpServlet
 	{
 		String projectName = request.getParameter("projectName");
 		dataBase.deleteProjectInvolve(projectName);
-	
 
 	}
 
