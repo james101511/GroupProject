@@ -100,13 +100,13 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "select * from user where user_email = ? and  user_password= ? ";
+			String sql = "select * from user where user_email = ? ";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, theuser.getEmail());
-			myStmt.setString(2, theuser.getPassword());
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
+				theuser.setPassword(set.getString("user_password"));
 				theuser.setFirstName(set.getString("user_firstname"));
 				theuser.setLastName(set.getString("user_lastname"));
 				return theuser;
