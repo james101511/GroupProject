@@ -479,6 +479,11 @@ public class UserServlet extends HttpServlet
 		Project project = new Project(email);
 		projects = dataBase.checkProject(project);
 		User us = dataBase.login(user);
+//		if (true) {
+//			response.getWriter().println(password);
+//			response.getWriter().println(user.getPassword());
+//			return;
+//		}
 
 		if (!us.getPassword().equals(password))
 		{
