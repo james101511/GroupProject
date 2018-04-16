@@ -6,7 +6,7 @@
 <%@ page import="DataBase.*" %>
 <%  
 	String projectName = (String) request.getParameter("projectName");
-	List<User> users = (List<User>) request.getAttribute("users");
+	List<ProjectInvolve> projectInvolves = (List<ProjectInvolve>) request.getAttribute("membersInvolve");
 %>
 <html>
 <head>
@@ -61,8 +61,9 @@
 	{
 		document.form1.submit();
 	}
-	function delete_member()
+	function delete_member(i)
 	{
+		document.getElementById("token2").value = i;
 		document.form3.submit();
 	}
 </script>
@@ -110,11 +111,15 @@
 			  		<div class="row">
 			   			<div class="form-group"> 
 			      			<label>Add more members to this project!</label>
-			        		<input class="form-control" name ="memberName"type="text"/>
+			        		<input class="form-control" name ="Email1"type="text"/>
+			        		<input id="var2" type="hidden" name="projectName" value="<%=projectName%>" />
+			        		<input id="token" type="hidden" name="token" value="1" />
+			        		<input type="hidden" name="email" value="<%=projectInvolves.get(0).getUserEmail() %>" /> 
 			   			</div>
 			   			<div class="col-md-4 col-md-4 col-xs-12"> 
 			       			<div class="form-group"> 
 			        			<button class="btn btn-primary " name="submit" type="submit">Add</button>
+			        			
 			        			<input type="hidden" name="command" value="addMember" />
 			      			</div>
 			      		</div>
@@ -126,19 +131,23 @@
 		<div class="">
 			<div id="wrapper">
 				<form name="form3" action="UserServlet" method="POST">
+				<input id=token2 type="hidden" name="token" value="temp" />
+				<input type="hidden" name="projectName" value="<%=projectName%>" />
 					<table align='center'  id="data_table" border=0>
 						<tr>
 						<th>Members</th>
 						</tr>
 			
-						<% for (int i=0;i<3;i++) { %>
+						<% for (int i=0;i<projectInvolves.size();i++) { %>
 						<!-- user.size -->
 						<tr>
-							<td id="member<%=i+1%>">member_name1111</td>
+							<td id="member<%=i+1%>"><%=projectInvolves.get(i).getUserEmail() %></td>
 							<%-- <%= users.get(i).getEmail() %> --%>
-							<td>
+							<td> 
 								<input type="hidden" name="command" value="deleteMember" />
-								<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_member()">
+								<input type="hidden" name="email<%=i+1%>" value="<%=projectInvolves.get(i).getUserEmail() %>" />
+								<input type="hidden" name="admin<%=i+1%>" value="<%=String.valueOf(projectInvolves.get(i).isAdmin())%>" />
+								<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_member(<%=i+1%>)">
 							</td>
 						</tr>
 						<% } %>

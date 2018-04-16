@@ -78,7 +78,7 @@ public class UserServlet extends HttpServlet
 		try
 		{
 			String theCommand = request.getParameter("command");
-			String theFunction = request.getParameter("function");
+
 			switch (theCommand)
 			{
 				case "login":
@@ -136,6 +136,15 @@ public class UserServlet extends HttpServlet
 				case "deleteProject":
 					deleteProject(request, response);
 					break;
+				case "listMembersInProject":
+					listMembersInProject(request, response);
+					break;
+				case "addMember":
+					addMember(request, response);
+					break;
+				case "deleteMember":
+					deleteMember(request, response);
+					break;
 			}
 
 		}
@@ -144,6 +153,40 @@ public class UserServlet extends HttpServlet
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void deleteMember(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		PrintWriter out = response.getWriter();
+		String projectName = request.getParameter("projectName");
+		String token = request.getParameter("token");
+		String email = request.getParameter("email" + token);
+		String admin = request.getParameter("admin" + token);
+
+		if (admin.equals("true"))
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('You can not delete the manager');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
+
+		dataBase.deleteMamber(projectName, email);
+		List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
+		membersInvolve = dataBase.listMembersInProject(projectName);
+		request.setAttribute("membersInvolve", membersInvolve);
+		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
+
+	}
+
+	private void listMembersInProject(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
+		String projectName = request.getParameter("projectName");
+		membersInvolve = dataBase.listMembersInProject(projectName);
+		request.setAttribute("membersInvolve", membersInvolve);
+		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
 	}
 
 	private void listMembersInTask(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -184,9 +227,15 @@ public class UserServlet extends HttpServlet
 
 	private void listTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String projectName = request.getParameter("projectName");
-		String email = request.getParameter("email");
 
+		String token = request.getParameter("token");
+		String projectName = request.getParameter("projectName" + token);
+		String email = request.getParameter("email");
+		String projectNameTrue = request.getParameter("projectName");
+		if(projectNameTrue!=null)
+		{
+			projectName=projectNameTrue;
+		}
 		List<Task> tasks = new ArrayList<>();
 		Task task = new Task(projectName);
 		tasks = dataBase.listTask(task);
@@ -194,6 +243,7 @@ public class UserServlet extends HttpServlet
 		boolean admin = dataBase.checkAdmin(projectName, email);
 		if (admin == true)
 		{
+			request.setAttribute("projectName", projectName);
 			request.setAttribute("userEmail", email);
 			request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
 		}
@@ -334,8 +384,20 @@ public class UserServlet extends HttpServlet
 
 	private void deleteProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		String projectName = request.getParameter("projectName");
+		String token = request.getParameter("token");
+		String projectName = request.getParameter("projectName" + token);
+		String email = request.getParameter("email");
 		dataBase.deleteProjectInvolve(projectName);
+		List<Project> projects = new ArrayList<>();
+		User user = new User(email, null);
+		Project project = new Project(email);
+		projects = dataBase.checkProject(project);
+		User us = dataBase.login(user);
+		request.setAttribute("user", us);
+		request.setAttribute("projects", projects);
+		request.setAttribute("email", email);
+
+		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
 
 	}
 
@@ -375,8 +437,10 @@ public class UserServlet extends HttpServlet
 	{
 		PrintWriter out = response.getWriter();
 		List<String> emails = new ArrayList<>();
+		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("email");
+		
 		int i = 1;
 
 		while (request.getParameter("Email" + i) != null)
@@ -409,7 +473,18 @@ public class UserServlet extends HttpServlet
 			Project tempProject = new Project(projectName, false, emails.get(j));
 			dataBase.addMember(tempProject);
 		}
-		turnToDashboard(request, response);
+		if (token.equals("1"))
+		{
+			List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
+			membersInvolve = dataBase.listMembersInProject(projectName);
+			request.setAttribute("membersInvolve", membersInvolve);
+			request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
+
+		}
+		else
+		{
+			turnToDashboard(request, response);
+		}
 
 	}
 
@@ -478,11 +553,11 @@ public class UserServlet extends HttpServlet
 		Project project = new Project(email);
 		projects = dataBase.checkProject(project);
 		User us = dataBase.login(user);
-//		if (true) {
-//			response.getWriter().println(password);
-//			response.getWriter().println(user.getPassword());
-//			return;
-//		}
+		// if (true) {
+		// response.getWriter().println(password);
+		// response.getWriter().println(user.getPassword());
+		// return;
+		// }
 
 		if (!us.getPassword().equals(password))
 		{

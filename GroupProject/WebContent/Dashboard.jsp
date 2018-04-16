@@ -5,7 +5,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
 <%
-	String projectName =(String)request.getParameter("projectName");
+	String projectName =(String)request.getAttribute("projectName");
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
 	List<Project> projects = (List<Project>) request.getAttribute("projects");
 	String userEmail =(String)request.getAttribute("userEmail");
@@ -175,8 +175,9 @@
 		
 		<form Name="form2" class="form-signin" action="UserServlet" method="POST">
 		<input type="hidden" name="projectName" value="<%=projectName%>" />
-		<input type="hidden" name="command" value="getAllTask" />
-		<input type="submit" value="ShowAllTask" >
+		<input id="var" type="hidden" name="command" value="temp"  />
+		<input type="button" value="ShowAllTask"onclick='show()' >
+		<input type="button" value="EditProject"onclick='edit()' >
 		</form>
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>
@@ -194,6 +195,23 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>		
+	<script type="text/javascript">
+  		
+  	
 
+  		function edit(){
+  			
+  			//when save ,make the text input become a submit button 
+			document.getElementById("var").value = "listMembersInProject";
+			
+			document.form2.submit();
+  		}
+  		function show(){
+			document.getElementById("var").value = "getAllTask";
+			
+			document.form2.submit();
+  		}
+
+  	</script>
 </body>
 </html>

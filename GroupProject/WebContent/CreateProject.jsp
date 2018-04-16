@@ -96,14 +96,22 @@
 				</tr>
 			</thead>
 
+
+			<form name="form1" class="form-signin" action="UserServlet" method="POST">
+			<input id="var" type="hidden" name="command" value="temp" />
+			<input type="hidden" name="email" value="<%=user.getEmail()%>" />
+			<input id="token" type="hidden" name="token" value="temp" />
 			<%
 				for (int i = 0; i < projects.size(); i++) {
 			%>
 
+			
+			
+				<input type="hidden" name="projectName<%=i+1%>" value="<%=projects.get(i).getProjectName()%>" />
 			<tr id=row <%=i + 1%>>
-				<form Name="form1" class="form-signin" action="UserServlet" method="POST">
-					<input id="var" type="hidden" name="command" value="checkProject" />
-					<input type="hidden" name="email" value="<%=user.getEmail()%>" />
+				
+					
+					
 					<%
 						if (projects.get(i).isProjectAdmin() == true) {
 					%>
@@ -111,23 +119,19 @@
 
 
 					<td>
-						<input id="projectname<%=i + 1%>" type="submit" value="<%=projects.get(i).getProjectName()%>" name="projectName" />
+						
+						<input id="projectname<%=i+1%>" type="button" value="<%=projects.get(i).getProjectName()%>" name='projectName' onclick='dashboard(<%=i+1%>)' />
+						
 					</td>
 
 					<td>
-
-						<input type="hidden" name="projectName" value="<%=projects.get(i).getProjectName()%>" />
-						
-						<input type='button' value='Delete' class='delete' onclick='delete_row()'>
+						<input type='button' value='Delete' class='delete' onclick='delete_row(<%=i+1%>)'>
 					</td>
-					<%
-						}
-					%>
-				</form>
+					<%}%>
+				
 			</tr>
-			<%
-				}
-			%>
+			<%}%>
+			</form>
 		</table>
 
 
@@ -203,16 +207,14 @@
   		
   	
 
-  		function save_row(){
-  			
-  			//when save ,make the text input become a submit button 
-			document.getElementById("var").value = "editProject";
-			
+  		function dashboard(i){
+			document.getElementById("var").value = "checkProject";
+			document.getElementById("token").value = i;
 			document.form1.submit();
   		}
-  		function delete_row(){
+  		function delete_row(i){
 			document.getElementById("var").value = "deleteProject";
-			
+			document.getElementById("token").value = i;
 			document.form1.submit();
   		}
 

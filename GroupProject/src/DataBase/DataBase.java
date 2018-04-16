@@ -657,6 +657,41 @@ public class DataBase
 
 	}
 
+	public List<ProjectInvolve> listMembersInProject(String projectName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		List<ProjectInvolve> membersInvolve = new ArrayList<>();
+
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select * from project_involve where project_name=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, projectName);
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+				boolean adminTemp = false;
+				String userEmail = set.getString("user_email");
+				String admin = set.getString("project_admin");
+				if (admin.equals("1"))
+				{
+					adminTemp = true;
+				}
+				ProjectInvolve temp = new ProjectInvolve(projectName, adminTemp, userEmail);
+				membersInvolve.add(temp);
+			}
+			return membersInvolve;
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+
+	}
+
 	public void deleteProjectInvolve(String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -681,6 +716,27 @@ public class DataBase
 				Close(myConn, myStmt, null);
 
 			}
+		}
+
+	}
+
+	public void deleteMamber(String projectName, String email) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+
+			String sql = "DELETE FROM project_involve WHERE project_Name = ? and user_email =?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, projectName);
+			myStmt.setString(2, email);
+			myStmt.execute();
+		}
+		finally
+		{
+			Close(myConn, myStmt, null);
 		}
 
 	}
