@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet
 {
@@ -79,7 +78,7 @@ public class UserServlet extends HttpServlet
 		try
 		{
 			String theCommand = request.getParameter("command");
-
+			String theFunction = request.getParameter("function");
 			switch (theCommand)
 			{
 				case "login":
@@ -112,12 +111,7 @@ public class UserServlet extends HttpServlet
 					deleteTask(request, response);
 					getAllTask(request, response);
 					break;
-				case "editProject":
-					editProject(request, response);
-					break;
-				case "deleteProject":
-					deleteProject(request,response);
-					break;
+
 				case "addTaskMember":
 					addTaskMember(request, response);
 					break;
@@ -135,6 +129,12 @@ public class UserServlet extends HttpServlet
 					break;
 				case "listMembersInTask":
 					listMembersInTask(request, response);
+					break;
+				case "editProject":
+					editProject(request, response);
+					break;
+				case "deleteProject":
+					deleteProject(request, response);
 					break;
 			}
 
@@ -323,7 +323,7 @@ public class UserServlet extends HttpServlet
 		getAllTask(request, response);
 
 	}
-	
+
 	private void editProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
@@ -331,11 +331,12 @@ public class UserServlet extends HttpServlet
 		dataBase.editProject(projectName, newProjectName);
 
 	}
+
 	private void deleteProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
 		dataBase.deleteProjectInvolve(projectName);
-		dataBase.deleteProject(projectName);
+	
 
 	}
 
