@@ -115,9 +115,9 @@ public class UserServlet extends HttpServlet
 				case "editProject":
 					editProject(request, response);
 					break;
-//				case "deleteProject":
-//					deleteProject(request,response);
-//					break;
+				case "deleteProject":
+					deleteProject(request,response);
+					break;
 				case "addTaskMember":
 					addTaskMember(request, response);
 					break;
@@ -331,14 +331,13 @@ public class UserServlet extends HttpServlet
 		dataBase.editProject(projectName, newProjectName);
 
 	}
-//	private void deleteProject(HttpServletRequest request, HttpServletResponse response) throws Exception
-//	{
-//		String projectName = request.getParameter("projectName");
-//		String taskName = request.getParameter("taskName");
-//		dataBase.deleteTaskInvolve(taskName, projectName);
-//		dataBase.deleteTask(projectName, taskName);
-//
-//	}
+	private void deleteProject(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String projectName = request.getParameter("projectName");
+		dataBase.deleteProjectInvolve(projectName);
+		dataBase.deleteProject(projectName);
+
+	}
 
 	private void addTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{

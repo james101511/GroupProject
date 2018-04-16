@@ -113,8 +113,10 @@
 						
 						
 						<td> <input id="projectname<%=i+1%>" type="submit" value="<%= projects.get(i).getProjectName() %>" name="projectName"/> </td>
+						
 						<td>
 						<input id="var" type="hidden" name="command" value="x" />
+						<input type="hidden" name="projectName" value="<%= projects.get(i).getProjectName() %>" />
 						<input type='button' id='edit_button<%=i+1%>' value='Edit' class='edit' onclick='edit_row(<%=i+1%>)'>
   					    <input type='button' id='save_button<%=i+1%>' value='Save' class='save' onclick='save_row()'>
   					    <input type='button' value='Delete' class='delete' onclick='delete_row()'>
@@ -180,20 +182,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   	<script type="text/javascript">
-  		function edit_row(no){
+  		
+  	
+  	function edit_row(no){
   			document.getElementById("edit_button"+no).style.display="none";
 			document.getElementById("save_button"+no).style.display="block";
 			var projectname = document.getElementById("projectname"+no);
 			var projectname_data = projectname.value;
-			projectname = "<input type='text' id='projectname"+no+"' value='"+projectname_data+"'>";
-			
+			projectname = "<input type='text' name='newProjectName' id='projectname"+no+"' value='"+projectname_data+"'>";
+			////fuck!!! mark this shit  can not change the innerHTML. why???
 			
 			
 			
   		}
   		function save_row(){
   			
-  			
+  			//when save ,make the text input become a submit button 
 			document.getElementById("var").value = "editProject";
 			
 			document.form1.submit();

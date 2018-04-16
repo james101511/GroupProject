@@ -187,7 +187,7 @@
 				 var task_data=task.innerHTML;
 				 var startDate_data=startDate.innerHTML;
 				 var endDate_data=endDate.innerHTML;
-				 startDate.innerHTML="<input class='form-control' type='text'name='startDate' id='startDate_text"+no+"' value='"+startDate_data+"'>";
+				 startDate.innerHTML="<input class='form-control' type='text' name='startDate' id='startDate_text"+no+"' value='"+startDate_data+"'>";
 				 endDate.innerHTML="<input class='form-control' type='text' name='endDate' id='endDate_text"+no+"' value='"+endDate_data+"'>";
 			}
 			

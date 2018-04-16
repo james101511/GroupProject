@@ -437,6 +437,26 @@ public class DataBase
 		}
 
 	}
+	
+	public void deleteProject(String projectName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "DELETE FROM project WHERE project_name = ?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, projectName);
+			myStmt.execute();
+		}
+		finally
+		{
+
+			Close(myConn, myStmt, null);
+		}
+
+	}
 
 	public void editTask(String projectName, String taskName, String startDate, String endDate) throws SQLException
 	{
@@ -656,6 +676,28 @@ public class DataBase
 		}
 
 	}
+	
+	public void deleteProjectInvolve(String projectName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+
+			String sql = "DELETE FROM project_involve WHERE project_name = ?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, projectName);
+			myStmt.execute();
+		}
+		finally
+		{
+			Close(myConn, myStmt, null);
+		}
+
+	}
+	
+	
 
 	private void Close(Connection myConn, Statement myStmt, ResultSet myRs)
 	{
