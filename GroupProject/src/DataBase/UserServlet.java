@@ -49,7 +49,12 @@ public class UserServlet extends HttpServlet
 				case "checkTaskDetail":
 					checkTaskDetail(request, response);
 					break;
-
+				case "deleteTaskMember":
+					deleteTaskMember(request, response);
+					break;
+				case "addTaskMember":
+					addTaskMember(request, response);
+					break;
 			}
 		}
 		catch (Exception exc)
@@ -112,12 +117,8 @@ public class UserServlet extends HttpServlet
 					getAllTask(request, response);
 					break;
 
-				case "addTaskMember":
-					addTaskMember(request, response);
-					break;
-				case "deleteTaskMember":
-					deleteTaskMember(request, response);
-					break;
+				
+				
 				case "checkProject":
 					turnToDashboard(request, response);
 					break;
@@ -166,13 +167,13 @@ public class UserServlet extends HttpServlet
 		String newProjectName = request.getParameter("newProjectName");
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("email");
-		
+
 		dataBase.rename(newProjectName, projectName);
 		User user = new User(email, null);
 		Project project = new Project(email);
 		projects = dataBase.checkProject(project);
 		User us = dataBase.login(user);
-		
+
 		request.setAttribute("user", us);
 		request.setAttribute("projects", projects);
 		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
@@ -212,12 +213,12 @@ public class UserServlet extends HttpServlet
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("userEmail");
 		membersInvolve = dataBase.listMembersInProject(projectName);
-		
-//		if (true)
-//		{
-//			response.getWriter().println(email);
-//			return;
-//		}
+
+		// if (true)
+		// {
+		// response.getWriter().println(email);
+		// return;
+		// }
 		request.setAttribute("projectName", projectName);
 		request.setAttribute("membersInvolve", membersInvolve);
 		request.setAttribute("userEmail", email);
@@ -317,9 +318,10 @@ public class UserServlet extends HttpServlet
 		String userEmail = trimSpace(request.getParameter("userEmail"));
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
+
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName);
 
-		if (!dataBase.checkMemberInTask(userEmail, projectName))
+		if (!dataBase.checkMemberInProject(userEmail, projectName))
 
 		{
 
@@ -330,14 +332,14 @@ public class UserServlet extends HttpServlet
 			return;
 		}
 
-		// if (!dataBase.checkUserExist(userEmail))
-		// {
-		// out.println("<script type=\"text/javascript\">");
-		// out.println("alert('" + userEmail + " is not exist');");
-		// out.println("window.history.go(-1);");
-		// out.println("</script>");
-		// return;
-		// }
+		if (dataBase.checkUserInTask(userEmail, taskName, projectName))
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('" + userEmail + " is already in this task');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
 		dataBase.addTaskMember(taskInvolve);
 
 		checkTaskDetail(request, response);

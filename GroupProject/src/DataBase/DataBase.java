@@ -582,7 +582,7 @@ public class DataBase
 
 	}
 
-	public boolean checkMemberInTask(String userEmail, String projectName) throws SQLException
+	public boolean checkMemberInProject(String userEmail, String projectName) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -591,7 +591,7 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "select 1 from project_involve where user_email=? and project_name=?";
+			String sql = "select * from project_involve where user_email=? and project_name=?";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, userEmail);
 			myStmt.setString(2, projectName);
@@ -609,6 +609,35 @@ public class DataBase
 			Close(myConn, myStmt, null);
 		}
 
+	}
+
+	public boolean checkUserInTask(String userEmail, String taskName, String projectName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		boolean memberExist = false;
+
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select * from task_involve where user_email=? and project_name=? and task_name=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, userEmail);
+			myStmt.setString(2, projectName);
+			myStmt.setString(3, taskName);
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+
+				memberExist = true;
+
+			}
+			return memberExist;
+		}
+		finally
+		{
+			Close(myConn, myStmt, null);
+		}
 	}
 
 	public void editProgress(TaskInvolve taskInvolve) throws SQLException
@@ -719,12 +748,13 @@ public class DataBase
 		}
 
 	}
-	public void rename(String newProjectName,String projectName)	 throws SQLException
+
+	public void rename(String newProjectName, String projectName) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		String[] sqls = { "UPDATE task_involve SET project_name = ? where project_name=?",
-				"UPDATE task SET project_name = ? where project_name=?", 
+				"UPDATE task SET project_name = ? where project_name=?",
 				"UPDATE project SET project_name = ? where project_name=?" };
 		for (int i = 0; i < 3; i++)
 		{
@@ -745,7 +775,7 @@ public class DataBase
 
 			}
 		}
-		
+
 	}
 
 	public void deleteMamber(String projectName, String email) throws SQLException
@@ -793,7 +823,5 @@ public class DataBase
 			exc.printStackTrace();
 		}
 	}
-
-	
 
 }

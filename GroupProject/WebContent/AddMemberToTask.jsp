@@ -74,7 +74,7 @@ members of the team to a specific task. He also will be able to see who is alrea
 			  <div class="row">
 			  	<div class="col align-self-center">
 					<div id="wrapper">
-					<form Name="form2" class="form-signin" action="UserServlet" method="POST">
+					<form Name="form2" class="form-signin" action="UserServlet" method="GET">
 					<input id="var" type="hidden" name="command" value="x" />
 					<input type="hidden" name="projectName" value="<%=projectName %>" />
 					<input type="hidden" name="taskName" value="<%=taskName %>" />
