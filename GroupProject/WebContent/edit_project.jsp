@@ -102,7 +102,7 @@
 					<input type="button" id="save_button" value="Save" class="btn btn-primary" onclick="save()" style="display: none;">
 				</td>
 			</tr>
-		</div>
+		</div> 
 		</form>
 		</div>
 		
