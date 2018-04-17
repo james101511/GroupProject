@@ -51,10 +51,10 @@
  		document.getElementById("rename_button").style.display="none";
  		document.getElementById("save_button").style.display="block";
 	
- 		var newProjectName = document.getElementById("editable_projectname");
- 		var projectName = newProjectName.innerHTML;
+ 		var ProjectName = document.getElementById("editable_projectname");
+ 		var newProjectName = ProjectName.innerHTML;
 
- 		newProjectName.innerHTML="<input type='text' id='editable_projectname' value='"+projectName+"'>";
+ 		ProjectName.innerHTML="<input type='text' name='newProjectName' id='editable_projectname' value='"+newProjectName+"'>";
  		
 
 	}
@@ -93,6 +93,7 @@
 		
 		<div id="d1">
 		<form id="form1" name="form1" class="form-signin" action="UserServlet" method="POST">
+		<input type="hidden" name="projectName" value="<%=projectName%>" />
 		<label id="editable_projectname" for="staticQustion" class="form-label-3"><%=projectName%></label>
 		<div id="rename_button1">
 			<tr>
