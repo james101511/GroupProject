@@ -5,7 +5,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
 <%  
-	String projectName = (String) request.getParameter("projectName");
+	String projectName = (String) request.getAttribute("projectName");
 	List<ProjectInvolve> projectInvolves = (List<ProjectInvolve>) request.getAttribute("membersInvolve");
 %>
 <html>

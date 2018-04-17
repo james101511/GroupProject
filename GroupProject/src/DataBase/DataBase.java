@@ -723,10 +723,10 @@ public class DataBase
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
-		String[] sqls = { "UPDATE FROM task_involve SET project_name = ? where project_name=?",
-				"UPDATE FROM task SET project_name = ? where project_name=?", "UPDATE FROM project_involve SET project_name = ? where project_name=?",
-				"UPDATE FROM project SET project_name = ? where project_name=?" };
-		for (int i = 0; i < 4; i++)
+		String[] sqls = { "UPDATE task_involve SET project_name = ? where project_name=?",
+				"UPDATE task SET project_name = ? where project_name=?", 
+				"UPDATE project SET project_name = ? where project_name=?" };
+		for (int i = 0; i < 3; i++)
 		{
 			myConn = dataSource.getConnection();
 			try

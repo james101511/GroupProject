@@ -173,7 +173,7 @@
 		
 		
 		
-		<form Name="form2" class="form-signin" action="UserServlet" method="GET">
+		<form Name="form2" class="form-signin" action="UserServlet" method="POST">
 		<input type="hidden" name="projectName" value="<%=projectName%>" />
 		<input id="var2" type="hidden" name="command" value="temp"  />
 		<input type="button" value="ShowAllTask"onclick='show()' >

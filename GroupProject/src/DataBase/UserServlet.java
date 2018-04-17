@@ -49,12 +49,6 @@ public class UserServlet extends HttpServlet
 				case "checkTaskDetail":
 					checkTaskDetail(request, response);
 					break;
-				case "listMembersInProject":
-					listMembersInProject(request, response);
-					break;
-				case "getAllTask":
-					getAllTask(request, response);
-					break;
 
 			}
 		}
@@ -134,14 +128,11 @@ public class UserServlet extends HttpServlet
 				case "listMembersInTask":
 					listMembersInTask(request, response);
 					break;
-				case "editProject":
-					editProject(request, response);
-					break;
+				// case "editProject":
+				// editProject(request, response);
+				// break;
 				case "deleteProject":
 					deleteProject(request, response);
-					break;
-				case "listMembersInProject":
-					listMembersInProject(request, response);
 					break;
 				case "addMember":
 					addMember(request, response);
@@ -149,9 +140,16 @@ public class UserServlet extends HttpServlet
 				case "deleteMember":
 					deleteMember(request, response);
 					break;
-				case"rename":
-					rename(request,response);
+				case "rename":
+					rename(request, response);
 					break;
+				case "listMembersInProject":
+					listMembersInProject(request, response);
+					break;
+				case "getAllTask":
+					getAllTask(request, response);
+					break;
+
 			}
 
 		}
@@ -166,9 +164,11 @@ public class UserServlet extends HttpServlet
 	{
 		String newProjectName = request.getParameter("newProjectName");
 		String projectName = request.getParameter("projectName");
-		dataBase.rename(newProjectName,projectName);
+	
+		dataBase.rename(newProjectName, projectName);
 		List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
 		membersInvolve = dataBase.listMembersInProject(newProjectName);
+		request.setAttribute("projectName", newProjectName);
 		request.setAttribute("membersInvolve", membersInvolve);
 		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
 	}
@@ -194,6 +194,7 @@ public class UserServlet extends HttpServlet
 		List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
 		membersInvolve = dataBase.listMembersInProject(projectName);
 		request.setAttribute("membersInvolve", membersInvolve);
+		request.setAttribute("projectName", projectName);
 		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
 
 	}
@@ -203,6 +204,12 @@ public class UserServlet extends HttpServlet
 		List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
 		String projectName = request.getParameter("projectName");
 		membersInvolve = dataBase.listMembersInProject(projectName);
+//		if (true)
+//		{
+//			response.getWriter().println(email);
+//			return;
+//		}
+		request.setAttribute("projectName", projectName);
 		request.setAttribute("membersInvolve", membersInvolve);
 		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
 	}
@@ -392,13 +399,14 @@ public class UserServlet extends HttpServlet
 
 	}
 
-	private void editProject(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		String projectName = request.getParameter("projectName");
-		String newProjectName = request.getParameter("newProjectName");
-		dataBase.editProject(projectName, newProjectName);
-
-	}
+	// private void editProject(HttpServletRequest request, HttpServletResponse
+	// response) throws Exception
+	// {
+	// String projectName = request.getParameter("projectName");
+	// String newProjectName = request.getParameter("newProjectName");
+	// dataBase.editProject(projectName, newProjectName);
+	//
+	// }
 
 	private void deleteProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
