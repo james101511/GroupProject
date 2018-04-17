@@ -5,8 +5,9 @@
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
 <%  
-	String projectName = (String) request.getAttribute("projectName");
+	/* String projectName = (String) request.getAttribute("projectName"); */
 	List<ProjectInvolve> projectInvolves = (List<ProjectInvolve>) request.getAttribute("membersInvolve");
+	String userEmail =(String)request.getAttribute("userEmail");
 %>
 <html>
 <head>
@@ -93,12 +94,13 @@
 		
 		<div id="d1">
 		<form id="form1" name="form1" class="form-signin" action="UserServlet" method="POST">
-		<input type="hidden" name="projectName" value="<%=projectName%>" />
-		<label id="editable_projectname" for="staticQustion" class="form-label-3"><%=projectName%></label>
+		<input type="hidden" name="projectName" value="<%=projectInvolves.get(0).getProjectName()%>" />
+		<label id="editable_projectname" for="staticQustion" class="form-label-3"><%=projectInvolves.get(0).getProjectName()%></label>
 		<div id="rename_button1">
 			<tr>
 				<td>
 					<input type="hidden" name="command" value="rename">
+					<input type="hidden" name="email" value="<%=userEmail%>">
 					<input type="button" id="rename_button" value="Rename" class="btn btn-primary" onclick="rename()">
 					<input type="button" id="save_button" value="Save" class="btn btn-primary" onclick="save()" style="display: none;">
 				</td>
@@ -114,7 +116,7 @@
 			   			<div class="form-group"> 
 			      			<label>Add more members to this project!</label>
 			        		<input class="form-control" name ="Email1"type="text"/>
-			        		<input id="var2" type="hidden" name="projectName" value="<%=projectName%>" />
+			        		<input id="var2" type="hidden" name="projectName" value="<%=projectInvolves.get(0).getProjectName()%>" />
 			        		<input id="token" type="hidden" name="token" value="1" />
 			        		<input type="hidden" name="email" value="<%=projectInvolves.get(0).getUserEmail() %>" /> 
 			   			</div>
@@ -134,7 +136,7 @@
 			<div id="wrapper">
 				<form name="form3" action="UserServlet" method="POST">
 				<input id=token2 type="hidden" name="token" value="temp" />
-				<input type="hidden" name="projectName" value="<%=projectName%>" />
+				<input type="hidden" name="projectName" value="<%=projectInvolves.get(0).getProjectName()%>" />
 					<table align='center'  id="data_table" border=0>
 						<tr>
 						<th>Members</th>

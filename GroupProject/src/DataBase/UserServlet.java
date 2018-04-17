@@ -162,15 +162,20 @@ public class UserServlet extends HttpServlet
 
 	private void rename(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		List<Project> projects = new ArrayList<>();
 		String newProjectName = request.getParameter("newProjectName");
 		String projectName = request.getParameter("projectName");
-	
+		String email = request.getParameter("email");
+		
 		dataBase.rename(newProjectName, projectName);
-		List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
-		membersInvolve = dataBase.listMembersInProject(newProjectName);
-		request.setAttribute("projectName", newProjectName);
-		request.setAttribute("membersInvolve", membersInvolve);
-		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
+		User user = new User(email, null);
+		Project project = new Project(email);
+		projects = dataBase.checkProject(project);
+		User us = dataBase.login(user);
+		
+		request.setAttribute("user", us);
+		request.setAttribute("projects", projects);
+		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
 	}
 
 	private void deleteMember(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -180,6 +185,7 @@ public class UserServlet extends HttpServlet
 		String token = request.getParameter("token");
 		String email = request.getParameter("email" + token);
 		String admin = request.getParameter("admin" + token);
+		String email2 = request.getParameter("userEmail");
 
 		if (admin.equals("true"))
 		{
@@ -195,6 +201,7 @@ public class UserServlet extends HttpServlet
 		membersInvolve = dataBase.listMembersInProject(projectName);
 		request.setAttribute("membersInvolve", membersInvolve);
 		request.setAttribute("projectName", projectName);
+		request.setAttribute("userEmail", email2);
 		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
 
 	}
@@ -203,7 +210,9 @@ public class UserServlet extends HttpServlet
 	{
 		List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
 		String projectName = request.getParameter("projectName");
+		String email = request.getParameter("userEmail");
 		membersInvolve = dataBase.listMembersInProject(projectName);
+		
 //		if (true)
 //		{
 //			response.getWriter().println(email);
@@ -211,6 +220,7 @@ public class UserServlet extends HttpServlet
 //		}
 		request.setAttribute("projectName", projectName);
 		request.setAttribute("membersInvolve", membersInvolve);
+		request.setAttribute("userEmail", email);
 		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
 	}
 

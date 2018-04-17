@@ -7,13 +7,14 @@
 <%
 	String projectName =(String)request.getAttribute("projectName");
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
-	List<Project> projects = (List<Project>) request.getAttribute("projects");
+	/* List<Project> projects = (List<Project>) request.getAttribute("projects"); */
 	String userEmail =(String)request.getAttribute("userEmail");
 
 %>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
+	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -175,6 +176,7 @@
 		
 		<form Name="form2" class="form-signin" action="UserServlet" method="POST">
 		<input type="hidden" name="projectName" value="<%=projectName%>" />
+		<input type="hidden" name="userEmail" value="<%=userEmail%>" />
 		<input id="var2" type="hidden" name="command" value="temp"  />
 		<input type="button" value="ShowAllTask"onclick='show()' >
 		<input type="button" value="EditProject"onclick='edit()' >
