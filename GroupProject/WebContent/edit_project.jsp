@@ -51,10 +51,11 @@
  		document.getElementById("rename_button").style.display="none";
  		document.getElementById("save_button").style.display="block";
 	
- 		var projectName = document.getElementById("editable_projectname");
- 		var projectName_data = projectName.innerHTML;
+ 		var newProjectName = document.getElementById("editable_projectname");
+ 		var projectName_data = newProjectName.innerHTML;
 
- 		projectName.innerHTML="<input type='text' id='editable_projectname' value='"+projectName_data+"'>";
+ 		newProjectName.innerHTML="<input type='text' id='editable_projectname' value='"+projectName_data+"'>";
+ 		
 
 	}
 	function save()
