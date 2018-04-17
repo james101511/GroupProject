@@ -94,7 +94,7 @@
 								<input type="hidden" name="projectName" value="<%=projectName %>" />
 								<input type="hidden" name="taskName" value="<%=taskName %>" />
 								<input type="button" id="edit_button" value="Edit" class="edit btn btn-info" onclick="edit_row()">
-								<input type="button" id="save_button" value="Save" class="save btn btn-success" onclick="save_row()">
+								<input type="button" id="save_button" value="Save" class="save btn btn-success" onclick="save_row()" style="display: none;">
 								<%} %>
 								</td>
 							</tr>
