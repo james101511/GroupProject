@@ -149,6 +149,9 @@ public class UserServlet extends HttpServlet
 				case "deleteMember":
 					deleteMember(request, response);
 					break;
+				case"rename":
+					rename(request,response);
+					break;
 			}
 
 		}
@@ -157,6 +160,17 @@ public class UserServlet extends HttpServlet
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void rename(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+		String newProjectName = request.getParameter("newProjectName");
+		String projectName = request.getParameter("projectName");
+		dataBase.rename(newProjectName,projectName);
+		List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
+		membersInvolve = dataBase.listMembersInProject(newProjectName);
+		request.setAttribute("membersInvolve", membersInvolve);
+		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
 	}
 
 	private void deleteMember(HttpServletRequest request, HttpServletResponse response) throws Exception

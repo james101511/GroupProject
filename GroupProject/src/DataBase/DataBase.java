@@ -618,7 +618,7 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "UPDATE task_involve SET progress= ?,percentage= ? WHERE user_email=? and project_name = ? and task_name=?;";
+			String sql = "UPDATE task_involve SET progress= ?,percentage= ? WHERE user_email=? and project_name = ? and task_name=?";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, taskInvolve.getProgress());
 			myStmt.setString(2, taskInvolve.getPercentage());
@@ -719,6 +719,34 @@ public class DataBase
 		}
 
 	}
+	public void rename(String newProjectName,String projectName)	 throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		String[] sqls = { "UPDATE FROM task_involve SET project_name = ? where project_name=?",
+				"UPDATE FROM task SET project_name = ? where project_name=?", "UPDATE FROM project_involve SET project_name = ? where project_name=?",
+				"UPDATE FROM project SET project_name = ? where project_name=?" };
+		for (int i = 0; i < 4; i++)
+		{
+			myConn = dataSource.getConnection();
+			try
+			{
+
+				myStmt = myConn.prepareStatement(sqls[i]);
+				myStmt.setString(1, newProjectName);
+				myStmt.setString(2, projectName);
+
+				myStmt.execute();
+
+			}
+			finally
+			{
+				Close(myConn, myStmt, null);
+
+			}
+		}
+		
+	}
 
 	public void deleteMamber(String projectName, String email) throws SQLException
 	{
@@ -765,5 +793,7 @@ public class DataBase
 			exc.printStackTrace();
 		}
 	}
+
+	
 
 }
