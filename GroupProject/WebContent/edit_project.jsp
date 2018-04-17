@@ -52,9 +52,9 @@
  		document.getElementById("save_button").style.display="block";
 	
  		var newProjectName = document.getElementById("editable_projectname");
- 		var projectName_data = newProjectName.innerHTML;
+ 		var projectName = newProjectName.innerHTML;
 
- 		newProjectName.innerHTML="<input type='text' id='editable_projectname' value='"+projectName_data+"'>";
+ 		newProjectName.innerHTML="<input type='text' id='editable_projectname' value='"+projectName+"'>";
  		
 
 	}
