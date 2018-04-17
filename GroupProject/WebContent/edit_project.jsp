@@ -97,7 +97,7 @@
 		<div id="rename_button1">
 			<tr>
 				<td>
-					<input type="hidden" name="command" value="renameProject">
+					<input type="hidden" name="command" value="rename">
 					<input type="button" id="rename_button" value="Rename" class="btn btn-primary" onclick="rename()">
 					<input type="button" id="save_button" value="Save" class="btn btn-primary" onclick="save()" style="display: none;">
 				</td>
