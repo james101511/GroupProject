@@ -37,7 +37,7 @@
 }
 #rename_button1 {
 	margin-top:-45px;
-	margin-left:420px;
+	margin-left:600px;
 }
 #d1 {
 	margin-left: auto;
