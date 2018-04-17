@@ -245,6 +245,7 @@ input[type="text"]
 			<div>
 			<input type="hidden" name="email" value="<%= email %>" />
 			<input id="var2" type="hidden" name="projectName" value="<%=projectName%>" />
+			<input id="token" type="hidden" name="token" value="2" />
 			<input id="skip"  class="button button3" type="submit" value="Skip" onClick="buttonSkip()">
 			<input id="submit"  class="button button4" type="submit" value="Invite" onClick="buttonInvite()">
 			</div>

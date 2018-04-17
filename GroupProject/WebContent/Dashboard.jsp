@@ -173,9 +173,9 @@
 		
 		
 		
-		<form Name="form2" class="form-signin" action="UserServlet" method="POST">
+		<form Name="form2" class="form-signin" action="UserServlet" method="GET">
 		<input type="hidden" name="projectName" value="<%=projectName%>" />
-		<input id="var" type="hidden" name="command" value="temp"  />
+		<input id="var2" type="hidden" name="command" value="temp"  />
 		<input type="button" value="ShowAllTask"onclick='show()' >
 		<input type="button" value="EditProject"onclick='edit()' >
 		</form>
@@ -202,12 +202,12 @@
   		function edit(){
   			
   			//when save ,make the text input become a submit button 
-			document.getElementById("var").value = "listMembersInProject";
+			document.getElementById("var2").value = "listMembersInProject";
 			
 			document.form2.submit();
   		}
   		function show(){
-			document.getElementById("var").value = "getAllTask";
+			document.getElementById("var2").value = "getAllTask";
 			
 			document.form2.submit();
   		}

@@ -49,6 +49,12 @@ public class UserServlet extends HttpServlet
 				case "checkTaskDetail":
 					checkTaskDetail(request, response);
 					break;
+				case "listMembersInProject":
+					listMembersInProject(request, response);
+					break;
+				case "getAllTask":
+					getAllTask(request, response);
+					break;
 
 			}
 		}
@@ -124,9 +130,7 @@ public class UserServlet extends HttpServlet
 				case "editProgress":
 					editProgress(request, response);
 					break;
-				case "getAllTask":
-					getAllTask(request, response);
-					break;
+
 				case "listMembersInTask":
 					listMembersInTask(request, response);
 					break;
@@ -232,9 +236,9 @@ public class UserServlet extends HttpServlet
 		String projectName = request.getParameter("projectName" + token);
 		String email = request.getParameter("email");
 		String projectNameTrue = request.getParameter("projectName");
-		if(projectNameTrue!=null)
+		if (projectNameTrue != null)
 		{
-			projectName=projectNameTrue;
+			projectName = projectNameTrue;
 		}
 		List<Task> tasks = new ArrayList<>();
 		Task task = new Task(projectName);
@@ -440,7 +444,7 @@ public class UserServlet extends HttpServlet
 		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("email");
-		
+
 		int i = 1;
 
 		while (request.getParameter("Email" + i) != null)
