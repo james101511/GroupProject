@@ -494,7 +494,7 @@ public class UserServlet extends HttpServlet
 				out.println("</script>");
 				return;
 			}
-			if (tempEmail.equals(email))
+			if (dataBase.checkUserInProject(tempEmail,projectName))
 			{
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Your are already in the project');");

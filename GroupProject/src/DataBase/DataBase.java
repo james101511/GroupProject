@@ -610,6 +610,33 @@ public class DataBase
 		}
 
 	}
+	public boolean checkUserInProject(String tempEmail,String projectName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		boolean memberExist = false;
+
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select * from project_involve where user_email=? and project_name=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, tempEmail);
+			myStmt.setString(2, projectName);
+			ResultSet set = myStmt.executeQuery();
+			while (set.next())
+			{
+
+				memberExist = true;
+
+			}
+			return memberExist;
+		}
+		finally
+		{
+			Close(myConn, myStmt, null);
+		}
+	}
 
 	public boolean checkUserInTask(String userEmail, String taskName, String projectName) throws SQLException
 	{
@@ -823,5 +850,7 @@ public class DataBase
 			exc.printStackTrace();
 		}
 	}
+
+	
 
 }
