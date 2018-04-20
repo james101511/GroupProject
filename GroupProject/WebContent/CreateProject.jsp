@@ -91,7 +91,7 @@
 			<thead>
 				<tr>
 					<th>
-						<a href="#">ProjectYouManage</a>
+						<a href="#">Project You Manage</a>
 					</th>
 				</tr>
 			</thead>
@@ -142,7 +142,7 @@
 			<thead>
 				<tr>
 					<th>
-						<a href="#">ProjectYouInvolve</a>
+						<a href="#">Projects You are Involved in</a>
 					</th>
 				</tr>
 			</thead>
