@@ -31,6 +31,19 @@
 <!-- Bootstrap Date-Picker Plugin -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker1" ).datepicker();
+  } );
+  $( function() {
+	$( "#datepicker2" ).datepicker();
+  } );
+  </script>
 </head>
 <body>
 
@@ -46,7 +59,6 @@
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
-					<a class="navbar-brand" href="ManagePeople.jsp">Manage People</a>
 					<a class="navbar-brand" href="Homepage.jsp">Log Out</a>
 				</div>
 			
@@ -79,7 +91,7 @@
 			  <!-- <div class="col-md-4 col-md-4 col-xs-12">
  -->			   <div class="form-group"> 
 			        <label>Task Name</label>
-			        <input class="form-control" name ="taskName"type="text"/>
+			        <input class="form-control" name ="taskName" type="text" required/>
 			    </div>
 			  <!--  </div>  -->
 			   
@@ -90,7 +102,7 @@
 			    
 			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
 			        <label class="control-label" for="date">Start Date</label>
-			        <input class="form-control" id="date" name="startDate" placeholder="YYYY/MM/DD" type="text"/>
+			        <input class="form-control" id="datepicker1" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
 			      </div>
 			   
 			     <!-- Form code ends --> 
@@ -100,7 +112,7 @@
 			    
 			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
 			        <label class="control-label" for="date">End Date</label>
-			        <input class="form-control" id="date" name="endDate" placeholder="YYYY/MM/DD" type="text"/>
+			        <input class="form-control" id="datepicker2" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
 			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
 			      </div>
 			      <div class="col-md-4 col-md-4 col-xs-12"> 
@@ -152,7 +164,7 @@
 				<input type="hidden" name="taskName<%=i+1%>" value="<%= tasks.get(i).getTaskName() %>" />
 				<input type="button" id="edit_button<%=i+1%>" value="Edit" class="edit btn btn-info" onclick="edit_row(<%=i+1%>)">
 				<input type="button" id="save_button<%=i+1%>" value="Save" class="save btn btn-primary" onclick="save_row(<%=i+1%>)" style="display: none;">
-				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row()">
+				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row(<%=i+1%>)">
 				
 				</td>
 				
@@ -198,15 +210,15 @@
 				document.form1.submit();
 			}
 			
-			function delete_row()
+			function delete_row(i)
 			{
 				
 				document.getElementById("var").value = "deleteTask";
-			
+				document.getElementById("token").value = i;
 				document.form1.submit();
 			}
 
-			
+	
 
 			    
 			    

@@ -18,7 +18,7 @@ members of the team to a specific task. He also will be able to see who is alrea
 	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	
 
@@ -99,7 +99,7 @@ members of the team to a specific task. He also will be able to see who is alrea
 							 <% } %>
 							<tr>
 							
-								<td><input type="text" class="form-control" name="userEmail" id="new_name"></td>
+								<td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" class="form-control" name="userEmail" id="new_name"></td>
 								<td><p></p></td>
 								<!--<input type="text" id="new_progress">  -->
 								<td><input type="button" class="add btn btn-info" onclick="add_row();" value="Add Member"></td>

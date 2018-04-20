@@ -367,8 +367,9 @@ public class UserServlet extends HttpServlet
 
 	private void deleteTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
-		String taskName = request.getParameter("taskName");
+		String taskName = request.getParameter("taskName" + token);
 		dataBase.deleteTaskInvolve(taskName, projectName);
 		dataBase.deleteTask(projectName, taskName);
 

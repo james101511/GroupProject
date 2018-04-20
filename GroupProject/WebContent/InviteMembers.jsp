@@ -192,11 +192,7 @@ input[type="text"]
 			<a id="projectName" class="navbar-brand" href="#">Manage P&P </a>
 		</div>
 
-		<div class="topbar-section topbar-logIn">
 
-			<a class="navbar-brand" href="#">Menu</a>
-
-		</div>
 
 	</div>
 
@@ -269,7 +265,7 @@ input[type="text"]
 					var total_text=document.getElementsByClassName("input_text");
 					total_text=total_text.length+1;
 					document.getElementById("field_div").innerHTML=document.getElementById("field_div").innerHTML+
-					"<p id='input_text"+total_text+"_wrapper'><input type='text' class='input_text'  id='input_text"+total_text+"' name='Email"+total_text+"' placeholder='Email'><input type='button' id='button_minus' value='-' onclick=remove_field('input_text"+total_text+"');></p>";
+					"<p id='input_text"+total_text+"_wrapper'><input type='email' class='input_text' pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' title='xyz@something.com' id='input_text"+total_text+"' name='Email"+total_text+"' placeholder='Email' ><input type='button' id='button_minus' value='-' onclick=remove_field('input_text"+total_text+"');></p>";
 				}
 				
 				function remove_field(id) {

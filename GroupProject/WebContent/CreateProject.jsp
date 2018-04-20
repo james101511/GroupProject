@@ -96,9 +96,8 @@ padding-left: 15px;
 	</div>
 	<!-- Page content -->
 	<div id="greeting-user">
-				<h4>Hello
-				<%=user.getFirstName() + "," + user.getLastName()%></h4>
-			</div>
+				<h4>Hello<%=user.getFirstName() + "," + user.getLastName()%></h4>
+	</div>
 
 
 
@@ -150,7 +149,6 @@ padding-left: 15px;
 					<td>
 						
 						<input id="projectname<%=i+1%>" type="button" class='btn btn-primary mb-2' value="<%=projects.get(i).getProjectName()%>" name='projectName' onclick='dashboard(<%=i+1%>)' />
-						
 					</td>
 
 					<td>
@@ -215,8 +213,7 @@ padding-left: 15px;
 			<input type="hidden" name="email" value="<%=user.getEmail()%>" />
 
 			<div class="form-group mx-sm-3 mb-2">
-
-				<input class="form-control" id="new_project_name" type="text" name="projectName" placeholder="ProjectName" required="" />
+				<input class="form-control" id="new_project_name" type="text" name="projectName" placeholder="Type new project name here!" required="" />
 			</div>
 
 			<button type="submit" class="btn btn-primary mb-2">+ Add</button>
