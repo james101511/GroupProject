@@ -17,7 +17,7 @@ create table project_involve
 );
 create table task
 (
-	task_name varchar(255) , project_name varchar(255),start_date varchar(255),end_date varchar(255)
+	task_name varchar(255) , project_name varchar(255),start_date varchar(255),end_date varchar(255),task_progress(255)
 );
 create table task_involve
 (
