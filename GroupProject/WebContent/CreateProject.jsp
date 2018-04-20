@@ -149,7 +149,7 @@ padding-left: 15px;
 
 					<td>
 						
-						<input id="projectname<%=i+1%>" type="button" value="<%=projects.get(i).getProjectName()%>" name='projectName' onclick='dashboard(<%=i+1%>)' />
+						<input id="projectname<%=i+1%>" type="button" class='btn btn-primary mb-2' value="<%=projects.get(i).getProjectName()%>" name='projectName' onclick='dashboard(<%=i+1%>)' />
 						
 					</td>
 
@@ -189,7 +189,7 @@ padding-left: 15px;
 						if (projects.get(i).isProjectAdmin() == false) {
 					%>
 					<td>
-						<input type="submit" value="<%=projects.get(i).getProjectName()%>" name="projectName" />
+						<input type="submit" class='btn btn-primary mb-2' value="<%=projects.get(i).getProjectName()%>" name="projectName" />
 					</td>
 
 					<%

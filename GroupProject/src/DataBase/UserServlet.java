@@ -377,10 +377,21 @@ public class UserServlet extends HttpServlet
 	private void editTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		// PrintWriter out = response.getWriter();
+		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
-		String taskName = request.getParameter("taskName");
+		String taskName = request.getParameter("taskName" + token);
 		String startDate = trimSpace(request.getParameter("startDate"));
 		String endDate = trimSpace(request.getParameter("endDate"));
+		
+//		 if (true)
+//		 {
+//		 response.getWriter().println(taskName);
+//		 response.getWriter().println(projectName);
+//		 response.getWriter().println(startDate);
+//		 response.getWriter().println(endDate);
+//		 return;
+//		 }
+		 
 		// int startYear = Integer.parseInt(startDate.substring(0, 4));
 		// int endYear = Integer.parseInt(endDate.substring(0, 4));
 		// int startMonth = Integer.parseInt(startDate.substring(4, 6));

@@ -127,7 +127,7 @@
 <!-- This is NEW TEST TABLE -->
 <div class="container-fluid task_table">
 	<div id="wrapper">
-	<form Name="form1" action="UserServlet" method="POST">
+	<form name="form1" action="UserServlet" method="POST">
 		<table align='center' cellspacing=4 cellpadding=5 id="data_table" border=0>
 			<tr>
 				<th>Tasks</th>
@@ -137,7 +137,7 @@
 			
 			<% for (int i=0;i<tasks.size();i++) { %>
 			
-			<tr id="row1">
+			<tr id="row">
 			
 			
 			 
@@ -147,22 +147,22 @@
 				<td>
 				
 				<input id="var" type="hidden" name="command" value="x" />
-				<input id="varx" type="hidden" name="var" value="<%=i+1%>" />
+				<input id="token" type="hidden" name="token" value="temp" />
 				<input type="hidden" name="projectName" value="<%=projectName %>" />
-				<input type="hidden" name="taskName" value="<%= tasks.get(i).getTaskName() %>" />
+				<input type="hidden" name="taskName<%=i+1%>" value="<%= tasks.get(i).getTaskName() %>" />
 				<input type="button" id="edit_button<%=i+1%>" value="Edit" class="edit btn btn-info" onclick="edit_row(<%=i+1%>)">
-				<input type="button" id="save_button<%=i+1%>" value="Save" class="save btn btn-primary" onclick="save_row()">
+				<input type="button" id="save_button<%=i+1%>" value="Save" class="save btn btn-primary" onclick="save_row(<%=i+1%>)" style="display: none;">
 				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row()">
 				
 				</td>
 				
 			</tr>
-			
+		
 			<% } %>
 			
 			
 		</table>
-		</form>
+	    </form>
 	</div>
 </div>
 
@@ -191,10 +191,10 @@
 				 endDate.innerHTML="<input class='form-control' type='text' name='endDate' id='endDate_text"+no+"' value='"+endDate_data+"'>";
 			}
 			
-			function save_row()
+			function save_row(i)
 			{
 				document.getElementById("var").value = "editTask";
-			
+				document.getElementById("token").value = i;
 				document.form1.submit();
 			}
 			
@@ -206,6 +206,7 @@
 				document.form1.submit();
 			}
 
+			
 
 			    
 			    
