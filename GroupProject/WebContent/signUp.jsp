@@ -12,12 +12,13 @@
 	<style type="text/css">
 	
 		body {
-			background: #eee !important;	
+			background: #fff !important;	
 		}
 
 		.wrapper {	
 			margin-top: 80px;
 			margin-bottom: 80px;
+			
 		}
 
 		.form-signin {
@@ -72,6 +73,13 @@
 			font-size:9pt;
 		
 		}
+		.container{
+		backgroung-color: green;
+		height: 100%;
+		weight: 100%;
+		margin:o;
+		
+		}
 
 	</style>
   </head>
@@ -110,7 +118,7 @@
 		</div>
 		
 		<!--Log In window -->
-  
+  <div class="container">
     <div class="wrapper">
         <form class="form-signin" action="UserServlet" method="POST" action="${pageContext.request.contextPath }/LogInPage.jsp">
 			<input type="hidden" name="command" value="createAccount"/>
@@ -122,5 +130,6 @@
 			<button class="btn btn-lg btn-primary btn-block" type="submit" >Sign Up</button>  
        </form>
     </div>
+   </div>
 </body>
 </html>

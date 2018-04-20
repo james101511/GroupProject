@@ -38,6 +38,28 @@
 	font-weight: regular;
 	padding-bottom: 20px;
 }
+h4{
+ color: #2C3F50;
+ padding: 15px;
+
+}
+.container{
+ background-color: #eee;
+ width: 600px;
+ margin-bottom:50px;
+
+}
+.create-project-form{
+
+background-color: #2C3F50;
+margin-top:20px;
+}
+.create-project-form p{
+color: white;
+font-size:18px;
+padding-left: 15px;
+
+}
 </style>
 </head>
 
@@ -73,17 +95,24 @@
 
 	</div>
 	<!-- Page content -->
+	<div id="greeting-user">
+				<h4>Hello
+				<%=user.getFirstName() + "," + user.getLastName()%></h4>
+			</div>
 
-	<div class="container">
-		<div id="text-container">
 
-			<h1 class="create-project-heading">Create new project to get started</h1>
+
+<div id="text-container">
+
+			<h1 class="create-project-heading">Pick or create project</h1>
 		</div>
 
-
-		Hello
-		<%=user.getFirstName() + "," + user.getLastName()%>
-
+	<div class="container">
+	
+	
+	
+		
+	
 
 
 
@@ -125,7 +154,7 @@
 					</td>
 
 					<td>
-						<input type='button' value='Delete' class='delete' onclick='delete_row(<%=i+1%>)'>
+						<input type='button' value='Delete' class='btn btn-danger' onclick='delete_row(<%=i+1%>)'>
 					</td>
 					<%}%>
 				
@@ -150,7 +179,7 @@
 			<%
 				for (int i = 0; i < projects.size(); i++) {
 			%>
-
+		
 			<tr>
 				<form class="form-signin" action="UserServlet" method="POST">
 					<input type="hidden" name="command" value="checkProject" />
@@ -179,8 +208,8 @@
 		</table>
 
 
-
-
+	<div class="create-project-form">
+		<p>Create Project</p>
 		<form class="form-inline" action="UserServlet" method="POST">
 			<input type="hidden" name="command" value="addProject" />
 			<input type="hidden" name="email" value="<%=user.getEmail()%>" />
@@ -192,7 +221,7 @@
 
 			<button type="submit" class="btn btn-primary mb-2">+ Add</button>
 		</form>
-
+</div>
 	</div>
 
 	<!-- Optional JavaScript -->
