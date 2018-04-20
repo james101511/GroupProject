@@ -194,7 +194,7 @@ input[type="text"]
 
 		<div class="topbar-section topbar-logIn">
 
-			<a class="navbar-brand" href="#">Menu</a>
+			<a class="navbar-brand" href="LogInPage.jsp">Log Out</a>
 
 		</div>
 

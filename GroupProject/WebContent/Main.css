@@ -122,15 +122,18 @@
 				
 				.container-project-name{
 				
+			
 				margin-top: 50px;
+				margin-down: 50px; 
 				display: inline-block;
+				width:50px;
 				
-				}
 				
 				.container-progress-bar {
 				
-				margin-top: -20px;
+				margin-top: -60px;
 				display: inline-block;
+				width:50px;
 				
 				}
 				
@@ -139,6 +142,12 @@
 				font-family: tahoma, verdana, helvetica;
 				font-size: 0.8em;
 				padding: 50px;
+				
+				}
+				
+				.project-members{
+				
+				backgound-color: blue;
 				
 				}
 				
@@ -152,14 +161,14 @@
 				
 				.task_table {
 				
-				margin-top:220px;
-				padding-top: 25px;
+				margin-top:100px;
+				padding-top:50px;
 				
 				}
 				
 				#data_table {
 				
-				border-color: coral;
+				
 				border-radius: 5px;
     			width: 50%;
    				 float: none;
@@ -173,9 +182,11 @@
 				
 				
 				}
-				 .table
 				
-			
-	
-		
+				
+				.greeting-user{
+				color: #2C3F50;
+				padding: 15px;
+				}
+				
 				

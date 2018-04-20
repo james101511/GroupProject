@@ -24,6 +24,18 @@
 
 
 <style type="text/css">
+h1{
+color: black;
+
+}
+
+
+
+body{
+background-color: #eee !important;
+
+
+}
 #text-container {
 	width: 1000px;
 	margin-bottom: 40px;
@@ -44,7 +56,7 @@ h4{
 
 }
 .container{
- background-color: #eee;
+ background-color: #fff;
  width: 600px;
  margin-bottom:50px;
 
@@ -52,14 +64,24 @@ h4{
 .create-project-form{
 
 background-color: #2C3F50;
-margin-top:20px;
+margin-top:50px;
+
 }
 .create-project-form p{
 color: white;
 font-size:18px;
 padding-left: 15px;
+padding-top: 10px;
 
 }
+a:hover{
+text-decoration: none;
+
+}
+/* .table-borderless td,
+.table-borderless th {
+    border: 0;
+} */
 </style>
 </head>
 
@@ -104,23 +126,16 @@ padding-left: 15px;
 
 <div id="text-container">
 
-			<h1 class="create-project-heading">Pick or create project</h1>
+			<h1 class="create-project-heading">Pick or Create Project</h1>
 		</div>
 
 	<div class="container">
 	
-	
-	
-		
-	
-
-
-
-		<table class="table" id="project_in_manage">
+		<table class="table table-borderless table-hover" id="project_in_manage">
 			<thead>
 				<tr>
 					<th>
-						<a href="#">Project You Manage</a>
+						<a href="#">Projects You Manage</a>
 					</th>
 				</tr>
 			</thead>
@@ -214,12 +229,12 @@ padding-left: 15px;
 			<input type="hidden" name="command" value="addProject" />
 			<input type="hidden" name="email" value="<%=user.getEmail()%>" />
 
-			<div class="form-group mx-sm-3 mb-2">
+			<div class="form-group mx-sm-3 mb-3">
 
 				<input class="form-control" id="new_project_name" type="text" name="projectName" placeholder="ProjectName" required="" />
 			</div>
 
-			<button type="submit" class="btn btn-primary mb-2">+ Add</button>
+			<button type="submit" class="btn btn-primary mb-3">+ Add</button>
 		</form>
 </div>
 	</div>

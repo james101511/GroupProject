@@ -29,6 +29,18 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jquery.ganttView.css" />
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
+ <style type="text/css">
+
+h1{
+color: #2C3F50;
+ padding: 15px;
+
+}
+
+</style>
+ 
+ 
  <script type="text/javascript">  
  	google.charts.load('current', {'packages':['gantt']});
     google.charts.setOnLoadCallback(drawChart);
@@ -96,6 +108,10 @@
 
      
 </script>
+
+
+
+
 </head>
 <body>
 	<!-- Top bars -->
@@ -130,57 +146,59 @@
 					</div>
 			</div>
 		</div>
-			<h1 id="page-name" class="navbar-brand" ><%=projectName %></h1>
-			<h1 id="page-name" class="navbar-brand" >Hello <%=userEmail%></h1>
+		<div id="greeting-user">
+			<h1 class="greeting-user" ><%=projectName %></h1>
+			<h1  class="greeting-user" >Hello,  <%=userEmail%></h1>
+		</div>
 		
 		<!-- Content of the page after the bars -->
 		
-		<div class="container container-project-name">
-			<div class="dropdown project-members"> 
-			  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    Tasks
-			  </button>
-			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			  	<a class="dropdown-item" href="#"></a>
-				<% for (int i=0;i<tasks.size();i++) { %>
-				<form Name="form1" class="form-signin" action="UserServlet" method="GET">
-				<input id="var" type="hidden" name="command" value="checkTaskDetail" />
-				<input type="hidden" name="projectName" value="<%=projectName %>" />
-			   <button class="dropdown-item" name="taskName" value="<%=tasks.get(i).getTaskName()%>" ><%=tasks.get(i).getTaskName()%></button> 
-			   </form>
-			 <% } %>
-			  </div>
-			</div>
-		</div>
-		<br>
+	<div class="container container-project-name">	
+			<!-- <div class="dropdown project-members">  -->
 			
+			 <div class="row ">
+    			<div class="col-6 col-md-2">
+					  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    Tasks
+					  </button>
 			
-			
-			
-			
-			
-<!-- 		<div class="container container-progress-bar">
-			<div class="row justify-content-end ">
-				<div class=col-sm-9>
-					<div class="progress " style="height: 20px;">
-  					<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">35%</div>
-					</div>
+					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					  	<a class="dropdown-item" href="#"></a>
+						<% for (int i=0;i<tasks.size();i++) { %>
+						<form Name="form1" class="form-signin" action="UserServlet" method="GET">
+						<input id="var" type="hidden" name="command" value="checkTaskDetail" />
+						<input type="hidden" name="projectName" value="<%=projectName %>" />
+					   <button class="dropdown-item" name="taskName" value="<%=tasks.get(i).getTaskName()%>" ><%=tasks.get(i).getTaskName()%></button> 
+					   </form>
+						 <% } %>
+			  		</div>
 				</div>
-			</div>
-		</div> -->
 		
 		
+											<!-- <div class="container container-progress-bar">
+											<div class="row justify-content-end "> -->
+				<div class="col-6 col-md-4">
 		
 		
+					<form Name="form2" class="form-signin" action="UserServlet" method="POST">
+					<input type="hidden" name="projectName" value="<%=projectName%>" />
+					<input type="hidden" name="userEmail" value="<%=userEmail%>" />
+					<input id="var2" type="hidden" name="command" value="temp"  />
+					<input type="button" class="btn btn-light" value="ShowAllTask"onclick='show()' >
+					<input type="button" class="btn btn-light" value="EditProject"onclick='edit()' >
+					</form>
 		
+		<!-- div to end the column -->
+		</div>
+	<!-- div to end the row -->
+	</div>
+	</div>
+	
+	
+	<br>
+	<br>
+	<br>
 		
-		<form Name="form2" class="form-signin" action="UserServlet" method="POST">
-		<input type="hidden" name="projectName" value="<%=projectName%>" />
-		<input type="hidden" name="userEmail" value="<%=userEmail%>" />
-		<input id="var2" type="hidden" name="command" value="temp"  />
-		<input type="button" value="ShowAllTask"onclick='show()' >
-		<input type="button" value="EditProject"onclick='edit()' >
-		</form>
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>
 			

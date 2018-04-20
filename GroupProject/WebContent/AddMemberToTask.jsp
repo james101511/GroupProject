@@ -28,6 +28,13 @@ members of the team to a specific task. He also will be able to see who is alrea
 	  <!-- Bootstrap -->
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	 
+	 <style type="text/css">
+
+h7{
+color: #2C3F50;
+ padding: 15px;
+
+}
 </head>
 <body>
 
@@ -41,7 +48,6 @@ members of the team to a specific task. He also will be able to see who is alrea
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
-					<a class="navbar-brand" href="ManagePeople.jsp">Manage People</a>
 					<a class="navbar-brand" href="Homepage.jsp">Log Out</a>
 				</div>
 			

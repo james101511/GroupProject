@@ -46,7 +46,6 @@
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
-					<a class="navbar-brand" href="ManagePeople.jsp">Manage People</a>
 					<a class="navbar-brand" href="Homepage.jsp">Log Out</a>
 				</div>
 			
@@ -69,40 +68,42 @@
 		<!-- Content of the page after the bars -->
 		
 		
-	 		
+	 	<div class="data-container">
 			<!-- Date pickers -->
 			<form Name="form" class="form-signin" action="UserServlet" method="POST">
 			<div class="bootstrap-iso" id="datepickers_container">
+			 
 			 <div class="container-fluid">
 			  <div class="row">
 			  
-			  <!-- <div class="col-md-4 col-md-4 col-xs-12">
- -->			   <div class="form-group"> 
+			  	<div class="form-group"> 
 			        <label>Task Name</label>
 			        <input class="form-control" name ="taskName"type="text"/>
 			    </div>
-			  <!--  </div>  -->
+	
 			   
-	   <div class="col-md-4 col-md-4 col-xs-12"> 
+	   			<div class="col-md-4 col-md-4 col-xs-12"> 
 			   
 			
 			    <!-- Form code begins -->
 			    
-			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
-			        <label class="control-label" for="date">Start Date</label>
-			        <input class="form-control" id="date" name="startDate" placeholder="YYYY/MM/DD" type="text"/>
-			      </div>
-			   
+				      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
+				        <label class="control-label" for="date">Start Date</label>
+				        <input class="form-control" id="date" name="startDate" placeholder="YYYY/MM/DD" type="text"/>
+				      </div>
+				   
 			     <!-- Form code ends --> 
-		    </div> 
+		   		 </div> 
 			    	<!-- test -->
 			    	 <!-- Form code begins -->
-			    
-			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
-			        <label class="control-label" for="date">End Date</label>
-			        <input class="form-control" id="date" name="endDate" placeholder="YYYY/MM/DD" type="text"/>
-			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
-			      </div>
+			   
+				      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
+				        <label class="control-label" for="date">End Date</label>
+				        <input class="form-control" id="date" name="endDate" placeholder="YYYY/MM/DD" type="text"/>
+				        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
+				      </div>
+				   
+			      
 			      <div class="col-md-4 col-md-4 col-xs-12"> 
 			       
 			       <div class="form-group"> 
@@ -111,16 +112,17 @@
 			       
 			      </div>
 			      </div>
-			     
+			     </div>
 			     
 			     <!-- Form code ends --> 
 			    </div>
 			    	
-			  </div>    
+			  </div>  
+			  </form>  
 			  </div>
 			
 		
-</form> 
+ 
 
 
 

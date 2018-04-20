@@ -11,7 +11,7 @@
 	<style type="text/css">
 	
 		body {
-			background: #fff !important;	
+			background: #eee !important;	
 		}
 
 		.wrapper {	
