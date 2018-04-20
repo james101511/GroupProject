@@ -178,7 +178,7 @@
 		<input type="hidden" name="projectName" value="<%=projectName%>" />
 		<input type="hidden" name="userEmail" value="<%=userEmail%>" />
 		<input id="var2" type="hidden" name="command" value="temp"  />
-		<input type="button" class="btn btn-primary mb-2" value="ShowAllTask"onclick='show()' >
+		<input type="button" class="btn btn-primary mb-2" value="EditTasks"onclick='show()' >
 		<input type="button" class="btn btn-primary mb-2" value="EditProject"onclick='edit()' >
 		</form>
 		<!-- GANTT CHART -->

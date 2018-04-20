@@ -294,7 +294,12 @@ public class UserServlet extends HttpServlet
 		String percentage = request.getParameter("percentage");
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
-
+		String taskProgress = request.getParameter("taskProgress");
+//		 if (true)
+//		 {
+//		 response.getWriter().println(taskProgress);
+//		 return;
+//		 }
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName, progress, percentage);
 		dataBase.editProgress(taskInvolve);
 		listMembersInTask(request, response);

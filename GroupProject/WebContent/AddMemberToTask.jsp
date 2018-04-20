@@ -41,7 +41,6 @@ members of the team to a specific task. He also will be able to see who is alrea
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
-					<a class="navbar-brand" href="ManagePeople.jsp">Manage People</a>
 					<a class="navbar-brand" href="Homepage.jsp">Log Out</a>
 				</div>
 			

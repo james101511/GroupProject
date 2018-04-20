@@ -691,6 +691,11 @@ public class DataBase
 		}
 
 	}
+	
+	public void calculatePercentage() throws SQLException
+	{
+		
+	}
 
 	public void deleteTaskInvolve(String taskName, String projectName) throws SQLException
 	{
