@@ -278,10 +278,10 @@ public class UserServlet extends HttpServlet
 		List<Task> tasks = new ArrayList<>();
 		Task task = new Task(projectName);
 		tasks = dataBase.listTask(task);
-		String projectProgress=dataBase.getProjectProgress(projectName);
+		String projectProgress = dataBase.getProjectProgress(projectName);
 		request.setAttribute("tasks", tasks);
 		request.setAttribute("projectProgress", projectProgress);
-		
+
 		boolean admin = dataBase.checkAdmin(projectName, email);
 		if (admin == true)
 		{
@@ -295,8 +295,7 @@ public class UserServlet extends HttpServlet
 
 	private void editProgress(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		List<TaskInvolve> allTaskInvolveProgress = new ArrayList<>();
-		List<Task> allTaskProgress = new ArrayList<>();
+
 		String userEmail = request.getParameter("userEmail");
 		String progress = request.getParameter("progress");
 		String percentage = request.getParameter("percentage");
@@ -304,44 +303,29 @@ public class UserServlet extends HttpServlet
 		String taskName = request.getParameter("taskName");
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName, progress, percentage);
 		dataBase.editProgress(taskInvolve);
-		allTaskInvolveProgress=dataBase.listMembersInTask(projectName,taskName);
-		double sum=0;
-		for(int i=0;i<allTaskInvolveProgress.size();i++)
-		{
-			sum=sum+Double.parseDouble(allTaskInvolveProgress.get(i).getPercentage());
-		}
-		double taskProgress= (sum)/allTaskInvolveProgress.size();
-		dataBase.editTaskProgress(taskProgress,projectName,taskName);
-		
-		//for project
-		Task task = new Task(projectName);
-		allTaskProgress = dataBase.listTask(task);
-		double sum2=0;
-		for(int i=0;i<allTaskProgress.size();i++)
-		{
-			sum2=sum2+Double.parseDouble(allTaskProgress.get(i).getTaskProgress());
-		}
-		double projectProgress= (sum)/allTaskProgress.size();
-		dataBase.editProjectProgress(projectProgress,projectName);
-		
+		calculate(projectName, taskName);
+
 		listMembersInTask(request, response);
 
 	}
-	
 
 	private void deleteTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+
 		String userEmail = request.getParameter("deleteUserEmail");
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName);
 		dataBase.deleteTaskMember(taskInvolve);
+		calculate(projectName, taskName);
+
 		checkTaskDetail(request, response);
 
 	}
 
 	private void addTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+
 		PrintWriter out = response.getWriter();
 		String userEmail = trimSpace(request.getParameter("userEmail"));
 		String projectName = request.getParameter("projectName");
@@ -369,6 +353,8 @@ public class UserServlet extends HttpServlet
 			return;
 		}
 		dataBase.addTaskMember(taskInvolve);
+		// change data
+		calculate(projectName, taskName);
 
 		checkTaskDetail(request, response);
 
@@ -486,7 +472,7 @@ public class UserServlet extends HttpServlet
 		String startDate = trimSpace(request.getParameter("startDate"));
 		String endDate = trimSpace(request.getParameter("endDate"));
 		String projectName = request.getParameter("projectName");
-		Task task = new Task(projectName, taskName, startDate, endDate,"0");
+		Task task = new Task(projectName, taskName, startDate, endDate, "0");
 		// if(date)
 		// {
 		// out.println("<script type=\"text/javascript\">");
@@ -652,6 +638,33 @@ public class UserServlet extends HttpServlet
 		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
 		return;
 
+	}
+
+	private void calculate(String projectName, String taskName) throws Exception
+	{
+		List<TaskInvolve> allTaskInvolveProgress = new ArrayList<>();
+		List<Task> allTaskProgress = new ArrayList<>();
+		allTaskInvolveProgress = dataBase.listMembersInTask(projectName, taskName);
+		int sum = 0;
+		for (int i = 0; i < allTaskInvolveProgress.size(); i++)
+		{
+			sum = sum + Integer.parseInt(allTaskInvolveProgress.get(i).getPercentage());
+		}
+		int taskProgress = (sum) / allTaskInvolveProgress.size();
+		dataBase.editTaskProgress(taskProgress, projectName, taskName);
+
+		// for project
+		Task task = new Task(projectName);
+		allTaskProgress = dataBase.listTask(task);
+		int sum2 = 0;
+		for (int i = 0; i < allTaskProgress.size(); i++)
+		{
+			sum2 = sum2 + Integer.parseInt(allTaskProgress.get(i).getTaskProgress());
+		}
+		int projectProgress = (sum2) / allTaskProgress.size();
+		
+
+		dataBase.editProjectProgress(projectProgress, projectName);
 	}
 
 	private static String trimSpace(String temp)

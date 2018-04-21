@@ -885,7 +885,7 @@ public class DataBase
 		}
 	}
 
-	public void editTaskProgress(double taskProgress, String projectName, String taskName) throws SQLException
+	public void editTaskProgress(int taskProgress, String projectName, String taskName) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -909,7 +909,7 @@ public class DataBase
 
 	}
 
-	public void editProjectProgress(double projectProgress, String projectName) throws SQLException
+	public void editProjectProgress(int projectProgress, String projectName) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
