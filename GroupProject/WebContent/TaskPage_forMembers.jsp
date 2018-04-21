@@ -129,7 +129,7 @@
 								<td id="progress_row<%=i+1%>"><%=membersInvolve.get(i).getProgress() %></td>
 								<td id="percentage_row<%=i+1%>"><%=membersInvolve.get(i).getPercentage() %></td>
 								<td>
-<%-- 								<% int peronalPercentage = Integer.parseInt(membersInvolve.get(i).getPercentage());%>
+<%-- 								<%  int peronalPercentage = Integer.parseInt(membersInvolve.get(i).getPercentage()); %>
 								<% taskProgress += (1 / membersInvolve.size()) * peronalPercentage;%> --%>
 								<%if(membersInvolve.get(i).getUserEmail().equals(userEmail)){ %>
 								<input id="var" type="hidden" name="command" value="editProgress" />
