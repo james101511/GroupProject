@@ -139,7 +139,7 @@
 								<input type="hidden" name="taskProgress" value="<%=taskProgress%>" />
 								<input type="button" id="edit_button" value="Edit" class="edit btn btn-info" onclick="edit_row(<%=i+1%>)">
 								<input type="button" id="save_button" value="Save" class="save btn btn-success" onclick="save_row()" style="display: none;">
-								<%} %>
+								<%} %> 
 								</td>
 							</tr>
 							<% } %>
