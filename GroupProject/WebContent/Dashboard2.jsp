@@ -9,6 +9,7 @@
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
 	List<String> taskNames = (List<String>) request.getAttribute("taskNames");
 	String userEmail =(String)request.getAttribute("userEmail");
+	String projectProgress = (String)request.getAttribute("projectProgress");
 %>
 <html lang="en">
 <head>
@@ -144,7 +145,7 @@
 		<table id="projectProgress" class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 			<tr>
 				<th>#Project_Progress</th>
-				<th>  </th>
+				<th> <%=projectProgress %>% </th>
 			</tr>														
 		</table>
 

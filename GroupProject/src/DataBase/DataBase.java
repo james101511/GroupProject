@@ -288,10 +288,11 @@ public class DataBase
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
-				String TaskName = set.getString("task_name");
-				String StartDate = set.getString("start_date");
-				String EndDate = set.getString("end_date");
-				Task task2 = new Task(task.getProjectName(), TaskName, StartDate, EndDate);
+				String taskName = set.getString("task_name");
+				String startDate = set.getString("start_date");
+				String endDate = set.getString("end_date");
+				String taskProgress = set.getString("task_progress");
+				Task task2 = new Task(task.getProjectName(), taskName, startDate, endDate, taskProgress);
 				tasks.add(task2);
 			}
 			return tasks;
@@ -374,7 +375,8 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "insert into task" + "(task_name,project_name,start_date,end_date,task_progress)" + "values(?,?,?,?,?)";
+			String sql = "insert into task" + "(task_name,project_name,start_date,end_date,task_progress)"
+					+ "values(?,?,?,?,?)";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, task.getTaskName());
 			myStmt.setString(2, task.getProjectName());
@@ -855,7 +857,35 @@ public class DataBase
 			Close(myConn, myStmt, null);
 		}
 	}
-	public void editTaskProgress(double taskProgress, String projectName, String taskName)  throws SQLException
+
+	public String getProjectProgress(String projectName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		String projectProgress = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "select * from project where project_name=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, projectName);
+			ResultSet set = myStmt.executeQuery();
+
+			while (set.next())
+			{
+				projectProgress = set.getString("project_progress");
+
+			}
+			return projectProgress;
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+	}
+
+	public void editTaskProgress(double taskProgress, String projectName, String taskName) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
@@ -864,10 +894,10 @@ public class DataBase
 			myConn = dataSource.getConnection();
 			String sql = "UPDATE task SET task_progress= ? WHERE task_name=? and project_name=?";
 			myStmt = myConn.prepareStatement(sql);
-			myStmt.setString(1, String.valueOf(taskProgress)+"%");
+			myStmt.setString(1, String.valueOf(taskProgress) );
 			myStmt.setString(2, taskName);
 			myStmt.setString(3, projectName);
-			
+
 			// execute sql insert
 			myStmt.execute();
 		}
@@ -876,9 +906,31 @@ public class DataBase
 			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
-		
+
 	}
-	
+
+	public void editProjectProgress(double projectProgress, String projectName) throws SQLException
+	{
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try
+		{
+			myConn = dataSource.getConnection();
+			String sql = "UPDATE project SET project_progress= ? WHERE project_name=?";
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.setString(1, String.valueOf(projectProgress));
+			myStmt.setString(2, projectName);
+
+			// execute sql insert
+			myStmt.execute();
+		}
+		finally
+		{
+			// clean up JDBC objects
+			Close(myConn, myStmt, null);
+		}
+
+	}
 
 	private void Close(Connection myConn, Statement myStmt, ResultSet myRs)
 	{
@@ -904,11 +956,5 @@ public class DataBase
 			exc.printStackTrace();
 		}
 	}
-
-	
-
-	
-
-	
 
 }

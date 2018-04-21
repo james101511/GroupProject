@@ -14,12 +14,13 @@ public class Task
 		this.projectName = projectName;
 	}
 
-	public Task(String projectName, String taskName, String startDate, String endDate)
+	public Task(String projectName, String taskName, String startDate, String endDate,String taskProgress)
 	{
 		this.projectName = projectName;
 		this.taskName = taskName;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.taskProgress=taskProgress;
 	}
 
 	public String getTaskName()

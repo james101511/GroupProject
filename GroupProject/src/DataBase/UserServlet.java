@@ -257,13 +257,9 @@ public class UserServlet extends HttpServlet
 		List<TaskInvolve> taskInvolves = new ArrayList<>();
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, null, projectName);
 		taskInvolves = dataBase.checkTaskDetail(taskInvolve);
+		String taskProgress = dataBase.getTaskProgress(taskName, projectName);
 		request.setAttribute("taskInvolves", taskInvolves);
-		// if (true)
-		// {
-		// response.getWriter().println("111");
-		// response.getWriter().println(projectName);
-		// return;
-		// }
+		request.setAttribute("taskProgress", taskProgress);
 		request.getRequestDispatcher("/AddMemberToTask.jsp").forward(request, response);
 
 	}
@@ -282,7 +278,10 @@ public class UserServlet extends HttpServlet
 		List<Task> tasks = new ArrayList<>();
 		Task task = new Task(projectName);
 		tasks = dataBase.listTask(task);
+		String projectProgress=dataBase.getProjectProgress(projectName);
 		request.setAttribute("tasks", tasks);
+		request.setAttribute("projectProgress", projectProgress);
+		
 		boolean admin = dataBase.checkAdmin(projectName, email);
 		if (admin == true)
 		{
@@ -296,31 +295,39 @@ public class UserServlet extends HttpServlet
 
 	private void editProgress(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		List<TaskInvolve> allTaskProgress = new ArrayList<>();
+		List<TaskInvolve> allTaskInvolveProgress = new ArrayList<>();
+		List<Task> allTaskProgress = new ArrayList<>();
 		String userEmail = request.getParameter("userEmail");
 		String progress = request.getParameter("progress");
 		String percentage = request.getParameter("percentage");
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
-		
-		// if (true)
-		// {
-		// response.getWriter().println(taskProgress);
-		// return;
-		// }
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName, progress, percentage);
 		dataBase.editProgress(taskInvolve);
-		allTaskProgress=dataBase.listMembersInTask(projectName,taskName);
+		allTaskInvolveProgress=dataBase.listMembersInTask(projectName,taskName);
 		double sum=0;
+		for(int i=0;i<allTaskInvolveProgress.size();i++)
+		{
+			sum=sum+Double.parseDouble(allTaskInvolveProgress.get(i).getPercentage());
+		}
+		double taskProgress= (sum)/allTaskInvolveProgress.size();
+		dataBase.editTaskProgress(taskProgress,projectName,taskName);
+		
+		//for project
+		Task task = new Task(projectName);
+		allTaskProgress = dataBase.listTask(task);
+		double sum2=0;
 		for(int i=0;i<allTaskProgress.size();i++)
 		{
-			sum=sum+Double.parseDouble(allTaskProgress.get(i).getPercentage());
+			sum2=sum2+Double.parseDouble(allTaskProgress.get(i).getTaskProgress());
 		}
-		double taskProgress= (sum)/allTaskProgress.size();
-		dataBase.editTaskProgress(taskProgress,projectName,taskName);
+		double projectProgress= (sum)/allTaskProgress.size();
+		dataBase.editProjectProgress(projectProgress,projectName);
+		
 		listMembersInTask(request, response);
 
 	}
+	
 
 	private void deleteTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
@@ -479,7 +486,7 @@ public class UserServlet extends HttpServlet
 		String startDate = trimSpace(request.getParameter("startDate"));
 		String endDate = trimSpace(request.getParameter("endDate"));
 		String projectName = request.getParameter("projectName");
-		Task task = new Task(projectName, taskName, startDate, endDate);
+		Task task = new Task(projectName, taskName, startDate, endDate,"0");
 		// if(date)
 		// {
 		// out.println("<script type=\"text/javascript\">");

@@ -7,6 +7,7 @@
 	String projectName =(String)request.getParameter("projectName");
 	String taskName =(String)request.getParameter("taskName");
 	List<TaskInvolve> taskInvolves = (List<TaskInvolve>) request.getAttribute("taskInvolves");
+	String taskProgress = (String)request.getAttribute("taskProgress");
 %>
 
 <html>
@@ -133,7 +134,7 @@ color: #2C3F50;
 						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 							<tr>
 								<th>#Task_Progress</th>
-								<th> </th>
+								<th> <%=taskProgress %></th>
 							</tr>														
 						</table>
 					</div>
