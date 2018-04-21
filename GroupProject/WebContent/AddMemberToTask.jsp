@@ -95,7 +95,7 @@ color: #2C3F50;
 							
 								<td id="name_row1"><%=taskInvolves.get(i).getUserEmail() %></td>
 								
-								<td id="progress_row1"><%=taskInvolves.get(i).getProgress() %></td>
+								<td id="progress_row1"><%=taskInvolves.get(i).getPercentage() %>%</td>
 							
 								<td>
 									<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row(<%=i+1%>)">
@@ -106,7 +106,7 @@ color: #2C3F50;
 							 <% } %>
 							<tr>
 							
-								/* <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" class="form-control" name="userEmail" id="new_name"></td> */
+								 <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" class="form-control" name="userEmail" id="new_name"></td>
 								<td><p></p></td>
 								<!--<input type="text" id="new_progress">  -->
 								<td><input type="button" class="add btn btn-info" onclick="add_row();" value="Add Member"></td>
