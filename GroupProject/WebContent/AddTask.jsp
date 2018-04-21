@@ -100,40 +100,25 @@
 			
 			    <!-- Form code begins -->
 			    
-<<<<<<< HEAD
-				      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
-				        <label class="control-label" for="date">Start Date</label>
-				        <input class="form-control" id="date" name="startDate" placeholder="YYYY/MM/DD" type="text"/>
-				      </div>
-				   
-=======
+
+
 			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
 			        <label class="control-label" for="date">Start Date</label>
 			        <input class="form-control" id="datepicker1" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
 			      </div>
 			   
->>>>>>> branch 'master' of https://github.com/james101511/group-project.git
+
 			     <!-- Form code ends --> 
 		   		 </div> 
 			    	<!-- test -->
 			    	 <!-- Form code begins -->
-<<<<<<< HEAD
-			   
-				      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
-				        <label class="control-label" for="date">End Date</label>
-				        <input class="form-control" id="date" name="endDate" placeholder="YYYY/MM/DD" type="text"/>
-				        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
-				      </div>
-				   
-			      
-=======
-			    
+			 
 			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
 			        <label class="control-label" for="date">End Date</label>
 			        <input class="form-control" id="datepicker2" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
 			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
 			      </div>
->>>>>>> branch 'master' of https://github.com/james101511/group-project.git
+
 			      <div class="col-md-4 col-md-4 col-xs-12"> 
 			       
 			       <div class="form-group"> 

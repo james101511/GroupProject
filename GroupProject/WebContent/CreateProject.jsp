@@ -123,7 +123,7 @@ text-decoration: none;
 
 
 
-<div id="text-container">
+		<div id="text-container">
 
 			<h1 class="create-project-heading">Pick or Create Project</h1>
 		</div>
@@ -227,14 +227,11 @@ text-decoration: none;
 			<input type="hidden" name="command" value="addProject" />
 			<input type="hidden" name="email" value="<%=user.getEmail()%>" />
 
-<<<<<<< HEAD
-			<div class="form-group mx-sm-3 mb-3">
 
-				<input class="form-control" id="new_project_name" type="text" name="projectName" placeholder="ProjectName" required="" />
-=======
+
 			<div class="form-group mx-sm-3 mb-2">
 				<input class="form-control" id="new_project_name" type="text" name="projectName" placeholder="Type new project name here!" required="" />
->>>>>>> branch 'master' of https://github.com/james101511/group-project.git
+
 			</div>
 
 			<button type="submit" class="btn btn-primary mb-3">+ Add</button>

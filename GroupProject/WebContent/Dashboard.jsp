@@ -177,19 +177,7 @@ color: #2C3F50;
 		
 											<!-- <div class="container container-progress-bar">
 											<div class="row justify-content-end "> -->
-				<div class="col-6 col-md-4">
-		
-		
-					<form Name="form2" class="form-signin" action="UserServlet" method="POST">
-					<input type="hidden" name="projectName" value="<%=projectName%>" />
-					<input type="hidden" name="userEmail" value="<%=userEmail%>" />
-					<input id="var2" type="hidden" name="command" value="temp"  />
-					<input type="button" class="btn btn-light" value="ShowAllTask"onclick='show()' >
-					<input type="button" class="btn btn-light" value="EditProject"onclick='edit()' >
-					</form>
-		
-		<!-- div to end the column -->
-		</div>
+
 	<!-- div to end the row -->
 	</div>
 	</div>
@@ -199,8 +187,7 @@ color: #2C3F50;
 	<br>
 	<br>
 		
-<<<<<<< HEAD
-=======
+
 		<form Name="form2" class="form-signin" action="UserServlet" method="POST">
 		<input type="hidden" name="projectName" value="<%=projectName%>" />
 		<input type="hidden" name="userEmail" value="<%=userEmail%>" />
@@ -208,7 +195,7 @@ color: #2C3F50;
 		<input type="button" class="btn btn-primary mb-2" value="EditTasks"onclick='show()' >
 		<input type="button" class="btn btn-primary mb-2" value="EditProject"onclick='edit()' >
 		</form>
->>>>>>> branch 'master' of https://github.com/james101511/group-project.git
+
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>
 			

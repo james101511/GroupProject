@@ -193,12 +193,6 @@ input[type="text"]
 		</div>
 
 
-<<<<<<< HEAD
-			<a class="navbar-brand" href="LogInPage.jsp">Log Out</a>
-
-		</div>
-=======
->>>>>>> branch 'master' of https://github.com/james101511/group-project.git
 
 	</div>
 
@@ -212,7 +206,7 @@ input[type="text"]
 							<a   href="CreateProject.jsp" >Projects</a> &gt;
 							<a   href="#" >Invite Members</a>
 						</div>
-					</div>
+			   </div>
 			
 	</div>
 
