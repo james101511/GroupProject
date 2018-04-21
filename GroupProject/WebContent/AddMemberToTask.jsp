@@ -18,7 +18,7 @@ members of the team to a specific task. He also will be able to see who is alrea
 	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	
 
@@ -35,6 +35,7 @@ color: #2C3F50;
  padding: 15px;
 
 }
+</style>
 </head>
 <body>
 
