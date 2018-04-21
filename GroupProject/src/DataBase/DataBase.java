@@ -445,7 +445,7 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-			String sql = "UPDATE task SET start_date= ?,end_date= ? WHERE project_name = ? and task_name=?;";
+			String sql = "UPDATE task SET start_date= ?,end_date= ? WHERE project_name = ? and task_name= ?;";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, startDate);
 			myStmt.setString(2, endDate);
@@ -691,6 +691,7 @@ public class DataBase
 		}
 
 	}
+	
 
 	public void deleteTaskInvolve(String taskName, String projectName) throws SQLException
 	{

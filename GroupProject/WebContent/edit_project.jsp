@@ -22,12 +22,12 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-
+<!-- <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+ -->
 <!-- Bootstrap Date-Picker Plugin -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+ -->
 <style type="text/css">
 .form-label-3 {
 	margin-top:50px;
@@ -97,14 +97,12 @@
 		<input type="hidden" name="projectName" value="<%=projectInvolves.get(0).getProjectName()%>" />
 		<label id="editable_projectname" for="staticQustion" class="form-label-3"><%=projectInvolves.get(0).getProjectName()%></label>
 		<div id="rename_button1">
-			<tr>
-				<td>
+
 					<input type="hidden" name="command" value="rename">
 					<input type="hidden" name="email" value="<%=userEmail%>">
 					<input type="button" id="rename_button" value="Rename" class="btn btn-primary" onclick="rename()">
 					<input type="button" id="save_button" value="Save" class="btn btn-primary" onclick="save()" style="display: none;">
-				</td>
-			</tr>
+
 		</div> 
 		</form>
 		</div>
@@ -115,7 +113,7 @@
 			  		<div class="row">
 			   			<div class="form-group"> 
 			      			<label>Add more members to this project!</label>
-			        		<input class="form-control" name ="Email1"type="text"/>
+			        		<input title="xyz@something.com" class="form-control" name ="Email1" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
 			        		<input id="var2" type="hidden" name="projectName" value="<%=projectInvolves.get(0).getProjectName()%>" />
 			        		<input id="token" type="hidden" name="token" value="1" />
 			        		<input type="hidden" name="email" value="<%=projectInvolves.get(0).getUserEmail() %>" /> 

@@ -118,9 +118,8 @@ text-decoration: none;
 	</div>
 	<!-- Page content -->
 	<div id="greeting-user">
-				<h4>Hello
-				<%=user.getFirstName() + "," + user.getLastName()%></h4>
-			</div>
+				<h4>Hello<%=user.getFirstName() + "," + user.getLastName()%></h4>
+	</div>
 
 
 
@@ -164,8 +163,7 @@ text-decoration: none;
 
 					<td>
 						
-						<input id="projectname<%=i+1%>" type="button" value="<%=projects.get(i).getProjectName()%>" name='projectName' onclick='dashboard(<%=i+1%>)' />
-						
+						<input id="projectname<%=i+1%>" type="button" class='btn btn-primary mb-2' value="<%=projects.get(i).getProjectName()%>" name='projectName' onclick='dashboard(<%=i+1%>)' />
 					</td>
 
 					<td>
@@ -204,7 +202,7 @@ text-decoration: none;
 						if (projects.get(i).isProjectAdmin() == false) {
 					%>
 					<td>
-						<input type="submit" value="<%=projects.get(i).getProjectName()%>" name="projectName" />
+						<input type="submit" class='btn btn-primary mb-2' value="<%=projects.get(i).getProjectName()%>" name="projectName" />
 					</td>
 
 					<%
@@ -229,9 +227,14 @@ text-decoration: none;
 			<input type="hidden" name="command" value="addProject" />
 			<input type="hidden" name="email" value="<%=user.getEmail()%>" />
 
+<<<<<<< HEAD
 			<div class="form-group mx-sm-3 mb-3">
 
 				<input class="form-control" id="new_project_name" type="text" name="projectName" placeholder="ProjectName" required="" />
+=======
+			<div class="form-group mx-sm-3 mb-2">
+				<input class="form-control" id="new_project_name" type="text" name="projectName" placeholder="Type new project name here!" required="" />
+>>>>>>> branch 'master' of https://github.com/james101511/group-project.git
 			</div>
 
 			<button type="submit" class="btn btn-primary mb-3">+ Add</button>

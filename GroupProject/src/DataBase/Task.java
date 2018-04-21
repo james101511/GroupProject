@@ -6,6 +6,7 @@ public class Task
 	private String ProjectName;
 	private String StartDate;
 	private String EndDate;
+	private String Task_Progress;
 
 	public Task(String projectName)
 	{

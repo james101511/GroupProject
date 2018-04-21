@@ -294,7 +294,12 @@ public class UserServlet extends HttpServlet
 		String percentage = request.getParameter("percentage");
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
-
+		String taskProgress = request.getParameter("taskProgress");
+//		 if (true)
+//		 {
+//		 response.getWriter().println(taskProgress);
+//		 return;
+//		 }
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName, progress, percentage);
 		dataBase.editProgress(taskInvolve);
 		listMembersInTask(request, response);
@@ -367,8 +372,9 @@ public class UserServlet extends HttpServlet
 
 	private void deleteTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
-		String taskName = request.getParameter("taskName");
+		String taskName = request.getParameter("taskName" + token);
 		dataBase.deleteTaskInvolve(taskName, projectName);
 		dataBase.deleteTask(projectName, taskName);
 
@@ -377,10 +383,21 @@ public class UserServlet extends HttpServlet
 	private void editTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		// PrintWriter out = response.getWriter();
+		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
-		String taskName = request.getParameter("taskName");
+		String taskName = request.getParameter("taskName" + token);
 		String startDate = trimSpace(request.getParameter("startDate"));
 		String endDate = trimSpace(request.getParameter("endDate"));
+		
+//		 if (true)
+//		 {
+//		 response.getWriter().println(taskName);
+//		 response.getWriter().println(projectName);
+//		 response.getWriter().println(startDate);
+//		 response.getWriter().println(endDate);
+//		 return;
+//		 }
+		 
 		// int startYear = Integer.parseInt(startDate.substring(0, 4));
 		// int endYear = Integer.parseInt(endDate.substring(0, 4));
 		// int startMonth = Integer.parseInt(startDate.substring(4, 6));

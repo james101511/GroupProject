@@ -31,6 +31,19 @@
 <!-- Bootstrap Date-Picker Plugin -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker1" ).datepicker();
+  } );
+  $( function() {
+	$( "#datepicker2" ).datepicker();
+  } );
+  </script>
 </head>
 <body>
 
@@ -78,7 +91,7 @@
 			  
 			  	<div class="form-group"> 
 			        <label>Task Name</label>
-			        <input class="form-control" name ="taskName"type="text"/>
+			        <input class="form-control" name ="taskName" type="text" required/>
 			    </div>
 	
 			   
@@ -87,15 +100,24 @@
 			
 			    <!-- Form code begins -->
 			    
+<<<<<<< HEAD
 				      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
 				        <label class="control-label" for="date">Start Date</label>
 				        <input class="form-control" id="date" name="startDate" placeholder="YYYY/MM/DD" type="text"/>
 				      </div>
 				   
+=======
+			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
+			        <label class="control-label" for="date">Start Date</label>
+			        <input class="form-control" id="datepicker1" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
+			      </div>
+			   
+>>>>>>> branch 'master' of https://github.com/james101511/group-project.git
 			     <!-- Form code ends --> 
 		   		 </div> 
 			    	<!-- test -->
 			    	 <!-- Form code begins -->
+<<<<<<< HEAD
 			   
 				      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
 				        <label class="control-label" for="date">End Date</label>
@@ -104,6 +126,14 @@
 				      </div>
 				   
 			      
+=======
+			    
+			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
+			        <label class="control-label" for="date">End Date</label>
+			        <input class="form-control" id="datepicker2" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
+			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
+			      </div>
+>>>>>>> branch 'master' of https://github.com/james101511/group-project.git
 			      <div class="col-md-4 col-md-4 col-xs-12"> 
 			       
 			       <div class="form-group"> 
@@ -129,7 +159,7 @@
 <!-- This is NEW TEST TABLE -->
 <div class="container-fluid task_table">
 	<div id="wrapper">
-	<form Name="form1" action="UserServlet" method="POST">
+	<form name="form1" action="UserServlet" method="POST">
 		<table align='center' cellspacing=4 cellpadding=5 id="data_table" border=0>
 			<tr>
 				<th>Tasks</th>
@@ -139,7 +169,7 @@
 			
 			<% for (int i=0;i<tasks.size();i++) { %>
 			
-			<tr id="row1">
+			<tr id="row">
 			
 			
 			 
@@ -149,22 +179,22 @@
 				<td>
 				
 				<input id="var" type="hidden" name="command" value="x" />
-				<input id="varx" type="hidden" name="var" value="<%=i+1%>" />
+				<input id="token" type="hidden" name="token" value="temp" />
 				<input type="hidden" name="projectName" value="<%=projectName %>" />
-				<input type="hidden" name="taskName" value="<%= tasks.get(i).getTaskName() %>" />
+				<input type="hidden" name="taskName<%=i+1%>" value="<%= tasks.get(i).getTaskName() %>" />
 				<input type="button" id="edit_button<%=i+1%>" value="Edit" class="edit btn btn-info" onclick="edit_row(<%=i+1%>)">
-				<input type="button" id="save_button<%=i+1%>" value="Save" class="save btn btn-primary" onclick="save_row()">
-				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row()">
+				<input type="button" id="save_button<%=i+1%>" value="Save" class="save btn btn-primary" onclick="save_row(<%=i+1%>)" style="display: none;">
+				<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_row(<%=i+1%>)">
 				
 				</td>
 				
 			</tr>
-			
+		
 			<% } %>
 			
 			
 		</table>
-		</form>
+	    </form>
 	</div>
 </div>
 
@@ -193,21 +223,22 @@
 				 endDate.innerHTML="<input class='form-control' type='text' name='endDate' id='endDate_text"+no+"' value='"+endDate_data+"'>";
 			}
 			
-			function save_row()
+			function save_row(i)
 			{
 				document.getElementById("var").value = "editTask";
-			
+				document.getElementById("token").value = i;
 				document.form1.submit();
 			}
 			
-			function delete_row()
+			function delete_row(i)
 			{
 				
 				document.getElementById("var").value = "deleteTask";
-			
+				document.getElementById("token").value = i;
 				document.form1.submit();
 			}
 
+	
 
 			    
 			    

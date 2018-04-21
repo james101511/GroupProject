@@ -28,6 +28,47 @@
 	  <!-- Bootstrap -->
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	 
+<style>
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+</style>
 </head>
 <body>
 
@@ -41,7 +82,6 @@
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
-					<a class="navbar-brand" href="ManagePeople.jsp">Manage People</a>
 					<a class="navbar-brand" href="Homepage.jsp">Log Out</a>
 				</div>
 			
@@ -79,21 +119,25 @@
 							
 							<tr>
 								<th>#Name</th>
-								<th>#Progress</th>
+								<th>#Progress comment</th>
 								<th>#Percentage done</th>
 							</tr>
+								<% double taskProgress = 0; %>
 								<% for (int i=0;i<membersInvolve.size();i++) { %>
-							<tr id="row1">
-								<td id="name_row"><%=membersInvolve.get(i).getUserEmail() %></td>
-								<td id="progress_row"><%=membersInvolve.get(i).getProgress() %></td>
-								<td id="percentage_row"><%=membersInvolve.get(i).getPercentage() %></td>
+							<tr id="row">
+								<td id="name_row<%=i+1%>"><%=membersInvolve.get(i).getUserEmail() %></td>
+								<td id="progress_row<%=i+1%>"><%=membersInvolve.get(i).getProgress() %></td>
+								<td id="percentage_row<%=i+1%>"><%=membersInvolve.get(i).getPercentage() %></td>
 								<td>
+								<% int peronalPercentage = Integer.parseInt(membersInvolve.get(i).getPercentage());%>
+								<% taskProgress += (1 / membersInvolve.size()) * peronalPercentage;%>
 								<%if(membersInvolve.get(i).getUserEmail().equals(userEmail)){ %>
 								<input id="var" type="hidden" name="command" value="editProgress" />
 								<input type="hidden" name="userEmail" value="<%=userEmail %>" />
 								<input type="hidden" name="projectName" value="<%=projectName %>" />
 								<input type="hidden" name="taskName" value="<%=taskName %>" />
-								<input type="button" id="edit_button" value="Edit" class="edit btn btn-info" onclick="edit_row()">
+								<input type="hidden" name="taskProgress" value="<%=taskProgress%>" />
+								<input type="button" id="edit_button" value="Edit" class="edit btn btn-info" onclick="edit_row(<%=i+1%>)">
 								<input type="button" id="save_button" value="Save" class="save btn btn-success" onclick="save_row()" style="display: none;">
 								<%} %>
 								</td>
@@ -113,29 +157,32 @@
 			
 			<script type="text/javascript">
 			
-			function edit_row()
+			function edit_row(i)
 			{
 			 document.getElementById("edit_button").style.display="none";
 			 document.getElementById("save_button").style.display="block";
 				
 			 //var name=document.getElementById("name_row"+no);
-			 var progress=document.getElementById("progress_row");
-			 var percentage=document.getElementById("percentage_row");
+			 var progress=document.getElementById("progress_row" + i);
+			 var percentage=document.getElementById("percentage_row" + i);
 				
 			 //var name_data=name.innerHTML;
 			 var progress_data=progress.innerHTML;
-			 var percentage_data=percentage.innerHTML;
+
 				
 			 //name.innerHTML="<input type='text' id='name_text"+no+"' value='"+name_data+"'>";
-			 progress.innerHTML="<input type='text'name='progress' id='progress_text' value='"+progress_data+"'>";
-			 percentage.innerHTML="<input type='text' name='percentage' id='percentage_text' value='"+percentage_data+"'>";
+			 progress.innerHTML="<input type='text' name='progress' id='progress_text' value='"+progress_data+"'>";
+			 
+			 percentage.innerHTML="<input id='working' type='radio' name='percentage' value='0' required>Working <br> <input id='finished' type='radio' name='percentage' value='1' >Finished";
+			  
 			}
 
-			function save_row(no)
+			function save_row()
 			{
-		
+				
 				document.form1.submit();
 			}
+			
 
 				
 			
