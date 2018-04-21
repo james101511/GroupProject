@@ -35,6 +35,10 @@ color: #2C3F50;
  padding: 15px;
 
 }
+
+#wrapper11 {
+	color: #01dd00;
+}
 </style>
 </head>
 <body>
@@ -122,7 +126,20 @@ color: #2C3F50;
 			</div>
 		</div>
 						
-
+		<div class="container">
+			  <div class="row">
+			  	<div class="col align-self-center">
+					<div id="wrapper11">
+						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
+							<tr>
+								<th>#Task_Progress</th>
+								<th> </th>
+							</tr>														
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 			
 
 			

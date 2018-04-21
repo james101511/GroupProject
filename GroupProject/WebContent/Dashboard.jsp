@@ -38,6 +38,9 @@ color: #2C3F50;
 
 }
 
+#projectProgress {
+	color: #01dd00;
+}
 </style>
  
  
@@ -151,6 +154,13 @@ color: #2C3F50;
 			<h1  class="greeting-user" >Hello,  <%=userEmail%></h1>
 		</div>
 		
+		<table id="projectProgress" class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
+			<tr>
+				<th>#Project_Progress</th>
+				<th>  </th>
+			</tr>														
+		</table>
+
 		<!-- Content of the page after the bars -->
 		
 	<div class="container container-project-name">	

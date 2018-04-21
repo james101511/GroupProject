@@ -142,9 +142,9 @@
 								<td id="progress_row<%=i+1%>"><%=membersInvolve.get(i).getProgress() %></td>
 								<td id="percentage_row<%=i+1%>"><%=membersInvolve.get(i).getPercentage() %>%</td>
 								<td>
-								<%-- <% int peronalPercentage = Integer.parseInt(membersInvolve.get(i).getPercentage()); %>
+								<%-- <% int peronalPercentage = Integer.parseInt(membersInvolve.get(i).getPercentage()); %> --%>
 								
-								<%if(membersInvolve.get(i).getUserEmail().equals(userEmail)){ %> --%>
+								<%if(membersInvolve.get(i).getUserEmail().equals(userEmail)){ %> 
 								<input id="var" type="hidden" name="command" value="editProgress" />
 								<input type="hidden" name="userEmail" value="<%=userEmail %>" />
 								<input type="hidden" name="projectName" value="<%=projectName %>" />
@@ -152,7 +152,7 @@
 								<input type="hidden" name="taskProgress" value="<%=taskProgress%>" />
 								<input type="button" id="edit_button" value="Edit" class="edit btn btn-info" onclick="edit_row(<%=i+1%>)">
 								<input type="button" id="save_button" value="Save" class="save btn btn-success" onclick="save_row()" style="display: none;">
-							
+								<% } %>
 								</td>
 							</tr>
 							<% } %>
@@ -202,7 +202,7 @@
 			 //name.innerHTML="<input type='text' id='name_text"+no+"' value='"+name_data+"'>";
 			 progress.innerHTML="<input type='text' name='progress' id='progress_text' value='"+progress_data+"'>";
 			 
-			 percentage.innerHTML="<input id='working' type='radio' name='percentage' value='0' required>  Working <br> <input id='finished' type='radio' name='percentage' value='1' required>  Finished";
+			 percentage.innerHTML="<input id='working' type='radio' name='percentage' value='0' required>  Working <br> <input id='finished' type='radio' name='percentage' value='100' required>  Finished";
  
 			}
 

@@ -95,6 +95,13 @@
 
      
 </script>
+
+<style>
+
+#projectProgress {
+	color: #01dd00;
+}
+</style>
 </head>
 <body>
 	<!-- Top bars -->
@@ -133,6 +140,14 @@
 		
 		<!-- Content of the page after the bars -->
 		
+		
+		<table id="projectProgress" class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
+			<tr>
+				<th>#Project_Progress</th>
+				<th>  </th>
+			</tr>														
+		</table>
+
 		<div class="container container-project-name">
 		 
 			<div class="dropdown project-members"> 
