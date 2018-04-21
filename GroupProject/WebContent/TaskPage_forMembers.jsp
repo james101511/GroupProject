@@ -68,6 +68,18 @@
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 }
+
+#working {
+	color: #bdac00;
+}
+
+#finished {
+	color: #01dd00;
+}
+
+#wrapper11 {
+	color: #01dd00;
+}
 </style>
 </head>
 <body>
@@ -159,7 +171,7 @@
 		<div class="container">
 			  <div class="row">
 			  	<div class="col align-self-center">
-					<div id="wrapper">
+					<div id="wrapper11">
 						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 							<tr>
 								<th>#Task_Progress</th>
@@ -189,7 +201,7 @@
 			 //name.innerHTML="<input type='text' id='name_text"+no+"' value='"+name_data+"'>";
 			 progress.innerHTML="<input type='text' name='progress' id='progress_text' value='"+progress_data+"'>";
 			 
-			 percentage.innerHTML="<input id='working' type='radio' name='percentage' value='0' required>Working <br> <input id='finished' type='radio' name='percentage' value='1' >Finished";
+			 percentage.innerHTML="<input id='working' type='radio' name='percentage' value='0' required>  Working <br> <input id='finished' type='radio' name='percentage' value='1' required>  Finished";
 			  
 			}
 
