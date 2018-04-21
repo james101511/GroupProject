@@ -118,7 +118,7 @@ text-decoration: none;
 	</div>
 	<!-- Page content -->
 	<div id="greeting-user">
-				<h4>Hello<%=user.getFirstName() + "," + user.getLastName()%></h4>
+				<h4>Hello, <%=user.getFirstName() + "," + user.getLastName()%></h4>
 	</div>
 
 

@@ -173,12 +173,6 @@ color: #2C3F50;
 						 <% } %>
 			  		</div>
 				</div>
-		
-		
-											<!-- <div class="container container-progress-bar">
-											<div class="row justify-content-end "> -->
-
-	<!-- div to end the row -->
 	</div>
 	</div>
 	
