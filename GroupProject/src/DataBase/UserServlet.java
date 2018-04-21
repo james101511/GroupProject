@@ -257,7 +257,13 @@ public class UserServlet extends HttpServlet
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, null, projectName);
 		taskInvolves = dataBase.checkTaskDetail(taskInvolve);
 		request.setAttribute("taskInvolves", taskInvolves);
-		request.getRequestDispatcher("/AddMemberToTask.jsp?name=taskName").forward(request, response);
+//		 if (true)
+//		{
+//			response.getWriter().println("111");
+//			response.getWriter().println(projectName);
+//			return;
+//		}
+		request.getRequestDispatcher("/AddMemberToTask.jsp").forward(request, response);
 
 	}
 

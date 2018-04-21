@@ -322,7 +322,7 @@ public class DataBase
 				String progress = set.getString("progress");
 				String percentage = set.getString("percentage");
 				TaskInvolve taskInvolve2 = new TaskInvolve(taskInvolve.getTaskName(), userEmail,
-						taskInvolve.getProjectName(), progress, percentage);
+				taskInvolve.getProjectName(), progress, percentage);
 
 				taskInvolves.add(taskInvolve2);
 			}
