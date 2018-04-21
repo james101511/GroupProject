@@ -117,8 +117,6 @@ public class UserServlet extends HttpServlet
 					getAllTask(request, response);
 					break;
 
-				
-				
 				case "checkProject":
 					turnToDashboard(request, response);
 					break;
@@ -231,7 +229,10 @@ public class UserServlet extends HttpServlet
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
 		String email = request.getParameter("userEmail");
+		String taskProgress = dataBase.getTaskProgress(taskName, projectName);
+
 		membersInvolve = dataBase.listMembersInTask(projectName, taskName);
+		request.setAttribute("taskProgress", taskProgress);
 		request.setAttribute("membersInvolve", membersInvolve);
 		request.setAttribute("userEmail", email);
 		request.getRequestDispatcher("/TaskPage_forMembers.jsp").forward(request, response);
@@ -257,12 +258,12 @@ public class UserServlet extends HttpServlet
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, null, projectName);
 		taskInvolves = dataBase.checkTaskDetail(taskInvolve);
 		request.setAttribute("taskInvolves", taskInvolves);
-//		 if (true)
-//		{
-//			response.getWriter().println("111");
-//			response.getWriter().println(projectName);
-//			return;
-//		}
+		// if (true)
+		// {
+		// response.getWriter().println("111");
+		// response.getWriter().println(projectName);
+		// return;
+		// }
 		request.getRequestDispatcher("/AddMemberToTask.jsp").forward(request, response);
 
 	}
@@ -295,19 +296,28 @@ public class UserServlet extends HttpServlet
 
 	private void editProgress(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		List<TaskInvolve> allTaskProgress = new ArrayList<>();
 		String userEmail = request.getParameter("userEmail");
 		String progress = request.getParameter("progress");
 		String percentage = request.getParameter("percentage");
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
-		String taskProgress = request.getParameter("taskProgress");
-//		 if (true)
-//		 {
-//		 response.getWriter().println(taskProgress);
-//		 return;
-//		 }
+		
+		// if (true)
+		// {
+		// response.getWriter().println(taskProgress);
+		// return;
+		// }
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName, progress, percentage);
 		dataBase.editProgress(taskInvolve);
+		allTaskProgress=dataBase.listMembersInTask(projectName,taskName);
+		double sum=0;
+		for(int i=0;i<allTaskProgress.size();i++)
+		{
+			sum=sum+Double.parseDouble(allTaskProgress.get(i).getPercentage());
+		}
+		double taskProgress= (sum)/allTaskProgress.size();
+		dataBase.editTaskProgress(taskProgress,projectName,taskName);
 		listMembersInTask(request, response);
 
 	}
@@ -394,16 +404,16 @@ public class UserServlet extends HttpServlet
 		String taskName = request.getParameter("taskName" + token);
 		String startDate = trimSpace(request.getParameter("startDate"));
 		String endDate = trimSpace(request.getParameter("endDate"));
-		
-//		 if (true)
-//		 {
-//		 response.getWriter().println(taskName);
-//		 response.getWriter().println(projectName);
-//		 response.getWriter().println(startDate);
-//		 response.getWriter().println(endDate);
-//		 return;
-//		 }
-		 
+
+		// if (true)
+		// {
+		// response.getWriter().println(taskName);
+		// response.getWriter().println(projectName);
+		// response.getWriter().println(startDate);
+		// response.getWriter().println(endDate);
+		// return;
+		// }
+
 		// int startYear = Integer.parseInt(startDate.substring(0, 4));
 		// int endYear = Integer.parseInt(endDate.substring(0, 4));
 		// int startMonth = Integer.parseInt(startDate.substring(4, 6));
@@ -517,7 +527,7 @@ public class UserServlet extends HttpServlet
 				out.println("</script>");
 				return;
 			}
-			if (dataBase.checkUserInProject(tempEmail,projectName))
+			if (dataBase.checkUserInProject(tempEmail, projectName))
 			{
 				out.println("<script type=\"text/javascript\">");
 				out.println("alert('Your are already in the project');");

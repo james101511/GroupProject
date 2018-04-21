@@ -8,6 +8,7 @@
 	String taskName =(String)request.getParameter("taskName");
 	List<TaskInvolve> membersInvolve = (List<TaskInvolve>) request.getAttribute("membersInvolve");
 	String userEmail =(String)request.getAttribute("userEmail");
+	String taskProgress = (String)request.getAttribute("taskProgress");
 %>
 
 <html>
@@ -134,16 +135,16 @@
 								<th>#Progress comment</th>
 								<th>#Percentage done</th>
 							</tr>
-								<% double taskProgress = 0; %>
+								
 								<% for (int i=0;i<membersInvolve.size();i++) { %>
 							<tr id="row">
 								<td id="name_row<%=i+1%>"><%=membersInvolve.get(i).getUserEmail() %></td>
 								<td id="progress_row<%=i+1%>"><%=membersInvolve.get(i).getProgress() %></td>
-								<td id="percentage_row<%=i+1%>"><%=membersInvolve.get(i).getPercentage() %></td>
+								<td id="percentage_row<%=i+1%>"><%=membersInvolve.get(i).getPercentage() %>%</td>
 								<td>
-								<% int peronalPercentage = Integer.parseInt(membersInvolve.get(i).getPercentage()); %>
-								<% taskProgress += (1 / membersInvolve.size()) * peronalPercentage;%>
-								<%if(membersInvolve.get(i).getUserEmail().equals(userEmail)){ %>
+								<%-- <% int peronalPercentage = Integer.parseInt(membersInvolve.get(i).getPercentage()); %>
+								
+								<%if(membersInvolve.get(i).getUserEmail().equals(userEmail)){ %> --%>
 								<input id="var" type="hidden" name="command" value="editProgress" />
 								<input type="hidden" name="userEmail" value="<%=userEmail %>" />
 								<input type="hidden" name="projectName" value="<%=projectName %>" />
@@ -151,7 +152,7 @@
 								<input type="hidden" name="taskProgress" value="<%=taskProgress%>" />
 								<input type="button" id="edit_button" value="Edit" class="edit btn btn-info" onclick="edit_row(<%=i+1%>)">
 								<input type="button" id="save_button" value="Save" class="save btn btn-success" onclick="save_row()" style="display: none;">
-								<%} %> 
+							
 								</td>
 							</tr>
 							<% } %>
@@ -175,7 +176,7 @@
 						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 							<tr>
 								<th>#Task_Progress</th>
-								<th>   </th>
+								<th> <%=taskProgress  %> </th>
 							</tr>														
 						</table>
 					</div>
@@ -202,7 +203,7 @@
 			 progress.innerHTML="<input type='text' name='progress' id='progress_text' value='"+progress_data+"'>";
 			 
 			 percentage.innerHTML="<input id='working' type='radio' name='percentage' value='0' required>  Working <br> <input id='finished' type='radio' name='percentage' value='1' required>  Finished";
-			  
+ 
 			}
 
 			function save_row()

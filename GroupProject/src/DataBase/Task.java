@@ -2,64 +2,74 @@ package DataBase;
 
 public class Task
 {
-	private String TaskName;
-	private String ProjectName;
-	private String StartDate;
-	private String EndDate;
-	private String Task_Progress;
+	private String taskName;
+	private String projectName;
+	private String startDate;
+	private String endDate;
+	private String taskProgress;
 
 	public Task(String projectName)
 	{
 
-		ProjectName = projectName;
+		this.projectName = projectName;
 	}
 
-	public Task( String projectName, String taskName,String startDate, String endDate)
+	public Task(String projectName, String taskName, String startDate, String endDate)
 	{
-		ProjectName = projectName;
-		TaskName = taskName;
-		StartDate = startDate;
-		EndDate = endDate;
+		this.projectName = projectName;
+		this.taskName = taskName;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
 	public String getTaskName()
 	{
-		return TaskName;
+		return taskName;
 	}
 
 	public void setTaskName(String taskName)
 	{
-		TaskName = taskName;
+		this.taskName = taskName;
 	}
 
 	public String getProjectName()
 	{
-		return ProjectName;
+		return projectName;
 	}
 
 	public void setProjectName(String projectName)
 	{
-		ProjectName = projectName;
+		this.projectName = projectName;
 	}
 
 	public String getStartDate()
 	{
-		return StartDate;
+		return startDate;
 	}
 
 	public void setStartDate(String startDate)
 	{
-		StartDate = startDate;
+		this.startDate = startDate;
 	}
 
 	public String getEndDate()
 	{
-		return EndDate;
+		return endDate;
 	}
 
 	public void setEndDate(String endDate)
 	{
-		EndDate = endDate;
+		this.endDate = endDate;
+	}
+
+	public String getTaskProgress()
+	{
+		return taskProgress;
+	}
+
+	public void setTaskProgress(String taskProgress)
+	{
+		this.taskProgress = taskProgress;
 	}
 
 }
