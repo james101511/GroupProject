@@ -129,8 +129,8 @@
 								<td id="progress_row<%=i+1%>"><%=membersInvolve.get(i).getProgress() %></td>
 								<td id="percentage_row<%=i+1%>"><%=membersInvolve.get(i).getPercentage() %></td>
 								<td>
-<%-- 								<%  int peronalPercentage = Integer.parseInt(membersInvolve.get(i).getPercentage()); %>
-								<% taskProgress += (1 / membersInvolve.size()) * peronalPercentage;%> --%>
+								<% int peronalPercentage = Integer.parseInt(membersInvolve.get(i).getPercentage()); %>
+								<% taskProgress += (1 / membersInvolve.size()) * peronalPercentage;%>
 								<%if(membersInvolve.get(i).getUserEmail().equals(userEmail)){ %>
 								<input id="var" type="hidden" name="command" value="editProgress" />
 								<input type="hidden" name="userEmail" value="<%=userEmail %>" />
@@ -150,6 +150,22 @@
 																				
 						</table>
 						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="container">
+			  <div class="row">
+			  	<div class="col align-self-center">
+					<div id="wrapper">
+						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
+							<tr>
+								<th>#Task_Progress</th>
+								<th>   </th>
+							</tr>														
+						</table>
 					</div>
 				</div>
 			</div>
