@@ -134,7 +134,7 @@ color: #2C3F50;
 						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 							<tr>
 								<th>#Task_Progress</th>
-								<th> <%=taskProgress %></th>
+								<th> <%=taskProgress %>%</th>
 							</tr>														
 						</table>
 					</div>

@@ -391,46 +391,44 @@ public class UserServlet extends HttpServlet
 
 	private void editTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		// PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter();
 		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName" + token);
 		String startDate = trimSpace(request.getParameter("startDate"));
 		String endDate = trimSpace(request.getParameter("endDate"));
 
-		// if (true)
-		// {
-		// response.getWriter().println(taskName);
-		// response.getWriter().println(projectName);
-		// response.getWriter().println(startDate);
-		// response.getWriter().println(endDate);
-		// return;
-		// }
+		int startYear = Integer.parseInt(startDate.substring(6, 10));
+		int endYear = Integer.parseInt(endDate.substring(6, 10));
+		int startMonth = Integer.parseInt(startDate.substring(0, 2));
+		int endMonth = Integer.parseInt(endDate.substring(0, 2));
+		int startDay = Integer.parseInt(startDate.substring(3, 5));
+		int endDay = Integer.parseInt(endDate.substring(3, 5));
 
-		// int startYear = Integer.parseInt(startDate.substring(0, 4));
-		// int endYear = Integer.parseInt(endDate.substring(0, 4));
-		// int startMonth = Integer.parseInt(startDate.substring(4, 6));
-		// int endMonth = Integer.parseInt(endDate.substring(4, 6));
-		// int startDay = Integer.parseInt(startDate.substring(6, 8));
-		// int endDay = Integer.parseInt(endDate.substring(6, 8));
-		// if (startYear > endYear)
-		// {
-		// out.println("<script type=\"text/javascript\">");
-		// out.println("alert('Please check the input');");
-		// out.println("window.history.go(-1);");
-		// out.println("</script>");
-		// return;
-		// }
-		// if ((startYear == endYear && startMonth > endMonth) || (1 > startMonth &&
-		// startMonth > 12)
-		// || (1 > endMonth && endMonth > 12))
-		// {
-		//
-		// }
-		// if ((startYear == endYear && startMonth == endMonth && startDay > endDay)|| )
-		// {
-		//
-		// }
+		if (startYear > endYear)
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Please check the input year');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
+		if (startYear == endYear && startMonth > endMonth)
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Please check the input month');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
+		if (startYear == endYear && startMonth == endMonth && startDay > endDay)
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Please check the input day');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
 
 		dataBase.editTask(projectName, taskName, startDate, endDate);
 		getAllTask(request, response);
@@ -473,15 +471,7 @@ public class UserServlet extends HttpServlet
 		String endDate = trimSpace(request.getParameter("endDate"));
 		String projectName = request.getParameter("projectName");
 		Task task = new Task(projectName, taskName, startDate, endDate, "0");
-		// if(date)
-		// {
-		// out.println("<script type=\"text/javascript\">");
-		// out.println("alert('Taskname already used');");
-		// out.println("window.history.go(-1);");
-		// out.println("</script>");
-		//
-		// return;
-		// }
+
 		if (dataBase.checkDuplicate(projectName, taskName))
 		{
 
@@ -490,6 +480,37 @@ public class UserServlet extends HttpServlet
 			out.println("window.history.go(-1);");
 			out.println("</script>");
 
+			return;
+		}
+		int startYear = Integer.parseInt(startDate.substring(6, 10));
+		int endYear = Integer.parseInt(endDate.substring(6, 10));
+		int startMonth = Integer.parseInt(startDate.substring(0, 2));
+		int endMonth = Integer.parseInt(endDate.substring(0, 2));
+		int startDay = Integer.parseInt(startDate.substring(3, 5));
+		int endDay = Integer.parseInt(endDate.substring(3, 5));
+
+		if (startYear > endYear)
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Please check the input year');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
+		if (startYear == endYear && startMonth > endMonth)
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Please check the input month');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
+		if (startYear == endYear && startMonth == endMonth && startDay > endDay)
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('Please check the input day');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
 			return;
 		}
 		dataBase.addTask(task);
@@ -662,7 +683,6 @@ public class UserServlet extends HttpServlet
 			sum2 = sum2 + Integer.parseInt(allTaskProgress.get(i).getTaskProgress());
 		}
 		int projectProgress = (sum2) / allTaskProgress.size();
-		
 
 		dataBase.editProjectProgress(projectProgress, projectName);
 	}
