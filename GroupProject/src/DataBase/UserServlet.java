@@ -524,7 +524,7 @@ public class UserServlet extends HttpServlet
 		List<String> emails = new ArrayList<>();
 		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
-		String email = request.getParameter("email");
+		//String email = request.getParameter("email");
 
 		int i = 1;
 

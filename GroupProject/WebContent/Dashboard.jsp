@@ -18,7 +18,9 @@
 	
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="step-progress.min.css">
+    <link rel="stylesheet" href="styles.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>DashBoard</title>
 	  <link rel="stylesheet" type="text/css" href="Main.css"> 
@@ -146,6 +148,20 @@ color: #2C3F50;
 				<th> <%=projectProgress %>% </th>
 			</tr>														
 		</table>
+		<section>
+                <div class="steps">
+                    <ul class="steps-container">
+                    
+                    <li style="width:100%;">
+                        <div class="step" >
+
+                            <div class="step-current">    </div>
+                            <div class="step-description">#Project Progress</div>
+                        </div>
+                    </li>
+                    <div class="step-bar" style="width: <%=projectProgress%>%;"></div>
+                </div>
+		
 
 		<!-- Content of the page after the bars -->
 		

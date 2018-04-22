@@ -38,11 +38,19 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
-    $( "#datepicker1" ).datepicker();
+    $( "#datepickerx" ).datepicker();
   } );
   $( function() {
-	$( "#datepicker2" ).datepicker();
+	$( "#datepickery" ).datepicker();
   } );
+  $( function edit_date(no) {
+	$( "#datepicker"+no+"").datepicker();
+  } );
+  $( function edit_date1(no) {
+		$( "#datepicker"+no+""+1+"").datepicker();
+	  } );
+	  
+
   </script>
 </head>
 <body>
@@ -104,7 +112,7 @@
 
 			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
 			        <label class="control-label" for="date">Start Date</label>
-			        <input class="form-control" id="datepicker1" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
+			        <input class="form-control" id="datepickerx" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
 			      </div>
 			   
 
@@ -115,7 +123,7 @@
 			 
 			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
 			        <label class="control-label" for="date">End Date</label>
-			        <input class="form-control" id="datepicker2" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
+			        <input class="form-control" id="datepickery" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
 			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
 			      </div>
 
@@ -204,8 +212,8 @@
 				 var task_data=task.innerHTML;
 				 var startDate_data=startDate.innerHTML;
 				 var endDate_data=endDate.innerHTML;
-				 startDate.innerHTML="<input class='form-control' type='text' name='startDate' id='startDate_text"+no+"' value='"+startDate_data+"'>";
-				 endDate.innerHTML="<input class='form-control' type='text' name='endDate' id='endDate_text"+no+"' value='"+endDate_data+"'>";
+				 startDate.innerHTML="<input id='datepicker"+no+"' class='form-control' type='text' name='startDate' id='startDate_text"+no+"' value='"+startDate_data+"' onlcick='edit_date("+no+")'>";
+				 endDate.innerHTML="<input id='datepicker"+no+""+1+"' class='form-control' type='text' name='endDate' id='endDate_text"+no+"' value='"+endDate_data+"' onlcick='edit_date1("+no+")'>";
 			}
 			
 			function save_row(i)
