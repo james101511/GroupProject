@@ -37,22 +37,25 @@
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Task ID');
       data.addColumn('string', 'Task Name');
-      data.addColumn('string', 'Resource');
+      /* data.addColumn('string', 'Resource'); */
       data.addColumn('date', 'Start Date');
       data.addColumn('date', 'End Date');
       data.addColumn('number', 'Duration');
       data.addColumn('number', 'Percent Complete');
       data.addColumn('string', 'Dependencies');
       var rows = [];
-      
-      	data.addRows([
-      		<% for (int i=0;i<tasks.size();i++) { %>
-      		
-     ['<%=String.valueOf(i+5)%>',  '<%= tasks.get(i).getTaskName() %>','winter',
-               		new Date(<%=tasks.get(i).getStartDate().substring(0,4)%>, <%=tasks.get(i).getStartDate().substring(4,6)%>-1, <%=tasks.get(i).getStartDate().substring(6,8)%>), new Date(<%=tasks.get(i).getEndDate().substring(0,4)%>, <%=tasks.get(i).getEndDate().substring(4,6)%>-1, <%=tasks.get(i).getEndDate().substring(6,8)%>), null, 100, null],
-            <% } %>
-           ]
-        );
+      <% for (int i=0;i<tasks.size();i++) { %>
+      	data.addRows(
+      				 [
+			      		['<%=String.valueOf(i+5)%> ', '<%=tasks.get(i).getTaskName()%>',
+			      		  new Date(<%=tasks.get(i).getStartDate().substring(6,10)%>, <%=tasks.get(i).getStartDate().substring(0,2) %>-1, <%=tasks.get(i).getStartDate().substring(3,5)%>), 
+			      		  new Date(<%=tasks.get(i).getEndDate().substring(6,10)%>, <%=tasks.get(i).getEndDate().substring(0,2)%>-1, <%=tasks.get(i).getEndDate().substring(3,5)%>), 
+			      		  null, <%=tasks.get(i).getTaskProgress()%>, null
+			      		],
+        				
+        				 ]
+      				);
+      	<% } %> 
       	/* data.addRows([
             ['2014Spring', 'Spring 2014', 'spring',
              new Date(2014, 2, 22), new Date(2014, 5, 20), null, 100, null],
