@@ -66,7 +66,7 @@ color: #2C3F50;
       <% for (int i=0;i<tasks.size();i++) { %>
       	data.addRows(
       				 [
-			      		['k','<%=tasks.get(i).getTaskName()%>',
+			      		['<%=String.valueOf(i+5)%> ','<%=tasks.get(i).getTaskName()%>',
 			      		  new Date(<%=tasks.get(i).getStartDate().substring(6,10)%>, <%=tasks.get(i).getStartDate().substring(0,2)%>-1, <%=tasks.get(i).getStartDate().substring(3,5)%>), 
 			      		  new Date(<%=tasks.get(i).getEndDate().substring(6,10)%>,   <%=tasks.get(i).getEndDate().substring(0,2)%>-1, <%=tasks.get(i).getEndDate().substring(3,5)%>), 
 			      		  null, <%=tasks.get(i).getTaskProgress()%>, null

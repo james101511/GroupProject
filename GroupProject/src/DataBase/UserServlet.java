@@ -386,6 +386,7 @@ public class UserServlet extends HttpServlet
 		String taskName = request.getParameter("taskName" + token);
 		dataBase.deleteTaskInvolve(taskName, projectName);
 		dataBase.deleteTask(projectName, taskName);
+		calculate(projectName, taskName);
 
 	}
 
@@ -431,6 +432,8 @@ public class UserServlet extends HttpServlet
 		}
 
 		dataBase.editTask(projectName, taskName, startDate, endDate);
+		calculate(projectName, taskName);
+
 		getAllTask(request, response);
 
 	}
@@ -514,6 +517,7 @@ public class UserServlet extends HttpServlet
 			return;
 		}
 		dataBase.addTask(task);
+		calculate(projectName, taskName);
 		getAllTask(request, response);
 
 	}
@@ -524,7 +528,7 @@ public class UserServlet extends HttpServlet
 		List<String> emails = new ArrayList<>();
 		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
-		//String email = request.getParameter("email");
+		// String email = request.getParameter("email");
 
 		int i = 1;
 
@@ -666,23 +670,32 @@ public class UserServlet extends HttpServlet
 		List<TaskInvolve> allTaskInvolveProgress = new ArrayList<>();
 		List<Task> allTaskProgress = new ArrayList<>();
 		allTaskInvolveProgress = dataBase.listMembersInTask(projectName, taskName);
+		int projectProgress = 0;
+		int taskProgress = 0;
 		int sum = 0;
+		int sum2 = 0;
 		for (int i = 0; i < allTaskInvolveProgress.size(); i++)
 		{
 			sum = sum + Integer.parseInt(allTaskInvolveProgress.get(i).getPercentage());
 		}
-		int taskProgress = (sum) / allTaskInvolveProgress.size();
+		if (allTaskInvolveProgress.size() != 0)
+		{
+			taskProgress = (sum) / allTaskInvolveProgress.size();
+		}
 		dataBase.editTaskProgress(taskProgress, projectName, taskName);
 
 		// for project
 		Task task = new Task(projectName);
 		allTaskProgress = dataBase.listTask(task);
-		int sum2 = 0;
+
 		for (int i = 0; i < allTaskProgress.size(); i++)
 		{
 			sum2 = sum2 + Integer.parseInt(allTaskProgress.get(i).getTaskProgress());
 		}
-		int projectProgress = (sum2) / allTaskProgress.size();
+		if (allTaskProgress.size() != 0)
+		{
+			projectProgress = (sum2) / allTaskProgress.size();
+		}
 
 		dataBase.editProjectProgress(projectProgress, projectName);
 	}
