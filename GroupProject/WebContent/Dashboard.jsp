@@ -142,12 +142,12 @@ color: #2C3F50;
 			<h1  class="greeting-user" >Hello,  <%=userEmail%></h1>
 		</div>
 		
-		<table id="projectProgress" class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
+<%-- 		<table id="projectProgress" class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 			<tr>
 				<th>#Project_Progress</th>
 				<th> <%=projectProgress %>% </th>
 			</tr>														
-		</table>
+		</table> --%>
 		<section>
                 <div class="steps">
                     <ul class="steps-container">
@@ -155,13 +155,13 @@ color: #2C3F50;
                     <li style="width:100%;">
                         <div class="step" >
 
-                            <div class="step-current">    </div>
-                            <div class="step-description">#Project Progress</div>
+                            <div class="step-current">#Project Progress</div>
+                            <div class="step-description"><%=projectProgress %>%</div>
                         </div>
                     </li>
                     <div class="step-bar" style="width: <%=projectProgress%>%;"></div>
                 </div>
-		
+		</section>
 
 		<!-- Content of the page after the bars -->
 		
