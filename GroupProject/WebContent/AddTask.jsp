@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
@@ -43,12 +43,14 @@
   $( function() {
 	$( "#datepickery" ).datepicker();
   } );
-  $( function edit_date(no) {
-	$( "#datepicker"+no+"").datepicker();
+/*   $( function() {
+	$( "#datepicker1" ).datepicker();
   } );
-  $( function edit_date1(no) {
-		$( "#datepicker"+no+""+1+"").datepicker();
-	  } );
+  $( function() {
+    $( "#datepicker2" ).datepicker();
+  } ); */
+
+
 	  
 
   </script>
@@ -212,8 +214,8 @@
 				 var task_data=task.innerHTML;
 				 var startDate_data=startDate.innerHTML;
 				 var endDate_data=endDate.innerHTML;
-				 startDate.innerHTML="<input id='datepicker"+no+"' class='form-control' type='text' name='startDate' id='startDate_text"+no+"' value='"+startDate_data+"' onlcick='edit_date("+no+")'>";
-				 endDate.innerHTML="<input id='datepicker"+no+""+1+"' class='form-control' type='text' name='endDate' id='endDate_text"+no+"' value='"+endDate_data+"' onlcick='edit_date1("+no+")'>";
+				 startDate.innerHTML="<input pattern='\d{1,2}/\d{1,2}/\d{4}' class='form-control' type='text' name='startDate' id='startDate_text"+no+"' value='"+startDate_data+"'>";
+				 endDate.innerHTML="<input pattern='\d{1,2}/\d{1,2}/\d{4}' class='form-control' type='text' name='endDate' id='endDate_text"+no+"' value='"+endDate_data+"'>";
 			}
 			
 			function save_row(i)
@@ -230,12 +232,6 @@
 				document.getElementById("token").value = i;
 				document.form1.submit();
 			}
-
-	
-
-			    
-			    
-			
 			</script>
 	
 
