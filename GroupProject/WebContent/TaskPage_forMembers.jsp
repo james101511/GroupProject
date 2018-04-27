@@ -106,10 +106,16 @@
 			<div id="down-line-bar">
 				<div id="name-bar ">
 					<div id="page-name">
+					<form id="myform" action="UserServlet" method="GET">
+					<input id="var" type="hidden" name="command" value="turnToProject" />
+					<input type="hidden" name="email" value="<%=userEmail%>" />
+					<input type="hidden" name="projectName" value="<%=projectName%>" />
+					<a href="#" onclick="goProject()">Projects</a> &gt;
+					<a href="#" onclick="goDashboard()">Dashboard</a> &gt;
+					<a href="#" >Task</a>
+				</form>
 					
-						<a   href="CreateProject.jsp" >Projects</a> &gt;
-						<a   href="Dashboard2.jsp" >Dashboard</a> &gt;
-						<a   href="#" >Task</a>
+						
 					</div>
 				</div>
 			</div>
@@ -212,7 +218,16 @@
 				document.form1.submit();
 			}
 			
-
+			function goDashboard()
+			{
+				document.getElementById("var").value = "turnToDashboard";
+				document.getElementById('myform').submit()
+			}
+			function goProject()
+			{
+				
+				document.getElementById('myform').submit()
+			}
 				
 			
 			

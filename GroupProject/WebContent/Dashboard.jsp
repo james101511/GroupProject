@@ -131,8 +131,13 @@ color: #2C3F50;
 
 				<div id="name-bar ">
 						<div id="page-name">
-							<a   href="CreateProject.jsp" >Projects</a> &gt;
-							<a   href="#" >Dashboard</a>
+						<form id="myform" action="UserServlet" method="GET">
+							<input id="var" type="hidden" name="command" value="turnToProject" />
+							<input type="hidden" name="email" value="<%=userEmail%>" />
+							<a   href="#" onclick="document.getElementById('myform').submit()">Projects</a> &gt;
+							<a   href="#" >Dashboard</a> 
+						</form>
+						
 						</div>
 					</div>
 			</div>
@@ -179,6 +184,7 @@ color: #2C3F50;
 						<% for (int i=0;i<tasks.size();i++) { %>
 						<form Name="form1" class="form-signin" action="UserServlet" method="GET">
 						<input id="var" type="hidden" name="command" value="checkTaskDetail" />
+						<input type="hidden" name="userEmail" value="<%=userEmail%>" />
 						<input type="hidden" name="projectName" value="<%=projectName %>" />
 					   <button class="dropdown-item" name="taskName" value="<%=tasks.get(i).getTaskName()%>" ><%=tasks.get(i).getTaskName()%></button> 
 					   </form>
