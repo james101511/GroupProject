@@ -203,8 +203,14 @@ input[type="text"]
 		
 				<div id="name-bar ">
 						<div id="page-name">
-							<a   href="CreateProject.jsp" >Projects</a> &gt;
-							<a   href="#" >Invite Members</a>
+							<form id="myform" action="UserServlet" method="GET">
+					<input id="var" type="hidden" name="command" value="turnToProject" />
+					<input type="hidden" name="email" value="<%=email%>" />
+					<a href="#" onclick="document.getElementById('myform').submit()">Projects</a>
+					&gt;
+					<a href="#">Invite Members</a>
+				</form>
+							<
 						</div>
 			   </div>
 			

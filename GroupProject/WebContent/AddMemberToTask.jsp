@@ -8,6 +8,7 @@
 	String taskName =(String)request.getParameter("taskName");
 	List<TaskInvolve> taskInvolves = (List<TaskInvolve>) request.getAttribute("taskInvolves");
 	String taskProgress = (String)request.getAttribute("taskProgress");
+	String userEmail = (String) request.getAttribute("userEmail");
 %>
 
 <html>
@@ -65,10 +66,14 @@ color: #2C3F50;
 			<div id="down-line-bar">
 				<div id="name-bar ">
 					<div id="page-name">
-					
-						<a   href="CreateProject.jsp" >Projects</a> &gt;
-						<a   href="Dashboard.jsp" >Dashboard</a> &gt;
-						<a   href="#" >Add Members To Task</a>
+					<form id="myform" action="UserServlet" method="GET">
+					<input id="var2" type="hidden" name="command" value="turnToProject" />
+					<input type="hidden" name="email" value="<%=userEmail%>" />
+					<input type="hidden" name="projectName" value="<%=projectName%>" />
+					<a href="#" onclick="goProject()">Projects</a> &gt;
+					<a href="#" onclick="goDashboard()">Dashboard</a> &gt;
+					<a href="#" >Add Members To Task</a>
+				</form>
 					</div>
 				</div>
 			</div>
@@ -165,7 +170,16 @@ color: #2C3F50;
 				document.form2.submit();
 			 
 			} 
-		
+			 function goDashboard()
+				{
+					document.getElementById("var2").value = "turnToDashboard";
+					document.getElementById('myform').submit()
+				}
+				function goProject()
+				{
+					
+					document.getElementById('myform').submit()
+				}
 				
 			
 			

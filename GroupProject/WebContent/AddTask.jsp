@@ -6,6 +6,7 @@
 <%
 	String projectName = (String) request.getParameter("projectName");
 	List<Task> tasks = (List<Task>)request.getAttribute("tasks");
+	String userEmail = (String) request.getAttribute("userEmail");
 %>
 <html>
 <head>
@@ -80,10 +81,15 @@
 			<div id="down-line-bar">
 				<div id="name-bar ">
 					<div id="page-name">
-					
-						<a   href="CreateProject.jsp" >Projects</a> &gt;
-						<a   href="Dashboard.jsp" >Dashboard</a> &gt;
-						<a   href="#" >Add Tasks</a>
+					<form id="myform" action="UserServlet" method="GET">
+					<input id="var2" type="hidden" name="command" value="turnToProject" />
+					<input type="hidden" name="email" value="<%=userEmail%>" />
+					<input type="hidden" name="projectName" value="<%=projectName%>" />
+					<a href="#" onclick="goProject()">Projects</a> &gt;
+					<a href="#" onclick="goDashboard()">Dashboard</a> &gt;
+					<a  href="#" >Add Tasks</a>
+				</form>
+						
 					</div>
 				</div>
 			</div>
@@ -237,6 +243,16 @@
 				document.getElementById("var").value = "deleteTask";
 				document.getElementById("token").value = i;
 				document.form1.submit();
+			}
+			function goDashboard()
+			{
+				document.getElementById("var2").value = "turnToDashboard";
+				document.getElementById('myform').submit()
+			}
+			function goProject()
+			{
+				
+				document.getElementById('myform').submit()
 			}
 			</script>
 	

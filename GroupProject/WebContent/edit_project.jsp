@@ -67,6 +67,17 @@
 	{
 		document.getElementById("token2").value = i;
 		document.form3.submit();
+		
+	}
+	function goDashboard()
+	{
+		document.getElementById("var").value = "turnToDashboard";
+		document.getElementById('myform').submit()
+	}
+	function goProject()
+	{
+		
+		document.getElementById('myform').submit()
 	}
 </script>
 </head>
@@ -86,8 +97,14 @@
 		<div id="down-line-bar">
 			<div id="name-bar ">
 				<div id="page-name">
-					<a   href="CreateProject.jsp" >Projects</a> &gt;
-					<a   href="Dashboard.jsp" >edit project</a>
+					<form id="myform" action="UserServlet" method="GET">
+					<input id="var" type="hidden" name="command" value="turnToProject" />
+					<input type="hidden" name="email" value="<%=userEmail%>" />
+					<input type="hidden" name="projectName" value="<%=projectInvolves.get(0).getProjectName()%>" />
+					<a href="#" onclick="goProject()">Projects</a> &gt;
+					<a href="#" onclick="goDashboard()">Dashboard</a> &gt;
+					<a href="#" >edit project</a>
+				</form>
 				</div>
 			</div>
 		</div>
