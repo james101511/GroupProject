@@ -228,7 +228,7 @@
 				 $( function() {	
 						$( "#datepicker2" ).datepicker();
 					  } );
-			}
+			} 
 			
 			function save_row(i)
 			{
