@@ -264,7 +264,6 @@ public class UserServlet extends HttpServlet
 		String userEmail = request.getParameter("userEmail");
 		String taskName = request.getParameter("taskName");
 		String projectName = request.getParameter("projectName");
-
 		List<TaskInvolve> taskInvolves = new ArrayList<>();
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, null, projectName);
 		taskInvolves = dataBase.checkTaskDetail(taskInvolve);
@@ -339,7 +338,7 @@ public class UserServlet extends HttpServlet
 	{
 
 		PrintWriter out = response.getWriter();
-		String userEmail = trimSpace(request.getParameter("userEmail"));
+		String userEmail = trimSpace(request.getParameter("email"));
 		String projectName = request.getParameter("projectName");
 		String taskName = request.getParameter("taskName");
 		boolean admin = dataBase.checkAdmin(projectName, userEmail);
@@ -495,6 +494,7 @@ public class UserServlet extends HttpServlet
 		String startDate = trimSpace(request.getParameter("startDate"));
 		String endDate = trimSpace(request.getParameter("endDate"));
 		String projectName = request.getParameter("projectName");
+		
 		Task task = new Task(projectName, taskName, startDate, endDate, "0");
 
 		if (dataBase.checkDuplicate(projectName, taskName))
@@ -550,7 +550,7 @@ public class UserServlet extends HttpServlet
 		List<String> emails = new ArrayList<>();
 		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
-		// String email = request.getParameter("email");
+		 String email = request.getParameter("email");
 
 		int i = 1;
 
@@ -589,6 +589,7 @@ public class UserServlet extends HttpServlet
 			List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
 			membersInvolve = dataBase.listMembersInProject(projectName);
 			request.setAttribute("membersInvolve", membersInvolve);
+			request.setAttribute("userEmail", email);
 			request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
 
 		}

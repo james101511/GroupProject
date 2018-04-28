@@ -55,7 +55,7 @@ color: #2C3F50;
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
-					<a class="navbar-brand" href="Homepage.jsp">Log Out</a>
+					<a class="navbar-brand" href="Homepage.jsp">Log Out </a>
 				</div>
 			
 			</div>
@@ -71,7 +71,7 @@ color: #2C3F50;
 					<input type="hidden" name="email" value="<%=userEmail%>" />
 					<input type="hidden" name="projectName" value="<%=projectName%>" />
 					<a href="#" onclick="goProject()">Projects</a> &gt;
-					<a href="#" onclick="goDashboard()">Dashboard</a> &gt;
+					<a href="#" onclick="goDashboard()">Dashboard </a> &gt;
 					<a href="#" >Add Members To Task</a>
 				</form>
 					</div>
@@ -94,6 +94,7 @@ color: #2C3F50;
 					<form Name="form2" class="form-signin" action="UserServlet" method="GET">
 					<input id="var" type="hidden" name="command" value="addTaskMember" />
 					<input type="hidden" name="projectName" value="<%=projectName %>" />
+					<input type="hidden" name="userEmail" value="<%=userEmail%>" />
 					<input type="hidden" name="taskName" value="<%=taskName %>" />
 						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 							<tr>
@@ -116,7 +117,7 @@ color: #2C3F50;
 							 <% } %>
 							<tr>
 							
-								 <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" class="form-control" name="userEmail" id="new_name"></td>
+								 <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" class="form-control" name="email" id="new_name"></td>
 								<td><p></p></td>
 								<!--<input type="text" id="new_progress">  -->
 								<td><input type="button" class="add btn btn-info" onclick="add_row();" value="Add Member"></td>

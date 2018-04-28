@@ -140,6 +140,7 @@
 			       <div class="form-group"> 
 			        <button class="btn btn-primary " name="submit" type="submit">Submit</button>
 			        <input id="kk" type="hidden" name="command" value="addTask" />
+			        <input type="hidden" name="userEmail" value="<%=userEmail%>" />
 			       
 			      </div>
 			      </div>
@@ -181,6 +182,7 @@
 				
 				<input id="var" type="hidden" name="command" value="x" />
 				<input id="token" type="hidden" name="token" value="temp" />
+				<input type="hidden" name="userEmail" value="<%=userEmail%>" />
 				<input type="hidden" name="projectName" value="<%=projectName %>" />
 				<input type="hidden" name="taskName<%=i+1%>" value="<%= tasks.get(i).getTaskName() %>" />
 				<input type="button" id="edit_button<%=i+1%>" value="Edit" class="edit btn btn-info" onclick="edit_row(<%=i+1%>)">

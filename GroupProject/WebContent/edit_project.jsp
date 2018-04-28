@@ -166,6 +166,8 @@
 								<input type="hidden" name="command" value="deleteMember" />
 								<input type="hidden" name="email<%=i+1%>" value="<%=projectInvolves.get(i).getUserEmail() %>" />
 								<input type="hidden" name="admin<%=i+1%>" value="<%=String.valueOf(projectInvolves.get(i).isAdmin())%>" />
+								<input type="hidden" name="userEmail" value="<%=userEmail%>" />
+								
 								<input type="button" value="Delete" class="delete btn btn-danger" onclick="delete_member(<%=i+1%>)">
 							</td>
 						</tr>
