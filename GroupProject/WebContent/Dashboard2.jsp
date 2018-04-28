@@ -196,14 +196,6 @@
 				%>
 
 
-				<SCRIPT LANGUAGE="JavaScript">
-					function buttonSkip() {
-						document.getElementById("var").value = "Skip";
-
-						document.form1.submit();
-
-					}
-				</SCRIPT>
 
 
 

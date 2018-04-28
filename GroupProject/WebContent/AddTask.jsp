@@ -120,7 +120,7 @@
 
 			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
 			        <label class="control-label" for="date">Start Date</label>
-			        <input class="form-control" id="datepickerx" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
+			        <input class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}" id="datepickerx" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
 			      </div>
 			   
 
@@ -131,7 +131,7 @@
 			 
 			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
 			        <label class="control-label" for="date">End Date</label>
-			        <input class="form-control" id="datepickery" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
+			        <input class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}" id="datepickery" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
 			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
 			      </div>
 

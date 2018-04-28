@@ -171,15 +171,14 @@ color: #2C3F50;
 			 
 			} 
 			 function goDashboard()
-				{
-					document.getElementById("var2").value = "turnToDashboard";
-					document.getElementById('myform').submit()
-				}
-				function goProject()
-				{
-					
-					document.getElementById('myform').submit()
-				}
+			{
+				document.getElementById("var2").value = "turnToDashboard";
+				document.getElementById('myform').submit()
+			}
+			function goProject()
+			{
+				document.getElementById('myform').submit()
+			}
 				
 			
 			
