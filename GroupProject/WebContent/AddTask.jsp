@@ -120,7 +120,7 @@
 
 			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
 			        <label class="control-label" for="date">Start Date</label>
-			        <input class="form-control" id="datepickerx" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
+			        <input class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}" id="datepickerx" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
 			      </div>
 			   
 
@@ -131,7 +131,7 @@
 			 
 			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
 			        <label class="control-label" for="date">End Date</label>
-			        <input class="form-control" id="datepickery" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
+			        <input class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}" id="datepickery" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
 			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
 			      </div>
 
@@ -213,7 +213,7 @@
 				
 			function edit_row(no)
 			{
-						
+					
 				 document.getElementById("edit_button"+no).style.display="none";
 				 document.getElementById("save_button"+no).style.display="block";
 				 var task=document.getElementById("task_row"+no);
@@ -222,9 +222,15 @@
 				 var task_data=task.innerHTML;
 				 var startDate_data=startDate.innerHTML;
 				 var endDate_data=endDate.innerHTML;
-				 startDate.innerHTML="<input pattern='\d{1,2}/\d{1,2}/\d{4}' class='form-control' type='text' name='startDate' id='startDate_text"+no+"' value='"+startDate_data+"'>";
-				 endDate.innerHTML="<input pattern='\d{1,2}/\d{1,2}/\d{4}' class='form-control' type='text' name='endDate' id='endDate_text"+no+"' value='"+endDate_data+"'>";
-			}
+				 startDate.innerHTML="<input pattern='\d{1,2}/\d{1,2}/\d{4}' id='datepicker1' class='form-control' type='text' name='startDate' id='startDate_text"+no+"' value='"+startDate_data+"'>";
+				 endDate.innerHTML="<input pattern='\d{1,2}/\d{1,2}/\d{4}' id='datepicker2' class='form-control' type='text' name='endDate' id='endDate_text"+no+"' value='"+endDate_data+"'>";
+				 $( function() {	
+						$( "#datepicker1" ).datepicker();
+					  } );
+				 $( function() {	
+						$( "#datepicker2" ).datepicker();
+					  } );
+			} 
 			
 			function save_row(i)
 			{
