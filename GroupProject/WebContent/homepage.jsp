@@ -61,7 +61,7 @@
 				<h1 class="home-page-heading">Easy Project Management</h1>
 				<h5 class="descriptive-heading">Simple way to manage your projects and team of developers</h5>
 				<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-				<a href="signup.jsp">
+				<a href="signUp.jsp">
 				<button type="button" class="btn btn-primary btn-lg">Create Account</button>
 				</a>
 			</div>
