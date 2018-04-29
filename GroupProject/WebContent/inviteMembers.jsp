@@ -192,6 +192,8 @@ input[type="text"]
 			<a id="projectName" class="navbar-brand" href="#">Manage P&P </a>
 		</div>
 
+
+
 	</div>
 
 	<!-- Div to clear the space between the bars-->
@@ -200,15 +202,16 @@ input[type="text"]
 	<div id="down-line-bar">
 		
 				<div id="name-bar ">
-					<div id="page-name">
-					<form id="myform" action="UserServlet" method="GET">
+						<div id="page-name">
+							<form id="myform" action="UserServlet" method="GET">
 					<input id="var" type="hidden" name="command" value="turnToProject" />
 					<input type="hidden" name="email" value="<%=email%>" />
 					<a href="#" onclick="document.getElementById('myform').submit()">Projects</a>
 					&gt;
 					<a href="#">Invite Members</a>
-					</form>
-					</div>
+				</form>
+						
+						</div>
 			   </div>
 			
 	</div>
@@ -219,7 +222,7 @@ input[type="text"]
 
 	<div class="wrapper">
 
-		<form Name="form1" class="form-signin" action="UserServlet" method="POST" action="${pageContext.request.contextPath }/managerDashboard.jsp">
+		<form Name="form1" class="form-signin" action="UserServlet" method="POST" >
 
 			<%-- 	action="UserServlet" method="POST" action="${pageContext.request.contextPath }/LogInPage.jsp" --%>
 			
@@ -252,14 +255,12 @@ input[type="text"]
 			<!--The Invite button will send emails to the added email addresses, send notification on the screen
 			that the emails were successfully sent and then will lead to the dashboard.  -->
 
-		</form>
-	</div>
-			
+
 			<SCRIPT LANGUAGE="JavaScript">
 				function buttonSkip() {
 					document.getElementById("varx").value = "skip";
 					document.form1.submit();
-		
+				}
 				
 				function buttonInvite() {
 					document.getElementById("varx").value = "invite";
@@ -279,6 +280,9 @@ input[type="text"]
 				
 			</SCRIPT>
 
-	
+		</form>
+
+
+	</div>
 </body>
 </html>
