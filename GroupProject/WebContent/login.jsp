@@ -109,7 +109,7 @@
 		<input type="email" id="username" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" name="email" placeholder="Email Address" required="" autofocus="" />
 		<input type="password" id="password" class="form-control" name="password" placeholder="Password" required=""/>      
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>  
-		<p id="question_ac">Don't have an account yet?</p><a class="account_link" href="signup.jsp"> Create new account</a>
+		<p id="question_ac">Don't have an account yet?</p><a class="account_link" href="signUp.jsp"> Create new account</a>
     </form>
     </div>
     
