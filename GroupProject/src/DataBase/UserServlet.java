@@ -93,11 +93,12 @@ public class UserServlet extends HttpServlet
 
 			switch (theCommand)
 			{
-				case "login":
-					login(request, response);
-					break;
 				case "createAccount":
 					createAccount(request, response);
+				break;
+				
+				case "login":
+					login(request, response);
 					break;
 
 				case "addProject":
@@ -182,7 +183,7 @@ public class UserServlet extends HttpServlet
 
 		request.setAttribute("user", us);
 		request.setAttribute("projects", projects);
-		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
+		request.getRequestDispatcher("/projectList.jsp").forward(request, response);
 	}
 
 	private void deleteMember(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -209,7 +210,7 @@ public class UserServlet extends HttpServlet
 		request.setAttribute("membersInvolve", membersInvolve);
 		request.setAttribute("projectName", projectName);
 		request.setAttribute("userEmail", email2);
-		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
+		request.getRequestDispatcher("/editProject.jsp").forward(request, response);
 
 	}
 
@@ -228,7 +229,7 @@ public class UserServlet extends HttpServlet
 		request.setAttribute("projectName", projectName);
 		request.setAttribute("membersInvolve", membersInvolve);
 		request.setAttribute("userEmail", email);
-		request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
+		request.getRequestDispatcher("/editProject.jsp").forward(request, response);
 	}
 
 	private void listMembersInTask(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -243,7 +244,7 @@ public class UserServlet extends HttpServlet
 		request.setAttribute("taskProgress", taskProgress);
 		request.setAttribute("membersInvolve", membersInvolve);
 		request.setAttribute("userEmail", email);
-		request.getRequestDispatcher("/TaskPage_forMembers.jsp").forward(request, response);
+		request.getRequestDispatcher("/membersTaskPage.jsp").forward(request, response);
 
 	}
 
@@ -256,7 +257,7 @@ public class UserServlet extends HttpServlet
 		tasks = dataBase.listTask(task);
 		request.setAttribute("tasks", tasks);
 		request.setAttribute("userEmail", userEmail);
-		request.getRequestDispatcher("/AddTask.jsp").forward(request, response);
+		request.getRequestDispatcher("/addTask.jsp").forward(request, response);
 	}
 
 	private void checkTaskDetail(HttpServletRequest request, HttpServletResponse response) throws Exception
@@ -271,7 +272,7 @@ public class UserServlet extends HttpServlet
 		request.setAttribute("userEmail", userEmail);
 		request.setAttribute("taskInvolves", taskInvolves);
 		request.setAttribute("taskProgress", taskProgress);
-		request.getRequestDispatcher("/AddMemberToTask.jsp").forward(request, response);
+		request.getRequestDispatcher("/addMemberToTask.jsp").forward(request, response);
 
 	}
 
@@ -298,7 +299,7 @@ public class UserServlet extends HttpServlet
 		{
 			request.setAttribute("projectName", projectName);
 			request.setAttribute("userEmail", email);
-			request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
+			request.getRequestDispatcher("/managerDashboard.jsp").forward(request, response);
 		}
 		listTaskInvolve(request, response);
 
@@ -396,7 +397,7 @@ public class UserServlet extends HttpServlet
 		taskNames = dataBase.listTaskInvolve(projectName, email);
 		request.setAttribute("taskNames", taskNames);
 		request.setAttribute("userEmail", email);
-		request.getRequestDispatcher("/Dashboard2.jsp").forward(request, response);
+		request.getRequestDispatcher("/memberDashboard.jsp").forward(request, response);
 
 	}
 
@@ -483,7 +484,7 @@ public class UserServlet extends HttpServlet
 		request.setAttribute("projects", projects);
 		request.setAttribute("email", email);
 
-		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
+		request.getRequestDispatcher("/projectList.jsp").forward(request, response);
 
 	}
 
@@ -590,7 +591,7 @@ public class UserServlet extends HttpServlet
 			membersInvolve = dataBase.listMembersInProject(projectName);
 			request.setAttribute("membersInvolve", membersInvolve);
 			request.setAttribute("userEmail", email);
-			request.getRequestDispatcher("/edit_project.jsp").forward(request, response);
+			request.getRequestDispatcher("/editProject.jsp").forward(request, response);
 
 		}
 		else
@@ -621,7 +622,7 @@ public class UserServlet extends HttpServlet
 		dataBase.createProject(projectName);
 		dataBase.addProject(projectName, email);
 		request.setAttribute("email", email);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/InviteMembers.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/inviteMembers.jsp");
 		dispatcher.forward(request, response);
 
 	}
@@ -643,7 +644,7 @@ public class UserServlet extends HttpServlet
 		}
 		User user = new User(lastName, firstName, email, password);
 		dataBase.createAccount(user);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/LogInPage.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -678,7 +679,7 @@ public class UserServlet extends HttpServlet
 		request.setAttribute("user", us);
 		request.setAttribute("projects", projects);
 		request.setAttribute("email", email);
-		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
+		request.getRequestDispatcher("/projectList.jsp").forward(request, response);
 		return;
 
 	}
@@ -695,7 +696,7 @@ public class UserServlet extends HttpServlet
 		request.setAttribute("user", us);
 		request.setAttribute("projects", projects);
 		request.setAttribute("email", email);
-		request.getRequestDispatcher("/CreateProject.jsp").forward(request, response);
+		request.getRequestDispatcher("/projectList.jsp").forward(request, response);
 		return;
 
 	}
@@ -724,7 +725,7 @@ public class UserServlet extends HttpServlet
 		{
 			request.setAttribute("projectName", projectName);
 			request.setAttribute("userEmail", email);
-			request.getRequestDispatcher("/Dashboard.jsp").forward(request, response);
+			request.getRequestDispatcher("/managerDashboard.jsp").forward(request, response);
 		}
 		listTaskInvolve(request, response);
 

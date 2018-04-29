@@ -26,7 +26,7 @@ members of the team to a specific task. He also will be able to see who is alrea
 
 	<title>AddMemberToTask</title>
 
-	<link rel="stylesheet" type="text/css" href="Main.css"> 
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" /> 
 	  <!-- Bootstrap -->
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	 
@@ -55,7 +55,7 @@ color: #2C3F50;
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
-					<a class="navbar-brand" href="Homepage.jsp">Log Out </a>
+					<a class="navbar-brand" href="homepage.jsp">Log Out </a>
 				</div>
 			
 			</div>

@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="Main.css"> 
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
 	<style type="text/css">
 	
 		body {
@@ -77,16 +77,12 @@
   </head>
   <body>
   
-  <div id="topbar">
-		
+   <div id="topbar">
 		<div id="name-div" class="topbar-section">
 			
-			<a id="projectName" class="navbar-brand" href="Homepage.jsp">Manage P&P </a>
+			<a id="projectName" class="navbar-brand" href="homepage.jsp">Manage P&P </a>
 		</div>
-				
-
-			
-	</div>
+  </div>
 			
 			<!-- Div to clear the space between the bars-->
 		<div class="clear"></div>
@@ -95,7 +91,7 @@
 			<div id="name-bar ">
 				<div id="page-name">
 				
-					<a   href="Homepage.jsp" >Home</a> &gt;
+					<a   href="homepage.jsp" >Home</a> &gt;
 					<a   href="#" >Log In</a>
 				</div>
 			</div>
@@ -113,7 +109,7 @@
 		<input type="email" id="username" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" name="email" placeholder="Email Address" required="" autofocus="" />
 		<input type="password" id="password" class="form-control" name="password" placeholder="Password" required=""/>      
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>  
-		<p id="question_ac">Don't have an account yet?</p><a class="account_link" href="signUp.jsp"> Create new account</a>
+		<p id="question_ac">Don't have an account yet?</p><a class="account_link" href="signup.jsp"> Create new account</a>
     </form>
     </div>
     

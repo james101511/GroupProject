@@ -19,18 +19,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="step-progress.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/step-progress.min.css" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>DashBoard</title>
-	  <link rel="stylesheet" type="text/css" href="Main.css"> 
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
 	  <!-- Bootstrap -->
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	 
 	 <!-- Links for the Gantt chart -->
-	 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jquery_ui_1.8.4.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/reset.css" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/jquery.ganttView.css" />
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
  <style type="text/css">
@@ -115,7 +112,7 @@ color: #2C3F50;
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
-			<a class="navbar-brand" href="Homepage.jsp">Log Out</a>
+			<a class="navbar-brand" href="homepage.jsp">Log Out</a>
 			
 				</div>
 			
@@ -143,8 +140,8 @@ color: #2C3F50;
 			</div>
 		</div>
 		<div id="greeting-user">
-			<h1 class="greeting-user" ><%=projectName %></h1>
-			<h1  class="greeting-user" >Hello,  <%=userEmail%></h1>
+			<h5 class="greeting-user" ><%=projectName %></h5>
+			<h5  class="greeting-user" >Hello,  <%=userEmail%></h5>
 		</div>
 		
 <%-- 		<table id="projectProgress" class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>

@@ -17,7 +17,7 @@
 	
 <title>editProject</title>
 
-<link rel="stylesheet" type="text/css" href="Main.css"> 
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" /> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -88,7 +88,7 @@
 			</div>
 				
 			<div class="topbar-section topbar-logIn">
-				<a class="navbar-brand" href="Homepage.jsp">Log Out</a>
+				<a class="navbar-brand" href="homepage.jsp">Log Out</a>
 			</div>
 			
 		</div>

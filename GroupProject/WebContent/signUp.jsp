@@ -4,11 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-	<link rel="stylesheet" type="text/css" href="Main.css"> 
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
 	<style type="text/css">
 	
 		body {
@@ -27,8 +25,8 @@
 			margin: 0 auto;
 			background-color: #fff;
 			border: 1px solid rgba(0,0,0,0.1);  
+		}
 
-		.form-signin-heading,
 		.checkbox {
 			margin-bottom: 30px;
 			font-size: 10pt;
@@ -61,7 +59,7 @@
 		  border-top-left-radius: 0;
 		  border-top-right-radius: 0;
 		}
-	}
+	
 		
 		.account_link {
 		
@@ -89,38 +87,30 @@
   <div id="topbar">
 		
 		<div id="name-div" class="topbar-section">
-			
-			<a id="projectName" class="navbar-brand" href="Homepage.jsp">Manage P&P </a>
+			<a id="projectName" class="navbar-brand" href="homepage.jsp">Manage P&P </a>
 		</div>
 				
 		<div class="topbar-section topbar-logIn">
-			
-			<a class="navbar-brand" href="LogInPage.jsp">Log In</a>			
-			
-		</div>
-			
-	</div>
+			<a class="navbar-brand" href="login.jsp">Log In</a>			
+		</div>	
+  </div>
 			
 			<!-- Div to clear the space between the bars-->
 		<div class="clear"></div>
 		
 		<div id="down-line-bar">
-		
 			<div id="name-bar ">
 				<div id="page-name">
-				
-					<a   href="Homepage.jsp" >Home</a> &gt;
+					<a   href="homepage.jsp" >Home</a> &gt;
 					<a   href="#" >Sign Up</a>
 				</div>
 			</div>
-		
-		
 		</div>
 		
 		<!--Log In window -->
   <div class="container">
     <div class="wrapper">
-        <form class="form-signin" action="UserServlet" method="POST" action="${pageContext.request.contextPath }/LogInPage.jsp">
+        <form class="form-signin" action="UserServlet" method="POST" action="${pageContext.request.contextPath }/login.jsp">
 			<input type="hidden" name="command" value="createAccount"/>
 			<h3 class="form-signin-heading">Personal Details</h3>
 			<input type="text" class="form-control" pattern="[A-Za-z]+" title="only letters" name="firstName" placeholder="First Name" required/>   
