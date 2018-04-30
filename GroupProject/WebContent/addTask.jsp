@@ -57,12 +57,12 @@
 	#datecontainer {
 		text-align: center;
 		margin-left:300px;
-		margin-right:-300px;
+	
 		margin-top:50px;
 	}
 	#submitbutton {
-		margin-left:-300px;
-		margin-top:23px;
+		margin-left:50px;
+		margin-top:25px;
 	}
 
 
@@ -146,7 +146,7 @@
 			        <input id="vars" type="hidden" name="projectName" value="<%=projectName %>" />
 			      </div>
 
-			      <div class="col-md-4 col-md-4 col-xs-12"> 
+			      
 			       
 			       <div id="submitbutton" class="form-group"> 
 			        <button class="edit btn btn-info " name="submit" type="submit">Submit</button>
@@ -154,7 +154,7 @@
 			        <input type="hidden" name="userEmail" value="<%=userEmail%>" />
 			       
 			      </div>
-			      </div>
+			    
 			     </div>
 			     
 			     <!-- Form code ends --> 
