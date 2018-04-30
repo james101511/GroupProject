@@ -90,8 +90,8 @@
 			<div id="topbar">
 		
 				<div id="name-div" class="topbar-section">
-			
-					<a id="projectName"  href="Dashboard.jsp">Manage P&P </a>
+
+					<a id="projectName" class="navbar-brand" href="javascript:history.go(0);">Manage P&P </a>
 				</div>
 				
 				<div class="topbar-section topbar-logIn">

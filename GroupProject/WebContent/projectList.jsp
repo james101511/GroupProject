@@ -40,7 +40,7 @@ List<Project> projects = (List<Project>) request.getAttribute("projects");
 		width: 1000px;
 		margin-bottom: 40px;
 		padding: auto;
-		margin-top: 100px;
+		margin-top: 50px;
 		padding-bottom: 80px;
 		height: 30px;
 	}
@@ -59,6 +59,7 @@ List<Project> projects = (List<Project>) request.getAttribute("projects");
 		background-color: #fff;
 		width: 600px;
 		margin-bottom:50px;
+		
 
 	}
 	.create-project-form{

@@ -25,6 +25,8 @@
 <!-- <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
  -->
 <!-- Bootstrap Date-Picker Plugin -->
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+	<!-- Bootstrap CSS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
  -->
@@ -37,15 +39,25 @@
 	color: #7b74aa;
 }
 #rename_button1 {
-	margin-top:-45px;
-	margin-left:600px;
+	margin-top:-55px;
+	margin-left:400px;
+}
+#save_button {
+	margin-top: -30px;
 }
 #d1 {
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 0px;
+	
 }
 #addbutton{
-	margin-top:20px;
+	margin-top:35px;
+}
+#editable_projectname{
+	width:40%	
+}
+#datepickers_container{
+	margin-left: 505px;
+	margin-right:505px;
 }
 </style>
 
@@ -115,9 +127,9 @@
 		<div id="d1">
 		<form id="form1" name="form1" class="form-signin" action="UserServlet" method="POST">
 		<input type="hidden" name="projectName" value="<%=projectInvolves.get(0).getProjectName()%>" />
+		
 		<label id="editable_projectname" for="staticQustion" class="form-label-3"><%=projectInvolves.get(0).getProjectName()%></label>
 		<div id="rename_button1">
-
 					<input type="hidden" name="command" value="rename">
 					<input type="hidden" name="email" value="<%=userEmail%>">
 					<input type="button" id="rename_button" value="Rename" class="btn btn-primary" onclick="rename()">
@@ -126,6 +138,10 @@
 		</div> 
 		</form>
 		</div>
+		<br>
+		<br>
+		<br>
+		<br>
 		
 		<form id="form2" name="form2" class="form-signin" action="UserServlet" method="POST">
 			<div class="bootstrap-iso" id="datepickers_container">

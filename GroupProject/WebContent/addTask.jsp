@@ -57,7 +57,7 @@
 	#datecontainer {
 		text-align: center;
 		margin-left:300px;
-	
+		marigin-right:300px;
 		margin-top:50px;
 	}
 	#submitbutton {
