@@ -21,6 +21,8 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/step-progress.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+	<!-- Bootstrap CSS -->
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>DashBoard</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
@@ -30,7 +32,7 @@
 	 <!-- Links for the Gantt chart -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
- <style type="text/css">
+<style type="text/css">
 
 h1{
 color: #2C3F50;
@@ -41,6 +43,23 @@ color: #2C3F50;
 #projectProgress {
 	color: #01dd00;
 }
+
+#greeting-user {
+	margin-left:20px;
+	margin-top:20px;
+}
+
+#tasks {
+	margin-left:10px;
+	margin-top:-20px;
+}
+
+#twobuttons {
+	margin-top:-42px;
+	margin-left:250px;
+}
+
+
 </style>
  
  
@@ -103,45 +122,44 @@ color: #2C3F50;
 </head>
 <body>
 	<!-- Top bars -->
+	
+	
+			
 			<div id="topbar">
 		
 				<div id="name-div" class="topbar-section">
-			
-			<!-- need to fix -->
-					<a id="projectName"  href="javascript:history.go(0);">Manage P&P </a>
+
+					<a id="projectName" class="navbar-brand" href="javascript:history.go(0);">Manage P&P </a>
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
-			<a class="navbar-brand" href="homepage.jsp">Log Out</a>
-			
+					<a class="navbar-brand" href="homepage.jsp">Log Out</a>
 				</div>
-			
+		
 			</div>
+			
 			
 			<!-- Div to clear the space between the bars-->
 			<div class="clear"></div>
 		
-		
+
+
 			<div id="down-line-bar">
-			<div id="name-bar">
-
-
 				<div id="name-bar ">
-						<div id="page-name">
+					<div id="page-name">
 						<form id="myform" action="UserServlet" method="GET">
 							<input id="var" type="hidden" name="command" value="turnToProject" />
 							<input type="hidden" name="email" value="<%=userEmail%>" />
 							<a   href="#" onclick="document.getElementById('myform').submit()">Projects</a> &gt;
 							<a   href="#" >Dashboard</a> 
 						</form>
-						
-						</div>
 					</div>
+				</div>
 			</div>
-		</div>
+
+			
 		<div id="greeting-user">
-			<h5 class="greeting-user" ><%=projectName %></h5>
-			<h5  class="greeting-user" >Hello,  <%=userEmail%></h5>
+			<h4 id="greeting-user" ><i class="far fa-file-code"></i><%="  " +projectName %></h4>
 		</div>
 		
 <%-- 		<table id="projectProgress" class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
@@ -167,10 +185,10 @@ color: #2C3F50;
 
 		<!-- Content of the page after the bars -->
 		
-	<div class="container container-project-name">	
+
 			<!-- <div class="dropdown project-members">  -->
 			
-			 <div class="row ">
+			 <div id="tasks" class="row ">
     			<div class="col-6 col-md-2">
 					  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					    Tasks
@@ -188,23 +206,18 @@ color: #2C3F50;
 						 <% } %>
 			  		</div>
 				</div>
-	</div>
-	</div>
-	
-	
-	<br>
-	<br>
-	<br>
-		
+			</div>
 
-		<form Name="form2" class="form-signin" action="UserServlet" method="POST">
+	
+		<div id="twobuttons">
+		<form  Name="form2" class="form-signin" action="UserServlet" method="POST">
 		<input type="hidden" name="projectName" value="<%=projectName%>" />
 		<input type="hidden" name="userEmail" value="<%=userEmail%>" />
 		<input id="var2" type="hidden" name="command" value="temp"  />
 		<input type="button" class="btn btn-primary mb-2" value="EditTasks"onclick='show()' >
 		<input type="button" class="btn btn-primary mb-2" value="EditProject"onclick='edit()' >
 		</form>
-
+		</div>
 		<!-- GANTT CHART -->
 		 <div id="chart_div"></div>
 			

@@ -50,14 +50,14 @@ color: #2C3F50;
 			<div id="topbar">
 		
 				<div id="name-div" class="topbar-section">
-			
-					<a id="projectName"  href="Dashboard.jsp">Manage P&P </a>
+
+					<a id="projectName" class="navbar-brand" href="javascript:history.go(0);">Manage P&P </a>
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
 					<a class="navbar-brand" href="homepage.jsp">Log Out </a>
 				</div>
-			
+
 			</div>
 			
 			<!-- Div to clear the space between the bars-->
@@ -74,7 +74,7 @@ color: #2C3F50;
 					<a href="#" onclick="goDashboard()">Dashboard </a> &gt;
 					<a href="#" >Add Members To Task</a>
 				</form>
-					</div>
+				</div>
 				</div>
 			</div>
 

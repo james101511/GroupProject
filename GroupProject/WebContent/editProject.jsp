@@ -44,6 +44,9 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+#addbutton{
+	margin-top:20px;
+}
 </style>
 
 <script type="text/javascript">
@@ -84,7 +87,7 @@
 <body>
 		<div id="topbar">		
 			<div id="name-div" class="topbar-section">
-				<a id="projectName" href="javascript:history.go(-1);">Manage P&P </a>
+				<a id="projectName" class="navbar-brand" href="javascript:history.go(0);">Manage P&P </a>
 			</div>
 				
 			<div class="topbar-section topbar-logIn">
@@ -135,7 +138,7 @@
 			        		<input id="token" type="hidden" name="token" value="1" />
 			        		<input type="hidden" name="email" value="<%=projectInvolves.get(0).getUserEmail() %>" /> 
 			   			</div>
-			   			<div class="col-md-4 col-md-4 col-xs-12"> 
+			   			<div id="addbutton" class="col-md-4 col-md-4 col-xs-12"> 
 			       			<div class="form-group"> 
 			        			<button class="btn btn-primary " name="submit" type="submit">Add</button>
 			        			

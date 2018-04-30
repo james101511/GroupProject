@@ -15,14 +15,16 @@
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+	<!-- Bootstrap CSS -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>DashBoard</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/step-progress.min.css" />
 <!-- Links for the Gantt chart -->
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -112,6 +114,15 @@
 #projectProgress {
 	color: #01dd00;
 }
+#greeting-user {
+	margin-left:20px;
+	margin-top:20px;
+}
+
+#tasks {
+	margin-left:10px;
+	margin-top:-20px;
+}
 </style>
 </head>
 <body>
@@ -120,13 +131,11 @@
 
 		<div id="name-div" class="topbar-section">
 
-			<!-- need to fix -->
-			<a id="projectName" href="javascript:history.go(0);">Manage P&P </a>
+			<a id="projectName" class="navbar-brand" href="javascript:history.go(0);">Manage P&P </a>
 		</div>
 
 		<div class="topbar-section topbar-logIn">
 			<a class="navbar-brand" href="homepage.jsp">Log Out</a>
-
 		</div>
 
 	</div>
@@ -150,35 +159,44 @@
 		</div>
 	</div>
 
-	<h1 id="page-name" class="navbar-brand"><%=projectName%></h1>
-	<h1 id="page-name" class="navbar-brand">
-		Hello
-		<%=userEmail%></h1>
+		<div id="greeting-user">
+			<h4 id="greeting-user" ><i class="far fa-file-code"></i><%="  " +projectName %></h4>
+		</div>
 
 
 	<!-- Content of the page after the bars -->
 
 
-	<table id="projectProgress" class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
+<%-- 	<table id="projectProgress" class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 		<tr>
 			<th>#Project_Progress</th>
 			<th>
 				<%=projectProgress%>%
 			</th>
 		</tr>
-	</table>
+	</table> --%>
+	
+	<section>
+    	<div class="steps">
+        	<ul class="steps-container">
+                    <li style="width:100%;">
+                        <div class="step" >
 
-	<div class="container container-project-name">
+                            <div class="step-current">#Project Progress</div>
+                            <div class="step-description"><%=projectProgress %>%</div>
+                        </div>
+                    </li>
+                    <div class="step-bar" style="width: <%=projectProgress%>%;"></div>
+        </div>
+	</section>
 
-		<div class="dropdown project-members">
-
+	<div id="tasks">
+		<div class="col-6 col-md-2">
 			<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false">Your Tasks</button>
 
 
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-
 				<a class="dropdown-item" href="#"></a>
 				<%
 					for (int i = 0; i < taskNames.size(); i++) {
@@ -192,20 +210,10 @@
 				<%
 					}
 				%>
-
-
-
-
-
-
+				</div>
 			</div>
-
 		</div>
 
-
-
-	</div>
-	<br>
 
 	<!-- 		<div class="container container-progress-bar">
 			<div class="row justify-content-end ">

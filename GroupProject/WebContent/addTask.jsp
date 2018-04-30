@@ -51,10 +51,23 @@
     $( "#datepicker2" ).datepicker();
   } ); */
 
-
-	  
-
   </script>
+  
+  <style type="text/css">
+	#datecontainer {
+		text-align: center;
+		margin-left:300px;
+		margin-right:-300px;
+		margin-top:50px;
+	}
+	#submitbutton {
+		margin-left:-300px;
+		margin-top:23px;
+	}
+
+
+  }
+  </style>
 </head>
 <body>
 
@@ -63,10 +76,8 @@
 			<div id="topbar">
 		
 				<div id="name-div" class="topbar-section">
-				
-				<a id="projectName" href="javascript:history.go(-1);">Manage P&P </a>
-				
-					
+
+					<a id="projectName" class="navbar-brand" href="javascript:history.go(0);">Manage P&P </a>
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
@@ -97,7 +108,7 @@
 		<!-- Content of the page after the bars -->
 		
 		
-	 	<div class="data-container">
+	 	<div id="datecontainer" class="data-container">
 			<!-- Date pickers -->
 			<form Name="form" class="form-signin" action="UserServlet" method="POST">
 			<div class="bootstrap-iso" id="datepickers_container">
@@ -137,8 +148,8 @@
 
 			      <div class="col-md-4 col-md-4 col-xs-12"> 
 			       
-			       <div class="form-group"> 
-			        <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+			       <div id="submitbutton" class="form-group"> 
+			        <button class="edit btn btn-info " name="submit" type="submit">Submit</button>
 			        <input id="kk" type="hidden" name="command" value="addTask" />
 			        <input type="hidden" name="userEmail" value="<%=userEmail%>" />
 			       
