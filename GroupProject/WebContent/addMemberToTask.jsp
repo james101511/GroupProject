@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
@@ -17,60 +16,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	
-
-	<title>AddMemberToTask</title>
-
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" /> 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/addMemberToTask.css" /> 
-	<script type="text/javascript" src="${pageContext.request.contextPath }/js/addMemberToTask.js"></script>
-	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	
-
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/addMemberToTask.js"></script>
+	<title>AddMemberToTask</title>
 </head>
 <body>
-
-
 	<!-- Top bars -->
 			<div id="topbar">
-		
 				<div id="name-div" class="topbar-section">
-
 					<a id="projectName" class="navbar-brand" href="javascript:history.go(0);">Manage P&P </a>
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
 					<a class="navbar-brand" href="homepage.jsp">Log Out </a>
 				</div>
-
 			</div>
 			
 			<!-- Div to clear the space between the bars-->
 			<div class="clear"></div>
-		
 			<div id="down-line-bar">
 				<div id="name-bar ">
 					<div id="page-name">
 					<form id="myform" action="UserServlet" method="GET">
-					<input id="var2" type="hidden" name="command" value="turnToProject" />
-					<input type="hidden" name="email" value="<%=userEmail%>" />
-					<input type="hidden" name="projectName" value="<%=projectName%>" />
-					<a href="#" onclick="goProject()">Projects</a> &gt;
-					<a href="#" onclick="goDashboard()">Dashboard </a> &gt;
-					<a href="#" >Add Members To Task</a>
-				</form>
-				</div>
+						<input id="var2" type="hidden" name="command" value="turnToProject" />
+						<input type="hidden" name="email" value="<%=userEmail%>" />
+						<input type="hidden" name="projectName" value="<%=projectName%>" />
+						<a href="#" onclick="goProject()">Projects</a> &gt;
+						<a href="#" onclick="goDashboard()">Dashboard </a> &gt;
+						<a href="#" >Add Members To Task</a>
+					</form>
+					</div>
 				</div>
 			</div>
 
-		<!-- Content of the page after the bars -->
+			<!-- Content of the page after the bars -->
 		
-		<div class="container container-project-name">
-		<h3><%=taskName %> </h3>
-		<h7 id="desc_heading">Members involved in this task</h7>
-		
-		</div>
+			<div class="container container-project-name">
+				<h3><%=taskName %> </h3>
+				<h7 id="desc_heading">Members involved in this task</h7>
+			</div>
 			
 			<!-- TABLE  -->
 			<div class="container">
@@ -109,11 +95,8 @@
 								<td><input type="button" class="add btn btn-info" onclick="add_row();" value="Add Member"></td>
 							
 							</tr>
-							
-							
-							
 						</table>
-						</form>
+					</form>
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import="java.util.*" %>
 <%@ page import="DataBase.*" %>
@@ -10,12 +9,9 @@
 %>
 <html>
 <head>
-
-	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>AddTask</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -23,28 +19,24 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
   	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
   	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/addTask.css" /> 
 	<script type="text/javascript" src="${pageContext.request.contextPath }/js/addTask.js"></script>
-
+	<title>AddTask</title>
 </head>
 <body>
 
 
 	<!-- Top bars -->
 			<div id="topbar">
-		
 				<div id="name-div" class="topbar-section">
-
 					<a id="projectName" class="navbar-brand" href="javascript:history.go(0);">Manage P&P </a>
 				</div>
 				
 				<div class="topbar-section topbar-logIn">
 					<a class="navbar-brand" href="homepage.jsp">Log Out</a>
 				</div>
-			
 			</div>
 			
 			<!-- Div to clear the space between the bars-->
@@ -54,13 +46,13 @@
 				<div id="name-bar ">
 					<div id="page-name">
 					<form id="myform" action="UserServlet" method="GET">
-					<input id="var2" type="hidden" name="command" value="turnToProject" />
-					<input type="hidden" name="email" value="<%=userEmail%>" />
-					<input type="hidden" name="projectName" value="<%=projectName%>" />
-					<a href="#" onclick="goProject()">Projects</a> &gt;
-					<a href="#" onclick="goDashboard()">Dashboard</a> &gt;
-					<a  href="#" >Add Tasks</a>
-				</form>
+						<input id="var2" type="hidden" name="command" value="turnToProject" />
+						<input type="hidden" name="email" value="<%=userEmail%>" />
+						<input type="hidden" name="projectName" value="<%=projectName%>" />
+						<a href="#" onclick="goProject()">Projects</a> &gt;
+						<a href="#" onclick="goDashboard()">Dashboard</a> &gt;
+						<a  href="#" >Add Tasks</a>
+					</form>
 						
 					</div>
 				</div>
@@ -72,35 +64,23 @@
 	 	<div id="datecontainer" class="data-container">
 			<!-- Date pickers -->
 			<form Name="form" class="form-signin" action="UserServlet" method="POST">
-			<div class="bootstrap-iso" id="datepickers_container">
-			 
+			<div class="bootstrap-iso" id="datepickers_container">	 
 			 <div class="container-fluid">
 			  <div class="row">
-			  
 			  	<div class="form-group"> 
 			        <label>Task Name</label>
 			        <input class="form-control" name ="taskName" type="text" required/>
 			    </div>
-	
-			   
 	   			<div class="col-md-4 col-md-4 col-xs-12"> 
-			   
-			
 			    <!-- Form code begins -->
-			    
-
-
 			      <div class="form-group" id='datetimepicker6'> <!-- Date input -->
 			        <label class="control-label" for="date">Start Date</label>
 			        <input class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}" id="datepickerx" name="startDate" placeholder="MM/DD/YYYY" type="text"/>
 			      </div>
-			   
-
 			     <!-- Form code ends --> 
-		   		 </div> 
+		   		</div> 
 			    	<!-- test -->
 			    	 <!-- Form code begins -->
-			 
 			      <div class="form-group" id='datetimepicker7'> <!-- Date input -->
 			        <label class="control-label" for="date">End Date</label>
 			        <input class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}" id="datepickery" name="endDate" placeholder="MM/DD/YYYY" type="text"/>
@@ -126,10 +106,6 @@
 			  </div>
 			
 		
- 
-
-
-
 <!-- This is NEW TEST TABLE -->
 <div class="container-fluid task_table">
 	<div id="wrapper">

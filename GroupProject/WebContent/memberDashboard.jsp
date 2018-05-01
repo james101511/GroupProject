@@ -35,7 +35,6 @@
 		google.charts.setOnLoadCallback(drawChart);
 
 		function drawChart() {
-
 			var data = new google.visualization.DataTable();
 			data.addColumn('string', 'Task ID');
 			data.addColumn('string', 'Task Name');
@@ -192,13 +191,6 @@
 
 	<!-- GANTT CHART -->
 	<div id="chart_div"></div>
-
-
-
-
-
-
-
 
 
 	<!--Required JavaScript -->

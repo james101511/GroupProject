@@ -38,13 +38,10 @@
  <script type="text/javascript">  
  	google.charts.load('current', {'packages':['gantt']});
     google.charts.setOnLoadCallback(drawChart);
-
     function drawChart() {
-
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Task ID');
       data.addColumn('string', 'Task Name');
-/*       data.addColumn('string', 'Resource'); */
       data.addColumn('date', 'Start Date');
       data.addColumn('date', 'End Date');
       data.addColumn('number', 'Duration');
@@ -63,7 +60,6 @@
       				);
       	<% } %> 
       	
-
       var options = {
         height: 400,
         gantt: {
@@ -72,19 +68,8 @@
       };
 
       var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
-     /*  if (rows[0]==null)
-		{
-    	  	
-		} */
-     
-      chart.draw(data, options);
-    	 
-		 
-		
-      
+      chart.draw(data, options); 
     }
-
-     
 </script>
 
 
