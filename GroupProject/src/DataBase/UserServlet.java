@@ -58,8 +58,8 @@ public class UserServlet extends HttpServlet
 				case "turnToProject":
 					turnToProject(request, response);
 					break;
-				case"turnToDashboard":
-					turnToDashboard(request,response);
+				case "turnToDashboard":
+					turnToDashboard(request, response);
 					break;
 
 			}
@@ -71,20 +71,6 @@ public class UserServlet extends HttpServlet
 
 	}
 
-	// private void checkProject(HttpServletRequest request, HttpServletResponse
-	// response) throws Exception
-	// {
-	// List<Project> projects = new ArrayList<>();
-	// String projectName = request.getParameter("projectName");
-	// Involve involve = new Involve(projectName, false);
-	// involves = dataBase.checkProject(involve);
-	//
-	//
-	// request.setAttribute("Involve", involves);
-	//
-	//
-	// }
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		try
@@ -95,8 +81,8 @@ public class UserServlet extends HttpServlet
 			{
 				case "createAccount":
 					createAccount(request, response);
-				break;
-				
+					break;
+
 				case "login":
 					login(request, response);
 					break;
@@ -156,7 +142,6 @@ public class UserServlet extends HttpServlet
 				case "getAllTask":
 					getAllTask(request, response);
 					break;
-				
 
 			}
 
@@ -168,6 +153,13 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to rename the project
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void rename(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		List<Project> projects = new ArrayList<>();
@@ -186,6 +178,13 @@ public class UserServlet extends HttpServlet
 		request.getRequestDispatcher("/projectList.jsp").forward(request, response);
 	}
 
+	/**
+	 * the function to delete member in the project
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void deleteMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		PrintWriter out = response.getWriter();
@@ -214,24 +213,32 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to list all members in the project
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void listMembersInProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		List<ProjectInvolve> membersInvolve = new ArrayList<ProjectInvolve>();
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("userEmail");
 		membersInvolve = dataBase.listMembersInProject(projectName);
-
-		// if (true)
-		// {
-		// response.getWriter().println(email);
-		// return;
-		// }
 		request.setAttribute("projectName", projectName);
 		request.setAttribute("membersInvolve", membersInvolve);
 		request.setAttribute("userEmail", email);
 		request.getRequestDispatcher("/editProject.jsp").forward(request, response);
 	}
 
+	/**
+	 * the function to list all members in
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void listMembersInTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		List<TaskInvolve> membersInvolve = new ArrayList<>();
@@ -239,7 +246,6 @@ public class UserServlet extends HttpServlet
 		String taskName = request.getParameter("taskName");
 		String email = request.getParameter("userEmail");
 		String taskProgress = dataBase.getTaskProgress(taskName, projectName);
-
 		membersInvolve = dataBase.listMembersInTask(projectName, taskName);
 		request.setAttribute("taskProgress", taskProgress);
 		request.setAttribute("membersInvolve", membersInvolve);
@@ -248,6 +254,13 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to get all task and turn to the addTask.jsp page
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void getAllTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String projectName = request.getParameter("projectName");
@@ -260,6 +273,14 @@ public class UserServlet extends HttpServlet
 		request.getRequestDispatcher("/addTask.jsp").forward(request, response);
 	}
 
+	/**
+	 * the function to get the task's detail and turn to the addMemberToTask.jsp
+	 * page
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void checkTaskDetail(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String userEmail = request.getParameter("userEmail");
@@ -276,6 +297,13 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to get all task and turn to the dashboard page
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void listTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 
@@ -305,6 +333,13 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to edit the progress and turn to the original page
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void editProgress(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 
@@ -321,6 +356,13 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to delete task member
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void deleteTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 
@@ -335,6 +377,13 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to add member to the specific task
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void addTaskMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 
@@ -381,26 +430,32 @@ public class UserServlet extends HttpServlet
 
 	}
 
-	// private void turnToDashboard(HttpServletRequest request, HttpServletResponse
-	// response) throws Exception
-	// {
-	// // checkProject(request, response);
-	// listTask(request, response);
-	// }
-
+	/**
+	 * the function to get all task and turn to the dashboard which is only for
+	 * member
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void listTaskInvolve(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		List<String> taskNames = new ArrayList<>();
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("email");
-
 		taskNames = dataBase.listTaskInvolve(projectName, email);
 		request.setAttribute("taskNames", taskNames);
 		request.setAttribute("userEmail", email);
 		request.getRequestDispatcher("/memberDashboard.jsp").forward(request, response);
-
 	}
 
+	/**
+	 * delete the task
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void deleteTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String token = request.getParameter("token");
@@ -412,6 +467,13 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to edit the task detail
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void editTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		PrintWriter out = response.getWriter();
@@ -420,7 +482,6 @@ public class UserServlet extends HttpServlet
 		String taskName = request.getParameter("taskName" + token);
 		String startDate = trimSpace(request.getParameter("startDate"));
 		String endDate = trimSpace(request.getParameter("endDate"));
-
 		int startYear = Integer.parseInt(startDate.substring(6, 10));
 		int endYear = Integer.parseInt(endDate.substring(6, 10));
 		int startMonth = Integer.parseInt(startDate.substring(0, 2));
@@ -460,15 +521,13 @@ public class UserServlet extends HttpServlet
 
 	}
 
-	// private void editProject(HttpServletRequest request, HttpServletResponse
-	// response) throws Exception
-	// {
-	// String projectName = request.getParameter("projectName");
-	// String newProjectName = request.getParameter("newProjectName");
-	// dataBase.editProject(projectName, newProjectName);
-	//
-	// }
-
+	/**
+	 * the function to delete project
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void deleteProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String token = request.getParameter("token");
@@ -483,11 +542,17 @@ public class UserServlet extends HttpServlet
 		request.setAttribute("user", us);
 		request.setAttribute("projects", projects);
 		request.setAttribute("email", email);
-
 		request.getRequestDispatcher("/projectList.jsp").forward(request, response);
 
 	}
 
+	/**
+	 * the function to add tasks into the project
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void addTask(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		PrintWriter out = response.getWriter();
@@ -495,7 +560,6 @@ public class UserServlet extends HttpServlet
 		String startDate = trimSpace(request.getParameter("startDate"));
 		String endDate = trimSpace(request.getParameter("endDate"));
 		String projectName = request.getParameter("projectName");
-		
 		Task task = new Task(projectName, taskName, startDate, endDate, "0");
 
 		if (dataBase.checkDuplicate(projectName, taskName))
@@ -545,13 +609,20 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to add member into the project
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void addMember(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		PrintWriter out = response.getWriter();
 		List<String> emails = new ArrayList<>();
 		String token = request.getParameter("token");
 		String projectName = request.getParameter("projectName");
-		 String email = request.getParameter("email");
+		String email = request.getParameter("email");
 
 		int i = 1;
 
@@ -592,25 +663,25 @@ public class UserServlet extends HttpServlet
 			request.setAttribute("membersInvolve", membersInvolve);
 			request.setAttribute("userEmail", email);
 			request.getRequestDispatcher("/editProject.jsp").forward(request, response);
-
 		}
 		else
 		{
 			turnToDashboard(request, response);
 		}
-
 	}
 
+	/**
+	 * the function to make a new project
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void addProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		PrintWriter out = response.getWriter();
 		String projectName = trimSpace(request.getParameter("projectName"));
 		String email = request.getParameter("email");
-		// if (true)
-		// {
-		// response.getWriter().println(email);
-		// return;
-		// }
 		if (dataBase.checkProjectExist(projectName))
 		{
 			out.println("<script type=\"text/javascript\">");
@@ -627,6 +698,13 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to create a new account
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void createAccount(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		PrintWriter out = response.getWriter();
@@ -648,6 +726,13 @@ public class UserServlet extends HttpServlet
 		dispatcher.forward(request, response);
 	}
 
+	/**
+	 * the login function to verfiy the user
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void login(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		List<Project> projects = new ArrayList<>();
@@ -684,11 +769,17 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to turn to the project list page
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void turnToProject(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String email = trimSpace(request.getParameter("email"));
 		List<Project> projects = new ArrayList<>();
-
 		User user = new User(email, null);
 		Project project = new Project(email);
 		projects = dataBase.checkProject(project);
@@ -701,25 +792,23 @@ public class UserServlet extends HttpServlet
 
 	}
 
+	/**
+	 * the function to turn to the dashboard page
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
 	private void turnToDashboard(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-
 		String email = request.getParameter("email");
 		String projectName = request.getParameter("projectName");
-//		if (true)
-//		{
-//			response.getWriter().println(email);
-//			response.getWriter().println(projectName);
-//			return;
-//		}
-
 		List<Task> tasks = new ArrayList<>();
 		Task task = new Task(projectName);
 		tasks = dataBase.listTask(task);
 		String projectProgress = dataBase.getProjectProgress(projectName);
 		request.setAttribute("tasks", tasks);
 		request.setAttribute("projectProgress", projectProgress);
-
 		boolean admin = dataBase.checkAdmin(projectName, email);
 		if (admin == true)
 		{
@@ -728,9 +817,15 @@ public class UserServlet extends HttpServlet
 			request.getRequestDispatcher("/managerDashboard.jsp").forward(request, response);
 		}
 		listTaskInvolve(request, response);
-
 	}
 
+	/**
+	 * the function use to calculate the progress
+	 * 
+	 * @param projectName
+	 * @param taskName
+	 * @throws Exception
+	 */
 	private void calculate(String projectName, String taskName) throws Exception
 	{
 		List<TaskInvolve> allTaskInvolveProgress = new ArrayList<>();
@@ -749,7 +844,6 @@ public class UserServlet extends HttpServlet
 			taskProgress = (sum) / allTaskInvolveProgress.size();
 		}
 		dataBase.editTaskProgress(taskProgress, projectName, taskName);
-
 		// for project
 		Task task = new Task(projectName);
 		allTaskProgress = dataBase.listTask(task);
@@ -766,6 +860,12 @@ public class UserServlet extends HttpServlet
 		dataBase.editProjectProgress(projectProgress, projectName);
 	}
 
+	/**
+	 * the function to trim the all space for the input
+	 * 
+	 * @param temp
+	 * @return
+	 */
 	private static String trimSpace(String temp)
 	{
 		temp = temp.replaceAll("\\s", "").trim();
