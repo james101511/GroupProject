@@ -22,68 +22,10 @@ List<Project> projects = (List<Project>) request.getAttribute("projects");
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
 	<title>Create Project</title>
 
-
-	<style type="text/css">
-	h1{
-		color: black;
-
-	}
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/projectList.css" /> 
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/projectList.js"></script>
 
 
-
-	body{
-		background-color: #eee !important;
-
-
-	}
-	#text-container {
-		width: 1000px;
-		margin-bottom: 40px;
-		padding: auto;
-		margin-top: 50px;
-		padding-bottom: 80px;
-		height: 30px;
-	}
-
-	.create-project-heading {
-		font-size: 25px;
-		font-weight: regular;
-		padding-bottom: 20px;
-	}
-	h4{
-		color: #2C3F50;
-		padding: 15px;
-
-	}
-	.container{
-		background-color: #fff;
-		width: 600px;
-		margin-bottom:50px;
-		
-
-	}
-	.create-project-form{
-
-		background-color: #2C3F50;
-		margin-top:50px;
-
-	}
-	.create-project-form p{
-		color: white;
-		font-size:18px;
-		padding-left: 15px;
-		padding-top: 10px;
-
-	}
-	a:hover{
-		text-decoration: none;
-
-	}
-/* .table-borderless td,
-.table-borderless th {
-    border: 0;
-    } */
-</style>
 </head>
 
 <body>
@@ -248,22 +190,7 @@ integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5K
 integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script type="text/javascript">
-	
-	
 
-	function dashboard(i){
-		document.getElementById("var").value = "checkProject";
-		document.getElementById("token").value = i;
-		document.form1.submit();
-	}
-	function delete_row(i){
-		document.getElementById("var").value = "deleteProject";
-		document.getElementById("token").value = i;
-		document.form1.submit();
-	}
-
-</script>
 </body>
 </html>
 

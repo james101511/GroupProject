@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+	#datecontainer {
+		text-align: center;
+		margin-left:300px;
+		marigin-right:300px;
+		margin-top:50px;
+	}
+	#submitbutton {
+		margin-left:50px;
+		margin-top:25px;
+	}
+

@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+h1{
+		color: black;
+
+	}
+
+
+
+	body{
+		background-color: #eee !important;
+
+
+	}
+	#text-container {
+		width: 1000px;
+		margin-bottom: 40px;
+		padding: auto;
+		margin-top: 50px;
+		padding-bottom: 80px;
+		height: 30px;
+	}
+
+	.create-project-heading {
+		font-size: 25px;
+		font-weight: regular;
+		padding-bottom: 20px;
+	}
+	h4{
+		color: #2C3F50;
+		padding: 15px;
+
+	}
+	.container{
+		background-color: #fff;
+		width: 600px;
+		margin-bottom:50px;
+		
+
+	}
+	.create-project-form{
+
+		background-color: #2C3F50;
+		margin-top:50px;
+
+	}
+	.create-project-form p{
+		color: white;
+		font-size:18px;
+		padding-left: 15px;
+		padding-top: 10px;
+
+	}
+	a:hover{
+		text-decoration: none;
+	}

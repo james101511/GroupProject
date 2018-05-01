@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+#text-container {
+				width: 1000px;
+				margin: 0 auto;
+				padding:auto;
+				text-align:center;
+				margin-top: 100px;
+				padding-bottom: 20px;
+				height: 30px;
+				}
+				
+			.home-page-heading {
+				font-size: 27px;
+				font-weight: bold;
+				padding-bottom: 20px;
+				}
+				
+			.descriptive-heading {
+				font-size: 17px;
+				padding-bottom: 30px;
+				}
+				
+			.navbar-brand {
+				color:white;
+				}

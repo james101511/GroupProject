@@ -17,84 +17,16 @@
 	
 <title>editProject</title>
 
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" /> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" /> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/editProject.css" /> 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<!-- <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
- -->
-<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/editProject.js"></script>
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-	<!-- Bootstrap CSS -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
- -->
-<style type="text/css">
-.form-label-3 {
-	margin-top:50px;
-	margin-left: 100px;
-	font-size: 30px;
-	font-weight: bold;
-	color: #7b74aa;
-}
-#rename_button1 {
-	margin-top:-55px;
-	margin-left:400px;
-}
-#save_button {
-	margin-top: -30px;
-}
-#d1 {
-	margin-left: 0px;
-	
-}
-#addbutton{
-	margin-top:35px;
-}
-#editable_projectname{
-	width:40%	
-}
-#datepickers_container{
-	margin-left: 505px;
-	margin-right:505px;
-}
-</style>
 
-<script type="text/javascript">
-	function rename()
-	{
- 		document.getElementById("rename_button").style.display="none";
- 		document.getElementById("save_button").style.display="block";
-	
- 		var ProjectName = document.getElementById("editable_projectname");
- 		var newProjectName = ProjectName.innerHTML;
 
- 		ProjectName.innerHTML="<input type='text' name='newProjectName' id='editable_projectname' value='"+newProjectName+"'>";
- 		
 
-	}
-	function save()
-	{
-		document.form1.submit();
-	}
-	function delete_member(i)
-	{
-		document.getElementById("token2").value = i;
-		document.form3.submit();
-		
-	}
-	function goDashboard()
-	{
-		document.getElementById("var").value = "turnToDashboard";
-		document.getElementById('myform').submit()
-	}
-	function goProject()
-	{
-		
-		document.getElementById('myform').submit()
-	}
-</script>
 </head>
 <body>
 		<div id="topbar">		

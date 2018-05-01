@@ -13,11 +13,6 @@
 
 <html>
 <head>
-
-<!-- This is page which will be available only to the manager. The manager will be able to assign 
-members of the team to a specific task. He also will be able to see who is already working on this task and the progress that every member has done.->
-
-	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
@@ -26,22 +21,13 @@ members of the team to a specific task. He also will be able to see who is alrea
 
 	<title>AddMemberToTask</title>
 
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" /> 
-	  <!-- Bootstrap -->
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	 
-	 <style type="text/css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" /> 
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/addMemberToTask.css" /> 
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/addMemberToTask.js"></script>
+	
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
 
-h7{
-color: #2C3F50;
- padding: 15px;
-
-}
-
-#wrapper11 {
-	color: #01dd00;
-}
-</style>
 </head>
 <body>
 
@@ -147,44 +133,5 @@ color: #2C3F50;
 				</div>
 			</div>
 		</div>
-			
-
-			
-			
-			<script type="text/javascript">
-			
-			//This is function to delete team member and the row connected with him/her
-	
-			function delete_row(i)
-			{
-				document.getElementById("delete"+i).name= "deleteUserEmail";
-			 	document.getElementById("var").value = "deleteTaskMember";
-
-				document.form2.submit();
-			}
-
-			 function add_row()
-			{
-			 
-				document.getElementById("var").value = "addTaskMember";
-
-				document.form2.submit();
-			 
-			} 
-			 function goDashboard()
-			{
-				document.getElementById("var2").value = "turnToDashboard";
-				document.getElementById('myform').submit()
-			}
-			function goProject()
-			{
-				document.getElementById('myform').submit()
-			}
-				
-			
-			
-			</script>
-	
-
 </body>
 </html>

@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+h1{
+color: #2C3F50;
+ padding: 15px;
+
+}
+
+#projectProgress {
+	color: #01dd00;
+}
+
+#greeting-user {
+	margin-left:20px;
+	margin-top:20px;
+}
+
+#tasks {
+	margin-left:10px;
+	margin-top:-20px;
+}
+
+#twobuttons {
+	margin-top:-42px;
+	margin-left:250px;
+}

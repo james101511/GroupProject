@@ -8,32 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
 	<title>Manage P&P </title>	
-		<style type="text/css">
-			#text-container {
-				width: 1000px;
-				margin: 0 auto;
-				padding:auto;
-				text-align:center;
-				margin-top: 100px;
-				padding-bottom: 20px;
-				height: 30px;
-				}
-				
-			.home-page-heading {
-				font-size: 27px;
-				font-weight: bold;
-				padding-bottom: 20px;
-				}
-				
-			.descriptive-heading {
-				font-size: 17px;
-				padding-bottom: 30px;
-				}
-				
-			.navbar-brand {
-				color:white;
-				}
-		</style>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/homepage.css" /> 
 	</head>
 	
 	<body>
@@ -42,7 +17,7 @@
 					<a id="projectName" class="navbar-brand" href="homepage.jsp">Manage P&P </a>
 				</div>
 				<div class="topbar-section topbar-logIn">
-			<a class="navbar-brand" href="login.jsp">Log In</a>
+					<a class="navbar-brand" href="login.jsp">Log In</a>
 				</div>
 			</div>
 			

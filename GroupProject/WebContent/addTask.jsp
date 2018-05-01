@@ -14,60 +14,21 @@
 	<!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	
-
 	<title>AddTask</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
-	  <!-- Bootstrap -->
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	 <!--  jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/addTask.css" /> 
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/addTask.js"></script>
 
-<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#datepickerx" ).datepicker();
-  } );
-  $( function() {
-	$( "#datepickery" ).datepicker();
-  } );
-/*   $( function() {
-	$( "#datepicker1" ).datepicker();
-  } );
-  $( function() {
-    $( "#datepicker2" ).datepicker();
-  } ); */
-
-  </script>
-  
-  <style type="text/css">
-	#datecontainer {
-		text-align: center;
-		margin-left:300px;
-		marigin-right:300px;
-		margin-top:50px;
-	}
-	#submitbutton {
-		margin-left:50px;
-		margin-top:25px;
-	}
-
-
-  }
-  </style>
 </head>
 <body>
 
@@ -204,71 +165,10 @@
 				
 			</tr>
 		
-			<% } %>
-			
-			
+			<% } %>		
 		</table>
 	    </form>
 	</div>
 </div>
-
-
-
-<!-- THIS IS THE END OF THE NEW TEST TABLE -->
-
-				
-			<script type="text/javascript">
-		
-	
-	
-				
-			function edit_row(no)
-			{
-					
-				 document.getElementById("edit_button"+no).style.display="none";
-				 document.getElementById("save_button"+no).style.display="block";
-				 var task=document.getElementById("task_row"+no);
-				 var startDate=document.getElementById("startDate_row"+no);
-				 var endDate=document.getElementById("endDate_row"+no);
-				 var task_data=task.innerHTML;
-				 var startDate_data=startDate.innerHTML;
-				 var endDate_data=endDate.innerHTML;
-				 startDate.innerHTML="<input pattern='\d{1,2}/\d{1,2}/\d{4}' id='datepicker1' class='form-control' type='text' name='startDate' id='startDate_text"+no+"' value='"+startDate_data+"'>";
-				 endDate.innerHTML="<input pattern='\d{1,2}/\d{1,2}/\d{4}' id='datepicker2' class='form-control' type='text' name='endDate' id='endDate_text"+no+"' value='"+endDate_data+"'>";
-				 $( function() {	
-						$( "#datepicker1" ).datepicker();
-					  } );
-				 $( function() {	
-						$( "#datepicker2" ).datepicker();
-					  } );
-			} 
-			
-			function save_row(i)
-			{
-				document.getElementById("var").value = "editTask";
-				document.getElementById("token").value = i;
-				document.form1.submit();
-			}
-			
-			function delete_row(i)
-			{
-				
-				document.getElementById("var").value = "deleteTask";
-				document.getElementById("token").value = i;
-				document.form1.submit();
-			}
-			function goDashboard()
-			{
-				document.getElementById("var2").value = "turnToDashboard";
-				document.getElementById('myform').submit()
-			}
-			function goProject()
-			{
-				
-				document.getElementById('myform').submit()
-			}
-			</script>
-	
-
 </body>
 </html>

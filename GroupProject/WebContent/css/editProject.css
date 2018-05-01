@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.form-label-3 {
+	margin-top:50px;
+	margin-left: 100px;
+	font-size: 30px;
+	font-weight: bold;
+	color: #7b74aa;
+}
+#rename_button1 {
+	margin-top:-55px;
+	margin-left:400px;
+}
+#save_button {
+	margin-top: -30px;
+}
+#d1 {
+	margin-left: 0px;
+	
+}
+#addbutton{
+	margin-top:35px;
+	
+}
+#editable_projectname{
+	width:40%	
+}
+#datepickers_container{
+	margin-left:500px;
+	margin-right:500px;
+}

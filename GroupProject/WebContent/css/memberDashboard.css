@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#projectProgress {
+	color: #01dd00;
+}
+#greeting-user {
+	margin-left:20px;
+	margin-top:20px;
+}
+
+#tasks {
+	margin-left:10px;
+	margin-top:-20px;
+}

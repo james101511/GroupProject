@@ -31,37 +31,9 @@
 	 
 	 <!-- Links for the Gantt chart -->
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/managerDashboard.css" /> 
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/managerDashboard.js"></script>
 	
-<style type="text/css">
-
-h1{
-color: #2C3F50;
- padding: 15px;
-
-}
-
-#projectProgress {
-	color: #01dd00;
-}
-
-#greeting-user {
-	margin-left:20px;
-	margin-top:20px;
-}
-
-#tasks {
-	margin-left:10px;
-	margin-top:-20px;
-}
-
-#twobuttons {
-	margin-top:-42px;
-	margin-left:250px;
-}
-
-
-</style>
- 
  
  <script type="text/javascript">  
  	google.charts.load('current', {'packages':['gantt']});
@@ -86,9 +58,8 @@ color: #2C3F50;
 			      		  new Date(<%=tasks.get(i).getStartDate().substring(6,10)%>, <%=tasks.get(i).getStartDate().substring(0,2)%>-1, <%=tasks.get(i).getStartDate().substring(3,5)%>), 
 			      		  new Date(<%=tasks.get(i).getEndDate().substring(6,10)%>,   <%=tasks.get(i).getEndDate().substring(0,2)%>-1, <%=tasks.get(i).getEndDate().substring(3,5)%>), 
 			      		  null, <%=tasks.get(i).getTaskProgress()%>, null
-			      		],
-        				
-        				 ]
+			      		],	
+        			 ]
       				);
       	<% } %> 
       	
@@ -219,38 +190,12 @@ color: #2C3F50;
 		</form>
 		</div>
 		<!-- GANTT CHART -->
-		 <div id="chart_div"></div>
+		<div id="chart_div"></div>
 			
-			
-			
-			
-	
-			
-			
-			
-			
-		 <!--Required JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>		
-	<script type="text/javascript">
-  		
-  	
 
-  		function edit(){
-  			
-  			//when save ,make the text input become a submit button 
-			document.getElementById("var2").value = "listMembersInProject";
-			
-			document.form2.submit();
-  		}
-  		function show(){
-			document.getElementById("var2").value = "getAllTask";
-			
-			document.form2.submit();
-  		}
-
-  	</script>
 </body>
 </html>
