@@ -22,50 +22,12 @@ public class DataBase
 		this.dataSource = dataSource;
 	}
 
-	// public List<User> getUsers() throws Exception
-	// {
-	// List<User> users = new ArrayList<>();
-	//
-	// Connection myConn = null;
-	// Statement myStmt = null;
-	// ResultSet myRs = null;
-	//
-	// try
-	// {
-	// // get a connection
-	// myConn = dataSource.getConnection();
-	// // create sql statement
-	// String sql = "select *from Users order by Lastname";
-	// myStmt = myConn.createStatement();
-	// // execute query
-	// myRs = myStmt.executeQuery(sql);
-	// // process result set
-	// while (myRs.next())
-	// {
-	// // retrieve data from result set row
-	// int id = myRs.getInt("id");
-	// String firstName = myRs.getString("first_name");
-	// String lastName = myRs.getString("last_name");
-	// String email = myRs.getString("email");
-	// String password = myRs.getString("password");
-	// // create new student object
-	// User tempuser = new User(id, firstName, lastName, email, password);
-	// // add it to the list of students
-	// users.add(tempuser);
-	//
-	// }
-	//
-	// return users;
-	// }
-	//
-	// finally
-	// {
-	// // close JDBC objects
-	// Close(myConn, myStmt, myRs);
-	// }
-	//
-	// }
-
+	/**
+	 * the function to create account in database
+	 * 
+	 * @param theuser
+	 * @throws Exception
+	 */
 	public void createAccount(User theuser) throws Exception
 
 	{
@@ -89,9 +51,15 @@ public class DataBase
 			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
-
 	}
 
+	/**
+	 * the login function use to check the data in database to verify the user
+	 * 
+	 * @param theuser
+	 * @return
+	 * @throws Exception
+	 */
 	public User login(User theuser) throws Exception
 	{
 		Connection myConn = null;
@@ -119,6 +87,12 @@ public class DataBase
 		}
 	}
 
+	/**
+	 * create new project into the database
+	 * 
+	 * @param projectName
+	 * @throws SQLException
+	 */
 	public void createProject(String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -140,6 +114,13 @@ public class DataBase
 
 	}
 
+	/**
+	 * add new project into the database
+	 * 
+	 * @param projectName
+	 * @param email
+	 * @throws Exception
+	 */
 	public void addProject(String projectName, String email) throws Exception
 	{
 		Connection myConn = null;
@@ -149,7 +130,6 @@ public class DataBase
 			myConn = dataSource.getConnection();
 			String sql = "insert into project_involve" + "(project_name,user_email,project_admin)" + "values(?,?,?)";
 			myStmt = myConn.prepareStatement(sql);
-
 			myStmt.setString(1, projectName);
 			myStmt.setString(2, email);
 			myStmt.setBoolean(3, true);
@@ -162,6 +142,13 @@ public class DataBase
 
 	}
 
+	/**
+	 * get all project and list it for the specific user
+	 * 
+	 * @param project
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Project> checkProject(Project project) throws Exception
 	{
 		Connection myConn = null;
@@ -194,6 +181,12 @@ public class DataBase
 		}
 	}
 
+	/**
+	 * add new member to the project
+	 * 
+	 * @param project
+	 * @throws SQLException
+	 */
 	public void addMember(Project project) throws SQLException
 	{
 		Connection myConn = null;
@@ -219,12 +212,18 @@ public class DataBase
 
 	}
 
+	/**
+	 * check user is exist or not
+	 * 
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean checkUserExist(String email) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		boolean userExist = false;
-
 		try
 		{
 			myConn = dataSource.getConnection();
@@ -234,9 +233,7 @@ public class DataBase
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
-
 				userExist = true;
-
 			}
 			return userExist;
 		}
@@ -247,6 +244,13 @@ public class DataBase
 
 	}
 
+	/**
+	 * check the project is exist or not
+	 * 
+	 * @param projectName
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean checkProjectExist(String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -274,6 +278,13 @@ public class DataBase
 		}
 	}
 
+	/**
+	 * get all tasks in a specific project and list it
+	 * 
+	 * @param task
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<Task> listTask(Task task) throws SQLException
 	{
 		Connection myConn = null;
@@ -304,6 +315,13 @@ public class DataBase
 		}
 	}
 
+	/**
+	 * get the detail of the specific task
+	 * 
+	 * @param taskInvolve
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<TaskInvolve> checkTaskDetail(TaskInvolve taskInvolve) throws SQLException
 	{
 		Connection myConn = null;
@@ -335,12 +353,19 @@ public class DataBase
 		}
 	}
 
+	/**
+	 * check the user is a manager for specific project or not
+	 * 
+	 * @param projectName
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean checkAdmin(String projectName, String email) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		boolean admin = true;
-
 		try
 		{
 			myConn = dataSource.getConnection();
@@ -368,6 +393,12 @@ public class DataBase
 
 	}
 
+	/**
+	 * add task into the project
+	 * 
+	 * @param task
+	 * @throws SQLException
+	 */
 	public void addTask(Task task) throws SQLException
 	{
 		Connection myConn = null;
@@ -393,6 +424,14 @@ public class DataBase
 
 	}
 
+	/**
+	 * make sure there is no duplicate in the task table
+	 * 
+	 * @param projectName
+	 * @param taskName
+	 * @return
+	 * @throws SQLException
+	 */
 	public boolean checkDuplicate(String projectName, String taskName) throws SQLException
 	{
 		Connection myConn = null;
@@ -420,6 +459,13 @@ public class DataBase
 
 	}
 
+	/**
+	 * delete the specific task
+	 * 
+	 * @param projectName
+	 * @param taskName
+	 * @throws SQLException
+	 */
 	public void deleteTask(String projectName, String taskName) throws SQLException
 	{
 		Connection myConn = null;
@@ -441,6 +487,15 @@ public class DataBase
 
 	}
 
+	/**
+	 * edit the task's detail in the database
+	 * 
+	 * @param projectName
+	 * @param taskName
+	 * @param startDate
+	 * @param endDate
+	 * @throws SQLException
+	 */
 	public void editTask(String projectName, String taskName, String startDate, String endDate) throws SQLException
 	{
 		Connection myConn = null;
@@ -463,6 +518,13 @@ public class DataBase
 
 	}
 
+	/**
+	 * edit the project detail
+	 * 
+	 * @param projectName
+	 * @param newProjectName
+	 * @throws SQLException
+	 */
 	public void editProject(String projectName, String newProjectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -482,6 +544,14 @@ public class DataBase
 		}
 	}
 
+	/**
+	 * list the task for the specific user
+	 * 
+	 * @param projectName
+	 * @param email
+	 * @return taskNames
+	 * @throws SQLException
+	 */
 	public List<String> listTaskInvolve(String projectName, String email) throws SQLException
 	{
 		Connection myConn = null;
@@ -509,6 +579,12 @@ public class DataBase
 
 	}
 
+	/**
+	 * add a member to the task
+	 * 
+	 * @param taskInvolve
+	 * @throws SQLException
+	 */
 	public void addTaskMember(TaskInvolve taskInvolve) throws SQLException
 	{
 		Connection myConn = null;
@@ -533,6 +609,12 @@ public class DataBase
 		}
 	}
 
+	/**
+	 * delete the member in the specific task
+	 * 
+	 * @param taskInvolve
+	 * @throws SQLException
+	 */
 	public void deleteTaskMember(TaskInvolve taskInvolve) throws SQLException
 	{
 		Connection myConn = null;
@@ -554,6 +636,14 @@ public class DataBase
 
 	}
 
+	/**
+	 * get all members in the specific task
+	 * 
+	 * @param projectName
+	 * @param taskName
+	 * @return members;
+	 * @throws SQLException
+	 */
 	public List<TaskInvolve> listMembersInTask(String projectName, String taskName) throws SQLException
 	{
 		Connection myConn = null;
@@ -585,12 +675,19 @@ public class DataBase
 
 	}
 
+	/**
+	 * check member is in the project or not
+	 * 
+	 * @param userEmail
+	 * @param projectName
+	 * @return boolean
+	 * @throws SQLException
+	 */
 	public boolean checkMemberInProject(String userEmail, String projectName) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		boolean memberExist = false;
-
 		try
 		{
 			myConn = dataSource.getConnection();
@@ -601,9 +698,7 @@ public class DataBase
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
-
 				memberExist = true;
-
 			}
 			return memberExist;
 		}
@@ -614,12 +709,19 @@ public class DataBase
 
 	}
 
+	/**
+	 * check user is in the project or not
+	 * 
+	 * @param tempEmail
+	 * @param projectName
+	 * @return boolean
+	 * @throws SQLException
+	 */
 	public boolean checkUserInProject(String tempEmail, String projectName) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		boolean memberExist = false;
-
 		try
 		{
 			myConn = dataSource.getConnection();
@@ -630,9 +732,7 @@ public class DataBase
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
-
 				memberExist = true;
-
 			}
 			return memberExist;
 		}
@@ -642,12 +742,20 @@ public class DataBase
 		}
 	}
 
+	/**
+	 * check user is in the task or not
+	 * 
+	 * @param userEmail
+	 * @param taskName
+	 * @param projectName
+	 * @return boolean
+	 * @throws SQLException
+	 */
 	public boolean checkUserInTask(String userEmail, String taskName, String projectName) throws SQLException
 	{
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
 		boolean memberExist = false;
-
 		try
 		{
 			myConn = dataSource.getConnection();
@@ -659,9 +767,7 @@ public class DataBase
 			ResultSet set = myStmt.executeQuery();
 			while (set.next())
 			{
-
 				memberExist = true;
-
 			}
 			return memberExist;
 		}
@@ -671,6 +777,12 @@ public class DataBase
 		}
 	}
 
+	/**
+	 * edit the task progress
+	 * 
+	 * @param taskInvolve
+	 * @throws SQLException
+	 */
 	public void editProgress(TaskInvolve taskInvolve) throws SQLException
 	{
 		Connection myConn = null;
@@ -685,17 +797,22 @@ public class DataBase
 			myStmt.setString(3, taskInvolve.getUserEmail());
 			myStmt.setString(4, taskInvolve.getProjectName());
 			myStmt.setString(5, taskInvolve.getTaskName());
-			// execute sql insert
 			myStmt.execute();
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 
 	}
 
+	/**
+	 * delete the task
+	 * 
+	 * @param taskName
+	 * @param projectName
+	 * @throws SQLException
+	 */
 	public void deleteTaskInvolve(String taskName, String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -717,6 +834,13 @@ public class DataBase
 
 	}
 
+	/**
+	 * list all members in project
+	 * 
+	 * @param projectName
+	 * @return all members in specific project
+	 * @throws SQLException
+	 */
 	public List<ProjectInvolve> listMembersInProject(String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -746,12 +870,17 @@ public class DataBase
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 
 	}
 
+	/**
+	 * delete the project
+	 * 
+	 * @param projectName
+	 * @throws SQLException
+	 */
 	public void deleteProjectInvolve(String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -767,19 +896,22 @@ public class DataBase
 
 				myStmt = myConn.prepareStatement(sqls[i]);
 				myStmt.setString(1, projectName);
-
 				myStmt.execute();
 
 			}
 			finally
 			{
 				Close(myConn, myStmt, null);
-
 			}
 		}
 
 	}
 
+	/**rename the project
+	 * @param newProjectName
+	 * @param projectName
+	 * @throws SQLException
+	 */
 	public void rename(String newProjectName, String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -792,23 +924,24 @@ public class DataBase
 			myConn = dataSource.getConnection();
 			try
 			{
-
 				myStmt = myConn.prepareStatement(sqls[i]);
 				myStmt.setString(1, newProjectName);
 				myStmt.setString(2, projectName);
-
 				myStmt.execute();
-
 			}
 			finally
 			{
 				Close(myConn, myStmt, null);
-
 			}
 		}
 
 	}
 
+	/**delete member
+	 * @param projectName
+	 * @param email
+	 * @throws SQLException
+	 */
 	public void deleteMamber(String projectName, String email) throws SQLException
 	{
 		Connection myConn = null;
@@ -816,7 +949,6 @@ public class DataBase
 		try
 		{
 			myConn = dataSource.getConnection();
-
 			String sql = "DELETE FROM project_involve WHERE project_Name = ? and user_email =?";
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, projectName);
@@ -827,9 +959,14 @@ public class DataBase
 		{
 			Close(myConn, myStmt, null);
 		}
-
 	}
 
+	/**get the task's progress
+	 * @param taskName
+	 * @param projectName
+	 * @return a number with type string
+	 * @throws SQLException
+	 */
 	public String getTaskProgress(String taskName, String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -843,21 +980,23 @@ public class DataBase
 			myStmt.setString(1, taskName);
 			myStmt.setString(2, projectName);
 			ResultSet set = myStmt.executeQuery();
-
 			while (set.next())
 			{
 				taskProgress = set.getString("task_progress");
-
 			}
 			return taskProgress;
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 	}
 
+	/**get the project progress
+	 * @param projectName
+	 * @return
+	 * @throws SQLException
+	 */
 	public String getProjectProgress(String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -870,21 +1009,24 @@ public class DataBase
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, projectName);
 			ResultSet set = myStmt.executeQuery();
-
 			while (set.next())
 			{
 				projectProgress = set.getString("project_progress");
-
 			}
 			return projectProgress;
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 	}
 
+	/**edit the task progress
+	 * @param taskProgress
+	 * @param projectName
+	 * @param taskName
+	 * @throws SQLException
+	 */
 	public void editTaskProgress(int taskProgress, String projectName, String taskName) throws SQLException
 	{
 		Connection myConn = null;
@@ -894,21 +1036,23 @@ public class DataBase
 			myConn = dataSource.getConnection();
 			String sql = "UPDATE task SET task_progress= ? WHERE task_name=? and project_name=?";
 			myStmt = myConn.prepareStatement(sql);
-			myStmt.setString(1, String.valueOf(taskProgress) );
+			myStmt.setString(1, String.valueOf(taskProgress));
 			myStmt.setString(2, taskName);
 			myStmt.setString(3, projectName);
-
-			// execute sql insert
 			myStmt.execute();
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 
 	}
 
+	/**edit the project progress
+	 * @param projectProgress
+	 * @param projectName
+	 * @throws SQLException
+	 */
 	public void editProjectProgress(int projectProgress, String projectName) throws SQLException
 	{
 		Connection myConn = null;
@@ -920,13 +1064,10 @@ public class DataBase
 			myStmt = myConn.prepareStatement(sql);
 			myStmt.setString(1, String.valueOf(projectProgress));
 			myStmt.setString(2, projectName);
-
-			// execute sql insert
 			myStmt.execute();
 		}
 		finally
 		{
-			// clean up JDBC objects
 			Close(myConn, myStmt, null);
 		}
 
