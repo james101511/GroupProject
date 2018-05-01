@@ -191,7 +191,7 @@
 
 	<!-- GANTT CHART -->
 	<div id="chart_div"></div>
-
+ 
 
 	<!--Required JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
