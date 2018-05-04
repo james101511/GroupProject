@@ -78,10 +78,11 @@
 			}
 		};
 
-		var chart = new google.visualization.Gantt(document
-				.getElementById('chart_div'));
-
-		chart.draw(data, options);
+		  if(data.getNumberOfRows()!=0)
+    	  {
+    	  	  var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+          chart.draw(data, options); 
+    	  }
 	}
 </script>
 

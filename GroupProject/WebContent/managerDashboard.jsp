@@ -38,7 +38,8 @@
  <script type="text/javascript">  
  	google.charts.load('current', {'packages':['gantt']});
     google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
+    function drawChart() 
+    {
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Task ID');
       data.addColumn('string', 'Task Name');
@@ -47,7 +48,7 @@
       data.addColumn('number', 'Duration');
       data.addColumn('number', 'Percent Complete');
       data.addColumn('string', 'Dependencies');
-      var rows = [];
+      /* var rows = []; */
       <% for (int i=0;i<tasks.size();i++) { %>
       	data.addRows(
       				 [
@@ -66,9 +67,14 @@
           trackHeight: 30
         }
       };
-
-      var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
-      chart.draw(data, options); 
+	 
+      if(data.getNumberOfRows()!=0)
+    	  {
+    	  	  var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+          chart.draw(data, options); 
+    	  }
+      
+      
     }
 </script>
 
