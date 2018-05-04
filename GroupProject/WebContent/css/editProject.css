@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+
 .form-label-3 {
 	margin-top:50px;
 	margin-left: 100px;
@@ -18,14 +20,15 @@
 	margin-left: 0px;
 	
 }
-#addbutton{
-	margin-top:35px;
-	
-}
+
 #editable_projectname{
 	width:40%	
 }
 #datepickers_container{
 	margin-left:500px;
-	margin-right:500px;
+}
+#addbutton{
+	margin-top:33px;
+	margin-left:10px;
+	
 }

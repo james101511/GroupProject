@@ -18,13 +18,12 @@
 <title>editProject</title>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" /> 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/editProject.css" /> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/editProject.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/editProject.js"></script>
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-
 
 
 </head>
@@ -89,7 +88,6 @@
 			   			<div id="addbutton" class="col-md-4 col-md-4 col-xs-12"> 
 			       			<div class="form-group"> 
 			        			<button class="btn btn-primary " name="submit" type="submit">Add</button>
-			        			
 			        			<input type="hidden" name="command" value="addMember" />
 			      			</div>
 			      		</div>
@@ -98,7 +96,7 @@
 			</div>
 		</form> 
 		
-		<div class="">
+		<div id="memtable" class="">
 			<div id="wrapper">
 				<form name="form3" action="UserServlet" method="POST">
 				<input id=token2 type="hidden" name="token" value="temp" />
