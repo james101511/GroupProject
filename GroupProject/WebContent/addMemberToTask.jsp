@@ -71,12 +71,15 @@
 						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
 							<tr>
 								<th>#Name</th>
+								<th>#Comment</th>
 								<th>#Progress</th>
 							</tr>
 							<% for (int i=0;i<taskInvolves.size();i++) { %>
 							<tr id="row1">
 							
 								<td id="name_row1"><%=taskInvolves.get(i).getUserEmail() %></td>
+								
+								<td id="comment_row1"><%=taskInvolves.get(i).getProgress() %></td>
 								
 								<td id="progress_row1"><%=taskInvolves.get(i).getPercentage() %>%</td>
 							
@@ -87,15 +90,14 @@
 								
 							</tr>
 							 <% } %>
+							</table >
+							<table >
 							<tr>
-							
-								 <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" class="form-control" name="email" id="new_name"></td>
-								<td><p></p></td>
+								 <td><input style="width:120%;" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="xyz@something.com" class="form-control" name="email" id="new_name"></td>
 								<!--<input type="text" id="new_progress">  -->
-								<td><input type="button" class="add btn btn-info" onclick="add_row();" value="Add Member"></td>
-							
+								<td><input style="margin-left:80px;" type="button" class="add btn btn-info" onclick="add_row();" value="Add Member"></td>
 							</tr>
-						</table>
+							</table>
 					</form>
 					</div>
 				</div>
@@ -103,7 +105,7 @@
 		</div>
 						
 		<div class="container">
-			  <div class="row">
+			  <div style="margin-top:20px;" class="row">
 			  	<div class="col align-self-center">
 					<div id="wrapper11">
 						<table class="table table-bordered" align='center' cellspacing=2 cellpadding=5 id="data_table" border=0>
