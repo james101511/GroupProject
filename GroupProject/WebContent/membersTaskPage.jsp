@@ -87,8 +87,8 @@ String taskProgress = (String)request.getAttribute("taskProgress");
 							
 							<tr>
 								<th>#Name</th>
-								<th>#Progress comment</th>
-								<th>#Percentage done</th>
+								<th>#Comment</th>
+								<th>#Progress</th>
 							</tr>
 							
 							<% for (int i=0;i<membersInvolve.size();i++) { %>
