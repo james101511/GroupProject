@@ -162,11 +162,19 @@ public class UserServlet extends HttpServlet
 	 */
 	private void rename(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
+		PrintWriter out = response.getWriter();
 		List<Project> projects = new ArrayList<>();
 		String newProjectName = request.getParameter("newProjectName");
 		String projectName = request.getParameter("projectName");
 		String email = request.getParameter("email");
-
+		if(dataBase.checkProjectExist(newProjectName))
+		{
+			out.println("<script type=\"text/javascript\">");
+			out.println("alert('" + newProjectName + "  is already been used');");
+			out.println("window.history.go(-1);");
+			out.println("</script>");
+			return;
+		}
 		dataBase.rename(newProjectName, projectName);
 		User user = new User(email, null);
 		Project project = new Project(email);
@@ -396,9 +404,7 @@ public class UserServlet extends HttpServlet
 		TaskInvolve taskInvolve = new TaskInvolve(taskName, userEmail, projectName);
 
 		if (!dataBase.checkMemberInProject(userEmail, projectName))
-
 		{
-
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('" + userEmail + "  is not in this project');");
 			out.println("window.history.go(-1);");
