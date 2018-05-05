@@ -173,11 +173,11 @@ List<Project> projects = (List<Project>) request.getAttribute("projects");
 
 
 		<div class="form-group mx-sm-3 mb-2">
-			<input class="form-control" id="new_project_name" type="text" name="projectName" placeholder="Type new project name here!" required="" />
+			<input style="width:130%;" class="form-control" id="new_project_name" type="text" name="projectName" placeholder="Type new project name here!" required="" />
 
 		</div>
 
-		<button type="submit" class="btn btn-primary mb-3">+ Add</button>
+		<button style="margin-left:30px;margin-top:8px;" type="submit" class="btn btn-primary mb-3">+ Add</button>
 	</form>
 </div>
 </div>
