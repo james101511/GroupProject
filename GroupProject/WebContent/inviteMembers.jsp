@@ -2,19 +2,19 @@
 <%@ page import="java.util.*"%>
 <%@ page import="DataBase.*"%>
 <%
-	String projectName = (String) request.getParameter("projectName");
-	String email=(String)request.getAttribute("email");
+String projectName = (String) request.getParameter("projectName");
+String email=(String)request.getAttribute("email");
 %>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/inviteMembers.css" /> 
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/inviteMember.js"></script>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/inviteMembers.css" /> 
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/inviteMember.js"></script>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/Main.css" />
 </head>
 <body>
 
@@ -34,19 +34,19 @@
 
 	<div id="down-line-bar">
 		
-				<div id="name-bar ">
-						<div id="page-name">
-							<form id="myform" action="UserServlet" method="GET">
+		<div id="name-bar ">
+			<div id="page-name">
+				<form id="myform" action="UserServlet" method="GET">
 					<input id="var" type="hidden" name="command" value="turnToProject" />
 					<input type="hidden" name="email" value="<%=email%>" />
 					<a href="#" onclick="document.getElementById('myform').submit()">Projects</a>
 					&gt;
 					<a href="#">Invite Members</a>
 				</form>
-						
-						</div>
-			   </div>
-			
+				
+			</div>
+		</div>
+		
 	</div>
 
 
@@ -68,9 +68,9 @@
 			<label for="staticText" class="form-label-2">Now you can invite people to your team:</label>
 			
 			<div id="wrapper1">
-			<div id="field_div">
-			<input type="button" id="button_plus" value="+" onclick="add_field();">
-			</div>
+				<div id="field_div">
+					<input type="button" id="button_plus" value="+" onclick="add_field();">
+				</div>
 			</div>
 			
 
@@ -78,19 +78,19 @@
 			<!-- TODO -->
 			<input id="varx" type="hidden" name="command" value="var" />
 			<div>
-			<input type="hidden" name="email" value="<%= email %>" />
-			<input id="var2" type="hidden" name="projectName" value="<%=projectName%>" />
-			<input id="token" type="hidden" name="token" value="2" />
-			<input id="skip"  class="button button3" type="submit" value="Skip" onClick="buttonSkip()">
-			<input id="submit"  class="button button4" type="submit" value="Invite" onClick="buttonInvite()">
+				<input type="hidden" name="email" value="<%= email %>" />
+				<input id="var2" type="hidden" name="projectName" value="<%=projectName%>" />
+				<input id="token" type="hidden" name="token" value="2" />
+				<input id="skip"  class="button button3" type="submit" value="Skip" onClick="buttonSkip()">
+				<input id="submit"  class="button button4" type="submit" value="Invite" onClick="buttonInvite()">
 			</div>
 			
 			<!--The Invite button will send emails to the added email addresses, send notification on the screen
-			that the emails were successfully sent and then will lead to the dashboard.  -->
+				that the emails were successfully sent and then will lead to the dashboard.  -->
 
-		</form>
+			</form>
 
 
-	</div>
-</body>
-</html>
+		</div>
+	</body>
+	</html>
