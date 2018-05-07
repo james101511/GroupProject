@@ -25,7 +25,7 @@ public class UserServlet extends HttpServlet
 	@Override
 	public void init() throws ServletException
 	{
-
+ 
 		super.init();
 		// create our student db util and pass in the conn pool /datasource
 		try
