@@ -640,7 +640,7 @@ public class UserServlet extends HttpServlet
 			if (!dataBase.checkUserExist(tempEmail))
 			{
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('" + tempEmail + "  is not exist');");
+				out.println("alert('" + tempEmail + "  does not exist');");
 				out.println("window.history.go(-1);");
 				out.println("</script>");
 				return;
@@ -747,7 +747,7 @@ public class UserServlet extends HttpServlet
 		if (!dataBase.checkUserExist(email))
 		{
 			out.println("<script type=\"text/javascript\">");
-			out.println("alert('" + email + "  is not exist');");
+			out.println("alert('" + email + "  does not exist');");
 			out.println("window.history.go(-1);");
 			out.println("</script>");
 			return;
