@@ -1,4 +1,5 @@
-This is using for school group project
+This is a Project Management System developed as a Group Project by Team 6 for CSC8005: Engineering with Group Project.
+
 
 ## Demo
  	http://139.162.249.175:8080/GroupProject/
@@ -6,9 +7,9 @@ This is using for school group project
 	https://github.com/james101511/group-project
 Create the database
 =====
-	1.copy new.sql to your local sql
+	1.Copy new.sql to your local sql
 
-	2.go WebContent/META-INF/context.xml to change your username, password and which database you use
+	2.Go to WebContent/META-INF/context.xml to change your username, password and which database you use
 		
 	  for example:url="jdbc:mysql://localhost:3306/demo?useSSL=false"/> 
 	
@@ -24,16 +25,16 @@ Set tomcat v8.5
 
 Introduction
 =====
-	All user in this system can be the manager and the teamember
+	All user in the system can be managers and team members.
 
 	
-## After Login you can see all the projects you involve
+## After Login you can see all the projects you are involved in
  ![alt text](https://github.com/james101511/group-project/blob/master/Screen%20Shot%202018-05-07%20at%203.31.31%20PM.png)
  
- ## This is the dashboard for manager
+ ## Manager dashboard overview
  ![alt text](https://github.com/james101511/group-project/blob/master/Screen%20Shot%202018-05-07%20at%203.45.53%20PM.png)
  
-## This is the dashboard for member 
+## Member dashboard overview
  ![alt text](https://github.com/james101511/group-project/blob/master/Screen%20Shot%202018-05-07%20at%203.53.47%20PM.png)
  
  
