@@ -7,7 +7,7 @@ This is a Project Management System developed as a Group Project by Team 6 for C
 	https://github.com/james101511/group-project
 Create the database
 =====
-	1.Copy new.sql to your local sql
+	1.Copy SQL.sql to your local sql
 
 	2.Go to WebContent/META-INF/context.xml to change your username, password and which database you use
 		
